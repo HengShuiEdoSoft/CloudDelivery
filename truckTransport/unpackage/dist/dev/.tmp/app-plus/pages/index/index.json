@@ -1,0 +1,28 @@
+{
+  "navigationBarBackgroundColor": "#fff",
+  "bounce": "none",
+  "titleNView": {
+    "buttons": [
+      {
+        "text": "地图",
+        "fontSize": "16",
+        "float": "right",
+        "color": "#212121"
+      },
+      {
+        "text": "",
+        "fontSrc": "/static/font/iconfont.ttf",
+        "fontSize": "24",
+        "float": "left",
+        "color": "#212121"
+      }
+    ],
+    "searchInput": {
+      "align": "center",
+      "placeholder": "请输入查找房源信息",
+      "borderRadius": "50upx",
+      "backgroundColor": "#fff"
+    }
+  },
+  "usingComponents": {}
+}
