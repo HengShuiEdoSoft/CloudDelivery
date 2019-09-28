@@ -1,5 +1,12 @@
 <template>
     <view class="content">
+		<view>
+			<uni-drawer :visible="visible" mode="left" @close="visible=false">
+				<view style="padding:30upx;">
+					<view class="uni-title">抽屉式导航</view>
+				</view>
+			</uni-drawer>
+		</view>
         <view v-if="hasLogin" class="hello">
             <view class="title">
                 您好 {{userName}}，您已成功登录。
@@ -25,8 +32,15 @@
     import {
         mapState
     } from 'vuex'
-
+	import uniDrawer from "@/components/drawer/drawer.vue"
+	
     export default {
+		components: {uniDrawer},
+		data() {
+			return {
+				visible: false
+			}
+		},
         computed: mapState(['forcedLogin', 'hasLogin', 'userName']),
         onLoad() {
             if (!this.hasLogin) {
@@ -55,7 +69,24 @@
                     }
                 });
             }
-        }
+        },
+		method:{
+			show() {
+				this.visible=true
+			},
+			hide() {
+				this.visible = false
+			}
+		},
+		onNavigationBarButtonTap(e){
+			var index=e.index;
+			if(index===0){
+				this.visible = !this.visible
+			}else if(index===1|| index===2){
+				
+			}
+		    
+		}
     }
 </script>
 
