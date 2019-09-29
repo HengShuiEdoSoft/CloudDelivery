@@ -2,8 +2,19 @@
     <view class="content">
 		<view>
 			<uni-drawer :visible="visible" mode="left" @close="visible=false">
+				<view class="ui-drawer-top">
+					<image src="../../static/img/HeadImg.jpg" class="ui-portrait"></image>
+				</view>
+				<view class="ui-divide-line"></view>
 				<view style="padding:30upx;">
-					<view class="uni-title">抽屉式导航</view>
+					<view class="ui-list">
+						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-huoche"></text><text>订单列表</text></navigator></view>
+						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-weizhi"></text><text>常用地址</text></navigator></view>
+						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-qianbao-kuai"></text><text>我的钱包</text></navigator></view>
+						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-siji-"></text><text>我的司机</text></navigator></view>
+						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon--kefu"></text><text>客服中心</text></navigator></view>
+						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-shezhi"></text><text>更多设置</text></navigator></view>
+					</view>
 				</view>
 			</uni-drawer>
 		</view>
@@ -32,10 +43,13 @@
     import {
         mapState
     } from 'vuex'
+
 	import uniDrawer from "@/components/drawer/drawer.vue"
 	
     export default {
-		components: {uniDrawer},
+		components: {
+			uniDrawer
+		},
 		data() {
 			return {
 				visible: false
@@ -82,8 +96,6 @@
 			var index=e.index;
 			if(index===0){
 				this.visible = !this.visible
-			}else if(index===1|| index===2){
-				
 			}
 		    
 		}
@@ -111,4 +123,26 @@
     .ul>view {
         line-height: 50upx;
     }
+	.ui-list .iconfont{
+		margin-right:20px;
+		color:#424456;
+	}
+	.ui-list{
+		font-size:14px;
+	}
+	.ui-list>view{
+		line-height:46px;
+	}
+	.ui-list-item-hover{
+		background: #f5f7f9;
+	}
+	.ui-drawer-top{
+		display:flex;
+		padding:16px 12px;
+	}
+	.ui-portrait{
+		width:64px;
+		height:64px;
+		border-radius: 32px;
+	}
 </style>

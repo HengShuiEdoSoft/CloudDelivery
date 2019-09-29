@@ -63,55 +63,186 @@ textarea {
       transform: scaleY(0.5);
   -webkit-transform: scaleY(0.5);
 }
-._h1, ._h2, ._h3, ._h4, ._h5 {
+.h1, .h2, .h3, .h4, .h5 {
   font-weight: 600;
 }
-._h1 {
+.h1 {
   font-size: 36px;
 }
-._h2 {
+.h2 {
   font-size: 24px;
 }
-._h3 {
+.h3 {
   font-size: 18px;
 }
-._h4 {
+.h4 {
   font-size: 16px;
 }
-._h5 {
+.h5 {
   font-size: 14px;
 }
-page {
+@font-face {
+  font-family: 'iconfont';  /* project id 1436070 */
+  src: url('https://at.alicdn.com/t/font_1436070_bp6qkt2uxc.eot');
+  src: url('https://at.alicdn.com/t/font_1436070_bp6qkt2uxc.eot?#iefix') format('embedded-opentype'),
+  url('https://at.alicdn.com/t/font_1436070_bp6qkt2uxc.woff2') format('woff2'),
+  url('https://at.alicdn.com/t/font_1436070_bp6qkt2uxc.woff') format('woff'),
+  url('https://at.alicdn.com/t/font_1436070_bp6qkt2uxc.ttf') format('truetype'),
+  url('https://at.alicdn.com/t/font_1436070_bp6qkt2uxc.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #212121;
-  background-color: #f3f4f5;
+  -moz-osx-font-smoothing: grayscale;
 }
-.ui-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  height: 54px;
-  line-height: 54px;
-  background-color: #fff;
+.icon-liwu:before {
+  content: "\E65A";
 }
-.ui-nav-left, .ui-nav-right {
-  position: absolute;
-  top: 0;
-  width: 44px;
+.icon-icon2:before {
+  content: "\E619";
 }
-.ui-nav-left {
-  left: 16px;
+.icon-fenxiang:before {
+  content: "\E613";
 }
-.ui-nav-right {
-  right: 16px;
+.icon-dingwei:before {
+  content: "\E607";
 }
-.ui-nav-center {
-  font-size: 18px;
-  text-align: center;
+.icon-zhanghuyue:before {
+  content: "\E60E";
+}
+.icon-z-alipay:before {
+  content: "\E6CC";
+}
+.icon-pingjia:before {
+  content: "\E652";
+}
+.icon-weixin:before {
+  content: "\E7BA";
+}
+.icon-qiyeyuanquwuye:before {
+  content: "\E894";
+}
+.icon-youhuijuan:before {
+  content: "\E899";
+}
+.icon--kefu:before {
+  content: "\E8AB";
+}
+.icon-caiwu:before {
+  content: "\E8AE";
+}
+.icon-checkbox-weixuan:before {
+  content: "\E8B5";
+}
+.icon-checkbox-xuanzhong:before {
+  content: "\E8B6";
+}
+.icon-Raidobox-weixuan:before {
+  content: "\E8B7";
+}
+.icon-Raidobox-xuanzhong:before {
+  content: "\E8B8";
+}
+.icon-sousuo-xianxing:before {
+  content: "\E8B9";
+}
+.icon-shezhi:before {
+  content: "\E8BA";
+}
+.icon-liaotianduihua:before {
+  content: "\E8BC";
+}
+.icon-dianhua:before {
+  content: "\E8BD";
+}
+.icon-shoucang:before {
+  content: "\E8C2";
+}
+.icon-shoucang-xianxing:before {
+  content: "\E8C3";
+}
+.icon-gengduo-hengxiang:before {
+  content: "\E8C4";
+}
+.icon-gengduo-shuxiang:before {
+  content: "\E8C5";
+}
+.icon-shijian-xianxing:before {
+  content: "\E8C6";
+}
+.icon-shijian:before {
+  content: "\E8C7";
+}
+.icon-yonghu:before {
+  content: "\E8C8";
+}
+.icon-kaoqinchuqin:before {
+  content: "\E8D0";
+}
+.icon-paizhao:before {
+  content: "\E8D1";
+}
+.icon-paizhao-xianxing:before {
+  content: "\E8D2";
+}
+.icon-xianshikejian:before {
+  content: "\E8D4";
+}
+.icon-suoding:before {
+  content: "\E8D5";
+}
+.icon-yincangbukejian:before {
+  content: "\E8D6";
+}
+.icon-cuowuguanbiquxiao:before {
+  content: "\E8E7";
+}
+.icon-wenhao-yuankuang:before {
+  content: "\E8E9";
+}
+.icon-xinxi-yuankuang:before {
+  content: "\E8EA";
+}
+.icon-gantanhao-yuankuang:before {
+  content: "\E8EC";
+}
+.icon-shangyiyehoutuifanhui:before {
+  content: "\E8EF";
+}
+.icon-xiayiyeqianjinchakangengduo:before {
+  content: "\E8F1";
+}
+.icon-zhixiangzuo:before {
+  content: "\E8F4";
+}
+.icon-weizhi:before {
+  content: "\E8FF";
+}
+.icon-ditu:before {
+  content: "\E906";
+}
+.icon-siji-:before {
+  content: "\E604";
+}
+.icon-fapiaotianchong:before {
+  content: "\E623";
+}
+.icon-qianbao-kuai:before {
+  content: "\E605";
+}
+.icon-xiaoxi-chenggong:before {
+  content: "\E71B";
+}
+.icon-huoche:before {
+  content: "\E6F0";
+}
+.icon-gaishan:before {
+  content: "\E61A";
+}
+.icon-rili:before {
+  content: "\E879";
 }
 
 /*每个页面公共css */
@@ -221,4 +352,6 @@ m-input {
 button.primary {
 	background-color: #FF5723;
 }
+
+
 

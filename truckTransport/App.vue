@@ -13,7 +13,8 @@
 </script>
 
 <style>
-	@import './common/common.css';
+	@import url("common/common.css");
+	@import url("common/iconfont.css");
 	/*每个页面公共css */
 	page {
 		min-height: 100%;
@@ -129,4 +130,6 @@
 	button.primary {
 		background-color: #FF5723;
 	}
+	
+	
 </style>

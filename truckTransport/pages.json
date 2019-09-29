@@ -13,17 +13,8 @@
                             {
                                 "text": "\ue8c8",
 								"fontSrc": "/static/font/iconfont.ttf",
-                                "fontSize":"24",
+                                "fontSize":"20",
                                 "float": "left",
-                                "color":"#424456"
-                            },{
-                                "text": "",
-								 "select":true,
-                                "fontSize":"16",
-                                "color":"#424456"
-                            },{
-                                "text": "乌鲁木齐市",
-                                "fontSize":"14",
                                 "color":"#424456"
                             }
                         ]
