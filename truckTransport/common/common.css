@@ -84,6 +84,22 @@ textarea {
 .h5 {
   font-size: 14px; }
 
+/***tab***/
+.ui-car-name-list {
+  display: flex;
+  padding: 0 30upx;
+  background: #fff;
+  justify-content: space-between; }
+
+.ui-car-name-item {
+  padding: 20upx 0;
+  font-size: 17px;
+  color: #999; }
+
+.ui-car-name-item.active {
+  color: #FF5723;
+  border-bottom: 2px solid #FF5723; }
+
 /* timeline */
 .uni-timeline {
   margin: 36upx 0;

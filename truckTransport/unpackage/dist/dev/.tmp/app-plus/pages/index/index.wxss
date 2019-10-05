@@ -88,26 +88,6 @@
 .ui-car-select{
 		background-color: #fff;
 }
-.ui-car-name-list{
-		display:-webkit-box;
-		display:-webkit-flex;
-		display:-ms-flexbox;
-		display:flex;
-		padding:0 30rpx;
-		-webkit-box-pack:justify;
-		-webkit-justify-content:space-between;
-		    -ms-flex-pack:justify;
-		        justify-content:space-between;
-}
-.ui-car-name-item{
-		padding:20rpx 0;
-		font-size:17px;
-		color:#999;
-}
-.ui-car-name-item.active{
-		color:#FF5723;
-		border-bottom: 2px solid #FF5723;
-}
 .ui-carinfos{
 		padding:30rpx;
 		height:220rpx;

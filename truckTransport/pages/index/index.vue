@@ -11,7 +11,7 @@
 				</view>			
 				<view style="padding:30upx;">
 					<view class="ui-list">
-						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-huoche"></text><text>订单列表</text></navigator></view>
+						<view hover-class="ui-list-item-hover"><navigator url="/pages/orderlist/orderlist"><text class="iconfont icon-huoche"></text><text>订单列表</text></navigator></view>
 						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-weizhi"></text><text>常用地址</text></navigator></view>
 						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-qianbao-kuai"></text><text>我的钱包</text><image src="../../static/img/quan.png"></image></navigator></view>
 						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-siji-"></text><text>我的司机</text></navigator></view>
@@ -253,20 +253,6 @@
 	}
 	.ui-car-select{
 		background-color: #fff;
-	}
-	.ui-car-name-list{
-		display:flex;
-		padding:0 30upx;
-		justify-content:space-between;
-	}
-	.ui-car-name-item{
-		padding:20upx 0;
-		font-size:17px;
-		color:#999;
-	}
-	.ui-car-name-item.active{
-		color:#FF5723;
-		border-bottom: 2px solid #FF5723;
 	}
 	.ui-carinfos{
 		padding:30upx;

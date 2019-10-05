@@ -6,7 +6,8 @@
     "pages/pwd/pwd",
     "pages/user/user",
     "pages/cardetail/cardetail",
-    "pages/map/map"
+    "pages/map/map",
+    "pages/orderlist/orderlist"
   ],
   "window": {
     "navigationBarTextStyle": "black",

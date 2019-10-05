@@ -51,6 +51,24 @@
 		    "style": {
 		        "navigationBarTitleText": "地图"
 		    }
+		},{
+		    "path": "pages/orderlist/orderlist",
+		    "style": {
+		        "navigationBarTitleText": "订单列表",
+				"app-plus": {
+				    "bounce": "none",
+				    "titleNView": {
+				        "buttons": [ 
+				            {
+				                "text": "行程单",
+				                "fontSize":"12",
+				                "float": "right",
+				                "color":"#424456"
+				            }
+				        ]
+				    }
+				}				
+		    }
 		}
     ],
 
