@@ -1,1 +1,2 @@
+setCssToHead([".",[1],"content { background-color: #fff; border-top: ",[0,1]," solid #e0e0e0; }\n.",[1],"btn-row { margin-left: ",[0,60],"; margin-right: ",[0,60],"; }\n",],undefined,{path:"./pages/reg/reg.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/reg/reg.wxml') } }));

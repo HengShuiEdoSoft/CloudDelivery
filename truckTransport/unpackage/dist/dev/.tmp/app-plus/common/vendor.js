@@ -83,18 +83,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(f
 
 /***/ }),
 
-/***/ 32:
-/*!***********************************************************************************!*\
-  !*** /Users/liudongxue/Documents/其他工作/货运/CloudDelivery/truckTransport/service.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0; // 管理账号信息\nvar USERS_KEY = 'USERS_KEY';\nvar STATE_KEY = 'STATE_KEY';\n\nvar getUsers = function getUsers() {\n  var ret = '';\n  ret = uni.getStorageSync(USERS_KEY);\n  if (!ret) {\n    ret = '[]';\n  }\n  return JSON.parse(ret);\n};\n\nvar addUser = function addUser(userInfo) {\n  var users = getUsers();\n  users.push({\n    account: userInfo.account,\n    password: userInfo.password });\n\n  uni.setStorageSync(USERS_KEY, JSON.stringify(users));\n};var _default =\n\n{\n  getUsers: getUsers,\n  addUser: addUser };exports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-app-plus/dist/index.js */ 1)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vc2VydmljZS5qcyJdLCJuYW1lcyI6WyJVU0VSU19LRVkiLCJTVEFURV9LRVkiLCJnZXRVc2VycyIsInJldCIsInVuaSIsImdldFN0b3JhZ2VTeW5jIiwiSlNPTiIsInBhcnNlIiwiYWRkVXNlciIsInVzZXJJbmZvIiwidXNlcnMiLCJwdXNoIiwiYWNjb3VudCIsInBhc3N3b3JkIiwic2V0U3RvcmFnZVN5bmMiLCJzdHJpbmdpZnkiXSwibWFwcGluZ3MiOiJtSUFBQTtBQUNBLElBQU1BLFNBQVMsR0FBRyxXQUFsQjtBQUNBLElBQU1DLFNBQVMsR0FBRyxXQUFsQjs7QUFFQSxJQUFNQyxRQUFRLEdBQUcsU0FBWEEsUUFBVyxHQUFZO0FBQ3pCLE1BQUlDLEdBQUcsR0FBRyxFQUFWO0FBQ0FBLEtBQUcsR0FBR0MsR0FBRyxDQUFDQyxjQUFKLENBQW1CTCxTQUFuQixDQUFOO0FBQ0EsTUFBSSxDQUFDRyxHQUFMLEVBQVU7QUFDTkEsT0FBRyxHQUFHLElBQU47QUFDSDtBQUNELFNBQU9HLElBQUksQ0FBQ0MsS0FBTCxDQUFXSixHQUFYLENBQVA7QUFDSCxDQVBEOztBQVNBLElBQU1LLE9BQU8sR0FBRyxTQUFWQSxPQUFVLENBQVVDLFFBQVYsRUFBb0I7QUFDaEMsTUFBSUMsS0FBSyxHQUFHUixRQUFRLEVBQXBCO0FBQ0FRLE9BQUssQ0FBQ0MsSUFBTixDQUFXO0FBQ1BDLFdBQU8sRUFBRUgsUUFBUSxDQUFDRyxPQURYO0FBRVBDLFlBQVEsRUFBRUosUUFBUSxDQUFDSSxRQUZaLEVBQVg7O0FBSUFULEtBQUcsQ0FBQ1UsY0FBSixDQUFtQmQsU0FBbkIsRUFBOEJNLElBQUksQ0FBQ1MsU0FBTCxDQUFlTCxLQUFmLENBQTlCO0FBQ0gsQ0FQRCxDOztBQVNlO0FBQ1hSLFVBQVEsRUFBUkEsUUFEVztBQUVYTSxTQUFPLEVBQVBBLE9BRlcsRSIsImZpbGUiOiIzMi5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIOeuoeeQhui0puWPt+S/oeaBr1xuY29uc3QgVVNFUlNfS0VZID0gJ1VTRVJTX0tFWSc7XG5jb25zdCBTVEFURV9LRVkgPSAnU1RBVEVfS0VZJztcblxuY29uc3QgZ2V0VXNlcnMgPSBmdW5jdGlvbiAoKSB7XG4gICAgbGV0IHJldCA9ICcnO1xuICAgIHJldCA9IHVuaS5nZXRTdG9yYWdlU3luYyhVU0VSU19LRVkpO1xuICAgIGlmICghcmV0KSB7XG4gICAgICAgIHJldCA9ICdbXSc7XG4gICAgfVxuICAgIHJldHVybiBKU09OLnBhcnNlKHJldCk7XG59XG5cbmNvbnN0IGFkZFVzZXIgPSBmdW5jdGlvbiAodXNlckluZm8pIHtcbiAgICBsZXQgdXNlcnMgPSBnZXRVc2VycygpO1xuICAgIHVzZXJzLnB1c2goe1xuICAgICAgICBhY2NvdW50OiB1c2VySW5mby5hY2NvdW50LFxuICAgICAgICBwYXNzd29yZDogdXNlckluZm8ucGFzc3dvcmRcbiAgICB9KTtcbiAgICB1bmkuc2V0U3RvcmFnZVN5bmMoVVNFUlNfS0VZLCBKU09OLnN0cmluZ2lmeSh1c2VycykpO1xufVxuXG5leHBvcnQgZGVmYXVsdCB7XG4gICAgZ2V0VXNlcnMsXG4gICAgYWRkVXNlclxufVxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///32\n");
-
-/***/ }),
-
 /***/ 4:
 /*!***********************************************************************************!*\
   !*** /Users/liudongxue/Documents/其他工作/货运/CloudDelivery/truckTransport/pages.json ***!

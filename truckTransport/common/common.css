@@ -179,4 +179,9 @@ textarea {
 .uni-timeline-last-item .uni-timeline-item-divider {
   background-color: #FF5723; }
 
+.dui-input-group-mg {
+  margin-top: 66upx;
+  margin-left: 84upx;
+  margin-right: 100upx; }
+
 /*# sourceMappingURL=common.css.map */

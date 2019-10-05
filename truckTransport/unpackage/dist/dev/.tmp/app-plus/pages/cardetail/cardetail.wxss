@@ -24,4 +24,7 @@
 	height:4px;
 	background: #ddd;
 }
+swiper{
+	height: 240px;
+}
 

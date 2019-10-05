@@ -1,14 +1,14 @@
 <template>
     <view class="content">
-        <view class="input-group">
-            <view class="input-row">
-                <text class="title">邮箱：</text>
+        <view class="input-group" style="padding-left: 30upx;padding-right:40upx ;">
+            <view class="input-row border">
+                <text class="title iconfont icon-suoding"></text>
                 <m-input type="text" focus clearable v-model="email" placeholder="请输入邮箱"></m-input>
             </view>
         </view>
 
-        <view class="btn-row">
-            <button type="primary" class="primary" @tap="findPassword">提交</button>
+        <view class="btn-row">            
+			<mButton text="提 交"  @click.native="findPassword()"></mButton>
         </view>
     </view>
 </template>
@@ -16,10 +16,12 @@
 <script>
     import service from '../../service.js';
     import mInput from '../../components/m-input.vue';
+	import mButton from '../../components/m-button.vue';
 
     export default {
         components: {
-            mInput
+            mInput,
+			mButton
         },
         data() {
             return {
@@ -49,5 +51,8 @@
 </script>
 
 <style>
-
+	.content {
+		background-color: #fff;
+		border-top: 1upx solid #e0e0e0;
+	}
 </style>

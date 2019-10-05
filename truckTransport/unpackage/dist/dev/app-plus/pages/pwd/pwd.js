@@ -1,1 +1,2 @@
+setCssToHead([".",[1],"content { background-color: #fff; border-top: ",[0,1]," solid #e0e0e0; }\n",],undefined,{path:"./pages/pwd/pwd.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/pwd/pwd.wxml') } }));

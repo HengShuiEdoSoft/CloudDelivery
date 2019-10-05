@@ -1,0 +1,6 @@
+
+.content {
+	background-color: #fff;
+	border-top: 1rpx solid #e0e0e0;
+}
+
