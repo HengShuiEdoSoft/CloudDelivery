@@ -107,6 +107,9 @@ textarea {
   flex-direction: column;
   position: relative; }
 
+.ui-order-timeline.uni-timeline {
+  margin: 18upx 0 0; }
+
 .uni-timeline-item {
   display: flex;
   flex-direction: row;
@@ -136,6 +139,12 @@ textarea {
   border-radius: 50%;
   background-color: #bbb; }
 
+.ui-order-timeline .uni-timeline-item .uni-timeline-item-divider {
+  width: 12upx;
+  height: 12upx;
+  top: 14upx;
+  line-height: 12upx; }
+
 .uni-timeline-item-divider::before,
 .uni-timeline-item-divider::after {
   position: absolute;
@@ -144,6 +153,14 @@ textarea {
   height: 100vh;
   content: '';
   background: #ddd; }
+
+.ui-order-timeline .uni-timeline-item-divider::before,
+.ui-order-timeline .uni-timeline-item-divider::after {
+  left: 6upx; }
+
+.ui-order-timeline .uni-timeline-item-content .ui-address {
+  padding-bottom: 10px;
+  font-size: 14px; }
 
 .uni-timeline-item-divider::before {
   bottom: 100%; }
@@ -172,12 +189,111 @@ textarea {
   font-size: 14px;
   color: #aaa; }
 
+.ui-order-timeline .uni-timeline-item-content .ui-subtext {
+  padding: 10upx 0 16upx;
+  font-size: 12px;
+  display: block;
+  color: #aaa; }
+
 /* 自定义节点颜色 */
 .uni-timeline-first-item .uni-timeline-item-divider {
   background-color: #3BD1AB; }
 
 .uni-timeline-last-item .uni-timeline-item-divider {
   background-color: #FF5723; }
+
+.ui-order-list-item {
+  position: relative;
+  margin: 16upx;
+  padding: 20upx;
+  font-size: 14px;
+  background: #fff;
+  border-radius: 2px; }
+
+.ui-order-list-item-top {
+  padding-bottom: 20upx; }
+
+.ui-order-list-cartype {
+  display: inline-block;
+  padding: 4px 10px;
+  margin-right: 16px;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 2px;
+  background: #424456; }
+
+/*订单状态*/
+.ui-hujiao:after, .ui-daizhifu:after {
+  position: absolute;
+  top: 0;
+  right: 20upx;
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #fff; }
+
+.ui-hujiao:after {
+  content: "正在呼叫";
+  background: #3BD1AB; }
+
+.ui-daizhifu:after {
+  content: "待支付";
+  background: #FF9801; }
+
+/**订单详情**/
+.ui-orderdetail-cont {
+  margin: 16upx;
+  padding: 20upx;
+  font-size: 16px;
+  background: #fff; }
+
+.ui-orderdetail-top {
+  display: flex;
+  align-items: center; }
+
+.ui-od-portrait {
+  margin-right: 20upx;
+  width: 96upx;
+  height: 96upx;
+  border-radius: 100%; }
+
+.ui-orderdetail-date {
+  display: flex;
+  font-size: 14px;
+  padding-bottom: 20upx;
+  flex-direction: row; }
+
+.ui-od-ordernumber {
+  color: #9E9E9E; }
+
+.ui-od-date {
+  flex: 1; }
+
+.ui-od-info-item {
+  display: flex;
+  line-height: 72upx; }
+
+.ui-od-info-right {
+  flex: 1;
+  padding-left: 20upx;
+  color: #9E9E9E; }
+
+.ui-od-price-pay {
+  color: #FF5723;
+  font-size: 18px;
+  font-weight: 600; }
+
+.ui-od-price-type {
+  flex: 1; }
+
+.ui-orderdetail-cont .ui-od-price-list-b {
+  display: flex;
+  font-szie: 14px;
+  line-height: 64upx;
+  color: #666; }
+
+.ui-orderdetail-cont .ui-od-price-right {
+  font-szie: 14px; }
 
 .dui-input-group-mg {
   margin-top: 66upx;

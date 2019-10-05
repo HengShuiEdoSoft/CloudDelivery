@@ -1,7 +1,7 @@
 <template>
-	<view>
+	<view class="content cardetail-content">
 		<swiper>
-			<swiper-item v-for="item in carsInfos[id].images" :key="item.id">
+			<swiper-item v-for="item in carsInfos[id].images" :key="item.id" class="ui-cardetail-item">
 				<image :src="item.img"></image>
 			</swiper-item>
 		</swiper>
@@ -119,6 +119,9 @@
 </script>
 
 <style>
+	.content.cardetail-content{
+		background:#fff;
+	}
 	.ui-cardetail-container{
 		padding:30upx 60upx;
 	}
@@ -145,6 +148,13 @@
 		background: #ddd;
 	}
 	swiper{
-		height: 240px;
+		height: 527upx;
+	}
+	.ui-cardetail-item{
+		width:100%;
+	} 
+	.ui-cardetail-item image{
+		width:100%;
+		height: 527upx;
 	}
 </style>

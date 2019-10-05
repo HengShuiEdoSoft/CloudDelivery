@@ -22,6 +22,9 @@
 		flex-direction: column;
 		position: relative;
 	}
+.ui-order-timeline.uni-timeline{
+	margin:18upx 0 0;
+}	
 
 
 	.uni-timeline-item {
@@ -56,6 +59,12 @@
 		border-radius: 50%;
 		background-color: #bbb;
 	}
+	.ui-order-timeline .uni-timeline-item .uni-timeline-item-divider{
+		width:12upx;
+		height:12upx;
+		top:14upx;
+		line-height: 12upx;
+	}
 
 
 
@@ -67,6 +76,14 @@
 		height: 100vh;
 		content: '';
 		background:#ddd;
+	}
+	.ui-order-timeline .uni-timeline-item-divider::before,
+	.ui-order-timeline .uni-timeline-item-divider::after{
+		left:6upx;
+	}
+	.ui-order-timeline .uni-timeline-item-content .ui-address{
+		padding-bottom: 10px;
+		font-size:14px;
 	}
 
 	.uni-timeline-item-divider::before {
@@ -102,6 +119,12 @@
 		font-size:14px;
 		color: #aaa;
 	}
+	.ui-order-timeline .uni-timeline-item-content .ui-subtext{
+		padding:10upx 0 16upx;
+		font-size:12px;
+		display:block;
+		color: #aaa;
+	}
 
 	/* 自定义节点颜色 */
 	.uni-timeline-first-item .uni-timeline-item-divider{
@@ -110,3 +133,100 @@
 	.uni-timeline-last-item .uni-timeline-item-divider{
 		background-color: $maincolor;
 	}
+	
+	
+	
+	.ui-order-list-item{
+		position:relative;
+		margin:16upx;
+		padding:20upx;
+		font-size:14px;
+		background: $white;
+		border-radius: 2px;
+	}
+	.ui-order-list-item-top{
+		padding-bottom:20upx;
+	}
+	.ui-order-list-cartype{
+		display:inline-block;
+		padding:4px 10px;
+		margin-right:16px;
+		font-size:12px;
+		color:$white;
+		border-radius:2px;
+		background: $dark;
+	}
+	/*订单状态*/
+	.ui-hujiao:after,.ui-daizhifu:after{
+		position:absolute;
+		top:0;
+		right:20upx;
+		display:inline-block;
+		padding:4px 8px;
+		font-size:12px;
+		color:$white;
+	}
+	.ui-hujiao:after{
+		content:"正在呼叫";
+		background: $green;
+	}
+	.ui-daizhifu:after{
+		content:"待支付";
+		background: $yellow;
+	}
+	
+/**订单详情**/	
+.ui-orderdetail-cont{
+	margin:16upx;
+	padding:20upx;
+	font-size:16px;
+	background: $white;
+}
+.ui-orderdetail-top{
+	display:flex;
+	align-items: center;
+}
+.ui-od-portrait{
+	margin-right:20upx;
+	width:96upx;
+	height:96upx;
+	border-radius: 100%;
+}
+.ui-orderdetail-date{
+	display:flex;
+	font-size:14px;
+	padding-bottom:20upx;
+	flex-direction: row;
+}
+.ui-od-ordernumber{
+	color:$grey;
+}
+.ui-od-date{
+	flex:1;
+}
+.ui-od-info-item{
+	display:flex;
+	line-height: 72upx;
+}
+.ui-od-info-right{
+	flex:1;
+	padding-left:20upx;
+	color:$grey;
+}
+.ui-od-price-pay{
+	color:$maincolor;
+	font-size:18px;
+	font-weight: 600;
+}
+.ui-od-price-type{
+	flex:1;
+}
+.ui-orderdetail-cont .ui-od-price-list-b{
+		display:flex;
+		font-szie:14px;
+		line-height: 64upx;
+		color:#666;
+}
+.ui-orderdetail-cont .ui-od-price-right{
+	font-szie:14px;
+}

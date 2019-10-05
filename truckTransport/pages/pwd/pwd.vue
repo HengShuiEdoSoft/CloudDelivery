@@ -8,7 +8,7 @@
         </view>
 
         <view class="btn-row">            
-			<mButton text="提 交"  @click.native="findPassword()"></mButton>
+			<button text="提 交"  @click.native="findPassword()"></button>
         </view>
     </view>
 </template>
@@ -16,12 +16,10 @@
 <script>
     import service from '../../service.js';
     import mInput from '../../components/m-input.vue';
-	import mButton from '../../components/m-button.vue';
 
     export default {
         components: {
-            mInput,
-			mButton
+            mInput
         },
         data() {
             return {

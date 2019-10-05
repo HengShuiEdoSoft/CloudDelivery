@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"ui-od-info-left{ width:64px; }\n.",[1],"ui-tips{ padding:",[0,20]," 0; font-size:12px; color:#999; }\n.",[1],"ui-tips wx-navigator{ display:inline; }\n.",[1],"ui-od-price-list{ display:-webkit-box; display:-webkit-flex; display:-ms-flexbox; display:flex; line-height: ",[0,64],"; }\n",],undefined,{path:"./pages/orderdetail/orderdetail.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/orderdetail/orderdetail.wxml') } }));

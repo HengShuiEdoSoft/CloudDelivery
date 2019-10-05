@@ -14,7 +14,7 @@
 			</view>
 		</view>
 		<view class="btn-row">		
-			<mButton text="登 录"  @click.native="bindLogin()"></mButton>
+			<button text="登 录"  @click.native="bindLogin()"></button>
 		</view>
 		<view class="action-row">
 			<navigator url="../reg/reg">注册账号</navigator>
@@ -36,12 +36,10 @@
 		mapMutations
 	} from 'vuex'
 	import mInput from '../../components/m-input.vue'
-	import mButton from '../../components/m-button.vue'
 
 	export default {
 		components: {
-			mInput,
-			mButton
+			mInput
 		},
 		data() {
 			return {
