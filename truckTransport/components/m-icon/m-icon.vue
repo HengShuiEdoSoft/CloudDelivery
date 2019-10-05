@@ -1,5 +1,5 @@
 <template>
-	<view class="m-icon" :class="['m-icon-'+type]" :style="{color:color,'font-size':fontSize}" @click="onClick()"></view>
+	<view class="iconfont" :class="['icon-'+type]" :style="{color:color,'font-size':fontSize}" @click="onClick()"></view>
 </template>
 
 <script>
@@ -37,5 +37,6 @@
 </script>
 
 <style>
-	@import "./m-icon.css";
+	/* @import "./m-icon.css"; */
+	@import "../../common/iconfont.css";	
 </style>

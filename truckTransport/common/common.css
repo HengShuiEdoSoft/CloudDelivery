@@ -1,21 +1,26 @@
 @charset "UTF-8";
 * {
   padding: 0;
-  margin: 0; }
+  margin: 0;
+}
 
 html {
   -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%; }
+  -webkit-text-size-adjust: 100%;
+}
 
 img {
   width: 100%;
-  border: 0; }
+  border: 0;
+}
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 ul, li {
-  list-style: none; }
+  list-style: none;
+}
 
 input[type="text"], input[type="password"], button, textarea, select {
   border: none;
@@ -23,40 +28,49 @@ input[type="text"], input[type="password"], button, textarea, select {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   appearance: none;
   -webkit-appearance: none;
-  -moz-appearance: none; }
+  -moz-appearance: none;
+}
 
 ::-webkit-input-placeholder {
-  color: #C1C1C1; }
+  color: #C1C1C1;
+}
 
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #C1C1C1; }
+  color: #C1C1C1;
+}
 
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #C1C1C1; }
+  color: #C1C1C1;
+}
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #C1C1C1; }
+  color: #C1C1C1;
+}
 
 textarea {
-  resize: none; }
+  resize: none;
+}
 
 .hide {
-  display: none; }
+  display: none;
+}
 
 .ui-ellipse {
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+}
 
 .ui-divide-bar {
   display: block;
   width: 100%;
   height: 10px;
   background-color: #f3f4f5;
-  border: none; }
+  border: none;
+}
 
 .ui-divide-line {
   display: block;
@@ -64,32 +78,40 @@ textarea {
   background-color: #e2e2e2;
   border: none;
   transform: scaleY(0.5);
-  -webkit-transform: scaleY(0.5); }
+  -webkit-transform: scaleY(0.5);
+}
 
 .h1, .h2, .h3, .h4, .h5 {
-  font-weight: 600; }
+  font-weight: 600;
+}
 
 .h1 {
-  font-size: 36px; }
+  font-size: 36px;
+}
 
 .h2 {
-  font-size: 24px; }
+  font-size: 24px;
+}
 
 .h3 {
-  font-size: 18px; }
+  font-size: 18px;
+}
 
 .h4 {
-  font-size: 16px; }
+  font-size: 16px;
+}
 
 .h5 {
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 /* timeline */
 .uni-timeline {
   margin: 36upx 0;
   display: flex;
   flex-direction: column;
-  position: relative; }
+  position: relative;
+}
 
 .uni-timeline-item {
   display: flex;
@@ -97,7 +119,8 @@ textarea {
   position: relative;
   padding-bottom: 20upx;
   box-sizing: border-box;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .uni-timeline-item .uni-timeline-item-keynode {
   width: 160upx;
@@ -105,7 +128,8 @@ textarea {
   box-sizing: border-box;
   padding-right: 20upx;
   text-align: right;
-  line-height: 65upx; }
+  line-height: 65upx;
+}
 
 .uni-timeline-item .uni-timeline-item-divider {
   flex-shrink: 0;
@@ -118,7 +142,8 @@ textarea {
   line-height: 36upx;
   text-align: center;
   border-radius: 50%;
-  background-color: #bbb; }
+  background-color: #bbb;
+}
 
 .uni-timeline-item-divider::before,
 .uni-timeline-item-divider::after {
@@ -127,40 +152,57 @@ textarea {
   width: 1upx;
   height: 100vh;
   content: '';
-  background: #ddd; }
+  background: #ddd;
+}
 
 .uni-timeline-item-divider::before {
-  bottom: 100%; }
+  bottom: 100%;
+}
 
 .uni-timeline-item-divider::after {
-  top: 100%; }
+  top: 100%;
+}
 
 .uni-timeline-last-item .uni-timeline-item-divider:after {
-  display: none; }
+  display: none;
+}
 
 .uni-timeline-first-item .uni-timeline-item-divider:before {
-  display: none; }
+  display: none;
+}
 
 .uni-timeline-item .uni-timeline-item-content {
   flex: 1;
-  padding-left: 20upx; }
+  padding-left: 20upx;
+}
 
 .uni-timeline-last-item .bottom-border::after {
-  display: none; }
+  display: none;
+}
 
 .uni-timeline-item-content .ui-address {
   padding-bottom: 10upx;
-  font-size: 16px; }
+  font-size: 16px;
+}
 
 .uni-timeline-item-content .ui-subtext {
   font-size: 14px;
-  color: #aaa; }
+  color: #aaa;
+}
 
 /* 自定义节点颜色 */
 .uni-timeline-first-item .uni-timeline-item-divider {
-  background-color: #3BD1AB; }
+  background-color: #3BD1AB;
+}
 
 .uni-timeline-last-item .uni-timeline-item-divider {
-  background-color: #FF5723; }
+  background-color: #FF5723;
+}
+
+.dui-input-group-mg {
+  margin-top: 66upx;
+  margin-left: 84upx;
+  margin-right: 100upx;
+}
 
 /*# sourceMappingURL=common.css.map */
