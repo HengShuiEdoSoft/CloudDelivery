@@ -13,13 +13,13 @@
 				<m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
 			</view>
 		</view>
-		<view class="btn-row">		
-			<mButton text="登 录"  @click.native="bindLogin()"></mButton>
-		</view>
-		<view class="action-row">
-			<navigator url="../reg/reg">注册账号</navigator>
-			<text>|</text>
-			<navigator url="../pwd/pwd">忘记密码</navigator>
+		<view class="btn-row">
+			<button class="primary" type="primary" @click="bindLogin()"">登 录</button>
+					</view>
+		<view class=" action-row">
+				<navigator url="../reg/reg">注册账号</navigator>
+				<text>|</text>
+				<navigator url="../pwd/pwd">忘记密码</navigator>
 		</view>
 		<view class="oauth-row" v-if="hasProvider" v-bind:style="{top: positionTop + 'px'}">
 			<view class="oauth-image" v-for="provider in providerList" :key="provider.value">
@@ -36,12 +36,9 @@
 		mapMutations
 	} from 'vuex'
 	import mInput from '../../components/m-input.vue'
-	import mButton from '../../components/m-button.vue'
-
 	export default {
 		components: {
-			mInput,
-			mButton
+			mInput
 		},
 		data() {
 			return {
