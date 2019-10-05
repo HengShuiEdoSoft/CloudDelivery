@@ -1,21 +1,21 @@
 <template>
-    <view class="content">
-        <view class="input-group dui-input-group-mg">
-            <view class="input-row border">
-                <text class="title iconfont icon-dianhua"></text>
-                <m-input type="text" focus clearable v-model="account" placeholder="请输入账号"></m-input>
-            </view>
-            <view class="input-row border">
-                <text class="title iconfont icon-suoding"></text>
-                <m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
-            </view>
-            <view class="input-row border">
-                <text class="title iconfont icon-suoding"></text>
-                <m-input type="text" clearable v-model="email" placeholder="请输入邮箱"></m-input>
-            </view>
-        </view>
-        <view class="btn-row">         
-			<button text="注 册"  @click.native="register()"></button>
+	<view class="content">
+		<view class="input-group dui-input-group-mg">
+			<view class="input-row border">
+				<text class="title iconfont icon-dianhua"></text>
+				<m-input type="text" focus clearable v-model="account" placeholder="请输入账号"></m-input>
+			</view>
+			<view class="input-row border">
+				<text class="title iconfont icon-suoding"></text>
+				<m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
+			</view>
+			<view class="input-row border">
+				<text class="title iconfont icon-suoding"></text>
+				<m-input type="text" clearable v-model="email" placeholder="请输入邮箱"></m-input>
+			</view>
+		</view>
+		<view class="btn-row">
+			<button class="primary" type="primary" @click="register()"">注 册</button>
         </view>
     </view>
 </template>
@@ -26,7 +26,7 @@
 
     export default {
         components: {
-            mInput
+            mInput			
         },
         data() {
             return {

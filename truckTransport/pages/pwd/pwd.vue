@@ -1,12 +1,11 @@
 <template>
-    <view class="content">
-        <view class="input-group" style="padding-left: 30upx;padding-right:40upx ;">
-            <view class="input-row border">
-                <text class="title iconfont icon-suoding"></text>
-                <m-input type="text" focus clearable v-model="email" placeholder="请输入邮箱"></m-input>
-            </view>
-        </view>
-
+	<view class="content">
+		<view class="input-group" style="padding-left: 30upx;padding-right:40upx ;">
+			<view class="input-row border">
+				<text class="title iconfont icon-suoding"></text>
+				<m-input type="text" focus clearable v-model="email" placeholder="请输入邮箱"></m-input>
+			</view>
+		</view>
         <view class="btn-row">            
 			<button text="提 交"  @click.native="findPassword()"></button>
         </view>
@@ -46,6 +45,7 @@
             }
         }
     }
+
 </script>
 
 <style>
