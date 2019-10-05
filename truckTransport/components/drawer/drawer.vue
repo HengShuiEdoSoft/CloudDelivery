@@ -132,7 +132,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 61.8%;
+		width: 75%;
 		height: 100%;
 		background: #fff;
 		transition: all .3s ease-out;

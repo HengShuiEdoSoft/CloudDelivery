@@ -4,7 +4,9 @@
     "pages/login/login",
     "pages/reg/reg",
     "pages/pwd/pwd",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/cardetail/cardetail",
+    "pages/map/map"
   ],
   "window": {
     "navigationBarTextStyle": "black",

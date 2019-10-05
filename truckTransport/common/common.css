@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   padding: 0;
   margin: 0; }
@@ -82,5 +83,84 @@ textarea {
 
 .h5 {
   font-size: 14px; }
+
+/* timeline */
+.uni-timeline {
+  margin: 36upx 0;
+  display: flex;
+  flex-direction: column;
+  position: relative; }
+
+.uni-timeline-item {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding-bottom: 20upx;
+  box-sizing: border-box;
+  overflow: hidden; }
+
+.uni-timeline-item .uni-timeline-item-keynode {
+  width: 160upx;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding-right: 20upx;
+  text-align: right;
+  line-height: 65upx; }
+
+.uni-timeline-item .uni-timeline-item-divider {
+  flex-shrink: 0;
+  position: relative;
+  width: 36upx;
+  height: 36upx;
+  top: 8upx;
+  font-size: 12px;
+  color: #fff;
+  line-height: 36upx;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #bbb; }
+
+.uni-timeline-item-divider::before,
+.uni-timeline-item-divider::after {
+  position: absolute;
+  left: 18upx;
+  width: 1upx;
+  height: 100vh;
+  content: '';
+  background: #ddd; }
+
+.uni-timeline-item-divider::before {
+  bottom: 100%; }
+
+.uni-timeline-item-divider::after {
+  top: 100%; }
+
+.uni-timeline-last-item .uni-timeline-item-divider:after {
+  display: none; }
+
+.uni-timeline-first-item .uni-timeline-item-divider:before {
+  display: none; }
+
+.uni-timeline-item .uni-timeline-item-content {
+  flex: 1;
+  padding-left: 20upx; }
+
+.uni-timeline-last-item .bottom-border::after {
+  display: none; }
+
+.uni-timeline-item-content .ui-address {
+  padding-bottom: 10upx;
+  font-size: 16px; }
+
+.uni-timeline-item-content .ui-subtext {
+  font-size: 14px;
+  color: #aaa; }
+
+/* 自定义节点颜色 */
+.uni-timeline-first-item .uni-timeline-item-divider {
+  background-color: #3BD1AB; }
+
+.uni-timeline-last-item .uni-timeline-item-divider {
+  background-color: #FF5723; }
 
 /*# sourceMappingURL=common.css.map */

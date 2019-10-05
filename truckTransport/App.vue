@@ -19,6 +19,7 @@
 	page {
 		min-height: 100%;
 		display: flex;
+		-webkit-font-smoothing: antialiased; 
 	}
 
 	/* #ifdef MP-BAIDU */
@@ -62,7 +63,7 @@
 		flex: 1;
 		flex-direction: column;
 		background-color: #efeff4;
-		padding: 20upx;
+		padding: 0;
 	}
 
 	.input-group {

@@ -13,7 +13,7 @@
                             {
                                 "text": "\ue8c8",
 								"fontSrc": "/static/font/iconfont.ttf",
-                                "fontSize":"20",
+                                "fontSize":"18",
                                 "float": "left",
                                 "color":"#424456"
                             }
@@ -41,7 +41,17 @@
             "style": {
                 "navigationBarTitleText": "我的"
             }
-        }
+        },{
+            "path": "pages/cardetail/cardetail",
+            "style": {
+                "navigationBarTitleText": "小面包车详情页"
+            }
+		},{
+		    "path": "pages/map/map",
+		    "style": {
+		        "navigationBarTitleText": "地图"
+		    }
+		}
     ],
 
     "globalStyle": {
