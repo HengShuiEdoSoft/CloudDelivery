@@ -230,3 +230,46 @@
 .ui-orderdetail-cont .ui-od-price-right{
 	font-szie:14px;
 }
+/**个人资料**/
+.ui-info-list{
+	margin-top:20upx;
+	padding:0 30upx;
+	background: $white;
+}
+.ui-info-list-item{
+	display:flex;
+	font-size:14px;
+	line-height: 80upx;
+	padding:16upx 0;
+}
+.ui-info-list-item:first-child{
+	line-height: 96upx;
+}
+.ui-info-list-item:first-child .ui-info-list-center{
+	height:96upx;
+}
+.ui-info-list-left{
+	color:$grey;
+}
+.ui-info-list-center{
+	flex:1;
+	text-align: right;
+	align-items: center;
+}
+.ui-info-list-center input{
+	display:block;
+	font-size:14px;
+	height:80upx;
+	line-height: 80upx;
+	color:$black;
+}
+.ui-info-list-right{
+	padding-left:24upx;
+	color:$mblack;
+}
+.ui-info-list-center>image{
+	display:inline-block;
+	width:96upx;
+	height:96upx;
+	border-radius: 100%;
+}

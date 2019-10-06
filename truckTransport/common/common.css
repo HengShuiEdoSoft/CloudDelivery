@@ -295,8 +295,53 @@ textarea {
 .ui-orderdetail-cont .ui-od-price-right {
   font-szie: 14px; }
 
+<<<<<<< HEAD
 .dui-gap {
   height: 16upx; }
+=======
+/**个人资料**/
+.ui-info-list {
+  margin-top: 20upx;
+  padding: 0 30upx;
+  background: #fff; }
+
+.ui-info-list-item {
+  display: flex;
+  font-size: 14px;
+  line-height: 80upx;
+  padding: 16upx 0; }
+
+.ui-info-list-item:first-child {
+  line-height: 96upx; }
+
+.ui-info-list-item:first-child .ui-info-list-center {
+  height: 96upx; }
+
+.ui-info-list-left {
+  color: #9E9E9E; }
+
+.ui-info-list-center {
+  flex: 1;
+  text-align: right;
+  align-items: center; }
+
+.ui-info-list-center input {
+  display: block;
+  font-size: 14px;
+  height: 80upx;
+  line-height: 80upx;
+  color: #212121; }
+
+.ui-info-list-right {
+  padding-left: 24upx;
+  color: #606060; }
+
+.ui-info-list-center > image {
+  display: inline-block;
+  width: 96upx;
+  height: 96upx;
+  border-radius: 100%; }
+>>>>>>> 9e873ff3b41387994b6abdda84a42d8161298947
 
 .dui-input-group-mg {
   margin-top: 66upx;
@@ -314,6 +359,10 @@ textarea {
 /*我的钱包*/
 .dui-money-list-group {
   margin-bottom: 20upx;
+<<<<<<< HEAD
+=======
+  padding: 0 30upx;
+>>>>>>> 9e873ff3b41387994b6abdda84a42d8161298947
   background-color: #fff; }
 
 .dui-money-list-item {
@@ -321,6 +370,7 @@ textarea {
   justify-content: space-between;
   padding: 30upx;
   color: #424456; }
+<<<<<<< HEAD
 
 /*list*/
 .dui-basic-list {
@@ -435,5 +485,7 @@ textarea {
 
 .dui-basic-tips-title {
   color: #ff5723; }
+=======
+>>>>>>> 9e873ff3b41387994b6abdda84a42d8161298947
 
 /*# sourceMappingURL=common.css.map */

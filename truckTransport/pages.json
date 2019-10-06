@@ -65,12 +65,12 @@
 					}
 				}
 			}
-		}, {
+		},{
 			"path": "pages/orderdetail/orderdetail",
 			"style": {
 				"navigationBarTitleText": "订单详情"
 			}
-		}, {
+		},{
 			"path": "pages/mymoney/mymoney",
 			"style": {
 				"navigationBarTitleText": "我的钱包",
@@ -86,11 +86,37 @@
 					}
 				}
 			}
+<<<<<<< HEAD
 		},
 		{
 			"path": "pages/mymoney/myinvoicing",
+=======
+		},{
+			"path": "pages/mymoney/mycoupon",
+>>>>>>> 9e873ff3b41387994b6abdda84a42d8161298947
 			"style": {
 				"navigationBarTitleText": "开具发票"
+			}
+		},{
+			"path": "pages/userinfo/userinfo",
+			"style": {
+				"navigationBarTitleText": "个人资料"
+			}
+		},{
+			"path": "pages/userinfo/nichengchange",
+			"style": {
+				"navigationBarTitleText": "编辑昵称",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "保存",
+							"fontSize": "12",
+							"float": "right",
+							"color": "#424456"
+						}]
+					}
+				}
 			}
 		}
 	],

@@ -7,19 +7,19 @@
 				<m-input type="text" focus clearable v-model="account" placeholder="请输入账号"></m-input>
 			</view>
 			<view class="input-row border">
-				<text class="title iconfont icon-suoding"></text>
-				<m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
-			</view>
-			<view class="input-row border">
 				<text class="title iconfont icon-Raidobox-xuanzhong"></text>
 				<view class="dui-input">
 					<input type="text" clearable v-model="vercode" placeholder="请输入验证码" maxlength="6"></input>
 				</view>
 				<button class="dui-varcode-btn" type="primary" @tap="numberst" :disabled="countdown < 60 && countdown >= 1">{{countdown < 60 && countdown >= 1?`${countdown}秒`:'获取验证码'}}</button>
 			</view>
+			<view class="input-row border">
+				<text class="title iconfont icon-suoding"></text>
+				<m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
+			</view>
 		</view>
 		<view class="btn-row">
-			<button class="primary" type="primary" @tap="register()"">注 册</button>
+			<button class="primary" type="primary" @tap="register()">注 册</button>
         </view>
     </view>
 </template>

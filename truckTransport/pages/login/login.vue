@@ -150,7 +150,7 @@
 				 */
 				if (this.forcedLogin) {
 					uni.reLaunch({
-						url: '../main/main',
+						url: '../index/index',
 					});
 				} else {
 					uni.navigateBack();

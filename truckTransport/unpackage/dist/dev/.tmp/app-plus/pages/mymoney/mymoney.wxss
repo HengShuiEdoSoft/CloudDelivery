@@ -1,0 +1,70 @@
+
+.dui-money-card-wrapper {
+	margin: 20rpx 0 40rpx 0;
+	border: 1rpx solid #e2e2e2;
+	border-radius: 15rpx;
+	-webkit-box-shadow: 0rpx 4rpx 10rpx #e2e2e2;
+	        box-shadow: 0rpx 4rpx 10rpx #e2e2e2;
+}
+.dui-money-card {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: start;
+	-webkit-align-items: flex-start;
+	    -ms-flex-align: start;
+	        align-items: flex-start;
+	height: 280rpx;
+	padding: 0 50rpx;
+	background-color: #3c3c46;
+	border-radius: 15rpx;
+	color: #fff;
+}
+.dui-money-card text:first-child {
+	font-size: 24rpx;
+	margin: 60rpx 0 20rpx 0;
+}
+.dui-money-card text:nth-child(2) {
+	font-size: 36rpx;
+}
+.dui-money-number {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: end;
+	-webkit-align-items: flex-end;
+	    -ms-flex-align: end;
+	        align-items: flex-end;
+}
+.dui-money-recharge-btn {
+	font-size: 24rpx;
+	background-color: #ff5723;
+	margin-top: 30rpx;
+	padding: 15rpx 24rpx;
+	border-radius: 30rpx;
+	letter-spacing: 4rpx;
+}
+.icon-Raidobox-xuanzhong {
+	font-size: 18rpx;
+	color: #dbdbdb;
+	margin-right: 18rpx;
+}
+.icon-wenhao-yuankuang{
+	color: #9a9a9a;
+}
+.icon-Raidobox-xuanzhong+text{
+	font-size: 24rpx;
+}
+
