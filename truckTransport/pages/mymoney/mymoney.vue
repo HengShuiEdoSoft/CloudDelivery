@@ -12,11 +12,10 @@
 					<view class="dui-money-number">
 						<view>
 							<text class="iconfont icon-Raidobox-xuanzhong"></text>
-							<text>本金</text><br>
+							<text class="dui-money-number-title">本金</text>
 						</view>
-						<view class="">
-							
-							<text style="font-size:20upx; color:#858585;">
+						<view>
+							<text class="dui-money-specific">
 								0.00
 							</text>
 						</view>
@@ -24,11 +23,10 @@
 					<view class="dui-money-number">
 						<view>
 							<text class="iconfont icon-Raidobox-xuanzhong"></text>
-							<text>赠金</text><br>
+							<text class="dui-money-number-title">赠金</text>
 						</view>
-						<view class="">
-							
-							<text style="font-size:20upx; color:#858585;">
+						<view>
+							<text class="dui-money-specific">
 								0.00
 							</text>
 						</view>
@@ -36,11 +34,11 @@
 					<view class="dui-money-number">
 						<view>
 							<text class="iconfont icon-Raidobox-xuanzhong"></text>
-							<text>待支付金额</text><br>
-								<text class="iconfont icon-wenhao-yuankuang"></text>
+							<text class="dui-money-number-title">待支付金额</text>
+							<text class="iconfont icon-wenhao-yuankuang"></text>
 						</view>
-						<view class="">							
-							<text style="font-size:20upx; color:#858585;">
+						<view>
+							<text class="dui-money-specific">
 								0.00
 							</text>
 						</view>
@@ -49,11 +47,30 @@
 			</view>
 		</view>
 		<view class="dui-money-list-group">
-			<navigator url="mycoupon">
-				<view class="dui-money-list-item">
-					<text class="iconfont icon-youhuijuan"></text>
-					<text style="flex: 1;margin-left: 26upx;font-size:28upx;">优惠券</text>
-					<text class="iconfont icon-gengduo-shuxiang"></text>
+			<navigator url="myinvoicing">
+				<view class="dui-money-number" style="padding: 20upx 30upx;">
+					<view>
+						<text class="iconfont icon-fapiaotianchong"></text>
+						<text class="dui-coupon-title">发票报销</text>
+						<text>开发票 ></text>
+					</view>
+					<view class="dui-coupon-title-tips">
+						您的发票报销助手
+					</view>
+				</view>
+			</navigator>
+		</view>
+		<view class="dui-money-list-group">
+			<navigator url="myinvoicing">
+				<view class="dui-money-number" style="padding: 20upx 30upx;">
+					<view>
+						<text class="iconfont icon-youhuijuan"></text>
+						<text class="dui-coupon-title">券</text>
+						<text>查看全部 ></text>
+					</view>
+					<view class="dui-coupon-title-tips">
+						优惠券
+					</view>
 				</view>
 			</navigator>
 		</view>
@@ -73,7 +90,7 @@
 </script>
 <style>
 	.dui-money-card-wrapper {
-		margin: 20upx 0 40upx 0;
+		margin: 20upx 30upx 40upx 30upx;
 		border: 1upx solid #e2e2e2;
 		border-radius: 15upx;
 		box-shadow: 0upx 4upx 10upx #e2e2e2;
@@ -102,7 +119,16 @@
 	.dui-money-number {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-end;
+	}
+
+	.dui-money-number view {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.dui-money-number view:first-child {
+		margin-bottom: 8upx;
 	}
 
 	.dui-money-recharge-btn {
@@ -117,12 +143,44 @@
 	.icon-Raidobox-xuanzhong {
 		font-size: 18upx;
 		color: #dbdbdb;
-		margin-right: 18upx;
 	}
-	.icon-wenhao-yuankuang{
+
+	.icon-wenhao-yuankuang {
 		color: #9a9a9a;
 	}
-	.icon-Raidobox-xuanzhong+text{
-		font-size: 24upx;	
+
+	.dui-money-number-title {
+		margin: 0 18upx;
+		font-size: 24upx;
+	}
+
+	.icon-fapiaotianchong,.icon-youhuijuan {
+		font-size: 28upx;
+	}
+
+	.icon-wenhao-yuankuang {
+		font-size: 24upx;
+	}
+
+	.dui-money-specific {
+		font-size: 20upx;
+		color: #858585;
+		margin-left: 40upx;
+	}
+
+	.dui-coupon-title {
+		flex: 1;
+		margin-left: 16upx;
+		font-size: 28upx;
+	}
+
+	.dui-coupon-title+text,
+	.dui-coupon-title-tips {
+		font-size: 26upx;
+		color: #858585;
+	}
+
+	.dui-coupon-title-tips {
+		padding-left: 44upx;
 	}
 </style>

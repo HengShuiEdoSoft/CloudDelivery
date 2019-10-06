@@ -88,20 +88,9 @@
 			}
 		},
 		{
-			"path": "pages/mymoney/mycoupon",
+			"path": "pages/mymoney/myinvoicing",
 			"style": {
-				"navigationBarTitleText": "我的优惠券",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "余额明细",
-							"fontSize": "12",
-							"float": "right",
-							"color": "#424456"
-						}]
-					}
-				}
+				"navigationBarTitleText": "开具发票"
 			}
 		}
 	],

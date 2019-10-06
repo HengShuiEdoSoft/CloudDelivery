@@ -1,3 +1,6 @@
+	.dui-gap{
+		height: 16upx;
+	}
 	.dui-input-group-mg {
 		margin-top: 66upx;
 		margin-left: 84upx;
@@ -13,8 +16,7 @@
 }
 /*我的钱包*/
 	.dui-money-list-group{
-		margin-bottom:20upx;
-		padding: 0 30upx;
+		margin-bottom:20upx;		
 		background-color: #fff;
 	}
 	.dui-money-list-item{
@@ -22,4 +24,131 @@
 		justify-content: space-between;
 		padding: 30upx;	
 	    color: #424456;
+	}
+	/*list*/
+	.dui-basic-list {
+		background-color: #fff;
+		position: relative;
+		width: 100%;
+		display: flex;
+		flex-direction: column
+	}
+	
+	.dui-basic-list:after {
+		position: absolute;
+		z-index: 10;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
+	}
+	
+	.dui-basic-list:before {
+		position: absolute;
+		z-index: 10;
+		right: 0;
+		top: 0;
+		left: 0;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
+	}
+	
+	.dui-basic-list-item {
+		font-size: 32upx;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center
+	}
+	
+	.dui-basic-list-item__container {
+		padding: 24upx 30upx;
+		width: 100%;
+		box-sizing: border-box;
+		flex: 1;
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center
+	}
+	
+	.dui-basic-list-item__container:after {
+		position: absolute;
+		z-index: 3;
+		right: 0;
+		bottom: 0;
+		left: 30upx;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
+	}
+	
+	.dui-basic-list-item__content {
+		flex: 1;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		color: #3b4144
+	}
+	
+	.dui-basic-list-item__content-title {
+		font-size: 32upx;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: inherit;
+		line-height: 1.5;
+		overflow: hidden
+	}
+	
+	.dui-basic-list-item__content-note {
+		margin-top: 6upx;
+		color: #999;
+		font-size: 28upx;
+		white-space: normal;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden
+	}
+	
+	.dui-basic-list-item__extra {
+		width: 25%;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center
+	}
+	
+	.dui-basic-list-item__icon {
+		margin-right: 18upx;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center
+	}
+	
+	.dui-basic-list>.dui-basic-list-item:last-child .dui-basic-list-item-container:after {
+		height: 0
+	}
+	
+	.dui-basic-tips {
+		padding: 30upx;
+		font-size: 26upx;
+		line-height: 40upx;
+		color: #606060;
+	}
+	
+	.dui-basic-tips-title {
+		color: #ff5723;
 	}
