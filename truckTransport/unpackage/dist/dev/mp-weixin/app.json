@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/reg/reg",
+    "pages/pwd/pwd",
+    "pages/user/user",
+    "pages/cardetail/cardetail",
+    "pages/map/map"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "white",
+    "backgroundColor": "#f3f4f5"
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap10.json"
+}

@@ -13,7 +13,7 @@
 					<view class="ui-list">
 						<view hover-class="ui-list-item-hover"><navigator url="/pages/orderlist/orderlist"><text class="iconfont icon-huoche"></text><text>订单列表</text></navigator></view>
 						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-weizhi"></text><text>常用地址</text></navigator></view>
-						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-qianbao-kuai"></text><text>我的钱包</text><image src="../../static/img/quan.png"></image></navigator></view>
+						<view hover-class="ui-list-item-hover"><navigator url="/pages/mymoney/mymoney"><text class="iconfont icon-qianbao-kuai"></text><text>我的钱包</text><image src="../../static/img/quan.png"></image></navigator></view>
 						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-siji-"></text><text>我的司机</text></navigator></view>
 						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon--kefu"></text><text>客服中心</text></navigator></view>
 						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-shezhi"></text><text>更多设置</text></navigator></view>

@@ -1,85 +1,114 @@
 {
-    "pages": [ //pages数组中第一项表示应用启动页,
-        {
-            "path": "pages/index/index",
-            "style": {
-                "navigationBarBackgroundColor": "#fff",
+	"pages": [ //pages数组中第一项表示应用启动页,
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTitleText": "云配送",
-				"titleImage":"static/img/logoText.png",
-                "app-plus": {
-                    "bounce": "none",
-                    "titleNView": {
-                        "buttons": [ 
-                            {
-                                "text": "\ue8c8",
-								"fontSrc": "/static/font/iconfont.ttf",
-                                "fontSize":"18",
-                                "float": "left",
-                                "color":"#424456"
-                            }
-                        ]
-                    }
-                }
-            }
-        }, {
-            "path": "pages/login/login",
-            "style": {
-                "navigationBarTitleText": "登录"
-            }
-        }, {
-            "path": "pages/reg/reg",
-            "style": {
-                "navigationBarTitleText": "注册"
-            }
-        }, {
-            "path": "pages/pwd/pwd",
-            "style": {
-                "navigationBarTitleText": "找回密码"
-            }
-        }, {
-            "path": "pages/user/user",
-            "style": {
-                "navigationBarTitleText": "我的"
-            }
-        },{
-            "path": "pages/cardetail/cardetail",
-            "style": {
-                "navigationBarTitleText": "小面包车详情页"
-            }
-		},{
-		    "path": "pages/map/map",
-		    "style": {
-		        "navigationBarTitleText": "地图"
-		    }
-		},{
-		    "path": "pages/orderlist/orderlist",
-		    "style": {
-		        "navigationBarTitleText": "订单列表",
+				"titleImage": "static/img/logoText.png",
 				"app-plus": {
-				    "bounce": "none",
-				    "titleNView": {
-				        "buttons": [ 
-				            {
-				                "text": "行程单",
-				                "fontSize":"12",
-				                "float": "right",
-				                "color":"#424456"
-				            }
-				        ]
-				    }
-				}				
-		    }
-		},{
-		    "path": "pages/orderdetail/orderdetail",
-		    "style": {
-		        "navigationBarTitleText": "订单详情"
-		    }
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8c8",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "18",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}, {
+			"path": "pages/reg/reg",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		}, {
+			"path": "pages/pwd/pwd",
+			"style": {
+				"navigationBarTitleText": "找回密码"
+			}
+		}, {
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}, {
+			"path": "pages/cardetail/cardetail",
+			"style": {
+				"navigationBarTitleText": "小面包车详情页"
+			}
+		}, {
+			"path": "pages/map/map",
+			"style": {
+				"navigationBarTitleText": "地图"
+			}
+		}, {
+			"path": "pages/orderlist/orderlist",
+			"style": {
+				"navigationBarTitleText": "订单列表",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "行程单",
+							"fontSize": "12",
+							"float": "right",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/orderdetail/orderdetail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		}, {
+			"path": "pages/mymoney/mymoney",
+			"style": {
+				"navigationBarTitleText": "我的钱包",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "余额明细",
+							"fontSize": "12",
+							"float": "right",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mymoney/mycoupon",
+			"style": {
+				"navigationBarTitleText": "我的优惠券",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "余额明细",
+							"fontSize": "12",
+							"float": "right",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
 		}
-    ],
+	],
 
-    "globalStyle": {
-        "navigationBarTextStyle": "black",
-        "navigationBarBackgroundColor": "white",
-        "backgroundColor": "#f3f4f5"
-    }
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "white",
+		"backgroundColor": "#f3f4f5"
+	}
 }

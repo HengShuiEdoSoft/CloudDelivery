@@ -1,0 +1,10 @@
+
+.content {
+	background-color: #fff;
+	border-top: 1rpx solid #e0e0e0;
+}
+.btn-row {
+	margin-left: 60rpx;
+	margin-right: 60rpx;
+}
+

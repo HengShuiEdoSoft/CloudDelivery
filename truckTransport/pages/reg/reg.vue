@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+		<view class="ui-divide-line"></view>
 		<view class="input-group dui-input-group-mg">
 			<view class="input-row border">
 				<text class="title iconfont icon-dianhua"></text>
@@ -10,12 +11,15 @@
 				<m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
 			</view>
 			<view class="input-row border">
-				<text class="title iconfont icon-suoding"></text>
-				<m-input type="text" clearable v-model="email" placeholder="请输入邮箱"></m-input>
+				<text class="title iconfont icon-Raidobox-xuanzhong"></text>
+				<view class="dui-input">
+					<input type="text" clearable v-model="vercode" placeholder="请输入验证码" maxlength="6"></input>
+				</view>
+				<button class="dui-varcode-btn" type="primary" @tap="numberst" :disabled="countdown < 60 && countdown >= 1">{{countdown < 60 && countdown >= 1?`${countdown}秒`:'获取验证码'}}</button>
 			</view>
 		</view>
 		<view class="btn-row">
-			<button class="primary" type="primary" @click="register()"">注 册</button>
+			<button class="primary" type="primary" @tap="register()"">注 册</button>
         </view>
     </view>
 </template>
@@ -31,10 +35,32 @@
             return {
                 account: '',
                 password: '',
-                email: ''
+                vercode: '',
+				countdown:60
             }
         },
         methods: {
+			numberst(e){
+						//其他代码....
+						this.countDown();
+					},
+					// 倒计时
+					countDown(){
+						let self = this;
+						self.countdown = 60;
+						self.countdown -= 1;
+						if(self.clear){
+							clearInterval(self.clear)
+						}
+						self.clear = null;
+						self.clear = setInterval(_ => {
+							if(self.countdown > 0){
+								self.countdown -= 1;
+							}else{
+								clearInterval(self.clear)
+							}
+						},1000)
+					},	
             register() {
                 /**
                  * 客户端对账号信息进行一些必要的校验。
@@ -53,15 +79,14 @@
                         title: '密码最短为 6 个字符'
                     });
                     return;
-                }
-                if (this.email.length < 3 || !~this.email.indexOf('@')) {
-                    uni.showToast({
-                        icon: 'none',
-                        title: '邮箱地址不合法'
-                    });
-                    return;
-                }
-
+                }           
+		        if (this.vercode.length != 6) {
+				    uni.showToast({
+				        icon: 'none',						
+				        title: '验证码不正确'
+				    });
+				    return;
+				}
                 const data = {
                     account: this.account,
                     password: this.password,
@@ -81,11 +106,24 @@
 
 <style>
 	.content {
-		background-color: #fff;
-		border-top: 1upx solid #e0e0e0;
+		background-color: #fff;		
 	}
 	.btn-row {
 		margin-left: 60upx;
 		margin-right: 60upx;
+	}
+	.dui-varcode-btn{
+		background-color: transparent;
+		color:#FF5723 ;
+		font-size: 28upx;
+		display: flex;
+		align-items: center;
+		text-decoration: underline;
+	}
+	.dui-varcode-btn:after{
+		border: none;
+	}
+	.dui-varcode-btn[disabled][type=primary] {
+	    background-color: transparent;
 	}
 </style>

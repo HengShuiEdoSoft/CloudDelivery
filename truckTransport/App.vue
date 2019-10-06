@@ -131,7 +131,5 @@
 
 	button.primary {
 		background-color: #FF5723;
-	}
-	
-	
+	}	
 </style>

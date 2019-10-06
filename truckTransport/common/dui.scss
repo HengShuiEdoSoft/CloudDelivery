@@ -3,3 +3,23 @@
 		margin-left: 84upx;
 		margin-right: 100upx;
 	}
+.dui-input{
+    display: flex;
+	flex-direction: row;
+    align-items: center;
+	flex: 1;
+    width: 100%;
+    padding: 0 5px;
+}
+/*我的钱包*/
+	.dui-money-list-group{
+		margin-bottom:20upx;
+		padding: 0 30upx;
+		background-color: #fff;
+	}
+	.dui-money-list-item{
+		display: flex;
+		justify-content: space-between;
+		padding: 30upx;	
+	    color: #424456;
+	}

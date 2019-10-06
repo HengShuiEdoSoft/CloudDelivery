@@ -4,7 +4,7 @@
 		 :password="type==='password'&&!showPassword" @focus="onFocus" @blur="onBlur" />
 		<!-- 优先显示密码可见按钮 -->
 		<view v-if="clearable_&&!displayable_&&value.length" class="m-input-icon">
-			<m-icon color="#434155" type="cuowuguanbiquxiao" size="20" @click="clear"></m-icon>
+			<m-icon color="#a1a1a1" type="icon2" size="15" @click="clear"></m-icon>
 		</view>
 		<view v-if="displayable_" class="m-input-icon">
 			<m-icon color="#434155" :type="showPassword?'xianshikejian':'yincangbukejian'" size="20" @click="display"></m-icon>
