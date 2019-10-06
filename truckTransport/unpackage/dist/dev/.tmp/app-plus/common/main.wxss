@@ -350,10 +350,101 @@ textarea {
 .ui-orderdetail-cont .ui-od-price-right {
   font-szie: 14px;
 }
+/**个人资料**/
+.ui-info-list {
+  margin-top: 20rpx;
+  padding: 0 30rpx;
+  background: #fff;
+}
+.ui-info-list-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 14px;
+  line-height: 80rpx;
+  padding: 16rpx 0;
+}
+.ui-info-list-item:first-child {
+  line-height: 96rpx;
+}
+.ui-info-list-item:first-child .ui-info-list-center {
+  height: 96rpx;
+}
+.ui-info-list-left {
+  color: #9E9E9E;
+}
+.ui-info-list-center {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: right;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.ui-info-list-center input {
+  display: block;
+  font-size: 14px;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #212121;
+}
+.ui-info-list-right {
+  padding-left: 24rpx;
+  color: #606060;
+}
+.ui-info-list-center > image {
+  display: inline-block;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 100%;
+}
 .dui-input-group-mg {
   margin-top: 66rpx;
   margin-left: 84rpx;
   margin-right: 100rpx;
+}
+.dui-input {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  width: 100%;
+  padding: 0 5px;
+}
+/*我的钱包*/
+.dui-money-list-group {
+  margin-bottom: 20rpx;
+  padding: 0 30rpx;
+  background-color: #fff;
+}
+.dui-money-list-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 30rpx;
+  color: #424456;
 }
 @font-face {
   font-family: 'iconfont';  /* project id 1436070 */
@@ -619,7 +710,5 @@ m-input {
 }
 button.primary {
 		background-color: #FF5723;
-}
-	
-	
+}	
 

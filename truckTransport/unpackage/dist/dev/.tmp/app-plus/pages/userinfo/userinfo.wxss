@@ -1,0 +1,28 @@
+
+.ui-tip{
+	padding:30rpx;
+	width:480rpx;
+	font-size:14px;
+	background: #fff;
+}
+.ui-tip-title{
+	font-size:16px;
+	line-height: 92rpx;
+}
+.ui-list-cell{
+	line-height: 92rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+radio{
+	-webkit-transform:scale(0.7);
+	    -ms-transform:scale(0.7);
+	        transform:scale(0.7)
+}
+

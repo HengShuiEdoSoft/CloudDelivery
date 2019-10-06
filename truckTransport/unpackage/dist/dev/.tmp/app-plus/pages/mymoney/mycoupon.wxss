@@ -1,0 +1,7 @@
+
+.dui-coupon-input {
+	margin-top:20rpx;
+	background-color: #fff;
+	padding: 35rpx;
+}
+

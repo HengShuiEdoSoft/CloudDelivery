@@ -3,7 +3,7 @@
 		<view>
 			<uni-drawer :visible="visible" mode="left" @close="visible=false">
 				<view class="ui-drawer-top">
-					<image src="../../static/img/HeadImg.jpg" class="ui-portrait"></image>
+					<navigator url="/pages/userinfo/userinfo"><image src="../../static/img/HeadImg.jpg" class="ui-portrait"></image></navigator>
 					<view class="ui-drawer-top-body">
 						<view class="ui-username"><text>135****5687</text></view>
 						<view class="ui-member-level"><text>会员等级</text><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
@@ -11,12 +11,12 @@
 				</view>			
 				<view style="padding:30upx;">
 					<view class="ui-list">
-						<view hover-class="ui-list-item-hover"><navigator url="/pages/orderlist/orderlist"><text class="iconfont icon-huoche"></text><text>订单列表</text></navigator></view>
-						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-weizhi"></text><text>常用地址</text></navigator></view>
-						<view hover-class="ui-list-item-hover"><navigator url="/pages/mymoney/mymoney"><text class="iconfont icon-qianbao-kuai"></text><text>我的钱包</text><image src="../../static/img/quan.png"></image></navigator></view>
-						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-siji-"></text><text>我的司机</text></navigator></view>
-						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon--kefu"></text><text>客服中心</text></navigator></view>
-						<view hover-class="ui-list-item-hover"><navigator url=""><text class="iconfont icon-shezhi"></text><text>更多设置</text></navigator></view>
+						<view hover-class="ui-list-item-hover" @tap="navTo('/pages/orderlist/orderlist')"><text class="iconfont icon-huoche"></text><text>订单列表</text></view>
+						<view hover-class="ui-list-item-hover" @tap="navTo('/pages/address/address')"><text class="iconfont icon-weizhi"></text><text>常用地址</text></view>
+						<view hover-class="ui-list-item-hover" @tap="navTo('/pages/mymoney/mymoney')"><text class="iconfont icon-qianbao-kuai"></text><text>我的钱包</text><image src="../../static/img/quan.png"></image></view>
+						<view hover-class="ui-list-item-hover" @tap="navTo('/pages/driver/driver')"><text class="iconfont icon-siji-"></text><text>我的司机</text></view>
+						<view hover-class="ui-list-item-hover" @tap="navTo('/pages/servicecenter/servicecenter')"><text class="iconfont icon--kefu"></text><text>客服中心</text></view>
+						<view hover-class="ui-list-item-hover" @tap="navTo('/pages/setup/setup')"><text class="iconfont icon-shezhi"></text><text>更多设置</text></view>
 					</view>
 				</view>
 			</uni-drawer>
@@ -130,32 +130,7 @@
 		},
         computed: mapState(['forcedLogin', 'hasLogin', 'userName']),
         onLoad() {
-            if (!this.hasLogin) {
-                uni.showModal({
-                    title: '未登录',
-                    content: '您未登录，需要登录后才能继续',
-                    /**
-                     * 如果需要强制登录，不显示取消按钮
-                     */
-                    showCancel: !this.forcedLogin,
-                    success: (res) => {
-                        if (res.confirm) {
-							/**
-							 * 如果需要强制登录，使用reLaunch方式
-							 */
-                            if (this.forcedLogin) {
-                                uni.reLaunch({
-                                    url: '../login/login'
-                                });
-                            } else {
-                                uni.navigateTo({
-                                    url: '../login/login'
-                                });
-                            }
-                        }
-                    }
-                });
-            }
+            
         },
 		methods:{
 			tabChange:function(e){
@@ -165,6 +140,38 @@
 			swiperChange:function(e) {			
 				var index=e.target.current || e.detail.current;
 				this.current = index;
+			},
+			navTo:function(url){
+				if (!this.hasLogin) {
+				    uni.showModal({
+				        title: '未登录',
+				        content: '您未登录，需要登录后才能继续',
+				        /**
+				         * 如果需要强制登录，不显示取消按钮
+				         */
+				        showCancel: !this.forcedLogin,
+				        success: (res) => {
+				            if (res.confirm) {
+								/**
+								 * 如果需要强制登录，使用reLaunch方式
+								 */
+				                if (this.forcedLogin) {
+				                    uni.reLaunch({
+				                        url: '../login/login'
+				                    });
+				                } else {
+				                    uni.navigateTo({
+				                        url: '../login/login'
+				                    });
+				                }
+				            }
+				        }
+				    });
+				}else{
+					uni.navigateTo({  
+						url
+					}) 
+				} 
 			}
 		},	
 		onNavigationBarButtonTap(e){

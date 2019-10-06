@@ -19,6 +19,7 @@
 </script>
 <style>
 	.dui-coupon-input {
+		margin-top:20upx;
 		background-color: #fff;
 		padding: 35upx;
 	}
