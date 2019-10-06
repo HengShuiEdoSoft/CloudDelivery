@@ -295,10 +295,6 @@ textarea {
 .ui-orderdetail-cont .ui-od-price-right {
   font-szie: 14px; }
 
-<<<<<<< HEAD
-.dui-gap {
-  height: 16upx; }
-=======
 /**个人资料**/
 .ui-info-list {
   margin-top: 20upx;
@@ -341,7 +337,9 @@ textarea {
   width: 96upx;
   height: 96upx;
   border-radius: 100%; }
->>>>>>> 9e873ff3b41387994b6abdda84a42d8161298947
+
+.dui-gap {
+  height: 16upx; }
 
 .dui-input-group-mg {
   margin-top: 66upx;
@@ -359,10 +357,6 @@ textarea {
 /*我的钱包*/
 .dui-money-list-group {
   margin-bottom: 20upx;
-<<<<<<< HEAD
-=======
-  padding: 0 30upx;
->>>>>>> 9e873ff3b41387994b6abdda84a42d8161298947
   background-color: #fff; }
 
 .dui-money-list-item {
@@ -370,7 +364,6 @@ textarea {
   justify-content: space-between;
   padding: 30upx;
   color: #424456; }
-<<<<<<< HEAD
 
 /*list*/
 .dui-basic-list {
@@ -485,7 +478,5 @@ textarea {
 
 .dui-basic-tips-title {
   color: #ff5723; }
-=======
->>>>>>> 9e873ff3b41387994b6abdda84a42d8161298947
 
 /*# sourceMappingURL=common.css.map */
