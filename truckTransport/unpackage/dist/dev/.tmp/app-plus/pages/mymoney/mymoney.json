@@ -4,7 +4,7 @@
   "titleNView": {
     "buttons": [
       {
-        "text": "余额明细",
+        "text": "明细",
         "fontSize": "12",
         "float": "right",
         "color": "#424456"

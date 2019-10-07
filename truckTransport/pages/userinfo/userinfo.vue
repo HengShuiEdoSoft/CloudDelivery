@@ -19,7 +19,7 @@
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</view>
 			<view class="ui-divide-line"></view>
-			<navigator class="ui-info-list-item" url="/pages/userinfo/phonenum">
+			<navigator class="ui-info-list-item" url="/pages/userinfo/phonenum?num=136****9999">
 				<view class="ui-info-list-left">手机号</view>
 				<view class="ui-info-list-center"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999"></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
@@ -37,10 +37,9 @@
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</navigator>
 		</view>
-		<uni-popup ref="portrait" :type="type" :custom="true" :mask-click="false" @change="change">
+		<uni-popup ref="portrait" :type="type" :custom="true" :mask-click="false">
 			<view class="ui-tip">
 				<view class="uni-tip-group-button">
-					<view class="ui-list-cell" @click="paizhao('portrait')">拍照</view>
 					<view class="ui-list-cell" @click="gallery('portrait')">相册上传</view>
 				</view>
 			</view>
@@ -80,13 +79,18 @@
 				},{
 					value:"2",
 					name:"女"
-				}]
+				}],
+				items:[]
 			}
 		},
 		onShow() {
 			//data，每次返回会刷新
+			
 		},
 		methods:{
+			setData(){
+				console.log("重新请求，渲染页面")
+			},
 			radioChange: function(e) {
 			    for (let i = 0; i < this.sex.length; i++) {
 			        if (this.sex[i].value === e.target.value) {
@@ -102,18 +106,23 @@
 			cancel(type){
 				this.$refs[type].close()
 			},
-			change(e) {
-				//向后台发送指令
-				console.log(e.show)
-			},
-			paizhao(type){
-				this.cancel(type);
-			},
 			gallery(type){
 				this.cancel(type);
+				uni.chooseImage({
+				    count: 1, //默认9
+				    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+				    sourceType: ['album'], //从相册选择
+				    success: function (res) {
+				        console.log(JSON.stringify(res.tempFilePaths));
+				    }
+				});
+				//向后台发送数据
+				this.setData();
 			},
 			sexchange(type){
 				this.cancel(type);
+				//向后台发送数据
+				this.setData();
 				
 			}
 		}

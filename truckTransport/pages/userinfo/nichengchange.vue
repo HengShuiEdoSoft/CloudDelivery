@@ -21,6 +21,7 @@
 			var index=e.index;
 			if(index===0){
 				//保存
+				uni.navigateBack();
 			}
 		    
 		}

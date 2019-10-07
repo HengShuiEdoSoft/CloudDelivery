@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"scroll-container { height: 85vh; }\n.",[1],"primary { margin: ",[0,25]," ",[0,20],"; }\n",],undefined,{path:"./pages/address/address.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/address/address.wxml') } }));

@@ -13,11 +13,17 @@
     "pages/mymoney/myinvoicing",
     "pages/mymoney/myinvoicing-trip",
     "pages/mymoney/myinvoicing-history",
+    "pages/mymoney/mycoupon",
+    "pages/mymoney/mydetailed",
     "pages/mymoney/myinvoicing-rule",
     "pages/userinfo/userinfo",
     "pages/userinfo/nichengchange",
-    "pages/mymoney/mycoupon",
-    "pages/mymoney/mydetailed"
+    "pages/userinfo/phonenum",
+    "pages/userinfo/industry",
+    "pages/userinfo/realinfo",
+    "pages/userinfo/phoneverify",
+    "pages/userinfo/changephone",
+    "pages/address/address"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -31,6 +37,6 @@
     "autoclose": false
   },
   "appname": "truckTransport",
-  "compilerVersion": "2.3.2",
+  "compilerVersion": "2.3.3",
   "usingComponents": {}
 }

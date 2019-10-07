@@ -14,7 +14,7 @@
 			</view>
 		</view>
 		<view class="btn-row">
-			<button class="primary" type="primary" @tap="bindLogin()"">登 录</button>
+			<button class="primary" type="primary" @tap="bindLogin()">登 录</button>
 		</view>
 		<view class=" action-row">
 				<navigator url="../reg/reg">注册账号</navigator>

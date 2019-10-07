@@ -343,12 +343,12 @@ textarea {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  font-szie: 14px;
+  font-size: 14px;
   line-height: 64rpx;
   color: #666;
 }
 .ui-orderdetail-cont .ui-od-price-right {
-  font-szie: 14px;
+  font-size: 14px;
 }
 /**个人资料**/
 .ui-info-list {
@@ -401,6 +401,10 @@ textarea {
   width: 96rpx;
   height: 96rpx;
   border-radius: 100%;
+}
+.ui-tip {
+  font-size: 12px;
+  color: #9E9E9E;
 }
 .dui-gap {
   height: 16rpx;

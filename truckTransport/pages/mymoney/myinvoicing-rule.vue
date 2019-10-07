@@ -15,17 +15,22 @@
 </template>
 <script>
 	export default {
-		onNavigationBarButtonTap: function() {
-			uni.navigateTo({
-				url: "../mymoney/mymoney"
-			});
-		},
+		
 		data() {
 			return {
 
 			}
 		},
-		methods: {}
+		onNavigationBarButtonTap: function(e) {
+			var index=e.index
+			if(index===0){
+				uni.redirectTo({
+					url: "/pages/mymoney/mymoney"
+				});
+			}
+		},
+		methods: {
+		}
 	}
 </script>
 <style>

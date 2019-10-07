@@ -78,10 +78,13 @@
 </template>
 <script>
 	export default {
-		onNavigationBarButtonTap: function() {
-			uni.navigateTo({
-				url: "../mymoney/mydetailed"
-			});
+		onNavigationBarButtonTap: function(e) {
+			var index=e.index;
+			if(index===0){
+				uni.navigateTo({
+					url: "/pages/mymoney/mydetailed"
+				});
+			}
 		},
 		data() {
 			return {}

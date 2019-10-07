@@ -1,0 +1,8 @@
+
+.scroll-container {
+	height: 85vh;
+}
+.primary {
+	margin: 25rpx 20rpx;
+}
+
