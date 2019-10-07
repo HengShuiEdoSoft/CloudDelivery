@@ -25,6 +25,7 @@
 		padding: 30upx;	
 	    color: #424456;
 	}
+	
 	/*list*/
 	.dui-basic-list {
 		background-color: #fff;
@@ -152,3 +153,10 @@
 	.dui-basic-tips-title {
 		color: #ff5723;
 	}
+	/*tab*/
+	.dui-car-name-list{
+			display:flex;
+			padding:0 30upx;
+			background: $white;
+			justify-content:space-around;
+		}

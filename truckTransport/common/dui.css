@@ -1,143 +1,62 @@
-@charset "UTF-8";
-.dui-gap {
-  height: 16upx; }
+/*
+Error: Undefined variable: "$white".
+        on line 160 of E:\BuZhiHeng\Work\CloudDelivery\truckTransport\common\dui.scss
 
-.dui-input-group-mg {
-  margin-top: 66upx;
-  margin-left: 84upx;
-  margin-right: 100upx; }
+155: 	}
+156: 	/*tab*\/
+157: 	.dui-car-name-list{
+158: 			display:flex;
+159: 			padding:0 30upx;
+160: 			background: $white;
+161: 			justify-content:space-around;
+162: 		}
 
-.dui-input {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex: 1;
-  width: 100%;
-  padding: 0 5px; }
-
-/*我的钱包*/
-.dui-money-list-group {
-  margin-bottom: 20upx;
-  background-color: #fff; }
-
-.dui-money-list-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 30upx;
-  color: #424456; }
-
-/*list*/
-.dui-basic-list {
-  background-color: #fff;
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column; }
-
-.dui-basic-list:after {
-  position: absolute;
-  z-index: 10;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  content: '';
-  -webkit-transform: scaleY(0.5);
-  transform: scaleY(0.5);
-  background-color: #e5e5e5; }
-
-.dui-basic-list:before {
-  position: absolute;
-  z-index: 10;
-  right: 0;
-  top: 0;
-  left: 0;
-  height: 1px;
-  content: '';
-  -webkit-transform: scaleY(0.5);
-  transform: scaleY(0.5);
-  background-color: #e5e5e5; }
-
-.dui-basic-list-item {
-  font-size: 32upx;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center; }
-
-.dui-basic-list-item__container {
-  padding: 24upx 30upx;
-  width: 100%;
-  box-sizing: border-box;
-  flex: 1;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center; }
-
-.dui-basic-list-item__container:after {
-  position: absolute;
-  z-index: 3;
-  right: 0;
-  bottom: 0;
-  left: 30upx;
-  height: 1px;
-  content: '';
-  -webkit-transform: scaleY(0.5);
-  transform: scaleY(0.5);
-  background-color: #e5e5e5; }
-
-.dui-basic-list-item__content {
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  color: #3b4144; }
-
-.dui-basic-list-item__content-title {
-  font-size: 32upx;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: inherit;
-  line-height: 1.5;
-  overflow: hidden; }
-
-.dui-basic-list-item__content-note {
-  margin-top: 6upx;
-  color: #999;
-  font-size: 28upx;
-  white-space: normal;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden; }
-
-.dui-basic-list-item__extra {
-  width: 25%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center; }
-
-.dui-basic-list-item__icon {
-  margin-right: 18upx;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; }
-
-.dui-basic-list > .dui-basic-list-item:last-child .dui-basic-list-item-container:after {
-  height: 0; }
-
-.dui-basic-tips {
-  padding: 30upx;
-  font-size: 26upx;
-  line-height: 40upx;
-  color: #606060; }
-
-.dui-basic-tips-title {
-  color: #ff5723; }
-
-/*# sourceMappingURL=dui.css.map */
+Backtrace:
+E:\BuZhiHeng\Work\CloudDelivery\truckTransport\common\dui.scss:160
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/script/tree/variable.rb:49:in `_perform'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/script/tree/node.rb:50:in `perform'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:398:in `visit_prop'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/stack.rb:79:in `block in with_base'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/stack.rb:135:in `with_frame'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/stack.rb:79:in `with_base'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:440:in `map'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/stack.rb:79:in `block in with_base'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/stack.rb:135:in `with_frame'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/stack.rb:79:in `with_base'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:52:in `map'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:157:in `visit'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:10:in `visit'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/root_node.rb:36:in `css_tree'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/engine.rb:307:in `render_with_sourcemap'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/exec/sass_scss.rb:387:in `run'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/exec/sass_scss.rb:63:in `process_result'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/exec/base.rb:50:in `parse'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/exec/base.rb:18:in `parse!'
+C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/bin/sass:13:in `<top (required)>'
+C:/Ruby26-x64/bin/sass:23:in `load'
+C:/Ruby26-x64/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$white\".\A         on line 160 of E:\BuZhiHeng\Work\CloudDelivery\truckTransport\common\dui.scss\A \A 155: 	}\A 156: 	/*tab*/\A 157: 	.dui-car-name-list{\A 158: 			display:flex;\A 159: 			padding:0 30upx;\A 160: 			background: $white;\A 161: 			justify-content:space-around;\A 162: 		}"; }

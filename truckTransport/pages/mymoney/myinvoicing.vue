@@ -3,7 +3,7 @@
 		<view class="ui-divide-line"></view>
 		<view class="dui-gap"></view>
 		<view class="dui-basic-list">
-			<navigator url="">
+			<navigator url="myinvoicing-trip">
 			<view class="dui-basic-list-item">				
 				<view class="dui-basic-list-item__container">
 					<view class="dui-basic-list-item__content">
@@ -17,7 +17,7 @@
 				</view>
 			</view>
 			</navigator>
-			<navigator url="">
+			<navigator url="myinvoicing-history">
 			<view class="dui-basic-list-item">
 				<view class="dui-basic-list-item__container">
 					<view class="dui-basic-list-item__content">
@@ -34,7 +34,7 @@
 		</view>
 		<view class="dui-gap"></view>
 		<view class="dui-basic-list">
-				<navigator url="">
+				<navigator url="myinvoicing-rule">
 			<view class="dui-basic-list-item">
 				<view class="dui-basic-list-item__container">
 					<view class="dui-basic-list-item__content">

@@ -61,7 +61,7 @@
 			</navigator>
 		</view>
 		<view class="dui-money-list-group">
-			<navigator url="myinvoicing">
+			<navigator url="mycoupon">
 				<view class="dui-money-number" style="padding: 20upx 30upx;">
 					<view>
 						<text class="iconfont icon-youhuijuan"></text>
@@ -78,10 +78,13 @@
 </template>
 <script>
 	export default {
+		onNavigationBarButtonTap: function() {
+			uni.navigateTo({
+				url: "../mymoney/mydetailed"
+			});
+		},
 		data() {
-			return {
-
-			}
+			return {}
 		},
 		methods: {
 
@@ -154,7 +157,8 @@
 		font-size: 24upx;
 	}
 
-	.icon-fapiaotianchong,.icon-youhuijuan {
+	.icon-fapiaotianchong,
+	.icon-youhuijuan {
 		font-size: 28upx;
 	}
 

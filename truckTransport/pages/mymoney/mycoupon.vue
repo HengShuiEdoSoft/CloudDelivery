@@ -1,11 +1,9 @@
 <template>
 	<view class="content">
-		<view class="ui-divide-line"></view>
-		<view class="dui-coupon-input">
-			<input type="text" value="" focus="true" placeholder="按此输入兑换码" />		
-		</view>
+		这个页面是纯tab点击切换的
 	</view>
 </template>
+
 <script>
 	export default {
 		data() {
@@ -13,14 +11,15 @@
 
 			}
 		},
-		methods: {		
-			}
+		methods: {
+
+		},
+		onLoad() {
+
 		}
-</script>
-<style>
-	.dui-coupon-input {
-		margin-top:20upx;
-		background-color: #fff;
-		padding: 35upx;
 	}
+</script>
+
+<style>
+
 </style>

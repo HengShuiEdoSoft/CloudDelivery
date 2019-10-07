@@ -78,10 +78,10 @@
 					"bounce": "none",
 					"titleNView": {
 						"buttons": [{
-							"text": "余额明细",
+							"text": "明细",
 							"fontSize": "12",
 							"float": "right",
-							"color": "#424456"
+							"color": "#424456"							
 						}]
 					}
 				}
@@ -90,6 +90,67 @@
 			"path": "pages/mymoney/myinvoicing",
 			"style": {
 				"navigationBarTitleText": "开具发票"
+			}
+		}, {
+			"path": "pages/mymoney/myinvoicing-trip",
+			"style": {
+				"navigationBarTitleText": "按行程开票",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e7",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/mymoney/myinvoicing-history",
+			"style": {
+				"navigationBarTitleText": "开票历史",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e7",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/mymoney/mycoupon",
+			"style": {
+				"navigationBarTitleText": "我的优惠券"
+			}
+		}, {
+			"path": "pages/mymoney/mydetailed",
+			"style": {
+				"navigationBarTitleText": "余额明细"
+			}
+		}, {
+			"path": "pages/mymoney/myinvoicing-rule",
+			"style": {
+				"navigationBarTitleText": "开票规则",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e7",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
 			}
 		}, {
 			"path": "pages/userinfo/userinfo",
@@ -111,6 +172,11 @@
 						}]
 					}
 				}
+			}
+		},{
+			"path":"pages/address/address",
+			"style":{
+				"navigationBarTitleText":"常用地址"
 			}
 		}
 	],
