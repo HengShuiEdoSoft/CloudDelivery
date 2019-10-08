@@ -278,3 +278,44 @@
 	font-size:12px;
 	color:$grey;
 }
+
+.ui-home-bottom{
+	position:fixed;
+	bottom:20upx;
+	width:100%;
+	padding:0 16upx;
+	box-sizing: border-box;
+}
+.ui-home-price-container{
+	display:flex;
+	padding:20upx;
+	background: #fff;
+	align-items: center;
+}
+.ui-price-detail{
+	padding:8upx 20upx;
+	height:36upx;
+	font-size:12px;
+	line-height: 36upx;
+	border:1upx solid $bordercolor;
+	color:$maincolor;
+	border-radius: 2px;
+}
+.ui-cost-price{
+	flex:1;
+	text-align: center;
+	font-size:14px;
+}
+.ui-home-discount{
+	font-size:12px;
+}
+.ui-home-discount>text{
+	color:$maincolor;
+}
+.ui-price-now{
+	font-size:28px;
+}
+.ui-origin-price{
+	padding-left:20upx;
+	text-decoration: line-through;
+}

@@ -41,14 +41,10 @@
 						</view>
 					</view>
 				</view>
-				<view class="dui-maillist">
-					<text class="iconfont icon-dianhua"></text>
-					<text style="font-size: 24upx;">通讯录</text>
-				</view>
 			</view>
 		</view>
 		<view class="dui-fixed-bottom-btn">
-			<button class="primary" type="primary">确定添加</button>
+			<button class="primary" type="primary" @tap="addAddress">确定添加</button>
 		</view>
 	</view>
 </template>
@@ -63,7 +59,12 @@
 			}
 		},
 		methods: {
-
+			addAddress(){
+				//提交，提交成功跳转回back
+				uni.navigateBack({
+					delta:1
+				})
+			}
 		}
 	}
 </script>

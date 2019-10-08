@@ -61,20 +61,19 @@
 					</navigator>
 				</view>
 			</view>
-        <view v-if="hasLogin" class="hello">
-            <view class="title">
-                您好 {{userName}}，您已成功登录。
-            </view>
-            <view class="ul">
-                <view>这是 uni-app 带登录模板的示例App首页。</view>
-                <view>在 “我的” 中点击 “退出” 可以 “注销当前账户”</view>
-            </view>
-        </view>
-        <view v-if="!hasLogin" class="hello">
-            <view class="title">
-                您好 游客。
-            </view>
-        </view>
+        <view class="ui-home-bottom">
+			<view class="ui-home-price-container">
+				<view class="ui-cost-price">
+					<text>￥</text><text class="ui-price-now">{{price}}</text><text class="ui-origin-price">￥35</text>
+					<view class="ui-home-discount">优惠券已折扣<text>8元</text></view>
+				</view>
+				<navigator class="ui-price-detail" url="/pages/pricedetail/pricedetail">价格明细</navigator>
+			</view>
+			<view class="ui-home-btns">
+				<view class="ui-use-now">现在用车</view>
+				<view class="ui-appoint"><text class="iconfont icon-shijian-xianxing"></text> 预约</view>
+			</view>
+		</view>
     </view>
 </template>
 
@@ -93,6 +92,7 @@
 			return {
 				visible: false,
 				current:0,
+				price:0,
 				carTypes:[{
 						id:1,
 						cartype:"小面包车",
@@ -289,5 +289,22 @@
 		box-sizing: border-box;
 		border-radius: 2px;
 		background: #fff;
+	}
+	.ui-home-btns{
+		display:flex;
+		color:#fff;
+		text-align: center;
+	}
+	.ui-use-now{
+		padding:20upx 0;
+		font-size:20px;
+		background:#FF5723;
+		flex-grow:2;
+	}
+	.ui-appoint{
+		padding:20upx 0;
+		font-size:20px;
+		flex-grow:1;
+		background:#FF9801;
 	}
 </style>

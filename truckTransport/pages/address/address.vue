@@ -4,7 +4,7 @@
 		<scroll-view class="scroll-container" scroll-y>
 			<block v-for="(item,index) in lists" :key="index">
 				<view class="dui-basic-list">
-					<navigator url="editaddress">
+					<navigator :url="'editaddress?id=' + index">
 						<view class="dui-basic-list-item">
 							<view class="dui-basic-list-item__container">
 								<view class="dui-basic-list-item__content">
@@ -40,7 +40,7 @@
 
 			}
 		},
-		onLoad() {
+		onShow() {
 			let list = [];
 			for (let i = 0; i < 10; i++) {
 				list.push(i)
