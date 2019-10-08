@@ -4,12 +4,12 @@
 		<scroll-view class="scroll-container" scroll-y>
 			<block v-for="(item,index) in lists" :key="index">
 				<view class="dui-basic-list">
-					<navigator url="">
+					<navigator url="editaddress">
 						<view class="dui-basic-list-item">
 							<view class="dui-basic-list-item__container">
 								<view class="dui-basic-list-item__content">
 									<view class="dui-basic-list-item__content-title">
-										衡水CBD
+										<text><text class="iconfont icon-weizhi"></text>衡水CBD</text>
 									</view>
 									<view class="dui-basic-list-item__content-note">
 										河北省衡水市桃城区站前西路 30楼3030
@@ -25,8 +25,10 @@
 				<view class="dui-gap"></view>
 			</block>
 		</scroll-view>
-		<view style="position: absolute;bottom: 0;width: 100%;height: calc(100vh-85vh-50upx); background-color: #efeff4;z-index: 99;">
-			<button class="primary" type="primary">添加常用地址</button>
+		<view class="dui-fixed-bottom-btn">
+			<navigator url="addaddress">
+				<button class="primary" type="primary">添加常用地址</button>
+			</navigator>
 		</view>
 	</view>
 </template>
@@ -34,7 +36,9 @@
 <script>
 	export default {
 		data() {
-			return {}
+			return {
+
+			}
 		},
 		onLoad() {
 			let list = [];
@@ -48,10 +52,16 @@
 
 <style>
 	.scroll-container {
-		height: 85vh;
+		height: 100%;
+		margin-bottom: 140upx;
 	}
 
 	.primary {
 		margin: 25upx 20upx;
+	}
+
+	.icon-weizhi {
+		margin: 0 10upx;
+		font-size: 36upx;
 	}
 </style>

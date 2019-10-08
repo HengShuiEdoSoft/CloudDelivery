@@ -6,7 +6,24 @@
     "pages/pwd/pwd",
     "pages/user/user",
     "pages/cardetail/cardetail",
-    "pages/map/map"
+    "pages/map/map",
+    "pages/orderlist/orderlist",
+    "pages/orderdetail/orderdetail",
+    "pages/mymoney/mymoney",
+    "pages/mymoney/myinvoicing",
+    "pages/mymoney/myinvoicing-trip",
+    "pages/mymoney/myinvoicing-history",
+    "pages/mymoney/mycoupon",
+    "pages/mymoney/mydetailed",
+    "pages/mymoney/myinvoicing-rule",
+    "pages/userinfo/userinfo",
+    "pages/userinfo/nichengchange",
+    "pages/userinfo/phonenum",
+    "pages/userinfo/industry",
+    "pages/userinfo/realinfo",
+    "pages/userinfo/phoneverify",
+    "pages/userinfo/changephone",
+    "pages/address/address"
   ],
   "subPackages": [],
   "window": {
@@ -15,5 +32,5 @@
     "backgroundColor": "#f3f4f5"
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap10.json"
+  "sitemapLocation": "sitemap4.json"
 }

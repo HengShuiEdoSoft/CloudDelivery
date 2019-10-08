@@ -1,1 +1,0 @@
-<view><button class="dui-button" style="{{'background:'+(bgColor)+';'+('color:'+(fontColor)+';')}}"><text>{{text}}</text></button></view>

@@ -160,3 +160,13 @@
 			background: $white;
 			justify-content:space-around;
 		}
+		/*常用地址*/
+		.dui-fixed-bottom-btn{
+			position: fixed;
+			bottom: 0;
+			box-sizing: border-box;
+			width: 100%;
+			 background-color: #efeff4;
+			 z-index: 99;
+			 padding: 25upx 20upx;
+		}

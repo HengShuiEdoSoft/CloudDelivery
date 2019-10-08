@@ -81,7 +81,7 @@
 							"text": "明细",
 							"fontSize": "12",
 							"float": "right",
-							"color": "#424456"							
+							"color": "#424456"
 						}]
 					}
 				}
@@ -173,35 +173,67 @@
 					}
 				}
 			}
-		},{
+		}, {
 			"path": "pages/userinfo/phonenum",
 			"style": {
 				"navigationBarTitleText": "手机号"
 			}
-		},{
+		}, {
 			"path": "pages/userinfo/industry",
 			"style": {
 				"navigationBarTitleText": "选择行业"
 			}
-		},{
+		}, {
 			"path": "pages/userinfo/realinfo",
 			"style": {
 				"navigationBarTitleText": "实名信息"
 			}
-		},{
+		}, {
 			"path": "pages/userinfo/phoneverify",
 			"style": {
 				"navigationBarTitleText": "验证手机号"
 			}
-		},{
+		}, {
 			"path": "pages/userinfo/changephone",
 			"style": {
 				"navigationBarTitleText": "更换手机号"
 			}
-		},{
-			"path":"pages/address/address",
-			"style":{
-				"navigationBarTitleText":"常用地址"
+		}, {
+			"path": "pages/address/address",
+			"style": {
+				"navigationBarTitleText": "常用地址"
+			}
+		}, {
+			"path": "pages/address/addaddress",
+			"style": {
+				"navigationBarTitleText": "添加常用地址"
+			}
+		}, {
+			"path": "pages/address/editaddress",
+			"style": {
+				"navigationBarTitleText": "编辑常用地址",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "删除",
+							"fontSize": "12",
+							"float": "right",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+
+		}, {
+			"path": "pages/driver/driver",
+			"style": {
+				"navigationBarTitleText": "我的司机"
+			}
+		}, {
+			"path": "pages/setup/setup",
+			"style": {
+				"navigationBarTitleText": "更多设置"
 			}
 		}
 	],

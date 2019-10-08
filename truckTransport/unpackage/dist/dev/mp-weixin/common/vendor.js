@@ -1623,7 +1623,7 @@ var store = new _vuex.default.Store({
             * 是否需要强制登录
             */
     forcedLogin: false,
-    hasLogin: false,
+    hasLogin: true,
     userName: "",
     userType: "" },
 
@@ -9541,7 +9541,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarBackgroundColor": "#fff", "navigationBarTitleText": "云配送", "titleImage": "static/img/logoText.png" }, "pages/login/login": { "navigationBarTitleText": "登录" }, "pages/reg/reg": { "navigationBarTitleText": "注册" }, "pages/pwd/pwd": { "navigationBarTitleText": "找回密码" }, "pages/user/user": { "navigationBarTitleText": "我的" }, "pages/cardetail/cardetail": { "navigationBarTitleText": "小面包车详情页" }, "pages/map/map": { "navigationBarTitleText": "地图" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "white", "backgroundColor": "#f3f4f5" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarBackgroundColor": "#fff", "navigationBarTitleText": "云配送", "titleImage": "static/img/logoText.png" }, "pages/login/login": { "navigationBarTitleText": "登录" }, "pages/reg/reg": { "navigationBarTitleText": "注册" }, "pages/pwd/pwd": { "navigationBarTitleText": "找回密码" }, "pages/user/user": { "navigationBarTitleText": "我的" }, "pages/cardetail/cardetail": { "navigationBarTitleText": "小面包车详情页" }, "pages/map/map": { "navigationBarTitleText": "地图" }, "pages/orderlist/orderlist": { "navigationBarTitleText": "订单列表" }, "pages/orderdetail/orderdetail": { "navigationBarTitleText": "订单详情" }, "pages/mymoney/mymoney": { "navigationBarTitleText": "我的钱包" }, "pages/mymoney/myinvoicing": { "navigationBarTitleText": "开具发票" }, "pages/mymoney/myinvoicing-trip": { "navigationBarTitleText": "按行程开票" }, "pages/mymoney/myinvoicing-history": { "navigationBarTitleText": "开票历史" }, "pages/mymoney/mycoupon": { "navigationBarTitleText": "我的优惠券" }, "pages/mymoney/mydetailed": { "navigationBarTitleText": "余额明细" }, "pages/mymoney/myinvoicing-rule": { "navigationBarTitleText": "开票规则" }, "pages/userinfo/userinfo": { "navigationBarTitleText": "个人资料" }, "pages/userinfo/nichengchange": { "navigationBarTitleText": "编辑昵称" }, "pages/userinfo/phonenum": { "navigationBarTitleText": "手机号" }, "pages/userinfo/industry": { "navigationBarTitleText": "选择行业" }, "pages/userinfo/realinfo": { "navigationBarTitleText": "实名信息" }, "pages/userinfo/phoneverify": { "navigationBarTitleText": "验证手机号" }, "pages/userinfo/changephone": { "navigationBarTitleText": "更换手机号" }, "pages/address/address": { "navigationBarTitleText": "常用地址" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "white", "backgroundColor": "#f3f4f5" } };exports.default = _default;
 
 /***/ }),
 

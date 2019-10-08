@@ -145,6 +145,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
 var _service = _interopRequireDefault(__webpack_require__(/*! ../../service.js */ 31));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
@@ -167,10 +171,29 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../service.js *
 //
 //
 //
-var mInput = function mInput() {return __webpack_require__.e(/*! import() | components/m-input */ "components/m-input").then(__webpack_require__.bind(null, /*! ../../components/m-input.vue */ 80));};var mButton = function mButton() {return __webpack_require__.e(/*! import() | components/m-button */ "components/m-button").then(__webpack_require__.bind(null, /*! ../../components/m-button.vue */ 87));};var _default = { components: { mInput: mInput, mButton: mButton }, data: function data() {return { account: '', password: '', email: '' };}, methods: { register: function register() {/**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  * 客户端对账号信息进行一些必要的校验。
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  * 实际开发中，根据业务需要进行处理，这里仅做示例。
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  */if (this.account.length < 5) {uni.showToast({ icon: 'none', title: '账号最短为 5 个字符' });
+//
+//
+//
+//
+var mInput = function mInput() {return __webpack_require__.e(/*! import() | components/m-input */ "components/m-input").then(__webpack_require__.bind(null, /*! ../../components/m-input.vue */ 202));};var _default = { components: { mInput: mInput }, data: function data() {return { account: '', password: '', vercode: '', countdown: 60 };}, methods: { numberst: function numberst(e) {//其他代码....
+      this.countDown();}, // 倒计时
+    countDown: function countDown() {var self = this;self.countdown = 60;self.countdown -= 1;if (self.clear) {clearInterval(self.clear);}self.clear = null;self.clear = setInterval(function (_) {
+        if (self.countdown > 0) {
+          self.countdown -= 1;
+        } else {
+          clearInterval(self.clear);
+        }
+      }, 1000);
+    },
+    register: function register() {
+      /**
+                                    * 客户端对账号信息进行一些必要的校验。
+                                    * 实际开发中，根据业务需要进行处理，这里仅做示例。
+                                    */
+      if (this.account.length < 5) {
+        uni.showToast({
+          icon: 'none',
+          title: '账号最短为 5 个字符' });
 
         return;
       }
@@ -181,14 +204,13 @@ var mInput = function mInput() {return __webpack_require__.e(/*! import() | comp
 
         return;
       }
-      if (this.email.length < 3 || !~this.email.indexOf('@')) {
+      if (this.vercode.length != 6) {
         uni.showToast({
           icon: 'none',
-          title: '邮箱地址不合法' });
+          title: '验证码不正确' });
 
         return;
       }
-
       var data = {
         account: this.account,
         password: this.password,

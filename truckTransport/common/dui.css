@@ -10,6 +10,9 @@ Error: Undefined variable: "$white".
 160: 			background: $white;
 161: 			justify-content:space-around;
 162: 		}
+163: 		/*常用地址*\/
+164: 		.dui-fixed-bottom-btn{
+165: 			position: fixed;
 
 Backtrace:
 E:\BuZhiHeng\Work\CloudDelivery\truckTransport\common\dui.scss:160
@@ -59,4 +62,4 @@ C:/Ruby26-x64/bin/sass:23:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$white\".\A         on line 160 of E:\BuZhiHeng\Work\CloudDelivery\truckTransport\common\dui.scss\A \A 155: 	}\A 156: 	/*tab*/\A 157: 	.dui-car-name-list{\A 158: 			display:flex;\A 159: 			padding:0 30upx;\A 160: 			background: $white;\A 161: 			justify-content:space-around;\A 162: 		}"; }
+  content: "Error: Undefined variable: \"$white\".\A         on line 160 of E:\BuZhiHeng\Work\CloudDelivery\truckTransport\common\dui.scss\A \A 155: 	}\A 156: 	/*tab*/\A 157: 	.dui-car-name-list{\A 158: 			display:flex;\A 159: 			padding:0 30upx;\A 160: 			background: $white;\A 161: 			justify-content:space-around;\A 162: 		}\A 163: 		/*常用地址*/\A 164: 		.dui-fixed-bottom-btn{\A 165: 			position: fixed;"; }
