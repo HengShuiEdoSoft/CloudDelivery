@@ -23,7 +23,15 @@
     "pages/userinfo/realinfo",
     "pages/userinfo/phoneverify",
     "pages/userinfo/changephone",
-    "pages/address/address"
+    "pages/address/address",
+    "pages/address/addaddress",
+    "pages/address/editaddress",
+    "pages/pricedetail/pricedetail",
+    "pages/driver/driver",
+    "pages/setup/setup",
+    "pages/setup/userprotocol",
+    "pages/setup/privacypolicy",
+    "pages/setup/about"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -37,6 +45,6 @@
     "autoclose": false
   },
   "appname": "truckTransport",
-  "compilerVersion": "2.3.3",
+  "compilerVersion": "2.3.2",
   "usingComponents": {}
 }

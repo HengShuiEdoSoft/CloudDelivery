@@ -1,1 +1,2 @@
+setCssToHead([".",[1],"content{ background: #fff; }\n.",[1],"input-row .",[1],"title{ width:24%; font-size:16px; }\n",],undefined,{path:"./pages/userinfo/realinfo.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/userinfo/realinfo.wxml') } }));

@@ -251,6 +251,21 @@
 			"style": {
 				"navigationBarTitleText": "更多设置"
 			}
+		}, {
+			"path": "pages/setup/userprotocol",
+			"style": {
+				"navigationBarTitleText": "用户协议"
+			}
+		}, {
+			"path": "pages/setup/privacypolicy",
+			"style": {
+				"navigationBarTitleText": "隐私政策"
+			}
+		}, {
+			"path": "pages/setup/about",
+			"style": {
+				"navigationBarTitleText": "关于"
+			}
 		}
 	],
 

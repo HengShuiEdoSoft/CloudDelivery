@@ -56,10 +56,6 @@
 		margin-bottom: 140upx;
 	}
 
-	.primary {
-		margin: 25upx 20upx;
-	}
-
 	.icon-weizhi {
 		margin: 0 10upx;
 		font-size: 36upx;
