@@ -241,6 +241,11 @@
 					}
 				}
 			}	
+		},{
+			"path": "pages/setup/transportstandard",
+			"style": {
+				"navigationBarTitleText": "货运收费标准"
+			}	
 		}, {
 			"path": "pages/driver/driver",
 			"style": {
@@ -252,19 +257,14 @@
 				"navigationBarTitleText": "更多设置"
 			}
 		}, {
-			"path": "pages/setup/userprotocol",
+			"path": "pages/cityselect/cityselect",
 			"style": {
-				"navigationBarTitleText": "用户协议"
+				"navigationBarTitleText": "选择城市"
 			}
 		}, {
-			"path": "pages/setup/privacypolicy",
+			"path": "pages/order/order",
 			"style": {
-				"navigationBarTitleText": "隐私政策"
-			}
-		}, {
-			"path": "pages/setup/about",
-			"style": {
-				"navigationBarTitleText": "关于"
+				"navigationBarTitleText": "确认订单"
 			}
 		}
 	],

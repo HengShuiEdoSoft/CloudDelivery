@@ -382,6 +382,20 @@ textarea {
   padding-left: 20upx;
   text-decoration: line-through; }
 
+.ui-top-city-select {
+  padding: 0 30upx;
+  color: #fff;
+  line-height: 88upx;
+  background: #424456; }
+
+.ui-top-city-select > text {
+  padding-left: 20upx;
+  text-decoration: underline; }
+
+.ui-ts-title {
+  padding: 40upx 0 20upx;
+  color: #FF5723; }
+
 .dui-gap {
   height: 16upx; }
 

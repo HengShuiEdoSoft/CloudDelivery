@@ -319,3 +319,17 @@
 	padding-left:20upx;
 	text-decoration: line-through;
 }
+.ui-top-city-select{
+	padding:0 30upx;
+	color:$white;
+	line-height: 88upx;
+	background: $dark;
+}
+.ui-top-city-select>text{
+	padding-left:20upx;
+	text-decoration: underline;
+}
+.ui-ts-title{
+	padding:40upx 0 20upx;
+	color:$maincolor;
+}
