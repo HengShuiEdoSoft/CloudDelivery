@@ -456,6 +456,20 @@ textarea {
   padding-left: 20rpx;
   text-decoration: line-through;
 }
+.ui-top-city-select {
+  padding: 0 30rpx;
+  color: #fff;
+  line-height: 88rpx;
+  background: #424456;
+}
+.ui-top-city-select > text {
+  padding-left: 20rpx;
+  text-decoration: underline;
+}
+.ui-ts-title {
+  padding: 40rpx 0 20rpx;
+  color: #FF5723;
+}
 .dui-gap {
   height: 16rpx;
 }

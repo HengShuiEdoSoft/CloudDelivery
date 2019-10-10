@@ -220,12 +220,12 @@
 							"fontSize": "12",
 							"float": "right",
 							"color": "#424456"
-							
+
 						}]
-					}	
+					}
 				}
 			}
-		},{
+		}, {
 			"path": "pages/pricedetail/pricedetail",
 			"style": {
 				"navigationBarTitleText": "价格明细",
@@ -240,12 +240,12 @@
 						}]
 					}
 				}
-			}	
-		},{
+			}
+		}, {
 			"path": "pages/setup/transportstandard",
 			"style": {
 				"navigationBarTitleText": "货运收费标准"
-			}	
+			}
 		}, {
 			"path": "pages/driver/driver",
 			"style": {
@@ -256,7 +256,8 @@
 			"style": {
 				"navigationBarTitleText": "更多设置"
 			}
-		}, {
+		},
+		{
 			"path": "pages/cityselect/cityselect",
 			"style": {
 				"navigationBarTitleText": "选择城市"
@@ -265,6 +266,53 @@
 			"path": "pages/order/order",
 			"style": {
 				"navigationBarTitleText": "确认订单"
+			}
+		}, {
+			"path": "pages/setup/userprotocol",
+			"style": {
+				"navigationBarTitleText": "用户协议"
+			}
+		}, {
+			"path": "pages/setup/privacypolicy",
+			"style": {
+				"navigationBarTitleText": "隐私政策"
+			}
+		}, {
+			"path": "pages/setup/about",
+			"style": {
+				"navigationBarTitleText": "关于"
+			}
+		}, {
+			"path": "pages/setup/resetpwd"
+		}, {
+			"path": "pages/setup/vercode"
+		}, {
+			"path": "pages/setup/commonroutes",
+			"style": {
+				"navigationBarTitleText": "常用路线"
+			}
+		}, {
+			"path": "pages/setup/commonroutes1",
+			"style": {
+				"navigationBarTitleText": "常用路线",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "管理",
+							"fontSize": "12",
+							"float": "right",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/servicecenter/servicecenter",
+			"style": {
+				"navigationBarTitleText": "客服中心",
+				"navigationBarBackgroundColor": "#434456",
+				"navigationBarTextStyle":"white"
 			}
 		}
 	],

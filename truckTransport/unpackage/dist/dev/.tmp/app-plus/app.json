@@ -27,8 +27,11 @@
     "pages/address/addaddress",
     "pages/address/editaddress",
     "pages/pricedetail/pricedetail",
+    "pages/setup/transportstandard",
     "pages/driver/driver",
     "pages/setup/setup",
+    "pages/cityselect/cityselect",
+    "pages/order/order",
     "pages/setup/userprotocol",
     "pages/setup/privacypolicy",
     "pages/setup/about"

@@ -170,3 +170,34 @@
 			 z-index: 99;
 			 padding: 25upx 20upx;
 		}
+		/*设置密码*/
+		.dui-resetpwd-wrapper {
+			padding: 0upx 64upx;
+			color: #424456;
+		}
+		
+		.dui-resetpwd-title {
+			padding-top: 94upx;
+			font-size: 50upx;
+			font-weight: bold;
+		}
+		
+		.dui-resetpwd-phone {		
+			padding-top:200upx;
+			font-size: 40upx;
+			font-weight: bold;
+			text-align: center;
+		}
+		.dui-resetpwd-btn{
+			padding-top:80upx ;
+		}
+		/*暂无*/
+		.dui-notyet-wrapper {
+			margin-top: 300upx;
+			margin-left: auto;
+			margin-right: auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size: 30upx;
+		}

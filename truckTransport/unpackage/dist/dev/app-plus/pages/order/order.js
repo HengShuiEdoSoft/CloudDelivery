@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"ui-home-btns{ display:-webkit-box; display:-webkit-flex; display:-ms-flexbox; display:flex; color:#fff; text-align: center; }\n.",[1],"ui-use-now{ -webkit-box-flex:1; -webkit-flex:1; -ms-flex:1; flex:1; padding:",[0,20]," 0; font-size:20px; background:#FF5723; }\n",],undefined,{path:"./pages/order/order.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/order/order.wxml') } }));

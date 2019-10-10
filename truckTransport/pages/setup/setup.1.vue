@@ -1,4 +1,5 @@
 <template>
+	<!-- 这个页面的分享是 Popup底部弹出分享  可以弹出但功能不会实现-->
 	<view class="content">
 		<scroll-view class="scroll-container" scroll-y>
 			<view class="dui-gap"></view>
@@ -21,7 +22,7 @@
 			</view>
 			<view class="dui-gap"></view>
 			<view class="dui-basic-list">
-				<navigator url="">
+				<navigator url="resetpwd">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container dui-reduce">
 							<view class="dui-basic-list-item__content">
@@ -41,7 +42,7 @@
 			</view>
 			<view class="dui-gap"></view>
 			<view class="dui-basic-list">
-				<navigator url="">
+				<navigator url="commonroutes">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container">
 							<view class="dui-basic-list-item__content">
@@ -86,7 +87,7 @@
 						</view>
 					</view>
 				</navigator>
-				<navigator url="">
+				<navigator url="transportstandard">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container">
 							<view class="dui-basic-list-item__content">
@@ -183,7 +184,7 @@
 	export default {
 		components: {
 			uniPopup
-		},	
+		},
 		data() {
 			return {
 				show: false,
@@ -222,7 +223,7 @@
 				}
 				this.$refs[type].close()
 			},
-			
+
 		}
 	}
 </script>
@@ -286,7 +287,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width:120upx;
+		width: 120upx;
 		height: 120upx;
 		overflow: hidden;
 		border-radius: 10upx;

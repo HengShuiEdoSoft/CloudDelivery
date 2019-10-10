@@ -1,5 +1,7 @@
 <template>
 	<view class="content">
+		<!--这个页面的分享是官网推荐的底部弹出分享 功能可以在真机实现-->
+
 		<scroll-view class="scroll-container" scroll-y>
 			<view class="dui-gap"></view>
 			<view class="dui-basic-list">
@@ -21,7 +23,7 @@
 			</view>
 			<view class="dui-gap"></view>
 			<view class="dui-basic-list">
-				<navigator url="">
+				<navigator url="resetpwd">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container dui-reduce">
 							<view class="dui-basic-list-item__content">
@@ -41,7 +43,7 @@
 			</view>
 			<view class="dui-gap"></view>
 			<view class="dui-basic-list">
-				<navigator url="">
+				<navigator url="commonroutes">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container">
 							<view class="dui-basic-list-item__content">
@@ -86,7 +88,7 @@
 						</view>
 					</view>
 				</navigator>
-				<navigator url="">
+				<navigator url="transportstandard">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container">
 							<view class="dui-basic-list-item__content">
@@ -209,7 +211,7 @@
 	var nvImageMenu = new plus.nativeObj.View("nvImageMenu", { //创建底部图标菜单
 		bottom: '0px',
 		left: '0px',
-		height: '264px',
+		height: '180px',
 		width: '100%',
 		backgroundColor: 'rgb(255,255,255)'
 	});
@@ -231,21 +233,32 @@
 			},
 			position: {
 				bottom: '0px',
-				height: '44px'
+				height: '50px'
 			}
 		},
 		{
 			tag: 'rect', //底部取消按钮的顶部边线
 			color: '#e7e7e7',
 			position: {
-				bottom: '45px',
+				bottom: '51px',
 				height: '1px'
 			}
 		},
 		{
 			tag: 'img',
-			id: 'imgwechatfriend',
+			id: 'imgwechatmoments',
 			src: '/static/img/wx-share.png',
+			position: {
+				top: top1,
+				left: left2,
+				width: iconWidth,
+				height: iconWidth
+			}
+		},
+		{
+			tag: 'img',
+			id: 'imgwechatfriend',
+			src: '/static/img/pyq-share.png',
 			position: {
 				top: top1,
 				left: left1,
@@ -256,7 +269,7 @@
 		{
 			tag: 'font',
 			id: 'fontwechatfriend',
-			text: '微信好友',
+			text: '朋友圈',
 			textStyles: {
 				size: textHeight
 			},
@@ -268,20 +281,9 @@
 			}
 		},
 		{
-			tag: 'img',
-			id: 'imgwechatmoments',
-			src: '/static/img/pyq-share.png',
-			position: {
-				top: top1,
-				left: left2,
-				width: iconWidth,
-				height: iconWidth
-			}
-		},
-		{
 			tag: 'font',
 			id: 'fontwechatmoments',
-			text: '朋友圈',
+			text: '微信好友',
 			textStyles: {
 				size: textHeight
 			},
@@ -294,36 +296,11 @@
 		},
 		{
 			tag: 'img',
-			id: 'imgweibo',
-			src: '/static/sharemenu/weibo.png',
-			position: {
-				top: top1,
-				left: left3,
-				width: iconWidth,
-				height: iconWidth
-			}
-		},
-		{
-			tag: 'font',
-			id: 'fontweibo',
-			text: '微博',
-			textStyles: {
-				size: textHeight
-			},
-			position: {
-				top: top1 + iconWidth + icontextSpace,
-				left: left3,
-				width: iconWidth,
-				height: textHeight
-			}
-		},
-		{
-			tag: 'img',
 			id: 'imgqq',
 			src: '/static/img/qq-share.png',
 			position: {
 				top: top1,
-				left: left4,
+				left: left3,
 				width: iconWidth,
 				height: iconWidth
 			}
@@ -337,32 +314,7 @@
 			},
 			position: {
 				top: top1 + iconWidth + icontextSpace,
-				left: left4,
-				width: iconWidth,
-				height: textHeight
-			}
-		},
-		{
-			tag: 'img',
-			id: 'imgcopyurl',
-			src: '/static/sharemenu/copyurl.png',
-			position: {
-				top: top2,
-				left: left1,
-				width: iconWidth,
-				height: iconWidth
-			}
-		},
-		{
-			tag: 'font',
-			id: 'fontcopyurl',
-			text: '复制',
-			textStyles: {
-				size: textHeight
-			},
-			position: {
-				top: top2 + iconWidth + icontextSpace,
-				left: left1,
+				left: left3,
 				width: iconWidth,
 				height: textHeight
 			}
@@ -370,10 +322,10 @@
 		{
 			tag: 'img',
 			id: 'imgmore',
-			src: '/static/sharemenu/more.png',
+			src: '/static/img/more.png',
 			position: {
-				top: top2,
-				left: left2,
+				top: top1,
+				left: left4,
 				width: iconWidth,
 				height: iconWidth
 			}
@@ -386,8 +338,8 @@
 				size: textHeight
 			},
 			position: {
-				top: top2 + iconWidth + icontextSpace,
-				left: left2,
+				top: top1 + iconWidth + icontextSpace,
+				left: left4,
 				width: iconWidth,
 				height: textHeight
 			}
@@ -396,10 +348,10 @@
 	])
 	nvImageMenu.addEventListener("click", function(e) { //处理底部图标菜单的点击事件，根据点击位置触发不同的逻辑
 		// console.log("click menu"+JSON.stringify(e));
-		if (e.screenY > plus.screen.resolutionHeight - 44) { //点击了底部取消按钮
+		if (e.screenY > plus.screen.resolutionHeight - 50) { //点击了底部取消按钮
 			nvMask.hide();
 			nvImageMenu.hide();
-		} else if (e.clientX < 5 || e.clientX > screenWidth - 5 || e.clientY < 5) {
+		} else if (e.clientX < 4 || e.clientX > screenWidth - 4 || e.clientY < 4) {
 			//屏幕左右边缘5像素及菜单顶部5像素不处理点击
 		} else { //点击了图标按钮
 			var iClickIndex = -1 //点击的图标按钮序号，第一个图标按钮的index为0
@@ -416,39 +368,24 @@
 			}
 			if (iRow == 0) {
 				iClickIndex = iCol
-			} else {
-				iClickIndex = iCol + 4
 			}
 			console.log("点击按钮的序号: " + iClickIndex);
-			if (iClickIndex >= 0 && iClickIndex <= 5) { //处理具体的点击逻辑，此处也可以自行定义逻辑。如果增减了按钮，此处也需要跟着修改
+			if (iClickIndex >= 0 && iClickIndex <= 4) { //处理具体的点击逻辑，此处也可以自行定义逻辑。如果增减了按钮，此处也需要跟着修改
 				var strProvider = "",
 					strScene = ""
 				switch (iClickIndex) {
 					case 0:
 						strProvider = "weixin"
-						strScene = "WXSceneSession"
+						strScene = "WXSenceTimeline"
 						break;
 					case 1:
 						strProvider = "weixin"
-						strScene = "WXSenceTimeline"
+						strScene = "WXSceneSession"
 						break;
 					case 2:
-						strProvider = "sinaweibo"
-						break;
-					case 3:
 						strProvider = "qq"
 						break;
-					case 4:
-						uni.setClipboardData({
-							data: strShareUrl,
-							complete() {
-								uni.showToast({
-									title: "已复制到剪贴板"
-								})
-							}
-						})
-						break;
-					case 5:
+					case 3:
 						plus.share.sendWithSystem({
 							content: strShareUrl,
 						})
@@ -474,21 +411,16 @@
 			}
 		}
 	})
-	/* nvImageMenu.addEventListener("touchstart", function(e) {
-		if (e.screenY > (plus.screen.resolutionHeight - 44)) {
-			//TODO 这里可以处理按下背景变灰的效果
-		}
-	})
-	nvImageMenu.addEventListener("touchmove", function(e) {
-		//TODO 这里可以处理按下背景变灰的效果
-		if (e.screenY > plus.screen.resolutionHeight - 44) {}
-	})
-	nvImageMenu.addEventListener("touchend", function(e) {
-		//TODO 这里可以处理释放背景恢复的效果
-	})
-	*/
 	// #endif
 	export default {
+		onBackPress() {
+			//监听back键，关闭弹出菜单
+			if (nvImageMenu.isVisible()) {
+				nvImageMenu.hide()
+				nvMask.hide()
+				return true
+			}
+		},
 		data() {
 			return {
 				show: false,
@@ -508,26 +440,6 @@
 
 			}
 		},
-		onLoad() {},
-		onBackPress() {
-			//监听back键，关闭弹出菜单
-			if (nvImageMenu.isVisible()) {
-				nvImageMenu.hide()
-				nvMask.hide()
-				return true
-			}
-		},
-		// onNavigationBarButtonTap(e) {
-		// 	switch (e.type) {
-		// 		case "share": //点击分享按钮
-		// 			//TODO 未处理h5，h5应调用qq浏览器等自带的share api，如果浏览器不自带share，那么分享图标不应该显示。或者从简的话，h5整个就不显示分享按钮
-		// 			// #ifdef APP-PLUS
-		// 			nvMask.show()
-		// 			nvImageMenu.show() //5+应支持从底部向上弹出的动画
-		// 			// #endif
-		// 			break;
-		// 	}
-		// }
 	}
 </script>
 <style>
