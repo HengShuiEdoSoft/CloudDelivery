@@ -1,26 +1,21 @@
 @charset "UTF-8";
 * {
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
 html {
   -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
+  -webkit-text-size-adjust: 100%; }
 
 img {
   width: 100%;
-  border: 0;
-}
+  border: 0; }
 
 a {
-  text-decoration: none;
-}
+  text-decoration: none; }
 
 ul, li {
-  list-style: none;
-}
+  list-style: none; }
 
 input[type="text"], input[type="password"], button, textarea, select {
   border: none;
@@ -28,49 +23,40 @@ input[type="text"], input[type="password"], button, textarea, select {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   appearance: none;
   -webkit-appearance: none;
-  -moz-appearance: none;
-}
+  -moz-appearance: none; }
 
 ::-webkit-input-placeholder {
-  color: #C1C1C1;
-}
+  color: #C1C1C1; }
 
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #C1C1C1;
-}
+  color: #C1C1C1; }
 
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #C1C1C1;
-}
+  color: #C1C1C1; }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #C1C1C1;
-}
+  color: #C1C1C1; }
 
 textarea {
-  resize: none;
-}
+  resize: none; }
 
 .hide {
-  display: none;
-}
+  display: none; }
 
 .ui-ellipse {
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
-}
+  text-overflow: ellipsis; }
 
 .ui-divide-bar {
   display: block;
   width: 100%;
   height: 10px;
   background-color: #f3f4f5;
-  border: none;
-}
+  border: none; }
 
 .ui-divide-line {
   display: block;
@@ -78,63 +64,51 @@ textarea {
   background-color: #e2e2e2;
   border: none;
   transform: scaleY(0.5);
-  -webkit-transform: scaleY(0.5);
-}
+  -webkit-transform: scaleY(0.5); }
 
 .h1, .h2, .h3, .h4, .h5 {
-  font-weight: 600;
-}
+  font-weight: 600; }
 
 .h1 {
-  font-size: 36px;
-}
+  font-size: 36px; }
 
 .h2 {
-  font-size: 24px;
-}
+  font-size: 24px; }
 
 .h3 {
-  font-size: 18px;
-}
+  font-size: 18px; }
 
 .h4 {
-  font-size: 16px;
-}
+  font-size: 16px; }
 
 .h5 {
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 /***tab***/
 .ui-car-name-list {
   display: flex;
   padding: 0 30upx;
   background: #fff;
-  justify-content: space-between;
-}
+  justify-content: space-between; }
 
 .ui-car-name-item {
   padding: 20upx 0;
   font-size: 17px;
-  color: #999;
-}
+  color: #999; }
 
 .ui-car-name-item.active {
   color: #FF5723;
-  border-bottom: 2px solid #FF5723;
-}
+  border-bottom: 2px solid #FF5723; }
 
 /* timeline */
 .uni-timeline {
   margin: 36upx 0;
   display: flex;
   flex-direction: column;
-  position: relative;
-}
+  position: relative; }
 
 .ui-order-timeline.uni-timeline {
-  margin: 18upx 0 0;
-}
+  margin: 18upx 0 0; }
 
 .uni-timeline-item {
   display: flex;
@@ -142,8 +116,7 @@ textarea {
   position: relative;
   padding-bottom: 20upx;
   box-sizing: border-box;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .uni-timeline-item .uni-timeline-item-keynode {
   width: 160upx;
@@ -151,8 +124,7 @@ textarea {
   box-sizing: border-box;
   padding-right: 20upx;
   text-align: right;
-  line-height: 65upx;
-}
+  line-height: 65upx; }
 
 .uni-timeline-item .uni-timeline-item-divider {
   flex-shrink: 0;
@@ -165,15 +137,13 @@ textarea {
   line-height: 36upx;
   text-align: center;
   border-radius: 50%;
-  background-color: #bbb;
-}
+  background-color: #bbb; }
 
 .ui-order-timeline .uni-timeline-item .uni-timeline-item-divider {
   width: 12upx;
   height: 12upx;
   top: 14upx;
-  line-height: 12upx;
-}
+  line-height: 12upx; }
 
 .uni-timeline-item-divider::before,
 .uni-timeline-item-divider::after {
@@ -182,69 +152,55 @@ textarea {
   width: 1upx;
   height: 100vh;
   content: '';
-  background: #ddd;
-}
+  background: #ddd; }
 
 .ui-order-timeline .uni-timeline-item-divider::before,
 .ui-order-timeline .uni-timeline-item-divider::after {
-  left: 6upx;
-}
+  left: 6upx; }
 
 .ui-order-timeline .uni-timeline-item-content .ui-address {
   padding-bottom: 10px;
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 .uni-timeline-item-divider::before {
-  bottom: 100%;
-}
+  bottom: 100%; }
 
 .uni-timeline-item-divider::after {
-  top: 100%;
-}
+  top: 100%; }
 
 .uni-timeline-last-item .uni-timeline-item-divider:after {
-  display: none;
-}
+  display: none; }
 
 .uni-timeline-first-item .uni-timeline-item-divider:before {
-  display: none;
-}
+  display: none; }
 
 .uni-timeline-item .uni-timeline-item-content {
   flex: 1;
-  padding-left: 20upx;
-}
+  padding-left: 20upx; }
 
 .uni-timeline-last-item .bottom-border::after {
-  display: none;
-}
+  display: none; }
 
 .uni-timeline-item-content .ui-address {
   padding-bottom: 10upx;
-  font-size: 16px;
-}
+  font-size: 16px; }
 
 .uni-timeline-item-content .ui-subtext {
   font-size: 14px;
-  color: #aaa;
-}
+  color: #aaa; }
 
 .ui-order-timeline .uni-timeline-item-content .ui-subtext {
   padding: 10upx 0 16upx;
   font-size: 12px;
   display: block;
-  color: #aaa;
-}
+  color: #aaa; }
 
 /* 自定义节点颜色 */
 .uni-timeline-first-item .uni-timeline-item-divider {
-  background-color: #3BD1AB;
-}
+  background-color: #3BD1AB; }
 
 .uni-timeline-last-item .uni-timeline-item-divider {
-  background-color: #FF5723;
-}
+  background-color: #FF5723; }
 
 .ui-order-list-item {
   position: relative;
@@ -252,12 +208,10 @@ textarea {
   padding: 20upx;
   font-size: 14px;
   background: #fff;
-  border-radius: 2px;
-}
+  border-radius: 2px; }
 
 .ui-order-list-item-top {
-  padding-bottom: 20upx;
-}
+  padding-bottom: 20upx; }
 
 .ui-order-list-cartype {
   display: inline-block;
@@ -266,8 +220,7 @@ textarea {
   font-size: 12px;
   color: #fff;
   border-radius: 2px;
-  background: #424456;
-}
+  background: #424456; }
 
 /*订单状态*/
 .ui-hujiao:after, .ui-daizhifu:after {
@@ -277,157 +230,130 @@ textarea {
   display: inline-block;
   padding: 4px 8px;
   font-size: 12px;
-  color: #fff;
-}
+  color: #fff; }
 
 .ui-hujiao:after {
   content: "正在呼叫";
-  background: #3BD1AB;
-}
+  background: #3BD1AB; }
 
 .ui-daizhifu:after {
   content: "待支付";
-  background: #FF9801;
-}
+  background: #FF9801; }
 
 /**订单详情**/
 .ui-orderdetail-cont {
   margin: 16upx;
   padding: 20upx;
   font-size: 16px;
-  background: #fff;
-}
+  background: #fff; }
 
 .ui-orderdetail-top {
   display: flex;
-  align-items: center;
-}
+  align-items: center; }
 
 .ui-od-portrait {
   margin-right: 20upx;
   width: 96upx;
   height: 96upx;
-  border-radius: 100%;
-}
+  border-radius: 100%; }
 
 .ui-orderdetail-date {
   display: flex;
   font-size: 14px;
   padding-bottom: 20upx;
-  flex-direction: row;
-}
+  flex-direction: row; }
 
 .ui-od-ordernumber {
-  color: #9E9E9E;
-}
+  color: #9E9E9E; }
 
 .ui-od-date {
-  flex: 1;
-}
+  flex: 1; }
 
 .ui-od-info-item {
   display: flex;
-  line-height: 72upx;
-}
+  line-height: 72upx; }
 
 .ui-od-info-right {
   flex: 1;
   padding-left: 20upx;
-  color: #9E9E9E;
-}
+  color: #9E9E9E; }
 
 .ui-od-price-pay {
   color: #FF5723;
   font-size: 18px;
-  font-weight: 600;
-}
+  font-weight: 600; }
 
 .ui-od-price-type {
-  flex: 1;
-}
+  flex: 1; }
 
 .ui-orderdetail-cont .ui-od-price-list-b {
   display: flex;
   font-size: 14px;
   line-height: 64upx;
-  color: #666;
-}
+  color: #666; }
 
 .ui-orderdetail-cont .ui-od-price-right {
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 /**个人资料**/
 .ui-info-list {
   margin-top: 20upx;
   padding: 0 30upx;
-  background: #fff;
-}
+  background: #fff; }
 
 .ui-info-list-item {
   display: flex;
   font-size: 14px;
   line-height: 80upx;
-  padding: 16upx 0;
-}
+  padding: 16upx 0; }
 
 .ui-info-list-item:first-child {
-  line-height: 96upx;
-}
+  line-height: 96upx; }
 
 .ui-info-list-item:first-child .ui-info-list-center {
-  height: 96upx;
-}
+  height: 96upx; }
 
 .ui-info-list-left {
-  color: #9E9E9E;
-}
+  color: #9E9E9E; }
 
 .ui-info-list-center {
   flex: 1;
   text-align: right;
-  align-items: center;
-}
+  align-items: center; }
 
 .ui-info-list-center input {
   display: block;
   font-size: 14px;
   height: 80upx;
   line-height: 80upx;
-  color: #212121;
-}
+  color: #212121; }
 
 .ui-info-list-right {
   padding-left: 24upx;
-  color: #606060;
-}
+  color: #606060; }
 
 .ui-info-list-center > image {
   display: inline-block;
   width: 96upx;
   height: 96upx;
-  border-radius: 100%;
-}
+  border-radius: 100%; }
 
 .ui-tip {
   font-size: 12px;
-  color: #9E9E9E;
-}
+  color: #9E9E9E; }
 
 .ui-home-bottom {
   position: fixed;
   bottom: 20upx;
   width: 100%;
   padding: 0 16upx;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 .ui-home-price-container {
   display: flex;
   padding: 20upx;
   background: #fff;
-  align-items: center;
-}
+  align-items: center; }
 
 .ui-price-detail {
   padding: 8upx 20upx;
@@ -436,58 +362,47 @@ textarea {
   line-height: 36upx;
   border: 1upx solid #e2e2e2;
   color: #FF5723;
-  border-radius: 2px;
-}
+  border-radius: 2px; }
 
 .ui-cost-price {
   flex: 1;
   text-align: center;
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 .ui-home-discount {
-  font-size: 12px;
-}
+  font-size: 12px; }
 
 .ui-home-discount > text {
-  color: #FF5723;
-}
+  color: #FF5723; }
 
 .ui-price-now {
-  font-size: 28px;
-}
+  font-size: 28px; }
 
 .ui-origin-price {
   padding-left: 20upx;
-  text-decoration: line-through;
-}
+  text-decoration: line-through; }
 
 .ui-top-city-select {
   padding: 0 30upx;
   color: #fff;
   line-height: 88upx;
-  background: #424456;
-}
+  background: #424456; }
 
 .ui-top-city-select > text {
   padding-left: 20upx;
-  text-decoration: underline;
-}
+  text-decoration: underline; }
 
 .ui-ts-title {
   padding: 40upx 0 20upx;
-  color: #FF5723;
-}
+  color: #FF5723; }
 
 .dui-gap {
-  height: 16upx;
-}
+  height: 16upx; }
 
 .dui-input-group-mg {
   margin-top: 66upx;
   margin-left: 84upx;
-  margin-right: 100upx;
-}
+  margin-right: 100upx; }
 
 .dui-input {
   display: flex;
@@ -495,21 +410,18 @@ textarea {
   align-items: center;
   flex: 1;
   width: 100%;
-  padding: 0 5px;
-}
+  padding: 0 5px; }
 
 /*我的钱包*/
 .dui-money-list-group {
   margin-bottom: 20upx;
-  background-color: #fff;
-}
+  background-color: #fff; }
 
 .dui-money-list-item {
   display: flex;
   justify-content: space-between;
   padding: 30upx;
-  color: #424456;
-}
+  color: #424456; }
 
 /*list*/
 .dui-basic-list {
@@ -517,8 +429,7 @@ textarea {
   position: relative;
   width: 100%;
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 .dui-basic-list:after {
   position: absolute;
@@ -530,8 +441,7 @@ textarea {
   content: '';
   -webkit-transform: scaleY(0.5);
   transform: scaleY(0.5);
-  background-color: #e5e5e5;
-}
+  background-color: #e5e5e5; }
 
 .dui-basic-list:before {
   position: absolute;
@@ -543,8 +453,7 @@ textarea {
   content: '';
   -webkit-transform: scaleY(0.5);
   transform: scaleY(0.5);
-  background-color: #e5e5e5;
-}
+  background-color: #e5e5e5; }
 
 .dui-basic-list-item {
   font-size: 32upx;
@@ -552,8 +461,7 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-}
+  align-items: center; }
 
 .dui-basic-list-item__container {
   padding: 24upx 30upx;
@@ -564,8 +472,7 @@ textarea {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-}
+  align-items: center; }
 
 .dui-basic-list-item__container:after {
   position: absolute;
@@ -577,16 +484,14 @@ textarea {
   content: '';
   -webkit-transform: scaleY(0.5);
   transform: scaleY(0.5);
-  background-color: #e5e5e5;
-}
+  background-color: #e5e5e5; }
 
 .dui-basic-list-item__content {
   flex: 1;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  color: #3b4144;
-}
+  color: #3b4144; }
 
 .dui-basic-list-item__content-title {
   font-size: 32upx;
@@ -594,8 +499,7 @@ textarea {
   white-space: nowrap;
   color: inherit;
   line-height: 1.5;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .dui-basic-list-item__content-note {
   margin-top: 6upx;
@@ -605,47 +509,40 @@ textarea {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .dui-basic-list-item__extra {
   width: 25%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
-}
+  align-items: center; }
 
 .dui-basic-list-item__icon {
   margin-right: 18upx;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-}
+  align-items: center; }
 
 .dui-basic-list > .dui-basic-list-item:last-child .dui-basic-list-item-container:after {
-  height: 0;
-}
+  height: 0; }
 
 .dui-basic-tips {
   padding: 30upx;
   font-size: 26upx;
   line-height: 40upx;
-  color: #606060;
-}
+  color: #606060; }
 
 .dui-basic-tips-title {
-  color: #ff5723;
-}
+  color: #ff5723; }
 
 /*tab*/
 .dui-car-name-list {
   display: flex;
   padding: 0 30upx;
   background: #fff;
-  justify-content: space-around;
-}
+  justify-content: space-around; }
 
 /*常用地址*/
 .dui-fixed-bottom-btn {
@@ -655,31 +552,26 @@ textarea {
   width: 100%;
   background-color: #efeff4;
   z-index: 99;
-  padding: 25upx 20upx;
-}
+  padding: 25upx 20upx; }
 
 /*设置密码*/
 .dui-resetpwd-wrapper {
   padding: 0upx 64upx;
-  color: #424456;
-}
+  color: #424456; }
 
 .dui-resetpwd-title {
   padding-top: 94upx;
   font-size: 50upx;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .dui-resetpwd-phone {
   padding-top: 200upx;
   font-size: 40upx;
   font-weight: bold;
-  text-align: center;
-}
+  text-align: center; }
 
 .dui-resetpwd-btn {
-  padding-top: 80upx;
-}
+  padding-top: 80upx; }
 
 /*暂无*/
 .dui-notyet-wrapper {
@@ -689,7 +581,6 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 30upx;
-}
+  font-size: 30upx; }
 
 /*# sourceMappingURL=common.css.map */
