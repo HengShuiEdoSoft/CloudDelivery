@@ -1,0 +1,55 @@
+
+.scroll-container {
+	height: 100%;
+}
+.dui-service-wrapper {
+	padding: 0 15rpx;
+	position: relative;
+}
+.dui-service-bj {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 300rpx;
+	background-color: #434456;
+}
+.dui-basic-list-item__container {
+	padding-top: 35rpx;
+	padding-bottom: 35rpx;
+}
+.dui-scrvice-custom-wrapper {
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	padding: 40rpx 30rpx;
+	font-size: 32rpx;
+}
+.dui-scrvice-custom-wrapper navigator {
+	font-size: 28rpx;
+}
+.dui-basic-list-item__content,
+.dui-basic-list-item__extra {
+	font-size: 26rpx;
+	color: #797979;
+}
+.dui-scrvice-order {
+	position: relative;
+	width: 100%;
+	height: 294rpx;
+	background-color: #fff;
+	border-radius: 4rpx;
+	-webkit-box-shadow: 0px 2px 5px #e2e2e2;
+	        box-shadow: 0px 2px 5px #e2e2e2;
+}
+

@@ -5,7 +5,7 @@
 			<image src="../../static/img/map.jpg" mode=""></image>
 			<text>暂无可用路线</text>
 			<navigator url="">
-				<view class="dui-routes-btn">添加常用路线 </view>
+				<view class="dui-notyet-btn">添加常用路线 </view>
 			</navigator>
 		</view>
 	</view>
@@ -27,7 +27,7 @@
 		color: #8d8d8d;
 	}
 
-	.dui-routes-btn {
+	.dui-notyet-btn {
 		width: 290upx;
 		height: 85upx;
 		line-height: 85upx;
