@@ -730,6 +730,69 @@ textarea {
   z-index: 99;
   padding: 25rpx 20rpx;
 }
+/*设置密码*/
+.dui-resetpwd-wrapper {
+  padding: 0rpx 64rpx;
+  color: #424456;
+}
+.dui-resetpwd-title {
+  padding-top: 94rpx;
+  font-size: 50rpx;
+  font-weight: bold;
+}
+.dui-resetpwd-phone {
+  padding-top: 200rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.dui-resetpwd-btn {
+  padding-top: 80rpx;
+}
+/*暂无*/
+.dui-notyet-wrapper {
+  margin-top: 300rpx;
+  margin-left: auto;
+  margin-right: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 30rpx;
+}
+/*客服*/
+.dui-service-wrapper {
+  padding: 0 15rpx;
+  position: relative;
+}
+.dui-online-service {
+  position: fixed;
+  right: 15rpx;
+  bottom: 290rpx;
+  z-index: 99;
+}
+.dui-online-service image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.dui-scrvice-tel {
+  padding: 100rpx 0 40rpx 0;
+  font-size: 24rpx;
+  text-align: center;
+  color: #797979;
+}
+.dui-scrvice-tel text {
+  margin: 0 6rpx 0 6rpx;
+}
 @font-face {
   font-family: 'iconfont';  /* project id 1436070 */
   src: url('https://at.alicdn.com/t/font_1436070_bp6qkt2uxc.eot');

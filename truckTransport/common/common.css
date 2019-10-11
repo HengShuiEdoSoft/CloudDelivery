@@ -692,4 +692,33 @@ textarea {
   font-size: 30upx;
 }
 
+/*客服*/
+.dui-service-wrapper {
+  padding: 0 15upx;
+  position: relative;
+}
+
+.dui-online-service {
+  position: fixed;
+  right: 15upx;
+  bottom: 290upx;
+  z-index: 99;
+}
+
+.dui-online-service image {
+  width: 120upx;
+  height: 120upx;
+}
+
+.dui-scrvice-tel {
+  padding: 100upx 0 40upx 0;
+  font-size: 24upx;
+  text-align: center;
+  color: #797979;
+}
+
+.dui-scrvice-tel text {
+  margin: 0 6upx 0 6upx;
+}
+
 /*# sourceMappingURL=common.css.map */

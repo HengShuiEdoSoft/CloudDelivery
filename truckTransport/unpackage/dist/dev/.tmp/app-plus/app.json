@@ -29,12 +29,22 @@
     "pages/pricedetail/pricedetail",
     "pages/setup/transportstandard",
     "pages/driver/driver",
+    "pages/driver/driverexplain",
     "pages/setup/setup",
     "pages/cityselect/cityselect",
     "pages/order/order",
     "pages/setup/userprotocol",
     "pages/setup/privacypolicy",
-    "pages/setup/about"
+    "pages/setup/about",
+    "pages/setup/resetpwd",
+    "pages/setup/vercode",
+    "pages/setup/commonroutes",
+    "pages/setup/commonroutes1",
+    "pages/servicecenter/servicecenter",
+    "pages/servicecenter/complaintorder",
+    "pages/servicecenter/servicecenter-list",
+    "pages/servicecenter/servicecenter-detail",
+    "pages/servicecenter/feedback"
   ],
   "window": {
     "navigationBarTextStyle": "black",

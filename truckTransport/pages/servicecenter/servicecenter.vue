@@ -1,97 +1,57 @@
 <template>
 	<view class="content">
 		<scroll-view class="scroll-container" scroll-y>
-			<view class="dui-service-wrapper">			
-					<view class="dui-service-bj"></view>
-					<view class="dui-scrvice-custom-wrapper" style="color: #fff;">
-						<text>最近订单</text>
-						<navigator url="">更多<text class="iconfont icon-gengduo-shuxiang"></text></navigator>
-					</view>
-					<view class="dui-scrvice-order">
-						暂无
-					</view>				
-				<view class="dui-gap"></view>
-				<view class="dui-basic-list">
-					<navigator url="">
-						<view class="dui-basic-list-item">
-							<view class="dui-basic-list-item__container">
-								<view class="dui-basic-list-item__content">
-									<view class="dui-basic-list-item__content-title">
-										下单叫车
-									</view>
-								</view>
-								<view class="dui-basic-list-item__extra">
-									<text class="iconfont icon-gengduo-shuxiang"></text>
-								</view>
-							</view>
-						</view>
-					</navigator>
-					<navigator url="">
-						<view class="dui-basic-list-item">
-							<view class="dui-basic-list-item__container">
-								<view class="dui-basic-list-item__content">
-									<view class="dui-basic-list-item__content-title">
-										费用与支付
-									</view>
-								</view>
-								<view class="dui-basic-list-item__extra">
-									<text class="iconfont icon-gengduo-shuxiang"></text>
-								</view>
-							</view>
-						</view>
-					</navigator>
-					<navigator url="">
-						<view class="dui-basic-list-item">
-							<view class="dui-basic-list-item__container">
-								<view class="dui-basic-list-item__content">
-									<view class="dui-basic-list-item__content-title">
-										拉货途中
-									</view>
-								</view>
-								<view class="dui-basic-list-item__extra">
-									<text class="iconfont icon-gengduo-shuxiang"></text>
-								</view>
-							</view>
-						</view>
-					</navigator>
-					<navigator url="">
-						<view class="dui-basic-list-item">
-							<view class="dui-basic-list-item__container">
-								<view class="dui-basic-list-item__content">
-									<view class="dui-basic-list-item__content-title">
-										售后服务
-									</view>
-								</view>
-								<view class="dui-basic-list-item__extra">
-									<text class="iconfont icon-gengduo-shuxiang"></text>
-								</view>
-							</view>
-						</view>
-					</navigator>
-					<navigator url="">
-						<view class="dui-basic-list-item">
-							<view class="dui-basic-list-item__container">
-								<view class="dui-basic-list-item__content">
-									<view class="dui-basic-list-item__content-title">
-										其他问题
-									</view>
-								</view>
-								<view class="dui-basic-list-item__extra">
-									<text class="iconfont icon-gengduo-shuxiang"></text>
-								</view>
-							</view>
-						</view>
-					</navigator>
+			<view class="dui-service-wrapper">
+				<view class="dui-service-bj"></view>
+				<view class="dui-scrvice-custom-wrapper" style="color: #fff;">
+					<text>最近订单</text>
+					<navigator url="complaintorder">更多<text class="iconfont icon-gengduo-shuxiang"></text></navigator>
+				</view>
+				<view class="dui-scrvice-order">
+					暂无
 				</view>
 				<view class="dui-gap"></view>
-				<navigator url="">
+				<view class="dui-gap"></view>
+				<view class="dui-scrvice-custom-wrapper" style="background-color: #fff;">
+					<text>常见问题</text>
+				</view>
+				<view class="dui-basic-list">
+					<block v-for="(item,index) in lists" :key="index">
+						<navigator :url="'servicecenter-list?id=' + index">
+							<view class="dui-basic-list-item">
+								<view class="dui-basic-list-item__container">
+									<view class="dui-basic-list-item__content">
+										<view class="dui-basic-list-item__content-title">
+											{{item.name}}
+										</view>
+									</view>
+									<view class="dui-basic-list-item__extra">
+										<text class="iconfont icon-gengduo-shuxiang"></text>
+									</view>
+								</view>
+							</view>
+						</navigator>
+					</block>
+				</view>
+				<view class="dui-gap"></view>
+				<view class="dui-gap"></view>
+				<navigator url="feedback">
 					<view class="dui-scrvice-custom-wrapper" style="background-color: #fff;">
 						<text>我的反馈记录</text>
-						<text class="iconfont icon-gengduo-shuxiang"></text>
+						<view class="dui-basic-list-item__extra">
+							<text class="iconfont icon-gengduo-shuxiang"></text>
+						</view>
 					</view>
 				</navigator>
+				<view class="dui-scrvice-tel" @tap="call">
+					<text class="iconfont icon-dianhua"></text>
+					<text>客服热线 {{tel}}</text>
+				</view>
 			</view>
 		</scroll-view>
+		<view class="dui-online-service">
+			<image src="../../static/img/call.jpg" mode=""></image>
+		</view>
 	</view>
 </template>
 <script>
@@ -105,17 +65,33 @@
 			}
 		},
 		data() {
-			return {}
+			return {
+				tel: "010-8888",
+				lists: [{
+					"name": "下单叫车"
+				}, {
+					"name": "费用与支付"
+				}, {
+					"name": "拉货途中"
+				}, {
+					"name": "售后服务"
+				}, {
+					"name": "其他问题"
+				}]
+			}
 		},
 		methods: {
-
+			call: function(e) {
+				uni.makePhoneCall({
+					phoneNumber: '010-8888' //仅为示例
+				});
+			}
 		}
 	}
 </script>
 <style>
 	.scroll-container {
 		height: 100%;
-		padding-bottom: 80upx;
 	}
 
 	.dui-service-wrapper {
@@ -143,11 +119,17 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 40upx 30upx;
-		font-size: 34upx;
+		font-size: 32upx;
 	}
 
 	.dui-scrvice-custom-wrapper navigator {
 		font-size: 28upx;
+	}
+
+	.dui-basic-list-item__content,
+	.dui-basic-list-item__extra {
+		font-size: 26upx;
+		color: #797979;
 	}
 
 	.dui-scrvice-order {
@@ -156,5 +138,6 @@
 		height: 294upx;
 		background-color: #fff;
 		border-radius: 4upx;
+		box-shadow: 0px 2px 5px #e2e2e2;
 	}
 </style>

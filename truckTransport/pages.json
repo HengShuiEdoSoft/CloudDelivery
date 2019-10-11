@@ -249,7 +249,24 @@
 		}, {
 			"path": "pages/driver/driver",
 			"style": {
-				"navigationBarTitleText": "我的司机"
+				"navigationBarTitleText": "我的司机",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e9",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "20",
+							"float": "right",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/driver/driverexplain",
+			"style": {
+				"navigationBarTitleText": "我的司机说明"			
 			}
 		}, {
 			"path": "pages/setup/setup",
@@ -283,9 +300,15 @@
 				"navigationBarTitleText": "关于"
 			}
 		}, {
-			"path": "pages/setup/resetpwd"
+			"path": "pages/setup/resetpwd",
+			"style": {
+				"navigationBarTitleText": ""
+			}
 		}, {
-			"path": "pages/setup/vercode"
+			"path": "pages/setup/vercode",
+			"style": {
+				"navigationBarTitleText": ""
+			}
 		}, {
 			"path": "pages/setup/commonroutes",
 			"style": {
@@ -313,6 +336,74 @@
 				"navigationBarTitleText": "客服中心",
 				"navigationBarBackgroundColor": "#434456",
 				"navigationBarTextStyle":"white"
+			}
+		}, {
+			"path": "pages/servicecenter/complaintorder",
+			"style": {
+				"navigationBarTitleText": "选择投诉订单",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e7",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/servicecenter/servicecenter-list",
+			"style": {
+				"navigationBarTitleText": "下单叫车",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e7",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/servicecenter/servicecenter-detail",
+			"style": {
+				"navigationBarTitleText": "常见问题反馈",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e7",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/servicecenter/feedback",
+			"style": {
+				"navigationBarTitleText": "我的反馈记录",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e7",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
 			}
 		}
 	],
