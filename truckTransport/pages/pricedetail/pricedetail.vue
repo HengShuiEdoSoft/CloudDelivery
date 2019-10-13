@@ -24,7 +24,9 @@
 <script>
 	export default{
 		data(){
-			
+			return{
+				
+			}
 		},
 		onNavigationBarButtonTap:function(e){
 			var index=e.index

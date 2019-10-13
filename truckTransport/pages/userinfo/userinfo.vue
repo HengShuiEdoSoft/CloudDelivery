@@ -37,14 +37,14 @@
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</navigator>
 		</view>
-		<uni-popup ref="portrait" :type="type" :custom="true" :mask-click="false">
+		<uni-popup ref="portrait" :type="type" :custom="true" :mask-click="true">
 			<view class="ui-tip">
 				<view class="uni-tip-group-button">
 					<view class="ui-list-cell" @click="gallery('portrait')">相册上传</view>
 				</view>
 			</view>
 		</uni-popup>
-		<uni-popup ref="sexchose" :type="type" :custom="true" :mask-click="false">
+		<uni-popup ref="sexchose" :type="type" :custom="true" :mask-click="true">
 			<view class="ui-tip">
 				<view class="ui-tip-title">性别</view>
 				<view class="ui-tip-group-button">

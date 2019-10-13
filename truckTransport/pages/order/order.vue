@@ -42,23 +42,101 @@
 				<navigator class="ui-price-detail" url="/pages/pricedetail/pricedetail">价格明细</navigator>
 			</view>
 			<view class="ui-home-btns">
-				<view class="ui-use-now">下一步</view>
+				<view class="ui-use-now" @tap="togglePopup('bottom','pay')">下一步</view>
 			</view>
 		</view>
+		<uni-popup ref="pay" :type="type" :custom="true" :mask-click="true">
+			<view class="ui-pop-container">
+				<view class="ui-cost-price">
+					<text>￥</text><text class="ui-price-now">20</text><text class="ui-origin-price">￥35</text>
+				</view>
+				<view class="ui-li-youhui">
+					<view class="ui-li-title">点击选择优惠券</view>
+					<view class="ui-li-right">更多<text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
+				</view>
+				<view>
+					<view class="ui-tip1">选择支付方式</view>
+					<view class="ui-list">
+						<radio-group @change="radioChange">
+							<label class="ui-list-item">
+							    <view class="ui-li-title">
+									<view class="iconfont icon-zhanghuyue"></view>
+									<view class="ui-paytype-name">
+										<view>余额支付</view>
+										<view class="ui-subtext">可用余额0.00元</view>
+									</view>
+								</view>
+								<view>
+							        <radio value="1" :checked="true" color="#FF5723"/>
+							    </view>
+							</label>
+						    <label class="ui-list-item" v-for="(item, index) in items" :key="item.value">
+						        <view class="ui-li-title">
+									<view :class="item.icon"></view>
+									<view class="ui-paytype-name">
+										<view>{{item.name}}</view>
+									</view>
+								</view>
+								<view>
+						            <radio :value="item.value" :checked="index === current" color="#FF5723"/>
+						        </view>
+						    </label>
+						</radio-group>
+					</view>
+				</view>
+				<view class="ui-home-btns">
+					<view class="ui-use-now" @tap="gotopay(pay)">去支付</view>
+				</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
+	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	export default{
+		components: {
+			uniPopup
+		},
 		data(){
 			return{
-				
+				type:"",
+				current:null,
+				items:[{
+					name:"支付宝",
+					value:"2",
+					icon:"iconfont icon-z-alipay"
+				},{
+					name:"微信",
+					value:"3",
+					icon:"iconfont icon-weixin"
+				}]
 			}
 		},
 		methods:{
 			switchChange: function (e) {
-			            console.log('switch1 发生 change 事件，携带值为', e.target.value)
+			    console.log('switch1 发生 change 事件，携带值为', e.target.value)
+			},
+			radioChange: function(evt) {
+			    for (let i = 0; i < this.items.length; i++) {
+			        if (this.items[i].value === evt.target.value) {
+			            this.current = i;
+			            break;
 			        }
+			    }
+			},
+			togglePopup(type, open) {
+				this.type = type;
+				this.$refs[open].open()
+			},
+			cancel(type){
+				this.$refs[type].close()
+			},
+			gotopay(type){
+				this.cancel(type)
+				//支付
+			}
+					
 		}
 	}
 </script>
@@ -67,6 +145,7 @@
 	.ui-home-btns{
 		display:flex;
 		color:#fff;
+		font-size:14px;
 		text-align: center;
 	}
 	.ui-use-now{
@@ -111,6 +190,59 @@
 		color:#333;
 	}
 	.ui-li-right{
+		color:#999;
+	}
+
+	.ui-pop-container{
+		margin:16upx;
+		padding-top:30upx;
+		background: #fff;
+		border-radius: 4px;
+	}
+	.ui-list{
+		padding:0 30upx 30upx;
+		font-size:14px;
+		line-height: 84upx;
+	}
+	.ui-pop-container .ui-list .ui-list-item{
+		height:96upx;
+	}
+	.ui-list .iconfont{
+		display:inline-block;
+		vertical-align: top;
+		font-size:32px;
+	}
+	.icon-zhanghuyue{
+		color:#FF5723;;
+	}
+	.icon-z-alipay{
+		color:#45B1FF;
+	}
+	.icon-weixin{
+		color: #59F04C;
+	}
+	.ui-paytype-name{
+		display:inline-block;
+	}
+	.ui-paytype-name>view{
+		line-height: 42upx;
+	}
+	.ui-paytype-name .ui-subtext{
+		color:#999;
+		font-size:12px;
+	}
+	radio{
+		transform: scale(.7);
+	}
+	.ui-pop-container .ui-tip1{
+		padding-bottom: 30upx;
+	}
+	.ui-li-youhui{
+		display:flex;
+		padding:20upx 30upx;
+		font-size:14px;
+	}
+	.ui-li-youhui .ui-li-title{
 		color:#999;
 	}
 </style>
