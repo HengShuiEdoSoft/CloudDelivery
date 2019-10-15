@@ -124,4 +124,30 @@
 		border-radius: 2px;
 		background: #fff;
 }
+.ui-home-btns{
+		display:-webkit-box;
+		display:-webkit-flex;
+		display:-ms-flexbox;
+		display:flex;
+		color:#fff;
+		text-align: center;
+}
+.ui-use-now{
+		padding:20rpx 0;
+		font-size:20px;
+		background:#FF5723;
+		-webkit-box-flex:2;
+		-webkit-flex-grow:2;
+		    -ms-flex-positive:2;
+		        flex-grow:2;
+}
+.ui-appoint{
+		padding:20rpx 0;
+		font-size:20px;
+		-webkit-box-flex:1;
+		-webkit-flex-grow:1;
+		    -ms-flex-positive:1;
+		        flex-grow:1;
+		background:#FF9801;
+}
 

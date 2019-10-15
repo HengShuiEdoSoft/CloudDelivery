@@ -1,0 +1,19 @@
+
+.scroll-container {
+	height: 100%;
+}
+.dui-service-detail-wrapper {
+	padding: 0 30rpx 80rpx 30rpx;
+	background-color: #fff;
+	position: relative;
+}
+.dui-service-detail-title {
+	padding: 60rpx 0;
+	font-size: 40rpx;
+}
+.dui-service-detail-content {
+	font-size: 28rpx;
+	color: #646464;
+	line-height: 50rpx;
+}
+

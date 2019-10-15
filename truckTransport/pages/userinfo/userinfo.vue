@@ -1,9 +1,9 @@
 <template>
 	<view class="content">
 		<view class="ui-info-list">
-			<view class="ui-info-list-item" @tap="togglePopup('center', 'portrait')">
+			<view class="ui-info-list-item">
 				<view class="ui-info-list-left">头像</view>
-				<view class="ui-info-list-center"><image src="../../static/img/HeadImg.jpg"></image></view>
+				<view class="ui-info-list-center"><image :src="imgurl[0]" @click="clk(0)"></image></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</view>
 			<view class="ui-divide-line"></view>
@@ -37,13 +37,7 @@
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</navigator>
 		</view>
-		<uni-popup ref="portrait" :type="type" :custom="true" :mask-click="true">
-			<view class="ui-tip">
-				<view class="uni-tip-group-button">
-					<view class="ui-list-cell" @click="gallery('portrait')">相册上传</view>
-				</view>
-			</view>
-		</uni-popup>
+		<avatar @upload="doUpload" @avtinit="doBefore" quality="0.8" ref="avatar"></avatar>
 		<uni-popup ref="sexchose" :type="type" :custom="true" :mask-click="true">
 			<view class="ui-tip">
 				<view class="ui-tip-title">性别</view>
@@ -64,13 +58,16 @@
 
 <script>
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
+	import avatar from "@/components/yq-avatar/yq-avatar.vue";
 	export default{
 		components: {
-			uniPopup
+			uniPopup,
+			 avatar
 		},
 		data(){
 			return{
 				current:0,
+				imgurl:["../../static/img/HeadImg.jpg"],
 				show: false,
 				type:"",
 				sex:[{
@@ -101,23 +98,39 @@
 			},
 			togglePopup(type, open) {
 				this.type = type;
-				this.$refs[open].open()
+				this.$refs[open].open();
 			},
 			cancel(type){
 				this.$refs[type].close()
 			},
-			gallery(type){
-				this.cancel(type);
-				uni.chooseImage({
-				    count: 1, //默认9
-				    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-				    sourceType: ['album'], //从相册选择
-				    success: function (res) {
-				        console.log(JSON.stringify(res.tempFilePaths));
-				    }
+			doBefore() {
+				console.log('doBefore');
+			},
+			clk(index) {
+				this.$refs.avatar.fChooseImg(index,{
+					selWidth: '360upx', selHeight: '360upx', 
+					expWidth: '280upx', expHeight: '280upx',
+					inner: index ? 'true' : 'false'
 				});
-				//向后台发送数据
-				this.setData();
+			},
+			doUpload(rsp) {
+				console.log(rsp);
+				this.$set(this.imgurl, rsp.index, rsp.path);
+				return;
+				uni.uploadFile({
+					url: '', //仅为示例，非真实的接口地址
+					filePath: rsp.path,
+					name: 'avatar',
+					formData: {
+						'avatar': rsp.path
+					},
+					success: (uploadFileRes) => {
+						console.log(uploadFileRes.data);
+					},
+					complete(res) {
+						console.log(res)
+					}
+				});
 			},
 			sexchange(type){
 				this.cancel(type);
@@ -147,5 +160,11 @@
 	}
 	radio{
 		transform:scale(0.7)
+	}
+	.ui-portrait-cropper{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 </style>

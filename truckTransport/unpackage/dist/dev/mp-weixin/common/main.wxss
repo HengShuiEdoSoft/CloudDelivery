@@ -406,6 +406,70 @@ textarea {
   font-size: 12px;
   color: #9E9E9E;
 }
+.ui-home-bottom {
+  position: fixed;
+  bottom: 20rpx;
+  width: 100%;
+  padding: 0 16rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.ui-home-price-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20rpx;
+  background: #fff;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.ui-price-detail {
+  padding: 8rpx 20rpx;
+  height: 36rpx;
+  font-size: 12px;
+  line-height: 36rpx;
+  border: 1rpx solid #e2e2e2;
+  color: #FF5723;
+  border-radius: 2px;
+}
+.ui-cost-price {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+  font-size: 14px;
+}
+.ui-home-discount {
+  font-size: 12px;
+}
+.ui-home-discount > text {
+  color: #FF5723;
+}
+.ui-price-now {
+  font-size: 28px;
+}
+.ui-origin-price {
+  padding-left: 20rpx;
+  text-decoration: line-through;
+}
+.ui-top-city-select {
+  padding: 0 30rpx;
+  color: #fff;
+  line-height: 88rpx;
+  background: #424456;
+}
+.ui-top-city-select > text {
+  padding-left: 20rpx;
+  text-decoration: underline;
+}
+.ui-ts-title {
+  padding: 40rpx 0 20rpx;
+  color: #FF5723;
+}
 .dui-gap {
   height: 16rpx;
 }
@@ -654,6 +718,80 @@ textarea {
   -webkit-justify-content: space-around;
       -ms-flex-pack: distribute;
           justify-content: space-around;
+}
+/*常用地址*/
+.dui-fixed-bottom-btn {
+  position: fixed;
+  bottom: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  background-color: #efeff4;
+  z-index: 99;
+  padding: 25rpx 20rpx;
+}
+/*设置密码*/
+.dui-resetpwd-wrapper {
+  padding: 0rpx 64rpx;
+  color: #424456;
+}
+.dui-resetpwd-title {
+  padding-top: 94rpx;
+  font-size: 50rpx;
+  font-weight: bold;
+}
+.dui-resetpwd-phone {
+  padding-top: 200rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.dui-resetpwd-btn {
+  padding-top: 80rpx;
+}
+/*暂无*/
+.dui-notyet-wrapper {
+  margin-top: 300rpx;
+  margin-left: auto;
+  margin-right: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 30rpx;
+}
+/*客服*/
+.dui-service-wrapper {
+  padding: 0 15rpx;
+  position: relative;
+}
+.dui-online-service {
+  position: fixed;
+  right: 15rpx;
+  bottom: 290rpx;
+  z-index: 99;
+}
+.dui-online-service image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.dui-scrvice-tel {
+  padding: 100rpx 0 40rpx 0;
+  font-size: 24rpx;
+  text-align: center;
+  color: #797979;
+}
+.dui-scrvice-tel text {
+  margin: 0 6rpx 0 6rpx;
 }
 @font-face {
   font-family: 'iconfont';  /* project id 1436070 */
