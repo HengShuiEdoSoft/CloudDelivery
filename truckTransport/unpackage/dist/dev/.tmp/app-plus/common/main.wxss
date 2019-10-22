@@ -459,6 +459,7 @@ textarea {
 .ui-top-city-select {
   padding: 0 30rpx;
   color: #fff;
+  font-size: 14px;
   line-height: 88rpx;
   background: #424456;
 }

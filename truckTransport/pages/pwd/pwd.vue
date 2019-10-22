@@ -4,7 +4,7 @@
 		<view class="input-group" style="padding-left: 30upx;padding-right:40upx ;">
 			<view class="input-row border">
 				<text class="title iconfont icon-dianhua"></text>
-				<m-input class="m-input" type="text" clearable focus v-model="account" placeholder="请输入账号"></m-input>
+				<m-input class="m-input" type="text" clearable focus v-model="phone" placeholder="请输入手机号"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-Raidobox-xuanzhong"></text>
@@ -15,7 +15,7 @@
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-suoding"></text>
-				<m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
+				<m-input type="password" displayable v-model="pwd" placeholder="请输入密码"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-suoding"></text>
@@ -25,7 +25,7 @@
 			</view>
 		</view>
 		<view class="btn-row">
-			<button class="primary" type="primary" @tap="findPassword()">重 置 密 码</button>
+			<button class="primary" type="primary" @tap="findPassword(reseturl)">重 置 密 码</button>
 		</view>
 	</view>
 </template>
@@ -39,10 +39,11 @@
 		},
 		data() {
 			return {
-				account: '',
+				phone: '',
 				vercode: '',
-				password: '',
+				pwd: '',
 				confirmpassword: '',
+				reseturl:'/api/user/resetpwd',
 				countdown: 60
 			}
 		},
@@ -68,14 +69,14 @@
 					}
 				}, 1000)
 			},
-			findPassword() {
+			findPassword(reseturl) {
 				/**
-				 * 仅做示例
+				 * 
 				 */
-				if (this.account.length < 5) {
+				if (this.phone.length != 11) {
 					uni.showToast({
 						icon: 'none',
-						title: '账号最短为 5 个字符'
+						title: '手机号码格式错误'
 					});
 					return;
 				}
@@ -86,7 +87,7 @@
 					});
 					return;
 				}
-				if (this.password.length < 6) {
+				if (this.pwd.length < 6) {
 					uni.showToast({
 						icon: 'none',
 						title: '密码最短为 6 个字符'
@@ -100,10 +101,44 @@
 					});
 					return;
 				}
-				uni.showToast({
-					icon: 'none',
-					title: '重置密码成功',
-					duration: 3000
+				const data = {
+				        phone: this.phone,
+				        pwd: this.pwd,
+				        vercode: this.vercode,
+						usertype:0
+				    }
+				reseturl= this.url + reseturl;
+				uni.request({					
+						url: reseturl,
+						method:'POST',
+						data:data,
+						header: {
+						    'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
+						},
+						success: (res) => {
+							this.res =JSON.stringify(res);
+							console.log(res.data)
+							if(res.data.code===0){
+								console.log("success")
+								service.addUser(data);
+								uni.showToast({
+								    title: '重置密码成功'
+								});
+								uni.navigateTo({
+									url:"/pages/index/index"
+								})({
+								    delta: 2
+								});
+							}else if(res.data.code===1){
+								uni.showToast({
+									content: res.msg,
+									showCancel: false
+								});
+							}			
+						},
+						complete: () => {
+							this.loading = false;
+						}
 				});
 			}
 		}

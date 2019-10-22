@@ -16,6 +16,7 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 15));func
 _vue.default.config.productionTip = false;
 
 _vue.default.prototype.$store = _store.default;
+_vue.default.prototype.url = "http://yapi.hda365.com:9091/mock/25";
 
 _App.default.mpType = 'app';
 

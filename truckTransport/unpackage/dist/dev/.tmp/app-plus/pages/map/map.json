@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "地图",
   "usingComponents": {
-    "uni-indexed-list": "/components/uni-indexed-list/uni-indexed-list"
+    "uni-indexed-list": "/components/uni-indexed-list/uni-indexed-list",
+    "uni-popup": "/components/uni-popup/uni-popup"
   }
 }

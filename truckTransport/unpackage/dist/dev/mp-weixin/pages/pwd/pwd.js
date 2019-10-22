@@ -187,19 +187,20 @@ var _service = _interopRequireDefault(__webpack_require__(/*! ../../service.js *
 //
 //
 //
-var mInput = function mInput() {return __webpack_require__.e(/*! import() | components/m-input */ "components/m-input").then(__webpack_require__.bind(null, /*! ../../components/m-input.vue */ 374));};var _default = { components: { mInput: mInput }, data: function data() {return { account: '', vercode: '', password: '', confirmpassword: '', countdown: 60 };}, methods: { numberst: function numberst(e) {//其他代码....
+var mInput = function mInput() {return __webpack_require__.e(/*! import() | components/m-input */ "components/m-input").then(__webpack_require__.bind(null, /*! ../../components/m-input.vue */ 374));};var _default = { components: { mInput: mInput }, data: function data() {return { phone: '', vercode: '', pwd: '', confirmpassword: '', reseturl: '/api/user/resetpwd', countdown: 60 };}, methods: { numberst: function numberst(e) {//其他代码....
       this.countDown();}, // 倒计时
-    countDown: function countDown() {var self = this;self.countdown = 60;self.countdown -= 1;if (self.clear) {clearInterval(self.clear);}self.clear = null;self.clear = setInterval(function (_) {if (self.countdown > 0) {self.countdown -= 1;} else {clearInterval(self.clear);}
+    countDown: function countDown() {var self = this;self.countdown = 60;self.countdown -= 1;if (self.clear) {clearInterval(self.clear);}self.clear = null;self.clear = setInterval(function (_) {if (self.countdown > 0) {self.countdown -= 1;} else {clearInterval(self.clear);
+        }
       }, 1000);
     },
-    findPassword: function findPassword() {
+    findPassword: function findPassword(reseturl) {var _this = this;
       /**
-                                            * 仅做示例
-                                            */
-      if (this.account.length < 5) {
+                                                                      * 
+                                                                      */
+      if (this.phone.length != 11) {
         uni.showToast({
           icon: 'none',
-          title: '账号最短为 5 个字符' });
+          title: '手机号码格式错误' });
 
         return;
       }
@@ -210,7 +211,7 @@ var mInput = function mInput() {return __webpack_require__.e(/*! import() | comp
 
         return;
       }
-      if (this.password.length < 6) {
+      if (this.pwd.length < 6) {
         uni.showToast({
           icon: 'none',
           title: '密码最短为 6 个字符' });
@@ -224,10 +225,44 @@ var mInput = function mInput() {return __webpack_require__.e(/*! import() | comp
 
         return;
       }
-      uni.showToast({
-        icon: 'none',
-        title: '重置密码成功',
-        duration: 3000 });
+      var data = {
+        phone: this.phone,
+        pwd: this.pwd,
+        vercode: this.vercode,
+        usertype: 0 };
+
+      reseturl = this.url + reseturl;
+      uni.request({
+        url: reseturl,
+        method: 'POST',
+        data: data,
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
+        },
+        success: function success(res) {
+          _this.res = JSON.stringify(res);
+          console.log(res.data);
+          if (res.data.code === 0) {
+            console.log("success");
+            _service.default.addUser(data);
+            uni.showToast({
+              title: '重置密码成功' });
+
+            uni.navigateTo({
+              url: "/pages/index/index" })(
+            {
+              delta: 2 });
+
+          } else if (res.data.code === 1) {
+            uni.showToast({
+              content: res.msg,
+              showCancel: false });
+
+          }
+        },
+        complete: function complete() {
+          _this.loading = false;
+        } });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

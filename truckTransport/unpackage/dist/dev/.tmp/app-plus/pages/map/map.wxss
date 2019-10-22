@@ -68,4 +68,8 @@ view {
 	color: #3b4144;
 	background: #fff
 }
+map{
+	width:750rpx;
+	height:1334rpx;
+}
 

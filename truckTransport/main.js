@@ -6,6 +6,7 @@ import store from './store'
 Vue.config.productionTip = false
 
 Vue.prototype.$store = store
+Vue.prototype.url="http://yapi.hda365.com:9091/mock/25"
 
 App.mpType = 'app'
 
