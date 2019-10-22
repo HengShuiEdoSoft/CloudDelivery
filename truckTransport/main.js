@@ -65,9 +65,15 @@ uniFly.responseInterceptors.error = function(response) {
 }
 Vue.config.productionTip = false
 
+<<<<<<< HEAD
 Vue.prototype.$store = store
 Vue.prototype.$drmking = drmking
 Vue.prototype.$uniFly = uniFly
+=======
+Vue.prototype.$store = store
+Vue.prototype.url="http://yapi.hda365.com:9091/mock/25"
+
+>>>>>>> c65b2e3ae2037197ff0bd04bb84033749d0ecfff
 App.mpType = 'app'
 
 const app = new Vue({

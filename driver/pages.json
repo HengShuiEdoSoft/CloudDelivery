@@ -1,0 +1,61 @@
+{
+    "pages": [ //pages数组中第一项表示应用启动页,
+        {
+            "path": "pages/index/index",
+            "style": {
+                "navigationBarTitleText": "抢单大厅"
+            }
+        },{
+            "path": "pages/order/order",
+            "style": {
+                "navigationBarTitleText": "订单"
+            }
+        }, {
+            "path": "pages/login/login",
+            "style": {
+                "navigationBarTitleText": "登录"
+            }
+        }, {
+            "path": "pages/reg/reg",
+            "style": {
+                "navigationBarTitleText": "注册"
+            }
+        }, {
+            "path": "pages/pwd/pwd",
+            "style": {
+                "navigationBarTitleText": "找回密码"
+            }
+        }, {
+            "path": "pages/user/user",
+            "style": {
+                "navigationBarTitleText": "我的"
+            }
+        }
+    ],
+    "tabBar": {
+        "color": "#7a7e83",
+        "selectedColor": "#FF5723",
+        "backgroundColor": "#ffffff",
+        "list": [{
+            "pagePath": "pages/index/index",
+            "text": "抢单",
+            "iconPath": "static/img/qiang.png",
+            "selectedIconPath": "static/img/qiangS.png"
+        },{
+            "pagePath": "pages/order/order",
+            "text": "订单",
+            "iconPath": "static/img/order.png",
+            "selectedIconPath": "static/img/orderS.png"
+        }, {
+            "pagePath": "pages/user/user",
+            "text": "我的",
+            "iconPath": "static/img/my.png",
+            "selectedIconPath": "static/img/myS.png"
+        }]
+    },
+    "globalStyle": {
+    	"navigationBarTextStyle": "black",
+    	"navigationBarBackgroundColor": "white",
+    	"backgroundColor": "#f3f4f5"
+    }
+}

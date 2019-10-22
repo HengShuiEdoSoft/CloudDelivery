@@ -21,6 +21,7 @@
 				</view>
 			</uni-drawer>
 		</view>
+		<navigator class="ui-top-city-select" url="/pages/cityselect/cityselect?city=衡水">当前城市：衡水<text>切换</text></navigator>	
 		<view class="ui-car-select">
 			<view class="ui-car-name-list">
 				<view class="ui-car-name-item" v-for="(item,index) in carTypes" :key="item.id" :class="{active:current==index}" :data-current="index" @tap="tabChange">{{item.cartype}}</view>
@@ -46,19 +47,19 @@
 			<view class="uni-timeline">
 				<view class="uni-timeline-item uni-timeline-first-item">
 					<view class="uni-timeline-item-divider">发</view>
-					<navigator class="uni-timeline-item-content" url="/pages/map/map">
+					<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
 						<view class="ui-address">衡水人民政府</view>
 						<view class="ui-subtext">新华西路</view>
 						<view class="ui-subtext">张丽 18896326688</view>
-					</navigator>
+					</view>
 				</view>
 				<view class="uni-timeline-item uni-timeline-last-item">
 					<view class="uni-timeline-item-divider">收</view>
-					<navigator class="uni-timeline-item-content" url="/pages/map/map">
+					<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
 						<view class="ui-address">衡水人民政府</view>
 						<view class="ui-subtext">新华西路</view>
 						<view class="ui-subtext">张丽 18896326688</view>
-					</navigator>
+					</view>
 				</view>
 			</view>
         <view class="ui-home-bottom">
@@ -83,10 +84,12 @@
     } from 'vuex'
 
 	import uniDrawer from "@/components/drawer/drawer.vue"
+	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	
     export default {
 		components: {
-			uniDrawer
+			uniDrawer,
+			uniPopup
 		},
 		data() {
 			return {
@@ -149,27 +152,22 @@
 				        /**
 				         * 如果需要强制登录，不显示取消按钮
 				         */
-				        showCancel: !this.forcedLogin,
+				        showCancel: true,
 				        success: (res) => {
 				            if (res.confirm) {
 								/**
 								 * 如果需要强制登录，使用reLaunch方式
 								 */
-				                if (this.forcedLogin) {
-				                    uni.reLaunch({
-				                        url: '../login/login'
-				                    });
-				                } else {
-				                    uni.navigateTo({
-				                        url: '../login/login'
-				                    });
-				                }
+				                uni.navigateTo({
+				                    url: '../login/login'
+				                });
+				                
 				            }
 				        }
 				    });
 				}else{
 					uni.navigateTo({  
-						url
+						url:url
 					}) 
 				} 
 			},

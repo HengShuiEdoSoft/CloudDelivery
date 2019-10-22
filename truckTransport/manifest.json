@@ -49,7 +49,11 @@
             "sdkConfigs" : {
                 "maps" : {
                     "amap" : {
+<<<<<<< HEAD
                         "appkey_ios" : "e6ace276009af99b3dd34fb388f1acea",
+=======
+                        "appkey_ios" : "1981562e16917a2e623efae93fa36614",
+>>>>>>> c65b2e3ae2037197ff0bd04bb84033749d0ecfff
                         "appkey_android" : "e6ace276009af99b3dd34fb388f1acea"
                     }
                 }
@@ -64,7 +68,8 @@
         "setting" : {
             "urlCheck" : false
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "permission" : {}
     },
     "mp-alipay" : {
         "usingComponents" : true

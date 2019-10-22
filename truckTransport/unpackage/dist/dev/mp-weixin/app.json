@@ -52,5 +52,6 @@
     "navigationBarBackgroundColor": "white",
     "backgroundColor": "#f3f4f5"
   },
+  "permission": {},
   "usingComponents": {}
 }
