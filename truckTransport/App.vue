@@ -1,15 +1,27 @@
 <script>
-	export default {
-		onLaunch: function() {
-			console.log('App Launch');
-		},
-		onShow: function() {
-			console.log('App Show');
-		},
-		onHide: function() {
-			console.log('App Hide');
-		}
-	}
+	 import {  
+	        mapMutations  
+	    } from 'vuex';  
+	    export default {  
+	        onLaunch: function () {  
+				console.log('App Launch');
+	            uni.getStorage({//获得保存在本地的用户信息  
+	                key: 'userLogin',  
+	                success:(res) => {  
+	                    this.login(res.data);  	                    
+	                }  
+	            });  
+	        },
+			  onShow: function() {
+			  	console.log('App Show');
+			  },
+			  onHide: function() {
+			  	console.log('App Hide');
+			  },
+	        methods: {  
+	            ...mapMutations(['login'])  
+	        }  
+	    }  
 </script>
 
 <style>

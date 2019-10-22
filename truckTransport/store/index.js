@@ -31,7 +31,7 @@ const store = new Vuex.Store({
             state.status='';
             state.token ='';
             state.hasLogin = false;
-			uni.getStorage({
+			uni.removeStorage({
 				key:'userLogin'
 			})
         }
