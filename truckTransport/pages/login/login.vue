@@ -84,23 +84,7 @@
 				this.positionTop = uni.getSystemInfoSync().windowHeight - 100;
 			},
 			bindLogin(requestUrl) {
-				/**
-				 * 客户端对账号信息进行一些必要的校验。
-				 */
-				if (this.phone.length != 11) {
-					uni.showToast({
-						icon: 'none',
-						title: '请输入正确格式的手机号码'
-					});
-					return;
-				}
-				if (this.pwd.length < 6) {
-					uni.showToast({
-						icon: 'none',
-						title: '密码最短为 6 个字符'
-					});
-					return;
-				}
+
 				/**
 				 * 使用 uni.request 将账号信息发送至服务端，客户端在回调函数中获取结果信息。
 				 */
@@ -108,37 +92,29 @@
 					phone: this.phone,
 					pwd: this.pwd
 				};  
-					requestUrl= this.url + requestUrl;
-					uni.request({					
-						url: requestUrl,
-						method:'POST',
-						data:data,
-						header: {
-						    'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
-						},
-						success: (res) => {
-							this.res =JSON.stringify(res);
-							if(res.data.code===0){
-								uni.showToast({
+					this.$uniFly
+					  .post({
+					    url: requestUrl,
+					    params: data
+					  })
+					  .then(function(res) {
+					    this.res =JSON.stringify(res);
+					    if(res.data.code===0){
+					    	uni.showToast({
 								title: '登录成功',
 								icon: 'success',
 								mask: true,
 								duration: 3000
-								});
-								this.toMain(res.data);
-							}else{
-								uni.showToast({
-									content: res.msg,
-									showCancel: false
-								});
-							}
-							
-							
-						},
-						complete: () => {
-							this.loading = false;
+					    	});
+					    	this.toMain(res.data);
 						}
-					});
+					  })
+					  .catch(function(error) {
+					    uni.showToast({
+					    	content: error,
+					    	showCancel: false
+					    });
+					  })
 			},
 			oauth(value) {
 				uni.login({

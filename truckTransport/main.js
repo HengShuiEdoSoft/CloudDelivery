@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App'
 
 import store from './store'
-const drmking = require('@/common/drmking.js');
+import drmking from './common/drmking.js';
 import uniFly from 'unifly';
 // 设置基础url
 uniFly.baseUrl = 'https://hll.hda365.com';
@@ -10,6 +10,7 @@ uniFly.baseUrl = 'https://hll.hda365.com';
 uniFly.timeOut = 20000
 // 错误自动尝试次数
 uniFly['retry_number'] = 3;
+uniFly.headers={'Access-Control-Allow-Origin':'*'};
 //自定义请求拦截
 uniFly.requestInterceptors.success = function(request) {
 	var user = drmking.cacheData('user');

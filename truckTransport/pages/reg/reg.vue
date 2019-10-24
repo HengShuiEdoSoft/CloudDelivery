@@ -45,40 +45,31 @@
 			numberst(requestUrl){
 						//其他代码....
 						this.countDown();
-						if (this.phone.length != 11) {
-						    uni.showToast({
-						        icon: 'none',
-						        title: '请输入正确格式的手机号码'
-						    });
-						    return;
+						const data={
+							phone:this.phone
 						}
-						requestUrl= this.url + requestUrl;
-						uni.request({					
-							url: requestUrl,
-							method:'POST',
-							data:{
-								phone:this.phone,
-							},
-							header: {
-							    'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
-							},
-							success: (res) => {
-								this.res =JSON.stringify(res);
-								console.log(res.data)
-								if(res.data.code===0){
-									console.log("success")
-								}else if(res.data.code===1){
-									uni.showToast({
-										content: res.msg,
-										showCancel: false
-									});
-								}	
-								
-							},
-							complete: () => {
-								this.loading = false;
+						this.$uniFly
+						  .post({
+						    url: requestUrl,
+						    params: data
+						  })
+						  .then(function(res) {
+						    this.res =JSON.stringify(res);
+						    if(res.data.code===0){
+						    	uni.showToast({
+									title: '成功获取验证码',
+									icon: 'success',
+									mask: true,
+									duration: 3000
+						    	});
 							}
-						});
+						  })
+						  .catch(function(error) {
+						    uni.showToast({
+						    	content: error,
+						    	showCancel: false
+						    });
+						  })
 					},
 					// 倒计时
 					countDown(){
@@ -102,66 +93,39 @@
                  * 客户端对账号信息进行一些必要的校验。
                  * 实际开发中，根据业务需要进行处理，这里仅做示例。
                  */
-                if (this.phone.length != 11) {
-                    uni.showToast({
-                        icon: 'none',
-                        title: '请输入正确格式的手机号码'
-                    });
-                    return;
-                }
-                if (this.pwd.length < 6) {
-                    uni.showToast({
-                        icon: 'none',
-                        title: '密码最短为 6 个字符'
-                    });
-                    return;
-                }           
-		        if (this.vercode.length != 6) {
-				    uni.showToast({
-				        icon: 'none',						
-				        title: '验证码不正确'
-				    });
-				    return;
-				}
+                
                 const data = {
                     phone: this.phone,
                     pwd: this.pwd,
                     vercode: this.vercode,
-					usertype:0
+					usertype:"0"
                 }
-				regurl= this.url + regurl;
-				uni.request({					
-					url: regurl,
-					method:'POST',
-					data:data,
-					header: {
-					    'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
-					},
-					success: (res) => {
-						this.res =JSON.stringify(res);
-						console.log(res.data)
-						if(res.data.code===0){
-							console.log("success")
-							service.addUser(data);
-							uni.showToast({
-							    title: '注册成功'
-							});
-							uni.navigateTo({
-								url:"/pages/index/index"
-							})({
-							    delta: 2
-							});
-						}else if(res.data.code===1){
-							uni.showToast({
-								content: res.msg,
-								showCancel: false
-							});
-						}			
-					},
-					complete: () => {
-						this.loading = false;
+				this.$uniFly
+				  .post({
+				    url: regurl,
+				    params: data
+				  })
+				  .then(function(res) {
+					  console.log(res)
+				    this.res =res;
+				    if(res.data.code===0){
+				    	uni.showToast({
+							title: '注册成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+				    	});
+				    	uni.navigateTo({
+				    		url:'/pages/login/login'
+				    	})
 					}
-				});
+				  })
+				  .catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				  })
             }
         }
     }
