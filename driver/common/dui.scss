@@ -1,0 +1,187 @@
+.dui-input{
+    display: flex;
+	flex-direction: row;
+    align-items: center;
+	flex: 1;
+    width: 100%;
+    padding: 0 5px;
+}
+.dui-wrapper{
+	position: relative;
+	padding-left:20upx ;
+	padding-right: 20upx;
+}
+/*我的*/
+.dui-user-bj {
+		position: absolute;
+		top: -4750upx;
+		left: 50%;
+		width: 5200upx;
+		height: 5200upx;
+		border-radius: 50%;
+		background-color: $blue;
+		transform: translateX(-50%);
+	}
+
+	.dui-user-information {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: 30upx;
+	}
+
+	.dui-user-information image {
+		margin-top: 10upx;
+		width: 175upx;
+		height: 175upx;
+		border-radius: 50%;
+	}
+
+	.dui-user-name {
+		margin-top: 20upx;
+		color: $white;
+	}
+
+	.dui-user-phone {
+		margin: 30upx 0;
+		color: $yellow;
+	}
+
+	.dui-user-assets {
+		box-sizing: border-box;
+		margin-top: 20upx;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 25upx;
+		width: 96%;
+		border-radius: 15upx 15upx 10upx 10upx;
+		background-color: $white;
+	}
+
+	.dui-user-detail {
+		font-size: 30upx;
+		text-align: right;
+	}
+
+	.dui-user-total {
+		padding: 20upx 0;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.dui-user-total-item {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.dui-user-total-item text:first-child {
+		font-size: 30upx;
+		color: $maincolor;
+	}
+
+	.dui-user-total-item text:nth-child(2) {
+		font-size: 26upx;
+		margin: 20upx 0 15upx 0;
+	}
+
+	.dui-user-pickup {
+		width: 110upx;
+		height: 50upx;
+		line-height: 50upx;
+		background-color: $maincolor;
+		border-radius: 20upx;
+		text-align: center;
+		font-size: 26upx;
+		color:$white;
+	}
+
+	.dui-user-income-detail {
+		padding: 26upx;
+		border-radius: 15upx;
+		background-color: $blue;
+		overflow: hidden;
+	}
+
+	.dui-user-income-item {
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		float: left;
+		width: 50%;
+		height: 136upx;
+		padding: 20upx 0;
+		border-bottom: 1upx solid $bordercolor;
+		font-size: 28upx;
+	}
+
+	.dui-user-income-item:nth-child(2),
+	.dui-user-income-item:nth-child(4) {
+		border-left: 1upx solid $bordercolor;
+		padding-left: 10upx;
+	}
+
+	.dui-user-income-item:nth-child(3),
+	.dui-user-income-item:nth-child(4) {
+		border-bottom: none;
+	}
+
+	.dui-user-income-item>text:first-child {
+		display: inline-block;
+		color: $white;
+		padding-right: 20upx;
+	}
+
+	.dui-user-income-box {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.dui-user-income-box text:first-child {
+		margin-bottom: 20upx;
+		color: #F0AD4E;
+	}
+
+	.dui-user-income-box text:last-child,
+	.dui-user-praise {
+		color: $yellow;
+	}
+	.dui-user-routine {
+		display: flex;
+		justify-content: space-around;
+		box-sizing: border-box;
+		margin-top: 10px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 24upx;
+		width: 96%;
+		border-radius: 5px;
+		background-color: $white;
+	}
+	
+	.dui-user-routine-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.dui-user-routine-item text:first-child {
+		font-size: 60upx;
+	}
+	
+	.dui-user-routine-item text:last-child {
+		font-size: 26upx;
+	}
+	
+	.dui-user-routine-item>.icon-huoche {
+		color: $yellow;
+	}
+	
+	.dui-user-routine-item>.icon--kefu {
+		color: $green;
+	}
+	
+	.dui-user-routine-item>.icon-xinxi-yuankuang {
+		color: $dark;
+	}

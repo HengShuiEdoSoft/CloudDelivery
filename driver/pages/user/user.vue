@@ -1,44 +1,87 @@
 <template>
-    <view class="content">
-        <view class="btn-row">
-            <button v-if="!hasLogin" type="primary" class="primary" @tap="bindLogin">登录</button>
-            <button v-if="hasLogin" type="default" @tap="bindLogout">退出登录</button>
-        </view>
-    </view>
+	<view class="content">
+		<scroll-view scroll-y="true">
+			<view class="dui-user-bj"></view>
+			<view class="dui-wrapper">
+				<navigator url="/pages/setup/setup">
+					<view class="dui-user-information">
+						<image src="../../static/img/HeadImg.jpg" mode=""></image>
+						<text class="dui-user-name">尼古拉斯·赵四</text>
+						<text class="dui-user-phone">18888888888</text>
+					</view>
+				</navigator>
+				<view class="dui-user-assets">
+					<navigator url="">
+						<view class="dui-user-detail">提现明细</view>
+					</navigator>
+					<view class="dui-user-total">
+						<view class="dui-user-total-item">
+							<text>20</text>
+							<text>总接单</text>
+						</view>
+						<view class="dui-user-total-item">
+							<text>123.45</text>
+							<text>总收入</text>
+							<view class="dui-user-pickup">提现</view>
+						</view>
+					</view>
+					<view class="dui-user-income-detail">
+						<view class="dui-user-income-item">
+							<text>今日</text>
+							<view class="dui-user-income-box">
+								<text>接单量/收入</text>
+								<text>0/0.00</text>
+							</view>
+						</view>
+						<view class="dui-user-income-item">
+							<text>本周</text>
+							<view class="dui-user-income-box">
+								<text>接单量/收入</text>
+								<text>0/0.00</text>
+							</view>
+						</view>
+						<view class="dui-user-income-item">
+							<text>本月</text>
+							<view class="dui-user-income-box">
+								<text>接单量/收入</text>
+								<text>0/0.00</text>
+							</view>
+						</view>
+						<view class="dui-user-income-item">
+							<text>好评</text>
+							<text class="dui-user-praise">100%</text>
+						</view>
+					</view>
+				</view>
+				<view class="dui-user-routine">
+					<navigator url="">
+						<view class="dui-user-routine-item">
+							<text class="iconfont icon-huoche"></text>
+							<text>我的车辆</text>
+						</view>
+					</navigator>
+					<navigator url="">
+						<view class="dui-user-routine-item">
+							<text class="iconfont icon--kefu"></text>
+							<text>客服中心</text>
+						</view>
+					</navigator>
+					<navigator url="">
+						<view class="dui-user-routine-item">
+							<text class="iconfont icon-xinxi-yuankuang"></text>
+							<text>关于我们</text>
+						</view>
+					</navigator>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
 </template>
-
 <script>
-    import {
-        mapState,
-        mapMutations
-    } from 'vuex'
-
-    export default {
-        computed: {
-            ...mapState(['hasLogin', 'forcedLogin'])
-        },
-        methods: {
-            ...mapMutations(['logout']),
-            bindLogin() {
-                uni.navigateTo({
-                    url: '../login/login',
-                });
-            },
-            bindLogout() {
-                this.logout();
-                /**
-                 * 如果需要强制登录跳转回登录页面
-                 */
-                if (this.forcedLogin) {
-                    uni.reLaunch({
-                        url: '../login/login',
-                    });
-                }
-            }
-        }
-    }
 </script>
-
 <style>
-
+	scroll-view {
+		height: 100%;
+		padding-bottom: 40upx;
+	}
 </style>

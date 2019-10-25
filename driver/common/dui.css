@@ -1,0 +1,65 @@
+/*
+Error: Undefined variable: "$blue".
+        on line 22 of E:\BuZhiHeng\Work\CloudDelivery\driver\common\dui.scss
+
+17: 		top: -4750upx;
+18: 		left: 50%;
+19: 		width: 5200upx;
+20: 		height: 5200upx;
+21: 		border-radius: 50%;
+22: 		background-color: $blue;
+23: 		transform: translateX(-50%);
+24: 	}
+25: 
+26: 	.dui-user-information {
+27: 		display: flex;
+
+Backtrace:
+E:\BuZhiHeng\Work\CloudDelivery\driver\common\dui.scss:22
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/variable.rb:49:in `_perform'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block (2 levels) in visit_rule'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `map'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block in visit_rule'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:442:in `visit_rule'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `map'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:161:in `visit'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:10:in `visit'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:36:in `css_tree'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
+E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
+E:/BuZhiHeng/Software/Koala/bin/sass:22:in `load'
+E:/BuZhiHeng/Software/Koala/bin/sass:22:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$blue\".\A         on line 22 of E:\BuZhiHeng\Work\CloudDelivery\driver\common\dui.scss\A \A 17: 		top: -4750upx;\A 18: 		left: 50%;\A 19: 		width: 5200upx;\A 20: 		height: 5200upx;\A 21: 		border-radius: 50%;\A 22: 		background-color: $blue;\A 23: 		transform: translateX(-50%);\A 24: 	}\A 25: \A 26: 	.dui-user-information {\A 27: 		display: flex;"; }

@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"dui-user-bj { position: absolute; top: ",[0,-4750],"; left: 50%; width: ",[0,5200],"; height: ",[0,5200],"; border-radius: 50%; background-color: #292b3a; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); }\n",],undefined,{path:"./pages/user/user.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/user/user.wxml') } }));
