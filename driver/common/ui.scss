@@ -1,0 +1,103 @@
+.ui-info-list{
+	margin-top:20upx;
+	padding:0 30upx;
+	background: $white;
+}
+.ui-info-list-item{
+	display:flex;
+	font-size:14px;
+	line-height: 80upx;
+	padding:16upx 0;
+}
+.ui-info-list-item:first-child{
+	line-height: 96upx;
+}
+.ui-info-list-item:first-child .ui-info-list-center{
+	height:96upx;
+}
+.ui-info-list-left{
+	color:$grey;
+}
+.ui-info-list-center{
+	flex:1;
+	text-align: right;
+	align-items: center;
+}
+.ui-info-list-center input{
+	display:block;
+	font-size:14px;
+	height:80upx;
+	line-height: 80upx;
+	color:$black;
+}
+.ui-info-list-right{
+	padding-left:24upx;
+	color:$mblack;
+}
+.ui-info-list-center>image{
+	display:inline-block;
+	width:96upx;
+	height:96upx;
+	border-radius: 100%;
+}
+
+.ui-tip{
+	font-size:12px;
+	color:$grey;
+}
+
+.ui-home-bottom{
+	position:fixed;
+	bottom:20upx;
+	width:100%;
+	padding:0 16upx;
+	box-sizing: border-box;
+}
+.ui-home-price-container{
+	display:flex;
+	padding:20upx;
+	background: #fff;
+	align-items: center;
+}
+.ui-price-detail{
+	padding:8upx 20upx;
+	height:36upx;
+	font-size:12px;
+	line-height: 36upx;
+	border:1upx solid $bordercolor;
+	color:$maincolor;
+	border-radius: 2px;
+}
+.ui-cost-price{
+	flex:1;
+	text-align: center;
+	font-size:14px;
+}
+.ui-home-discount{
+	font-size:12px;
+}
+.ui-home-discount>text{
+	color:$maincolor;
+}
+.ui-price-now{
+	font-size:28px;
+}
+.ui-origin-price{
+	padding-left:20upx;
+	text-decoration: line-through;
+}
+.ui-top-city-select{
+	padding:0 30upx;
+	color:$white;
+	font-size:14px;
+	line-height: 88upx;
+	background: $dark;
+}
+.ui-top-city-select>text{
+	padding-left:20upx;
+	text-decoration: underline;
+}
+.ui-ts-title{
+	padding:40upx 0 20upx;
+	color:$maincolor;
+}

@@ -11,7 +11,7 @@
 					</view>
 				</navigator>
 				<view class="dui-user-assets">
-					<navigator url="">
+					<navigator url="/pages/user/details">
 						<view class="dui-user-detail">提现明细</view>
 					</navigator>
 					<view class="dui-user-total">
@@ -22,7 +22,7 @@
 						<view class="dui-user-total-item">
 							<text>123.45</text>
 							<text>总收入</text>
-							<view class="dui-user-pickup">提现</view>
+							<navigator url="/pages/user/pickup" class="dui-user-pickup">提现</navigator>
 						</view>
 					</view>
 					<view class="dui-user-income-detail">
@@ -60,13 +60,13 @@
 							<text>我的车辆</text>
 						</view>
 					</navigator>
-					<navigator url="">
+					<navigator url="/pages/servicecenter/servicecenter">
 						<view class="dui-user-routine-item">
 							<text class="iconfont icon--kefu"></text>
 							<text>客服中心</text>
 						</view>
 					</navigator>
-					<navigator url="">
+					<navigator url="/pages/user/about">
 						<view class="dui-user-routine-item">
 							<text class="iconfont icon-xinxi-yuankuang"></text>
 							<text>关于我们</text>
@@ -78,6 +78,22 @@
 	</view>
 </template>
 <script>
+	export default {
+		onNavigationBarButtonTap: function(e) {
+			var index = e.index;
+			if (index === 0) {
+				uni.navigateTo({
+					url: "/pages/setup/setup"
+				});
+			}
+		},
+		data() {
+			return {}
+		},
+		methods: {
+
+		}
+	}
 </script>
 <style>
 	scroll-view {

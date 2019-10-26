@@ -1,0 +1,98 @@
+<template>
+	<view class="content">
+		<view class="input-group dui-input-group-mg">
+			<view class="input-row border">
+				<text class="title iconfont icon-dianhua"></text>
+				<m-input type="text" focus clearable v-model="account" placeholder="请输入新手机号码"></m-input>
+			</view>
+			<view class="input-row border">
+				<text class="title iconfont icon-Raidobox-xuanzhong"></text>
+				<view class="dui-input">
+					<input type="text" clearable v-model="vercode" placeholder="请输入验证码" maxlength="6"></input>
+				</view>
+				<button class="dui-varcode-btn" type="primary" @tap="numberst" :disabled="countdown < 60 && countdown >= 1">{{countdown < 60 && countdown >= 1?`${countdown}秒`:'获取验证码'}}</button>
+			</view>
+		</view>
+		<view class="btn-row">
+			<button class="primary" type="primary" @tap="changenum()">确认变更</button>
+		</view>
+		<view class="ui-tip">
+			<text>变更后账户信息不变，当前号码作废，下次需使用新手机号登录</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	import mInput from '../../components/m-input.vue';
+	export default {
+	    components: {
+	        mInput			
+	    },
+	    data() {
+	        return {
+	            account: '',
+	            vercode: '',
+				countdown:60
+	        }
+	    },
+	    methods: {
+			numberst(e){
+						//其他代码....
+						this.countDown();
+					},
+					// 倒计时
+					countDown(){
+						let self = this;
+						self.countdown = 60;
+						self.countdown -= 1;
+						if(self.clear){
+							clearInterval(self.clear)
+						}
+						self.clear = null;
+						self.clear = setInterval(_ => {
+							if(self.countdown > 0){
+								self.countdown -= 1;
+							}else{
+								clearInterval(self.clear)
+							}
+						},1000)
+					},	
+	        changenum() {        
+		      
+	            uni.showToast({
+	                title: '变更成功'
+	            });
+	            uni.navigateBack({
+	                delta: 3
+	            });
+	        }
+	    }
+	}
+</script>
+
+<style>
+	.content {
+		background-color: #fff;		
+	}
+	.btn-row {
+		margin-left: 60upx;
+		margin-right: 60upx;
+	}
+	.dui-varcode-btn{
+		background-color: transparent;
+		color:#FF5723 ;
+		font-size: 28upx;
+		display: flex;
+		align-items: center;
+		text-decoration: underline;
+	}
+	.dui-varcode-btn:after{
+		border: none;
+	}
+	.dui-varcode-btn[disabled][type=primary] {
+	    background-color: transparent;
+	}
+	.ui-tip{
+		padding:20upx 40upx;
+	}
+</style>
