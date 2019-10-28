@@ -3,29 +3,53 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "抢单大厅"
+				"navigationBarTitleText": "抢单大厅",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue612 ",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "20",
+							"float": "right",
+							"color": "#333333",
+							"redDot": true
+						}, {
+							"text": "\ue6b6 ",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "20",
+							"float": "right",
+							"color": "#333333"
+						}]
+					}
+				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/order/order",
 			"style": {
 				"navigationBarTitleText": "订单"
 			}
-		}, {
+		},
+		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
 			}
-		}, {
+		},
+		{
 			"path": "pages/reg/reg",
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
-		}, {
+		},
+		{
 			"path": "pages/pwd/pwd",
 			"style": {
 				"navigationBarTitleText": "找回密码"
 			}
-		}, {
+		},
+		{
 			"path": "pages/user/user",
 			"style": {
 				"navigationBarTitleText": "我的",
@@ -44,12 +68,14 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/user/details",
 			"style": {
 				"navigationBarTitleText": "提现明细"
 			}
-		}, {
+		},
+		{
 			"path": "pages/user/pickup",
 			"style": {
 				"navigationBarTitleText": "提现",
@@ -65,17 +91,20 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/user/about",
 			"style": {
 				"navigationBarTitleText": "关于我们"
 			}
-		}, {
+		},
+		{
 			"path": "pages/servicecenter/servicecenter",
 			"style": {
 				"navigationBarTitleText": "客服中心"
 			}
-		}, {
+		},
+		{
 			"path": "pages/servicecenter/servicecenter-detail",
 			"style": {
 				"navigationBarTitleText": "常见问题反馈",
@@ -92,12 +121,14 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/setup",
 			"style": {
 				"navigationBarTitleText": "设置"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/nichengchange",
 			"style": {
 				"navigationBarTitleText": "编辑昵称",
@@ -113,50 +144,71 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/phonenum",
 			"style": {
 				"navigationBarTitleText": "手机号"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/phoneverify",
 			"style": {
 				"navigationBarTitleText": "验证手机号"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/changephone",
 			"style": {
 				"navigationBarTitleText": "更换手机号"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/moresetup",
 			"style": {
 				"navigationBarTitleText": "更多设置"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/resetpwd",
 			"style": {
 				"navigationBarTitleText": ""
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/vercode",
 			"style": {
 				"navigationBarTitleText": ""
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/clause",
 			"style": {
 				"navigationBarTitleText": "服务条款"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/transportstandard",
 			"style": {
 				"navigationBarTitleText": "收费标准"
 			}
-		}, {
+		},
+		{
 			"path": "pages/cityselect/cityselect",
 			"style": {
 				"navigationBarTitleText": "选择城市"
+			}
+		},
+		{
+			"path": "pages/msgcenter/msgcenter",
+			"style": {
+				"navigationBarTitleText": "消息中心"
+			}
+		},
+		{
+			"path": "pages/msgcenter/msgdetails",
+			"style": {
+				"navigationBarTitleText": "消息详情"
 			}
 		}
 	],

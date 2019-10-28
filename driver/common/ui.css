@@ -1,19 +1,20 @@
 /*
 Error: Undefined variable: "$white".
-        on line 4 of E:\BuZhiHeng\Work\CloudDelivery\driver\common\ui.scss
+        on line 5 of E:\BuZhiHeng\Work\CloudDelivery\driver\common\ui.scss
 
-1: .ui-info-list{
-2: 	margin-top:20upx;
-3: 	padding:0 30upx;
-4: 	background: $white;
-5: }
-6: .ui-info-list-item{
-7: 	display:flex;
-8: 	font-size:14px;
-9: 	line-height: 80upx;
+1: /***tab***\/
+2: .ui-car-name-list{
+3: 		display:flex;
+4: 		padding:0 30upx;
+5: 		background: $white;
+6: 		justify-content:space-between;
+7: 	}
+8: 	.ui-car-name-item{
+9: 		padding:20upx 0;
+10: 		font-size:17px;
 
 Backtrace:
-E:\BuZhiHeng\Work\CloudDelivery\driver\common\ui.scss:4
+E:\BuZhiHeng\Work\CloudDelivery\driver\common\ui.scss:5
 E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/variable.rb:49:in `_perform'
 E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
 E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
@@ -60,4 +61,4 @@ E:/BuZhiHeng/Software/Koala/bin/sass:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$white\".\A         on line 4 of E:\BuZhiHeng\Work\CloudDelivery\driver\common\ui.scss\A \A 1: .ui-info-list{\A 2: 	margin-top:20upx;\A 3: 	padding:0 30upx;\A 4: 	background: $white;\A 5: }\A 6: .ui-info-list-item{\A 7: 	display:flex;\A 8: 	font-size:14px;\A 9: 	line-height: 80upx;"; }
+  content: "Error: Undefined variable: \"$white\".\A         on line 5 of E:\BuZhiHeng\Work\CloudDelivery\driver\common\ui.scss\A \A 1: /***tab***/\A 2: .ui-car-name-list{\A 3: 		display:flex;\A 4: 		padding:0 30upx;\A 5: 		background: $white;\A 6: 		justify-content:space-between;\A 7: 	}\A 8: 	.ui-car-name-item{\A 9: 		padding:20upx 0;\A 10: 		font-size:17px;"; }

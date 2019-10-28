@@ -10,20 +10,20 @@
 			<text>金额</text>
 		</view>
 		<view class="dui-flex-row">
-			<view class="dui-pickup-write-money">￥<input type="text" placeholder="请填写金额" /></view>
+			<view class="dui-pickup-write-money">￥<input type="text" focus="true" placeholder="请填写金额" /></view>
 			<view class="dui-pickup-all">全部提现</view>
 		</view>
 		<view class="dui-flex-row">
 			<text>提现到</text>
-			<text>54652154512456465</text>
-			<text class="iconfont icon-gengduo-shuxiang"></text>
+			<view class="dui-pickup-cardno">
+				<text>54652154512456465</text>
+				<text class="iconfont icon-gengduo-shuxiang"></text>
+			</view>
 		</view>
 	</view>
 </template>
-
 <script>
 </script>
-
 <style>
 	.content {
 		background-color: #fff;
@@ -52,9 +52,13 @@
 	.dui-pickup-write-money input {
 		font-size: 60upx;
 	}
-	.dui-pickup-all{
+
+	.dui-pickup-all {
 		width: 25%;
 		color: #FF5723;
 		text-align: right;
+	}
+	.dui-pickup-cardno{
+		margin-top: 40upx;
 	}
 </style>

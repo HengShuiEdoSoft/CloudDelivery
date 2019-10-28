@@ -1,0 +1,48 @@
+
+.content {
+	background-color: #fff;
+}
+.dui-maincolor {
+	color: #FF5723;
+	font-size: 32rpx;
+	font-weight: 500;
+}
+.dui-flex-row {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	font-size: 28rpx;
+	padding: 20rpx 30rpx;
+}
+.dui-pickup-write-money {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	font-size: 60rpx;
+}
+.dui-pickup-write-money input {
+	font-size: 60rpx;
+}
+.dui-pickup-all {
+	width: 25%;
+	color: #FF5723;
+	text-align: right;
+}
+.dui-pickup-cardno{
+	margin-top: 40rpx;
+}
+

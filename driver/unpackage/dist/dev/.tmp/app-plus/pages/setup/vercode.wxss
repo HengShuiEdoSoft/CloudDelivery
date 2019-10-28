@@ -1,0 +1,16 @@
+
+.content {
+	background-color: #fff;
+}
+.dui-resetpwd-title+view {
+	padding: 30rpx 0 40rpx 0;
+	font-size: 25rpx;
+	color: #a8a8a8;
+}
+.dui-resetpwd-btn+view {
+	padding-top: 40rpx;
+	font-size: 25rpx;
+	color: #a8a8a8;
+	text-align: center;
+}
+

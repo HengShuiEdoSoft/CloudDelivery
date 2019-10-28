@@ -84,6 +84,118 @@ textarea {
 .h5 {
   font-size: 14px; }
 
+/***tab***/
+.ui-car-name-list {
+  display: flex;
+  padding: 0 30upx;
+  background: #fff;
+  justify-content: space-between; }
+
+.ui-car-name-item {
+  padding: 20upx 0;
+  font-size: 17px;
+  color: #999; }
+
+.ui-car-name-item.active {
+  color: #FF5723;
+  border-bottom: 2px solid #FF5723; }
+
+/* timeline */
+.uni-timeline {
+  margin: 36upx 0;
+  display: flex;
+  flex-direction: column;
+  position: relative; }
+
+.ui-order-timeline.uni-timeline {
+  margin: 18upx 0 0; }
+
+.uni-timeline-item {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding-bottom: 20upx;
+  box-sizing: border-box;
+  overflow: hidden; }
+
+.uni-timeline-item .uni-timeline-item-keynode {
+  width: 160upx;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding-right: 20upx;
+  text-align: right;
+  line-height: 65upx; }
+
+.uni-timeline-item .uni-timeline-item-divider {
+  flex-shrink: 0;
+  position: relative;
+  width: 36upx;
+  height: 36upx;
+  top: 8upx;
+  font-size: 12px;
+  color: #fff;
+  line-height: 36upx;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #bbb; }
+
+.ui-order-timeline .uni-timeline-item .uni-timeline-item-divider {
+  width: 12upx;
+  height: 12upx;
+  top: 14upx;
+  line-height: 12upx; }
+
+.uni-timeline-item-divider::before,
+.uni-timeline-item-divider::after {
+  position: absolute;
+  left: 18upx;
+  width: 1upx;
+  height: 100vh;
+  content: '';
+  background: #ddd; }
+
+.ui-order-timeline .uni-timeline-item-divider::before,
+.ui-order-timeline .uni-timeline-item-divider::after {
+  left: 6upx; }
+
+.ui-order-timeline .uni-timeline-item-content .ui-address {
+  padding-bottom: 10px;
+  font-size: 14px; }
+
+.uni-timeline-item-divider::before {
+  bottom: 100%; }
+
+.uni-timeline-item-divider::after {
+  top: 100%; }
+
+.uni-timeline-last-item .uni-timeline-item-divider:after {
+  display: none; }
+
+.uni-timeline-first-item .uni-timeline-item-divider:before {
+  display: none; }
+
+.uni-timeline-item .uni-timeline-item-content {
+  flex: 1;
+  padding-left: 20upx; }
+
+.uni-timeline-last-item .bottom-border::after {
+  display: none; }
+
+.uni-timeline-item-content .ui-address {
+  padding-bottom: 10upx;
+  font-size: 16px; }
+
+.uni-timeline-item-content .ui-subtext {
+  font-size: 14px;
+  color: #aaa; }
+
+.ui-order-timeline .uni-timeline-item-content .ui-subtext {
+  padding: 10upx 0 16upx;
+  font-size: 12px;
+  display: block;
+  color: #aaa; }
+
+/**/
 .ui-info-list {
   margin-top: 20upx;
   padding: 0 30upx;
@@ -184,6 +296,74 @@ textarea {
 .ui-ts-title {
   padding: 40upx 0 20upx;
   color: #FF5723; }
+
+/* 自定义节点颜色 */
+.uni-timeline-first-item .uni-timeline-item-divider {
+  background-color: #3BD1AB; }
+
+.uni-timeline-last-item .uni-timeline-item-divider {
+  background-color: #FF5723; }
+
+.ui-order-list-item {
+  position: relative;
+  margin: 16upx;
+  padding: 20upx;
+  font-size: 14px;
+  background: #fff;
+  border-radius: 2px; }
+
+.ui-order-list-item-top {
+  padding-bottom: 20upx; }
+
+.ui-order-list-cartype {
+  display: inline-block;
+  padding: 4px 10px;
+  margin-right: 16px;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 2px;
+  background: #424456; }
+
+.ui-orderdetail-cont {
+  margin: 16upx;
+  padding: 20upx;
+  font-size: 16px;
+  background: #fff; }
+
+.ui-orderdetail-cont .ui-od-price-list-b {
+  display: flex;
+  font-size: 14px;
+  line-height: 64upx;
+  color: #666; }
+
+.ui-orderdetail-cont .ui-od-price-right {
+  font-size: 14px; }
+
+.ui-od-price-pay {
+  color: #FF5723;
+  font-size: 18px;
+  font-weight: 600; }
+
+.ui-od-price-type {
+  flex: 1; }
+
+/*订单状态*/
+.ui-hujiao:after, .ui-daizhifu:after {
+  position: absolute;
+  top: 0;
+  right: 20upx;
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #fff; }
+
+.ui-hujiao:after {
+  content: "运送中";
+  background: #3BD1AB; }
+
+.ui-daizhifu:after {
+  content: "待支付";
+  background: #FF9801; }
 
 .dui-input {
   display: flex;
@@ -497,5 +677,59 @@ textarea {
 
 .dui-resetpwd-btn {
   padding-top: 80upx; }
+
+/*消息中心*/
+.dui-msgcenter-list {
+  background-color: #fff; }
+
+.dui-msgcenter-item {
+  width: 100%;
+  padding: 20upx;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 50upx; }
+
+.dui-msgcenter-item-box:after {
+  content: '';
+  display: block;
+  height: 1px;
+  background-color: #e2e2e2;
+  border: none;
+  transform: scaleY(0.5); }
+
+.dui-msgcenter-logo {
+  width: 100upx;
+  height: 100upx;
+  margin-right: 20upx; }
+
+.dui-msgcenter-logo > image {
+  width: 100%;
+  height: 100%; }
+
+.dui-msgcenter-flex-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.dui-msgcenter-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28upx; }
+
+.dui-msgcenter-date {
+  color: #797979; }
+
+.dui-msgcenter-content {
+  width: 250px;
+  font-size: 13px;
+  color: #797979;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
 
 /*# sourceMappingURL=common.css.map */

@@ -1,26 +1,6 @@
 
-.dui-user-bj {
-		position: absolute;
-		top: -4750rpx;
-		left: 50%;
-		width: 5200rpx;
-		height: 5200rpx;
-		border-radius: 50%;
-		background-color: #292b3a;
-		-webkit-transform: translateX(-50%);
-		    -ms-transform: translateX(-50%);
-		        transform: translateX(-50%);
+scroll-view {
+	height: 100%;
+	padding-bottom: 40rpx;
 }
-
-/* 	.dui-user-bj:before {
-		content: '';
-		position: absolute;
-		top: -4750upx;
-		left: 50%;
-		width: 5200upx;
-		height: 5200upx;
-		border-radius: 50%;
-		background-color: #292b3a;
-		transform: translateX(-50%);
-	} */
 
