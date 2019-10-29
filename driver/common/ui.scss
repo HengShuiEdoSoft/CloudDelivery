@@ -236,8 +236,7 @@
 	.uni-timeline-last-item .uni-timeline-item-divider{
 		background-color: $maincolor;
 	}
-	
-	
+		
 	
 	.ui-order-list-item{
 		position:relative;
@@ -259,29 +258,6 @@
 		border-radius:2px;
 		background: $dark;
 	}
-	.ui-orderdetail-cont{
-		margin:16upx;
-		padding:20upx;
-		font-size:16px;
-		background: $white;
-	}
-	.ui-orderdetail-cont .ui-od-price-list-b{
-			display:flex;
-			font-size:14px;
-			line-height: 64upx;
-			color:#666;
-	}
-	.ui-orderdetail-cont .ui-od-price-right{
-		font-size:14px;
-	}
-	.ui-od-price-pay{
-		color:$maincolor;
-		font-size:18px;
-		font-weight: 600;
-	}
-	.ui-od-price-type{
-		flex:1;
-	}
 	/*订单状态*/
 	.ui-hujiao:after,.ui-daizhifu:after{
 		position:absolute;
@@ -299,4 +275,97 @@
 	.ui-daizhifu:after{
 		content:"待支付";
 		background: $yellow;
+	}
+	.ui-order-cont {
+		flex: 1;
+	}
+	
+	.ui-order-price {
+		font-weight: 600;
+		text-align: right;
+	}
+	
+	.ui-order-timeline-container {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+	
+	.ui-order-timeline {
+		flex: 1;
+	}
+	
+	.ui-order-item-more {
+		color: #ccc;
+	}
+	
+	.ui-orderno-color {
+		color: #FF5723;
+	}
+	
+	.ui-cartype-color {
+		color: #797979;
+	}
+	
+	.ui-od-price-list {
+		display: flex;
+		line-height: 64upx;
+	}
+	/*订单详情*/
+	.ui-orderdetail-cont{
+		margin:16upx;
+		padding:20upx;
+		font-size:16px;
+		background: $white;
+	}
+	.ui-orderdetail-top{
+		display:flex;
+		align-items: center;
+	}
+	.ui-od-portrait{
+		margin-right:20upx;
+		width:96upx;
+		height:96upx;
+		border-radius: 100%;
+	}
+	.ui-orderdetail-date{
+		display:flex;
+		font-size:14px;
+		padding-bottom:20upx;
+		flex-direction: row;
+	}
+	.ui-od-ordernumber{
+		color:$grey;
+	}
+	.ui-od-date{
+		flex:1;
+	}
+	.ui-od-info-item{
+		display:flex;
+		line-height: 72upx;
+	}
+	.ui-od-info-right{
+		flex:1;
+		text-align: right;
+		color:$grey;
+	}
+	.ui-od-price-pay{
+		color:$maincolor;
+		font-size:18px;
+		font-weight: 600;
+	}
+	.ui-od-price-type{
+		flex:1;
+	}
+	.ui-orderdetail-cont .ui-od-price-list-b{
+			display:flex;
+			font-size:14px;
+			line-height: 64upx;
+			color:#666;
+	}
+	.ui-orderdetail-cont .ui-od-price-right{
+		font-size:14px;
+	}
+	.ui-od-info-left{
+		width:64px;
 	}

@@ -54,7 +54,7 @@
 					</view>
 				</view>
 				<view class="dui-user-routine">
-					<navigator url="">
+					<navigator url="/pages/mycar/mycar">
 						<view class="dui-user-routine-item">
 							<text class="iconfont icon-huoche"></text>
 							<text>我的车辆</text>

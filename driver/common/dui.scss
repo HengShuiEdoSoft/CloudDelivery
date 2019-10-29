@@ -195,7 +195,7 @@
 	}
 	/*list*/
 	.dui-basic-list {
-		background-color: #fff;
+		background-color: $white;
 		position: relative;
 		width: 100%;
 		display: flex;
@@ -314,7 +314,7 @@
 		padding: 30upx;
 		font-size: 26upx;
 		line-height: 40upx;
-		color: #606060;
+		color: $mblack;
 	}
 	
 	.dui-basic-tips-title {
@@ -354,7 +354,7 @@
 	}
 	/*消息中心*/
 	.dui-msgcenter-list {
-		background-color: #fff;
+		background-color: $white;
 	}
 	
 	.dui-msgcenter-item {
@@ -373,7 +373,7 @@
 		content: '';
 		display: block;
 		height: 1px;
-		background-color: #e2e2e2;
+		background-color: $bordercolor;
 		border: none;
 		transform: scaleY(0.5);
 	}
@@ -414,3 +414,4 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
+	

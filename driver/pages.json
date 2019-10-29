@@ -32,6 +32,12 @@
 			}
 		},
 		{
+			"path": "pages/order/orderdetail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
@@ -93,15 +99,21 @@
 			}
 		},
 		{
-			"path": "pages/user/about",
+			"path": "pages/mycar/mycar",
 			"style": {
-				"navigationBarTitleText": "关于我们"
+				"navigationBarTitleText": "我的车辆"
 			}
 		},
 		{
 			"path": "pages/servicecenter/servicecenter",
 			"style": {
 				"navigationBarTitleText": "客服中心"
+			}
+		},
+		{
+			"path": "pages/user/about",
+			"style": {
+				"navigationBarTitleText": "关于我们"
 			}
 		},
 		{
