@@ -84,10 +84,26 @@
 				this.positionTop = uni.getSystemInfoSync().windowHeight - 100;
 			},
 			bindLogin(requestUrl) {
-
+				var that=this
 				/**
 				 * 使用 uni.request 将账号信息发送至服务端，客户端在回调函数中获取结果信息。
 				 */
+				if(!this.$drmking.isPhone(this.phone)){
+					uni.showToast({
+						'icon':'none',
+						title: '手机号码格式不正确！',
+						showCancel: false
+					});
+					return false;
+				}
+				if(this.pwd.length<6){
+					uni.showToast({
+						'icon':'none',
+						title: '密码最少为6位！',
+						showCancel: false
+					});
+					return false;
+				}
 				const data = {
 					phone: this.phone,
 					pwd: this.pwd
@@ -98,15 +114,14 @@
 					    params: data
 					  })
 					  .then(function(res) {
-					    this.res =JSON.stringify(res);
-					    if(res.data.code===0){
+					    if(res.code===0){
 					    	uni.showToast({
 								title: '登录成功',
 								icon: 'success',
 								mask: true,
 								duration: 3000
 					    	});
-					    	this.toMain(res.data);
+					    	that.toMain(res.data);
 						}
 					  })
 					  .catch(function(error) {
@@ -138,16 +153,15 @@
 			},
 			toMain(userInfo) {
 				this.login(userInfo);
-				/**
-				 * 强制登录时使用reLaunch方式跳转过来
-				 * 返回首页也使用reLaunch方式
-				 */
+				console.log("1")
 				if (this.forcedLogin) {
 					uni.reLaunch({
 						url: '../index/index',
 					});
 				} else {
-					uni.navigateBack();
+					uni.navigateTo({
+						url: '../index/index'
+					});
 				}
 
 			}

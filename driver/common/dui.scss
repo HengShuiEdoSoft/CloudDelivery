@@ -1,0 +1,229 @@
+	.dui-gap{
+		height: 16upx;
+	}
+	.dui-input-group-mg {
+		margin-top: 66upx;
+		margin-left: 84upx;
+		margin-right: 100upx;
+	}
+.dui-input{
+    display: flex;
+	flex-direction: row;
+    align-items: center;
+	flex: 1;
+    width: 100%;
+    padding: 0 5px;
+}
+/*我的钱包*/
+	.dui-money-list-group{
+		margin-bottom:20upx;		
+		background-color: #fff;
+	}
+	.dui-money-list-item{
+		display: flex;
+		justify-content: space-between;
+		padding: 30upx;	
+	    color: #424456;
+	}
+	
+	/*list*/
+	.dui-basic-list {
+		background-color: #fff;
+		position: relative;
+		width: 100%;
+		display: flex;
+		flex-direction: column
+	}
+	
+	.dui-basic-list:after {
+		position: absolute;
+		z-index: 10;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
+	}
+	
+	.dui-basic-list:before {
+		position: absolute;
+		z-index: 10;
+		right: 0;
+		top: 0;
+		left: 0;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
+	}
+	
+	.dui-basic-list-item {
+		font-size: 32upx;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center
+	}
+	
+	.dui-basic-list-item__container {
+		padding: 24upx 30upx;
+		width: 100%;
+		box-sizing: border-box;
+		flex: 1;
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center
+	}
+	
+	.dui-basic-list-item__container:after {
+		position: absolute;
+		z-index: 3;
+		right: 0;
+		bottom: 0;
+		left: 30upx;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
+	}
+	
+	.dui-basic-list-item__content {
+		flex: 1;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		color: #3b4144
+	}
+	
+	.dui-basic-list-item__content-title {
+		font-size: 32upx;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: inherit;
+		line-height: 1.5;
+		overflow: hidden
+	}
+	
+	.dui-basic-list-item__content-note {
+		margin-top: 6upx;
+		color: #999;
+		font-size: 28upx;
+		white-space: normal;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden
+	}
+	
+	.dui-basic-list-item__extra {
+		width: 25%;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center
+	}
+	
+	.dui-basic-list-item__icon {
+		margin-right: 18upx;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center
+	}
+	
+	.dui-basic-list>.dui-basic-list-item:last-child .dui-basic-list-item-container:after {
+		height: 0
+	}
+	
+	.dui-basic-tips {
+		padding: 30upx;
+		font-size: 26upx;
+		line-height: 40upx;
+		color: #606060;
+	}
+	
+	.dui-basic-tips-title {
+		color: #ff5723;
+	}
+	/*tab*/
+	.dui-car-name-list{
+			display:flex;
+			padding:0 30upx;
+			background: $white;
+			justify-content:space-around;
+		}
+		/*常用地址*/
+		.dui-fixed-bottom-btn{
+			position: fixed;
+			bottom: 0;
+			box-sizing: border-box;
+			width: 100%;
+			 background-color: #efeff4;
+			 z-index: 99;
+			 padding: 25upx 20upx;
+		}
+		/*设置密码*/
+		.dui-resetpwd-wrapper {
+			padding: 0upx 64upx;
+			color: #424456;
+		}
+		
+		.dui-resetpwd-title {
+			padding-top: 94upx;
+			font-size: 50upx;
+			font-weight: bold;
+		}
+		
+		.dui-resetpwd-phone {		
+			padding-top:200upx;
+			font-size: 40upx;
+			font-weight: bold;
+			text-align: center;
+		}
+		.dui-resetpwd-btn{
+			padding-top:80upx ;
+		}
+		/*暂无*/
+		.dui-notyet-wrapper {
+			margin-top: 300upx;
+			margin-left: auto;
+			margin-right: auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size: 30upx;
+		}
+		/*客服*/
+		.dui-service-wrapper {
+			padding: 0 15upx;
+			position: relative;
+		}
+		.dui-online-service {
+			position: fixed;
+			right: 15upx;
+			bottom: 290upx;
+			z-index: 99;
+		}
+		
+		.dui-online-service image {
+			width: 120upx;
+			height: 120upx;
+		}
+		.dui-scrvice-tel {
+			padding: 100upx 0 40upx 0;
+			font-size: 24upx;
+			text-align: center;
+			color: #797979;
+		}
+		
+		.dui-scrvice-tel text {
+			margin: 0 6upx 0 6upx;
+		}

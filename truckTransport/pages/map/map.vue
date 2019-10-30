@@ -60,14 +60,15 @@
 				this.$refs[type].close()
 			},
 			async getLocation() {
+				let status;
 			    // #ifdef APP-PLUS
-			    let status = await this.checkPermission();
+			    status = await this.checkPermission();
 			    if (status !== 1) {
 			        return;
 			    }
 			    // #endif
 			    // #ifdef MP-WEIXIN || MP-TOUTIAO || MP-QQ
-			    let status = await this.getSetting();
+			    status = await this.getSetting();
 			    if (status === 2) {
 			        this.togglePopup("bottom", "permission");
 			        return;
@@ -77,11 +78,19 @@
 			    this.doGetLocation();
 			},
 			doGetLocation() {
+				var that=this;
 			    uni.getLocation({
 					type:' gcj02',
 			        success: (res) => {
 			            this.hasLocation = true;
 			            this.location = formatLocation(res.longitude, res.latitude);
+						 uni.openLocation({
+						    latitude: res.latitude,
+						    longitude: res.longitude,
+						    success: function () {
+						        console.log('success');
+						    }
+						});
 			        },
 			        fail: (err) => {
 			            // #ifdef MP-BAIDU

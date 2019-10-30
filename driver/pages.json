@@ -5,11 +5,6 @@
             "style": {
                 "navigationBarTitleText": "抢单大厅"
             }
-        },{
-            "path": "pages/order/order",
-            "style": {
-                "navigationBarTitleText": "订单"
-            }
         }, {
             "path": "pages/login/login",
             "style": {
@@ -30,7 +25,38 @@
             "style": {
                 "navigationBarTitleText": "我的"
             }
-        }
+        },{
+			"path": "pages/orderlist/orderlist",
+			"style": {
+				"navigationBarTitleText": "订单列表",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "行程单",
+							"fontSize": "12",
+							"float": "right",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/orderdetail/orderdetail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},{
+		    "path": "pages/message/message",
+		    "style": {
+		        "navigationBarTitleText": "消息中心"
+		    }
+		},{
+		    "path": "pages/message/messagedetail",
+		    "style": {
+		        "navigationBarTitleText": "消息详情"
+		    }
+		}
     ],
     "tabBar": {
         "color": "#7a7e83",
@@ -42,7 +68,7 @@
             "iconPath": "static/img/qiang.png",
             "selectedIconPath": "static/img/qiangS.png"
         },{
-            "pagePath": "pages/order/order",
+            "pagePath": "pages/orderlist/orderlist",
             "text": "订单",
             "iconPath": "static/img/order.png",
             "selectedIconPath": "static/img/orderS.png"

@@ -15,7 +15,7 @@
 										</view>
 									</view>
 									<view class="dui-basic-list-item__extra">
-										<text class="iconfont icon-gengduo-shuxiang"></text>
+										<text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
 									</view>
 								</view>
 							</view>

@@ -5,7 +5,7 @@
 				<view class="dui-service-bj"></view>
 				<view class="dui-scrvice-custom-wrapper" style="color: #fff;">
 					<text>最近订单</text>
-					<navigator url="complaintorder">更多<text class="iconfont icon-gengduo-shuxiang"></text></navigator>
+					<navigator url="complaintorder">更多<text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></navigator>
 				</view>
 				<view class="dui-scrvice-order">
 					暂无
@@ -26,7 +26,7 @@
 										</view>
 									</view>
 									<view class="dui-basic-list-item__extra">
-										<text class="iconfont icon-gengduo-shuxiang"></text>
+										<text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
 									</view>
 								</view>
 							</view>
@@ -39,7 +39,7 @@
 					<view class="dui-scrvice-custom-wrapper" style="background-color: #fff;">
 						<text>我的反馈记录</text>
 						<view class="dui-basic-list-item__extra">
-							<text class="iconfont icon-gengduo-shuxiang"></text>
+							<text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
 						</view>
 					</view>
 				</navigator>

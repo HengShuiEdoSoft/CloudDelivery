@@ -1,5 +1,6 @@
 <template>
     <view class="content">
+		<view></view>
         <view class="btn-row">
             <button v-if="!hasLogin" type="primary" class="primary" @tap="bindLogin">登录</button>
             <button v-if="hasLogin" type="default" @tap="bindLogout">退出登录</button>
