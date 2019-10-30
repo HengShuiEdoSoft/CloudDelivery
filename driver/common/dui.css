@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$blue".
-        on line 30 of E:\BuZhiHeng\Work\CloudDelivery\driver\common\dui.scss
+        on line 33 of E:\BuZhiHeng\Work\CloudDelivery\driver\common\dui.scss
 
-25: 		top: -4750upx;
-26: 		left: 50%;
-27: 		width: 5200upx;
-28: 		height: 5200upx;
-29: 		border-radius: 50%;
-30: 		background-color: $blue;
-31: 		transform: translateX(-50%);
-32: 	}
-33: 
-34: 	.dui-user-information {
-35: 		display: flex;
+28: 		top: -4750upx;
+29: 		left: 50%;
+30: 		width: 5200upx;
+31: 		height: 5200upx;
+32: 		border-radius: 50%;
+33: 		background-color: $blue;
+34: 		transform: translateX(-50%);
+35: 	}
+36: 
+37: 	.dui-user-information {
+38: 		display: flex;
 
 Backtrace:
-E:\BuZhiHeng\Work\CloudDelivery\driver\common\dui.scss:30
+E:\BuZhiHeng\Work\CloudDelivery\driver\common\dui.scss:33
 E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/variable.rb:49:in `_perform'
 E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
 E:/BuZhiHeng/Software/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
@@ -62,4 +62,4 @@ E:/BuZhiHeng/Software/Koala/bin/sass:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$blue\".\A         on line 30 of E:\BuZhiHeng\Work\CloudDelivery\driver\common\dui.scss\A \A 25: 		top: -4750upx;\A 26: 		left: 50%;\A 27: 		width: 5200upx;\A 28: 		height: 5200upx;\A 29: 		border-radius: 50%;\A 30: 		background-color: $blue;\A 31: 		transform: translateX(-50%);\A 32: 	}\A 33: \A 34: 	.dui-user-information {\A 35: 		display: flex;"; }
+  content: "Error: Undefined variable: \"$blue\".\A         on line 33 of E:\BuZhiHeng\Work\CloudDelivery\driver\common\dui.scss\A \A 28: 		top: -4750upx;\A 29: 		left: 50%;\A 30: 		width: 5200upx;\A 31: 		height: 5200upx;\A 32: 		border-radius: 50%;\A 33: 		background-color: $blue;\A 34: 		transform: translateX(-50%);\A 35: 	}\A 36: \A 37: 	.dui-user-information {\A 38: 		display: flex;"; }

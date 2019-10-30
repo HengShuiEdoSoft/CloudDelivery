@@ -70,11 +70,15 @@
 				<view class="ui-divide-line"></view>
 				<view class="ui-tips">说明: 若产生高速费、停车费、搬运费，需用户按实际支付。若涉及逾时等候费请按<navigator>标准费用</navigator>结算。</view>
 			</view>
-			<button type="primary" class="dui-orderdetail-confirm-btn">确认到达发货地</button>
-			<button type="primary" class="dui-orderdetail-confirm-btn1">
-				确认完成
-				<text>*请确认完成,结束本单服务</text>
-			</button>
+			<view class="dui-confirm-btn-box">
+				<button type="primary" class="dui-orderdetail-confirm-btn">确认到达发货地</button>
+			</view>
+			<view class="dui-confirm-btn-box">
+				<button type="primary" class="dui-orderdetail-confirm-btn1">
+					确认完成
+					<text>*请确认完成,结束本单服务</text>
+				</button>
+			</view>
 		</scroll-view>
 	</view>
 </template>
@@ -96,13 +100,13 @@
 	}
 
 	.dui-orderdetail-confirm-btn {
-		margin: 40upx 16upx;
 		background-color: #FF9801;
+		border-radius: 0;
 	}
 
 	.dui-orderdetail-confirm-btn1 {
-		margin: 40upx 16upx;
 		background-color: #DD524D;
+		border-radius: 0;
 	}
 
 	.dui-orderdetail-confirm-btn1 text {

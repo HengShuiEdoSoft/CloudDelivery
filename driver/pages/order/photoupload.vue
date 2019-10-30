@@ -3,13 +3,15 @@
 		<scroll-view scroll-y="true">
 			<view class="dui-container">
 				<view class="dui-photoupload">
-					<image src="" >
+					<image src="">
 				</view>
 				<view class="dui-photoupload-tips">
 					请拍照上传您送达时的货物场景照片,来确定您配送完成，最多上传6张
 				</view>
 			</view>
-			<button type="primary" class="dui-photoupload-btn">确认提交</button>
+			<view class="dui-confirm-btn-box">
+				<button type="primary" class="dui-photoupload-btn">确认提交</button>
+			</view>
 		</scroll-view>
 	</view>
 </template>
@@ -21,7 +23,7 @@
 				imgurl: []
 			}
 		},
-		methods:{}
+		methods: {}
 	}
 </script>
 

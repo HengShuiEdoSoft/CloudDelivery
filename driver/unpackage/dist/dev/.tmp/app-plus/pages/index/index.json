@@ -20,5 +20,8 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-drawer": "/components/drawer/drawer",
+    "uni-popup": "/components/uni-popup/uni-popup"
+  }
 }

@@ -449,6 +449,9 @@ textarea {
   padding-left: 20upx;
   padding-right: 20upx; }
 
+.dui-confirm-btn-box {
+  padding: 40upx 16upx; }
+
 /*我的*/
 .dui-user-bj {
   position: absolute;
