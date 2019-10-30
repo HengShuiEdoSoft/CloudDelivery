@@ -38,6 +38,12 @@
 			}
 		},
 		{
+			"path": "pages/order/photoupload",
+			"style": {
+				"navigationBarTitleText": "拍照上传"
+			}
+		},
+		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
