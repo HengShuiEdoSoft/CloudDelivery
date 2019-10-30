@@ -54,7 +54,7 @@
 			<view class="ui-top-isworing"><switch checked color="#FF5723" @change="switchChange" />工作状态</view>
 			<view>
 				<text class="iconfont icon-shaixuan" @tap="showDrawer"></text>
-				<navigator class="iconfont icon-xiaoxi-xianxing" url="/pages/message/message"></navigator>
+				<navigator class="iconfont icon-xiaoxi-xianxing" url="/pages/msgcenter/msgcenter"></navigator>
 			</view>
 		</view>
 		<view>
@@ -107,7 +107,6 @@
 		</view>
     </view>
 </template>
-
 <script>
     import {
         mapState
@@ -199,7 +198,6 @@
 		}
     }
 </script>
-
 <style>
     .hello {
         display: flex;

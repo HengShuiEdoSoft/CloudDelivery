@@ -1,39 +1,82 @@
 {
-    "pages": [ //pages数组中第一项表示应用启动页,
-        {
-            "path": "pages/index/index",
-            "style": {
-                "navigationBarTitleText": "抢单大厅"
-            }
-        }, {
-            "path": "pages/login/login",
-            "style": {
-                "navigationBarTitleText": "登录"
-            }
-        }, {
-            "path": "pages/reg/reg",
-            "style": {
-                "navigationBarTitleText": "注册"
-            }
-        }, {
-            "path": "pages/pwd/pwd",
-            "style": {
-                "navigationBarTitleText": "找回密码"
-            }
-        }, {
-            "path": "pages/user/user",
-            "style": {
-                "navigationBarTitleText": "我的"
-            }
-        },{
-			"path": "pages/orderlist/orderlist",
+	"pages": [ //pages数组中第一项表示应用启动页,
+		{
+			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "订单列表",
+				"navigationBarTitleText": "抢单大厅"			
+			}
+		},
+		{
+			"path": "pages/order/order",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
+			"path": "pages/order/orderdetail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/order/photoupload",
+			"style": {
+				"navigationBarTitleText": "拍照上传"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/reg/reg",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/pwd/pwd",
+			"style": {
+				"navigationBarTitleText": "找回密码"
+			}
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationBarBackgroundColor": "#434456",
+				"navigationBarTextStyle": "white",
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {
 						"buttons": [{
-							"text": "行程单",
+							"text": "\ue8ba ",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "20",
+							"float": "right",
+							"color": "#fff"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/user/details",
+			"style": {
+				"navigationBarTitleText": "提现明细"
+			}
+		},
+		{
+			"path": "pages/user/pickup",
+			"style": {
+				"navigationBarTitleText": "提现",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "管理银行卡  ",
 							"fontSize": "12",
 							"float": "right",
 							"color": "#424456"
@@ -41,47 +84,157 @@
 					}
 				}
 			}
-		}, {
-			"path": "pages/orderdetail/orderdetail",
+		},
+		{
+			"path": "pages/mycar/mycar",
 			"style": {
-				"navigationBarTitleText": "订单详情"
+				"navigationBarTitleText": "我的车辆"
 			}
-		},{
-		    "path": "pages/message/message",
-		    "style": {
-		        "navigationBarTitleText": "消息中心"
-		    }
-		},{
-		    "path": "pages/message/messagedetail",
-		    "style": {
-		        "navigationBarTitleText": "消息详情"
-		    }
+		},
+		{
+			"path": "pages/servicecenter/servicecenter",
+			"style": {
+				"navigationBarTitleText": "客服中心"
+			}
+		},
+		{
+			"path": "pages/user/about",
+			"style": {
+				"navigationBarTitleText": "关于我们"
+			}
+		},
+		{
+			"path": "pages/servicecenter/servicecenter-detail",
+			"style": {
+				"navigationBarTitleText": "常见问题反馈",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e7",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/setup/setup",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		},
+		{
+			"path": "pages/setup/nichengchange",
+			"style": {
+				"navigationBarTitleText": "编辑昵称",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "保存",
+							"fontSize": "12",
+							"float": "right",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/setup/phonenum",
+			"style": {
+				"navigationBarTitleText": "手机号"
+			}
+		},
+		{
+			"path": "pages/setup/phoneverify",
+			"style": {
+				"navigationBarTitleText": "验证手机号"
+			}
+		},
+		{
+			"path": "pages/setup/changephone",
+			"style": {
+				"navigationBarTitleText": "更换手机号"
+			}
+		},
+		{
+			"path": "pages/setup/moresetup",
+			"style": {
+				"navigationBarTitleText": "更多设置"
+			}
+		},
+		{
+			"path": "pages/setup/resetpwd",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/setup/vercode",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/setup/clause",
+			"style": {
+				"navigationBarTitleText": "服务条款"
+			}
+		},
+		{
+			"path": "pages/setup/transportstandard",
+			"style": {
+				"navigationBarTitleText": "收费标准"
+			}
+		},
+		{
+			"path": "pages/cityselect/cityselect",
+			"style": {
+				"navigationBarTitleText": "选择城市"
+			}
+		},
+		{
+			"path": "pages/msgcenter/msgcenter",
+			"style": {
+				"navigationBarTitleText": "消息中心"
+			}
+		},
+		{
+			"path": "pages/msgcenter/msgdetails",
+			"style": {
+				"navigationBarTitleText": "消息详情"
+			}
 		}
-    ],
-    "tabBar": {
-        "color": "#7a7e83",
-        "selectedColor": "#FF5723",
-        "backgroundColor": "#ffffff",
-        "list": [{
-            "pagePath": "pages/index/index",
-            "text": "抢单",
-            "iconPath": "static/img/qiang.png",
-            "selectedIconPath": "static/img/qiangS.png"
-        },{
-            "pagePath": "pages/orderlist/orderlist",
-            "text": "订单",
-            "iconPath": "static/img/order.png",
-            "selectedIconPath": "static/img/orderS.png"
-        }, {
-            "pagePath": "pages/user/user",
-            "text": "我的",
-            "iconPath": "static/img/my.png",
-            "selectedIconPath": "static/img/myS.png"
-        }]
-    },
-    "globalStyle": {
-    	"navigationBarTextStyle": "black",
-    	"navigationBarBackgroundColor": "white",
-    	"backgroundColor": "#f3f4f5"
-    }
+	],
+	"tabBar": {
+		"color": "#7a7e83",
+		"selectedColor": "#FF5723",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"text": "抢单",
+			"iconPath": "static/img/qiang.png",
+			"selectedIconPath": "static/img/qiangS.png"
+		}, {
+			"pagePath": "pages/order/order",
+			"text": "订单",
+			"iconPath": "static/img/order.png",
+			"selectedIconPath": "static/img/orderS.png"
+		}, {
+			"pagePath": "pages/user/user",
+			"text": "我的",
+			"iconPath": "static/img/my.png",
+			"selectedIconPath": "static/img/myS.png"
+		}]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "white",
+		"backgroundColor": "#f3f4f5"
+	}
 }
