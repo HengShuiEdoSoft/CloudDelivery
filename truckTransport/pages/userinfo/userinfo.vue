@@ -70,6 +70,7 @@
 				imgurl:["../../static/img/HeadImg.jpg"],
 				show: false,
 				type:"",
+				requesturl:"/api/user/edituserinfo",
 				sex:[{
 					value:"1",
 					name:"男"
@@ -82,11 +83,11 @@
 		},
 		onShow() {
 			//data，每次返回会刷新
-			
+			this.setData();
 		},
 		methods:{
 			setData(){
-				console.log("重新请求，渲染页面")
+				console.log("重新请求，渲染页面")								
 			},
 			radioChange: function(e) {
 			    for (let i = 0; i < this.sex.length; i++) {
@@ -118,7 +119,7 @@
 				this.$set(this.imgurl, rsp.index, rsp.path);
 				return;
 				uni.uploadFile({
-					url: '', //仅为示例，非真实的接口地址
+					url: 'https://hll.hda365.com/api/file/upload', //仅为示例，非真实的接口地址
 					filePath: rsp.path,
 					name: 'avatar',
 					formData: {

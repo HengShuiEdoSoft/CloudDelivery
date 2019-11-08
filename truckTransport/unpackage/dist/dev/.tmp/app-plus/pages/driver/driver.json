@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "我的司机",
+  "enablePullDownRefresh": true,
   "bounce": "none",
   "titleNView": {
     "buttons": [

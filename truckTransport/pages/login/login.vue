@@ -121,6 +121,7 @@
 								mask: true,
 								duration: 3000
 					    	});
+							service.addUser(res.data);
 					    	that.toMain(res.data);
 						}
 					  })

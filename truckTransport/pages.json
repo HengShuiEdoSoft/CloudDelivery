@@ -53,6 +53,7 @@
 			"path": "pages/orderlist/orderlist",
 			"style": {
 				"navigationBarTitleText": "订单列表",
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {
@@ -112,6 +113,7 @@
 			"path": "pages/mymoney/myinvoicing-history",
 			"style": {
 				"navigationBarTitleText": "开票历史",
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {
@@ -201,7 +203,8 @@
 		}, {
 			"path": "pages/address/address",
 			"style": {
-				"navigationBarTitleText": "常用地址"
+				"navigationBarTitleText": "常用地址",
+				"enablePullDownRefresh": true
 			}
 		}, {
 			"path": "pages/address/addaddress",
@@ -250,6 +253,7 @@
 			"path": "pages/driver/driver",
 			"style": {
 				"navigationBarTitleText": "我的司机",
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {
@@ -392,6 +396,7 @@
 			"path": "pages/servicecenter/feedback",
 			"style": {
 				"navigationBarTitleText": "我的反馈记录",
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {

@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "订单列表",
+  "enablePullDownRefresh": true,
   "bounce": "none",
   "titleNView": {
     "buttons": [

@@ -8,7 +8,7 @@
 	            uni.getStorage({//获得保存在本地的用户信息  
 	                key: 'userLogin',  
 	                success:(res) => {  
-	                    this.login(res.data);  	                    
+	                    this.login(res.data)
 	                }  
 	            });  
 	        },

@@ -43,15 +43,47 @@
 				vercode: '',
 				pwd: '',
 				confirmpassword: '',
+				requestUrl:'/api/common/sendcode',
 				reseturl:'/api/user/resetpwd',
 				countdown: 60
 			}
 		},
 		methods: {
-			numberst(e) {
-				//其他代码....
-				this.countDown();
-			},
+			numberst(requestUrl){
+						if(!this.$drmking.isPhone(this.phone)){
+							uni.showToast({
+								'icon':'none',
+								title: '手机号码格式不正确！',
+								showCancel: false
+							});
+							return false;
+						}
+						this.countDown();
+						const data={
+							phone:this.phone
+						}
+						this.$uniFly
+						  .post({
+						    url: requestUrl,
+						    params: data
+						  })
+						  .then(function(res) {
+						    if(res.code===0){
+						    	uni.showToast({
+									title: '成功获取验证码',
+									icon: 'success',
+									mask: true,
+									duration: 3000
+						    	});
+							}
+						  })
+						  .catch(function(error) {
+						    uni.showToast({
+						    	content: error,
+						    	showCancel: false
+						    });
+						  });
+					},
 			// 倒计时
 			countDown() {
 				let self = this;
@@ -73,12 +105,13 @@
 				/**
 				 * 
 				 */
-				if (this.phone.length != 11) {
+				if(!this.$drmking.isPhone(this.phone)){
 					uni.showToast({
-						icon: 'none',
-						title: '手机号码格式错误'
+						'icon':'none',
+						title: '手机号码格式不正确！',
+						showCancel: false
 					});
-					return;
+					return false;
 				}
 				if (this.vercode.length != 6) {
 					uni.showToast({
@@ -107,39 +140,29 @@
 				        vercode: this.vercode,
 						usertype:0
 				    }
-				reseturl= this.url + reseturl;
-				uni.request({					
-						url: reseturl,
-						method:'POST',
-						data:data,
-						header: {
-						    'Content-Type': 'application/x-www-form-urlencoded' //自定义请求头信息
-						},
-						success: (res) => {
-							this.res =JSON.stringify(res);
-							console.log(res.data)
-							if(res.data.code===0){
-								console.log("success")
-								service.addUser(data);
-								uni.showToast({
-								    title: '重置密码成功'
-								});
-								uni.navigateTo({
-									url:"/pages/index/index"
-								})({
-								    delta: 2
-								});
-							}else if(res.data.code===1){
-								uni.showToast({
-									content: res.msg,
-									showCancel: false
-								});
-							}			
-						},
-						complete: () => {
-							this.loading = false;
-						}
-				});
+				this.$uniFly
+				  .post({
+				    url: reseturl,
+				    params: data
+				  })
+				  .then(function(res) {
+				    if(res.code===0){
+				    	uni.showToast({
+							title: '重置密码成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+				    	});
+				    	uni.navigateTo({
+				    		url:'/pages/index/index'
+				    	})
+					}
+				  }).catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				  });
 			}
 		}
 	}

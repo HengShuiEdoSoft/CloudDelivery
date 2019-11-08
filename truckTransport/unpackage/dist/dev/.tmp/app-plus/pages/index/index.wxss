@@ -112,7 +112,7 @@
 		font-size:12px;
 		line-height: 1.5;
 }
-.ui-carinfo-cont>text{
+.ui-carinfo-cont>view{
 		display:block;
 		color:#666;
 }
