@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "常用地址",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

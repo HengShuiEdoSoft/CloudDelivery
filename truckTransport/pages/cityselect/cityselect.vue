@@ -4,30 +4,57 @@
 		<view class="ui-city-container">
 			<view class="ui-tip">当前城市</view>
 			<text class="ui-city">{{currentCity}}</text>
+		</view>		
+		<view class="ui-city-list">
+			<view class="ui-tip" style="padding:20upx 30upx">可选城市</view>
+			<view v-for="(item,index) in list" class="ui-city-item" :key="item.city_id" :class="{active:index==current}" :data-current="index" @tap="getSelect(index)">{{item.city_title}}</view>
 		</view>
-		<uni-indexed-list :options="list" :show-select="false" @click="bindClick" />
 	</view>
 </template>
 
 <script>
-	import city from '@/common/city.data.js'
-	import uniIndexedList from '@/components/uni-indexed-list/uni-indexed-list.vue'
 	export default {
-		components: {
-			uniIndexedList
-		},
 		data() {
 			return {
 				currentCity:"",
-				list: city.list
+				currentId:"",
+				current:1,
+				list: []
 			}
 		},
 		onLoad(options) {
-			this.currentCity=options.city
+			this.currentCity=options.city;
+			let that=this;
+			if(that.$drmking.cacheData("CITY_SELECT")){
+				that.list=that.$drmking.cacheData("CITY_SELECT");
+				return;
+			}
+			this.$uniFly
+			  .get({
+			    url: "/api/city/getcitylist",
+			    params: {}
+			  })
+			  .then(function(res) {
+			    if(res.code===0){
+			    	that.list=res.data;
+					that.$drmking.cacheData("CITY_SELECT",res.data,2596000);
+					that.currentCity=that.list[0].city_title;
+					that.currentId=that.list[0].city_id;
+					console.log(res.data);
+				}
+			  })
+			  .catch(function(error) {
+			    uni.showToast({
+			    	content: error,
+			    	showCancel: false
+			    });
+			  })
 		},
 		methods: {
-			bindClick(e) {
-				console.log('点击item，返回数据' + JSON.stringify(e))
+			getSelect:function(index){
+				this.current=index;
+				this.currentCity=this.list[index].city_title;
+				this.currentId=this.list[index].city_id;
 			}
 		}
 	}
@@ -102,5 +129,18 @@
 		padding: 30upx;
 		color: #3b4144;
 		background: #fff
+	}
+	.ui-city-item{
+		line-height: 88upx;
+		padding:0 30upx;
+	}
+	.ui-city-item.active{
+		color:#FF5723;
+	}
+	.ui-city-item:after{
+		content:"";
+		display:block;
+		height:1px;
+		background: #eee;
 	}
 </style>

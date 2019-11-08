@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "开票历史",
+  "enablePullDownRefresh": true,
   "bounce": "none",
   "titleNView": {
     "buttons": [

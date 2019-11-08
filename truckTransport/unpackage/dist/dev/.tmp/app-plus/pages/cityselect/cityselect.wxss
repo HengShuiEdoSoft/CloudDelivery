@@ -69,4 +69,17 @@ view {
 	color: #3b4144;
 	background: #fff
 }
+.ui-city-item{
+	line-height: 88rpx;
+	padding:0 30rpx;
+}
+.ui-city-item.active{
+	color:#FF5723;
+}
+.ui-city-item:after{
+	content:"";
+	display:block;
+	height:1px;
+	background: #eee;
+}
 

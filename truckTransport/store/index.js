@@ -12,7 +12,8 @@ const store = new Vuex.Store({
         hasLogin: true,
         phone: "",
 		userState:"",
-		token:""
+		token:"",
+		usertype:"0"
 		
     },
     mutations: {
@@ -21,6 +22,7 @@ const store = new Vuex.Store({
 			state.status=user.status||'';
 			state.token = user.token||'';
             state.hasLogin = true;
+			state.usertype = user.user_type||'0'
 			uni.setStorage({
 				key:'userLogin',
 				data:user

@@ -397,6 +397,12 @@ textarea {
   padding: 40upx 0 20upx;
   color: #FF5723; }
 
+.loading {
+  padding: 40upx 0;
+  font-size: 12px;
+  text-align: center;
+  color: #999; }
+
 .dui-gap {
   height: 16upx; }
 

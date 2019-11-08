@@ -3,7 +3,7 @@
 		<view class="input-group dui-input-group-mg">
 			<view class="input-row border">
 				<text class="title iconfont icon-dianhua"></text>
-				<m-input type="text" focus clearable v-model="num" placeholder="请输入手机号码"></m-input>
+				<m-input type="text" focus clearable v-model="phone" placeholder="请输入手机号码"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-Raidobox-xuanzhong"></text>
@@ -30,7 +30,7 @@
 	    },
 	    data() {
 	        return {
-	            num: '',
+	            phone: '',
 	            vercode: '',
 				countdown:60
 	        }
@@ -40,7 +40,30 @@
 		},
 	    methods: {
 			numberst(e){
-						//其他代码....
+						const data={
+							phone:this.phone
+						}
+						this.$uniFly
+						  .post({
+						    url:"/api/common/sendcode",
+						    params: data
+						  })
+						  .then(function(res) {
+						    if(res.code===0){
+						    	uni.showToast({
+									title: '成功获取验证码',
+									icon: 'success',
+									mask: true,
+									duration: 3000
+						    	});
+							}
+						  })
+						  .catch(function(error) {
+						    uni.showToast({
+						    	content: error,
+						    	showCancel: false
+						    });
+						  });
 						this.countDown();
 					},
 					// 倒计时
@@ -60,10 +83,35 @@
 							}
 						},1000)
 					},	
-	        vertifynum() {        
-	            uni.navigateTo({
-	                url:"/pages/userinfo/changephone"
-	            });
+	        vertifynum() { 
+				const data = {
+				    phone: this.phone,
+				    vercode: this.vercode
+				}
+				this.$uniFly
+				  .post({
+				    url: "",
+				    params: data
+				  })
+				  .then(function(res) {
+				    if(res.code===0){
+				    	uni.showToast({
+							title: '验证成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+				    	});
+				    	uni.navigateTo({
+				    	    url:"/pages/userinfo/changephone"
+				    	});
+					}
+				  }).catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				  });
+	           
 	        }
 	    }
 	}
