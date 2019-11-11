@@ -6,8 +6,8 @@
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
 				<scroll-view class="scroll-container">
-					<navigator class="ui-order-list-item ui-hujiao" url="/pages/orderdetail/orderdetail">
-						<view class="ui-order-list-item-top"><text class="ui-order-list-cartype">中面包车</text><text>09月20日 10:22</text></view>
+					<navigator class="ui-order-list-item ui-hujiao" v-for="(item,index) in newsList[0].list" :url="'/pages/orderdetail/orderdetail?id='+item.order_id" :key="item.order_id">
+						<view class="ui-order-list-item-top"><text class="ui-order-list-cartype">{{item.car}}</text><text>{{item.sure_time}}</text></view>
 						<view class="ui-divide-line"></view>
 						<view class="ui-order-timeline-container">
 							<view class="ui-order-timeline uni-timeline">
@@ -26,15 +26,15 @@
 							</view>
 							<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 						</view>
-						<view class="ui-order-price">￥20.8</view>
+						<view class="ui-order-price">{{"￥"+item.order_price}}</view>
 					</navigator>
 					<view class="loading">{{loadingText[0]}}</view>
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
 				<scroll-view class="scroll-container">
-					<navigator class="ui-order-list-item ui-daizhifu" url="/pages/orderdetail/orderdetail">
-						<view class="ui-order-list-item-top"><text class="ui-order-list-cartype">中面包车</text><text>09月20日 10:22</text></view>
+					<navigator class="ui-order-list-item ui-daizhifu" v-for="(item,index) in newsList[1].list" :url="'/pages/orderdetail/orderdetail?id='+item.order_id" :key="item.order_id">
+						<view class="ui-order-list-item-top"><text class="ui-order-list-cartype">{{item.car}}</text><text>{{item.sure_time}}</text></view>
 						<view class="ui-divide-line"></view>
 						<view class="ui-order-timeline-container">
 						<view class="ui-order-timeline uni-timeline">
@@ -53,12 +53,37 @@
 						</view>
 						<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 						</view>
-						<view class="ui-order-price">￥20.8</view>
-						<view class="loading">{{loadingText[1]}}</view>
-					</navigator>
+						<view class="ui-order-price">{{"￥"+item.order_price}}</view>						
+					</navigator><view class="loading">{{loadingText[1]}}</view>
 				</scroll-view>
 			</swiper-item>
-			<swiper-item><scroll-view>3</scroll-view></swiper-item>
+			<swiper-item>
+				<scroll-view>
+					<navigator class="ui-order-list-item ui-daizhifu" v-for="(item,index) in newsList[2].list" :url="'/pages/orderdetail/orderdetail?id='+item.order_id" :key="item.order_id">
+						<view class="ui-order-list-item-top"><text class="ui-order-list-cartype">{{item.car}}</text><text>{{item.sure_time}}</text></view>
+						<view class="ui-divide-line"></view>
+						<view class="ui-order-timeline-container">
+						<view class="ui-order-timeline uni-timeline">
+							<view class="uni-timeline-item uni-timeline-first-item">
+								<view class="uni-timeline-item-divider"></view>
+								<view class="uni-timeline-item-content">
+									<text class="ui-address">衡水人民政府</text>
+								</view>
+							</view>
+							<view class="uni-timeline-item uni-timeline-last-item">
+								<view class="uni-timeline-item-divider"></view>
+								<view class="uni-timeline-item-content">
+									<text class="ui-address">怡然城</text>
+								</view>
+							</view>
+						</view>
+						<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
+						</view>
+						<view class="ui-order-price">{{"￥"+item.order_price}}</view>	
+					</navigator>
+					<view class="loading">{{loadingText[2]}}</view>
+				</scroll-view>
+			</swiper-item>
 		</swiper>
 	</view>
 </template>
@@ -84,34 +109,78 @@
 					},{
 						name:"已取消",
 				}],
-				newsList:[],
-				status:["0,1,2,3","4,5","11,12,13"]
+				newsList:[{
+						has_next:false,
+						list:[{
+							order_id:1,
+							order_price:20,
+							car:"小面包车"
+						}]
+					},{
+						has_next:false,
+						list:[{
+							order_id:1,
+							order_price:20,
+							car:"小面包车"
+						}]
+					},{
+						has_next:false,
+						list:[{
+							order_id:1,
+							order_price:20,
+							car:"小面包车"
+						}]
+					}],
+				status:["0","4","11"]
+				//status:["0,1,2,3","4,5","11,12,13"]
 			}
 		},
-		onLoad:function(){
+		onShow:function(){
 		   _self = this;
 		   switch (_self.current){
 		   	case 0:
-				this.getnewsList(this.page1,this.status[0]);
+				_self.getnewsList(_self.page1,_self.status[0]);
 		   		break;
 			case 1:
-				this.getnewsList(this.page2,this.status[1]);
+				_self.getnewsList(_self.page2,_self.status[1]);
 				break;
 			case 2:
-				this.getnewsList(this.page3,this.status[2]);
+				_self.getnewsList(_self.page3,_self.status[2]);
 				break;
 		   	
 		   }
 		},
 		onPullDownRefresh:function(){
-		   this.getnewsList();
+		   _self = this;
+		   switch (_self.current){
+		   	case 0:
+		   		_self.getnewsList(_self.page1,_self.status[0]);
+		   		break;
+		   	case 1:
+				_self.getnewsList(_self.page2,that.status[1]);
+		   		break;
+		   	case 2:
+		   		_self.getnewsList(_self.page3,_self.status[2]);
+		   		break;		   	
+		   }
 		},
 		onReachBottom:function(){
 			if(timer != null){
 			   clearTimeout(timer);
 			}
 			timer = setTimeout(function(){
-			   that.getmorenews();
+			   switch (_self.current){
+			   	case 0:
+			   		_self.getmorenews(_self.page1,_self.status[0]);
+			   		break;
+			   	case 1:
+			   		_self.getmorenews(_self.page2,_self.status[1]);
+			   		break;
+			   	case 2:
+			   		_self.getmorenews(_self.page3,_self.status[2]);
+			   		break;
+			   	
+			   }
 			}, 1000);
 		 },
 		methods:{
@@ -143,7 +212,6 @@
 					 pagesize:10,
 					 status:status
 				 }
-				 console.log(data)
 			    this.$uniFly
 				.post({
 					url: "/api/order/getorderlist",
@@ -151,13 +219,13 @@
 				})	
 				.then({function(res){
 						_self.loadingText[_self.current] = '';
-						if(res.data == null){
+						if(!res.data.has_next){
 							uni.hideNavigationBarLoading();
 							_self.loadingText[_self.current] = '已加载全部';
 							return false;
 						}
 						page++;
-						console.log(res);
+						//console.log(res);
 						_self.newsList[_self.current] = _self.newsList[_self.current].concat(res.data);
 						_self.loadingText[_self.current] = '加载更多';
 						uni.hideNavigationBarLoading();
@@ -192,11 +260,15 @@
 					param: data
 				})
 				.then({function(res){
+					console.log(res.data)
+					if(res.code===0){
 						page++;
 						_self.newsList[_self.current] = res.data;
+						
 						uni.hideNavigationBarLoading();
 						uni.stopPullDownRefresh();
 						_self.loadingText[_self.current] = '加载更多';
+					}
 					}
 			    })
 				.catch(function(error) {

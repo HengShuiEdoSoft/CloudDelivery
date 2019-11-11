@@ -86,6 +86,7 @@
 					},	
 	        changenum() {   
 				let userData={};
+				let that=this;
 				uni.getStorage({//获得保存在本地的用户信息
 				    key: 'userLogin',  
 				    success:(res) => {  
@@ -105,6 +106,8 @@
 				  })
 				  .then(function(res) {
 				    if(res.code===0){
+						userData.phone=that.new_phone;
+						this.login(userData);
 				    	uni.showToast({
 				    	    title: '变更成功',
 							icon: 'success',
