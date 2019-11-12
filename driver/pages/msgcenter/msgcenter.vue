@@ -2,58 +2,154 @@
 	<view class="content">
 		<scroll-view scroll-y="true">
 			<view class="dui-msgcenter-list">
-				<block v-for="(item,index) in lists" :key="index">
-					<navigator :url="'msgdetails?id='+index" class="dui-msgcenter-item-box">
+				<block v-for="(item,index) in lists" :key="item.notice_id">
+					<navigator :url="'msgdetails?id='+item.notice_id" class="dui-msgcenter-item-box">
 						<view class="dui-msgcenter-item">
-							<view class="dui-msgcenter-logo">
-								<image :src="item.img"></image>
+							<view v-if="item.msg_type===0" class="dui-msgcenter-logo">
+								<image src="../../static/img/setup.png"></image>
+							</view>
+							<view v-if="item.msg_type===1" class="dui-msgcenter-logo">
+								<image src="../../static/img/file.png"></image>
 							</view>
 							<view class="dui-msgcenter-flex-column">
 								<view class="dui-msgcenter-title">
-									<text>{{item.msgtype}}</text>
-									<text class="dui-msgcenter-date">{{item.date}}</text>
+									<text v-if="item.msg_type===0">系统通知</text>
+									<text v-if="item.msg_type===1">订单通知</text>
+									<text class="dui-msgcenter-date">{{item.create_time}}</text>
 								</view>
 								<view class="dui-msgcenter-content">
-									{{item.msgcontent}}
+									{{item.msg}}
 								</view>
 							</view>
 						</view>
 					</navigator>
 				</block>
 			</view>
+			<view class="loading">{{loadingText}}</view>
 		</scroll-view>
 	</view>
 </template>
 
 <script>
+	var _self,timer = null;
 	export default {
 		data() {
 			return {
-				lists: [{
-					"img": "../../static/img/setup.png",
-					"msgtype": "通知",
-					"date": "2019-10-10",
-					"msgcontent": "系统维护通知"
-				}, {
-					"img": "../../static/img/file.png",
-					"msgtype": "订单超时预警",
-					"date": "2019-10-11",
-					"msgcontent": "您有订单,未及时运送,请尽快前往"
-				}, {
-					"img": "../../static/img/setup.png",
-					"msgtype": "通知",
-					"date": "2019-10-10",
-					"msgcontent": "系统维护通知"
-				}, {
-					"img": "../../static/img/file.png",
-					"msgtype": "订单超时预警",
-					"date": "2019-10-11",
-					"msgcontent": "您有订单,未及时运送,请尽快前往"
-				}]
+				loadingText:'',
+				page:1,
+				lists: []
 			}
 		},
+		onShow:function(){
+		   _self = this;
+		   _self.getList();
+		},
+		onPullDownRefresh:function(){
+		   _self = this;
+		   _self.getList();
+		},
+		onReachBottom:function(){
+			if(timer != null){
+			   clearTimeout(timer);
+			}
+			timer = setTimeout(function(){
+			   _self.getmore();
+			}, 1000);
+		 },
 		methods: {
-
+			getmore : function(){
+				if(_self.loadingText != '' && _self.loadingText != '加载更多'){
+					return false;
+			    }
+			    _self.loadingText = '加载中...';
+			    uni.showNavigationBarLoading();
+				uni.getStorage({//获得保存在本地的用户信息
+				    key: 'userLogin',  
+				    success:(res) => {  
+				        _self.userinfo=res.data  	                    
+				    }  
+				}); 
+				 const data={
+					 phone:_self.userinfo.phone,
+					 token:_self.userinfo.token,
+					 page:_self.page
+				 }
+			    this.$uniFly
+				.post({
+					url: "/api/notice/getnoticelist",
+					param: data
+				})	
+				.then({function(res){
+					if(res.code===0){
+						_self.loadingText = '';
+						if(!res.data.has_next){
+							uni.hideNavigationBarLoading();
+							_self.loadingText = '已加载全部';
+							return false;
+						}
+						_self.page++;
+						//console.log(res);
+						_self.lists = _self.lists.concat(res.data);
+						_self.loadingText = '加载更多';
+						uni.hideNavigationBarLoading();
+					}else{
+						uni.showToast({
+						    content: res.msg,
+						    showCancel: false
+						});
+					}
+					}
+				})
+				.catch(function(error) {
+				    uni.showToast({
+				  	    content: error,
+				  	    showCancel: false
+				    });
+				});
+			},
+			getList : function(){
+			    _self.page = 1;
+			    uni.showNavigationBarLoading();
+				uni.getStorage({//获得保存在本地的用户信息
+				    key: 'userLogin',  
+				    success:(res) => {  
+				        _self.userinfo=res.data 	                    
+				    }  
+				}); 
+				 const data={
+					 phone:_self.userinfo.phone,
+					 token:_self.userinfo.token,
+					 page:_self.page
+				 }
+			    this.$uniFly
+				.post({
+					url: '/api/notice/getnoticelist',
+					param: data
+				})
+				.then({function(res){
+					console.log(res.data)
+					if(res.code===0){
+						_self.page++;
+						_self.lists = res.data;
+						
+						uni.hideNavigationBarLoading();
+						uni.stopPullDownRefresh();
+						_self.loadingText = '加载更多';
+					}else{
+						uni.showToast({
+						    content: res.msg,
+						    showCancel: false
+						});
+					}
+					}
+			    })
+				.catch(function(error) {
+				    uni.showToast({
+				  	    content: error,
+				  	    showCancel: false
+				    });
+				})
+			}
 		}
 	}
 </script>

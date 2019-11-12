@@ -123,6 +123,11 @@
 					    	});
 							service.addUser(res.data);
 					    	that.toMain(res.data);
+						}else{
+							uni.showToast({
+								content: res.msg,
+								showCancel: false
+							});
 						}
 					  })
 					  .catch(function(error) {

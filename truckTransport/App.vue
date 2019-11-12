@@ -5,10 +5,11 @@
 	    export default {  
 	        onLaunch: function () {  
 				console.log('App Launch');
+				var that=this;
 	            uni.getStorage({//获得保存在本地的用户信息  
 	                key: 'userLogin',  
 	                success:(res) => {  
-	                    this.login(res.data)
+	                    that.login(res.data)
 	                }  
 	            });  
 	        },
@@ -74,7 +75,7 @@
 		display: flex;
 		flex: 1;
 		flex-direction: column;
-		background-color: #efeff4;
+		background-color: #F3F4F5;
 		padding: 0;
 	}
 

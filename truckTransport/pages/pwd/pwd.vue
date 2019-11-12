@@ -75,6 +75,11 @@
 									mask: true,
 									duration: 3000
 						    	});
+							}else{
+								uni.showToast({
+									content: res.msg,
+									showCancel: false
+								});
 							}
 						  })
 						  .catch(function(error) {
@@ -156,7 +161,12 @@
 				    	uni.navigateTo({
 				    		url:'/pages/index/index'
 				    	})
-					}
+					}else{
+							uni.showToast({
+								content: res.msg,
+								showCancel: false
+							});
+						}
 				  }).catch(function(error) {
 				    uni.showToast({
 				    	content: error,

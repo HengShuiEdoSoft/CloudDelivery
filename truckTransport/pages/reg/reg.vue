@@ -69,7 +69,12 @@
 									mask: true,
 									duration: 3000
 						    	});
-							}
+							}else{
+							uni.showToast({
+								content: res.msg,
+								showCancel: false
+							});
+						}
 						  })
 						  .catch(function(error) {
 						    uni.showToast({
@@ -139,7 +144,12 @@
 				    	uni.navigateTo({
 				    		url:'/pages/login/login'
 				    	})
-					}
+					}else{
+							uni.showToast({
+								content: res.msg,
+								showCancel: false
+							});
+						}
 				  }).catch(function(error) {
 				    uni.showToast({
 				    	content: error,

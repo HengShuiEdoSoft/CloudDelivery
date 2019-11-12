@@ -5,6 +5,12 @@
 		<view class="dui-coupon-input">
 			<input type="text" value="" focus="true" placeholder="按此输入兑换码" />		
 		</view>
+		<view v-if="list.length===0">
+			<view class="dui-notyet-wrapper">
+				<image src="../../static/img/NoCoupon.jpg" mode=""></image>
+				<text>您的优惠券为空</text>
+			</view>
+		</view>
 		<view class="ui-coupon-list">
 			<view class="ui-coupon-item" v-for="(item,index) in list" :key="item.coupon_type_id">
 				<view class="ui-coupon-item-body">

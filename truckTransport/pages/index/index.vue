@@ -126,7 +126,12 @@
 			    if(res.code===0){	
 			    	that.carTypes=res.data;
 					that.$drmking.cacheData("carInfos",res.data,2592000);
-				}
+				}else{
+					uni.showToast({
+						content: res.msg,
+						showCancel: false
+					});
+				}	
 			  })
 			  .catch(function(error) {
 			    uni.showToast({
