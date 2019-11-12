@@ -23,7 +23,7 @@
 			</view>
 			<view class="dui-gap"></view>
 			<view class="dui-basic-list">
-				<navigator url="resetpwd">
+				<navigator url="/pages/pwd/pwd">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container dui-reduce">
 							<view class="dui-basic-list-item__content">
@@ -161,7 +161,7 @@
 				</navigator>
 			</view>
 		</scroll-view>
-		<view class="dui-fixed-bottom-btn">
+		<view class="dui-fixed-bottom-btn" @tap="logOut">
 			<text>退出登录</text>
 		</view>
 	</view>
@@ -412,6 +412,9 @@
 		}
 	})
 	// #endif
+	import {
+	       mapMutations  
+	   } from 'vuex'; 
 	export default {
 		onBackPress() {
 			//监听back键，关闭弹出菜单
@@ -428,6 +431,7 @@
 			}
 		},
 		methods: {
+			...mapMutations(['logout']) ,
 			switchChange: function(e) {
 				console.log('switch 发生 change 事件，携带值为', e.target.value)
 			},
@@ -438,6 +442,24 @@
 				nvImageMenu.show() //5+应支持从底部向上弹出的动画
 				// #endif					
 
+			},
+			logOut:function(){
+				var that=this;
+				uni.getStorage({//获得保存在本地的用户信息
+				    key: 'userLogin',  
+				    success:(res) => {
+				        that.logout(res.data);
+						uni.showToast({
+							title: '退出登录',
+							//icon: 'success',
+							mask: true,
+							duration: 3000
+						});
+						uni.navigateTo({
+							url:"/pages/index/index"
+						})
+				    }  
+				}); 
 			}
 		},
 	}

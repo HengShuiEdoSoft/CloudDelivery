@@ -72,4 +72,11 @@
 	color:#FF5723;
 	border:1px solid #FF5723;
 }
+.ui-coupon-use-b{
+	display:inline-block;
+	padding:8rpx 24rpx;
+	border-radius: 54rpx;
+	color:#999;
+	border:1px solid #ccc;
+}
 

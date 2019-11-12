@@ -614,4 +614,21 @@ textarea {
 .dui-scrvice-tel text {
   margin: 0 6upx 0 6upx; }
 
+.dui-notyet-wrapper image {
+  width: 170upx;
+  height: 200upx; }
+
+.dui-notyet-wrapper text {
+  margin: 86upx 0 70upx 0;
+  color: #8d8d8d; }
+
+.dui-notyet-btn {
+  width: 290upx;
+  height: 85upx;
+  line-height: 85upx;
+  background-color: #fff2de;
+  color: #FF5723;
+  text-align: center;
+  border-radius: 10upx; }
+
 /*# sourceMappingURL=common.css.map */

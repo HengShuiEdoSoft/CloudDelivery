@@ -14,7 +14,6 @@ const getUsers = function () {
 const addUser = function (userInfo) {
     let users = getUsers();
     users.push({
-        phone: userInfo.phone,
         user_type:	userInfo.user_type,	
         wxapp_id: userInfo.wxapp_id,
         minwxapp_id:userInfo.minwxapp_id,	

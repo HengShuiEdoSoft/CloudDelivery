@@ -143,6 +143,7 @@
 				})
 			this.getLocation();
 		},
+<<<<<<< HEAD
 		methods: {
 			tabChange: function(e) {
 				var index = e.target.dataset.current || e.currentTarget.dataset.current;
@@ -279,6 +280,177 @@
 				}
 
 				return status;
+=======
+        computed: mapState(['forcedLogin', 'hasLogin', 'phone']),
+        onLoad() {
+			let carlistUrl=this.carlistUrl;
+			let that=this;
+			if(this.$drmking.cacheData("carInfos")){
+				that.carTypes=that.$drmking.cacheData("carInfos");
+				return;
+			}
+			this.$uniFly
+			  .get({
+			    url: carlistUrl,
+			    params: {}
+			  })
+			  .then(function(res) {
+				  console.log(res);
+			    if(res.code===0){	
+			    	that.carTypes=res.data;
+					that.$drmking.cacheData("carInfos",res.data,2592000);
+				}else{
+					uni.showToast({
+						content: res.msg,
+						showCancel: false
+					});
+				}	
+			  })
+			  .catch(function(error) {
+			    uni.showToast({
+			    	content: error,
+			    	showCancel: false
+			    });
+			  })
+            this.getLocation();
+        },
+		methods:{
+			tabChange:function(e){
+				var index = e.target.dataset.current || e.currentTarget.dataset.current;
+				this.current=index;
+			},
+			swiperChange:function(e) {			
+				var index=e.target.current || e.detail.current;
+				this.current = index;
+			},
+			navTo:function(url){
+				if (!this.hasLogin) {
+				    uni.showModal({
+				        title: '未登录',
+				        content: '您未登录，需要登录后才能继续',
+				        /**
+				         * 如果需要强制登录，不显示取消按钮
+				         */
+				        showCancel: true,
+				        success: (res) => {
+				            if (res.confirm) {
+								/**
+								 * 如果需要强制登录，使用reLaunch方式
+								 */
+				                uni.navigateTo({
+				                    url: '../login/login'
+				                });
+				                
+				            }
+				        }
+				    });
+				}else{
+					uni.navigateTo({  
+						url:url
+					}) 
+				} 
+			},
+			orderSure(){
+				uni.navigateTo({
+					url:"/pages/order/order"
+				})
+			},
+			async getLocation() {
+				let status;
+			    // #ifdef APP-PLUS
+			    status = await this.checkPermission();
+			    if (status !== 1) {
+			        return;
+			    }
+			    // #endif
+			    // #ifdef MP-WEIXIN || MP-TOUTIAO || MP-QQ
+			    status = await this.getSetting();
+			    if (status === 2) {
+			        this.showConfirm();
+			        return;
+			    }
+			    // #endif
+			
+			    this.doGetLocation();
+			},
+			doGetLocation() {
+			    uni.getLocation({
+			        success: (res) => {
+			            this.hasLocation = true;
+			            this.location = formatLocation(res.longitude, res.latitude);
+						console.log(location);
+			        },
+			        fail: (err) => {
+			            // #ifdef MP-BAIDU
+			            if (err.errCode === 202 || err.errCode === 10003) { // 202模拟器 10003真机 user deny
+			                this.showConfirm();
+			            }
+			            // #endif
+			            // #ifndef MP-BAIDU
+			            if (err.errMsg.indexOf("auth deny") >= 0) {
+			                uni.showToast({
+			                    title: "访问位置被拒绝"
+			                })
+			            } else {
+			                uni.showToast({
+			                    title: err.errMsg
+			                })
+			            }
+			            // #endif
+			        }
+			    })
+			},
+			getSetting: function() {
+			    return new Promise((resolve, reject) => {
+			        uni.getSetting({
+			            success: (res) => {
+			                if (res.authSetting['scope.userLocation'] === undefined) {
+			                    resolve(0);
+			                    return;
+			                }
+			                if (res.authSetting['scope.userLocation']) {
+			                    resolve(1);
+			                } else {
+			                    resolve(2);
+			                }
+			            }
+			        });
+			    });
+				},
+			async checkPermission() {
+			    let status = permision.isIOS ? await permision.requestIOS('location') :
+			        await permision.requestAndroid('android.permission.ACCESS_FINE_LOCATION');
+			
+			    if (status === null || status === 1) {
+			        status = 1;
+			    } else if (status === 2) {
+			        uni.showModal({
+			            content: "系统定位已关闭",
+			            confirmText: "设置",
+			            success: function(res) {
+			                if (res.confirm) {
+			                    permision.gotoiOSSetting();
+			                }
+			            }
+			        })
+			    } else if (status.code) {
+			        uni.showModal({
+			            content: status.message
+			        })
+			    } else {
+			        uni.showModal({
+			            content: "需要定位权限",
+			            confirmText: "设置",
+			            success: function(res) {
+			                if (res.confirm) {
+			                    permision.gotoAppSetting();
+			                }
+			            }
+			        })
+			    }
+			
+			    return status;
+>>>>>>> 30d8df735fa7861caebf9e58822ce0c92faa2252
 			}
 		},
 		onNavigationBarButtonTap(e) {

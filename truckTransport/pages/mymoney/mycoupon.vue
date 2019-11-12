@@ -5,24 +5,31 @@
 		<view class="dui-coupon-input">
 			<input type="text" value="" focus="true" placeholder="按此输入兑换码" />		
 		</view>
+		<view v-if="list.length===0">
+			<view class="dui-notyet-wrapper">
+				<image src="../../static/img/NoCoupon.jpg" mode=""></image>
+				<text>您的优惠券为空</text>
+			</view>
+		</view>
 		<view class="ui-coupon-list">
-			<view class="ui-coupon-item">
+			<view class="ui-coupon-item" v-for="(item,index) in list" :key="item.coupon_type_id">
 				<view class="ui-coupon-item-body">
 					<view>
-						<view class="ui-coupon-price"><text>￥</text><text class="ui-coupon-price-num">10</text></view>
-						<view class="ui-coupon-subtext">下单立减</view>
+						<view class="ui-coupon-price"><text>￥</text><text class="ui-coupon-price-num">{{item.coupon_price}}</text></view>
+						<view class="ui-coupon-subtext">{{item.coupon_title}}</view>
 					</view>
 					<view class="ui-coupon-center">
 						<view>拉货就找云配送</view>
-						<view class="ui-coupon-time">2019.10.21~2019.10.28</view>
+						<view class="ui-coupon-time">满{{item.sill}}使用</view>
 						<view @tap="isShow" class="ui-coupon-detail-btn">更多详情<text class="iconfont icon-gengduo-hengxiang"></text></view>
 					</view>
-					<view><navigator class="ui-coupon-use">立即使用</navigator></view>
+					<view v-if="item.status===1"><navigator class="ui-coupon-use" :url="'/pages/index/index'+item.coupon_type_id">立即使用</navigator></view>
+					<view v-if="item.status===0"><view class="ui-coupon-use-b">不可用</view></view>
 				</view>
 				<view :class="{active:show}" class="ui-coupon-detail">
-					<view>1.适用车型：所有车型</view>
+					<view>1.适用车型：{{item.car_title}}</view>
 					<view>2.适用城市（区域）：全国</view>
-					<view>3.有效时间：2019.10.21~2019.10.28</view>
+					<view>3.使用限制：满{{item.sill}}使用</view>
 				</view>
 			</view>
 		</view>
@@ -34,11 +41,30 @@
 	export default {
 		data() {
 			return {
-				show:false
+				show:false,
+				list:[]
 			}
 		},
 		onLoad() {
-
+			let that=this;
+			this.$uniFly
+			  .get({
+			    url: "/api/coupon_type/getcoupontypelist",
+			    params: {}
+			  })
+			  .then(function(res) {
+				  console.log(res);
+			    if(res.code===0){	
+			    	that.list=res.data;
+					console.log(res.data)
+				}
+			  })
+			  .catch(function(error) {
+			    uni.showToast({
+			    	content: error,
+			    	showCancel: false
+			    });
+			  })
 		},
 		methods: {
 			isShow:function(){
@@ -108,5 +134,12 @@
 		border-radius: 54upx;
 		color:#FF5723;
 		border:1px solid #FF5723;
+	}
+	.ui-coupon-use-b{
+		display:inline-block;
+		padding:8upx 24upx;
+		border-radius: 54upx;
+		color:#999;
+		border:1px solid #ccc;
 	}
 </style>

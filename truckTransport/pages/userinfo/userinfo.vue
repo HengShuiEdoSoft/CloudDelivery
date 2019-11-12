@@ -119,7 +119,7 @@
 				this.$set(this.imgurl, rsp.index, rsp.path);
 				return;
 				uni.uploadFile({
-					url: 'https://hll.hda365.com/api/file/upload', //仅为示例，非真实的接口地址
+					url: 'https://hll.hda365.com/api/file/upload', 
 					filePath: rsp.path,
 					name: 'avatar',
 					formData: {

@@ -84,13 +84,14 @@
 						},1000)
 					},	
 	        vertifynum() { 
+				var that=this;
 				const data = {
-				    phone: this.phone,
+				    cphone: this.phone,
 				    vercode: this.vercode
 				}
 				this.$uniFly
 				  .post({
-				    url: "",
+				    url: "/api/common/checkcode",
 				    params: data
 				  })
 				  .then(function(res) {
@@ -102,7 +103,7 @@
 							duration: 3000
 				    	});
 				    	uni.navigateTo({
-				    	    url:"/pages/userinfo/changephone"
+				    	    url:"'/pages/userinfo/changephone?phone='+that.phone"
 				    	});
 					}
 				  }).catch(function(error) {
