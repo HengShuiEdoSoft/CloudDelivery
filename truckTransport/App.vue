@@ -1,26 +1,32 @@
 <script>
-	 import {  
+	 import { 
+			mapState,
 	        mapMutations  
 	    } from 'vuex';  
 	    export default {  
-	        onLaunch: function () {  
-				console.log('App Launch');
-				var that=this;
-	            uni.getStorage({//获得保存在本地的用户信息  
-	                key: 'userLogin',  
-	                success:(res) => {  
-	                    that.login(res.data)
-	                }  
-	            });  
+	        onLaunch: function () {
+				console.log('App Show');
 	        },
 			  onShow: function() {
-			  	console.log('App Show');
+			  	this.loginIn();
 			  },
 			  onHide: function() {
 			  	console.log('App Hide');
 			  },
+			computed: mapState(['forcedLogin', 'hasLogin']),  
 	        methods: {  
-	            ...mapMutations(['login'])  
+	            ...mapMutations(['login']),
+				loginIn:function() {
+					var that=this;
+					uni.getStorage({//获得保存在本地的用户信息  
+					    key: 'userLogin',  
+					    success:(res) => { 
+							if(that.hasLogin){
+								that.login(res.data)
+							}	                    
+					    }  
+					}); 
+				} 
 	        }  
 	    }  
 </script>

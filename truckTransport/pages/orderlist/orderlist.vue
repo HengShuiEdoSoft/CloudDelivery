@@ -196,7 +196,7 @@
 						_self.getnewsList(_self.page1,_self.status[0]);
 						break;
 					case 1:
-						_self.getnewsList(_self.page2,that.status[1]);
+						_self.getnewsList(_self.page2,_self.status[1]);
 						break;
 					case 2:
 						_self.getnewsList(_self.page3,_self.status[2]);
@@ -287,6 +287,7 @@
 					 pagesize:10,
 					 status:status
 				 }
+				 console.log(data)
 			    this.$uniFly
 				.post({
 					url:"/api/order/getorderlist",

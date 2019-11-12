@@ -1,15 +1,28 @@
 <script>
-	export default {
-		onLaunch: function() {
-			console.log('App Launch');
-		},
-		onShow: function() {
-			console.log('App Show');
-		},
-		onHide: function() {
-			console.log('App Hide');
-		}
-	}
+	 import {  
+	        mapMutations  
+	    } from 'vuex';  
+	    export default {  
+	        onLaunch: function () {  
+				console.log('App Launch');
+				var that=this;
+	            uni.getStorage({//获得保存在本地的用户信息  
+	                key: 'userLogin',  
+	                success:(res) => {  
+	                    that.login(res.data)
+	                }  
+	            });  
+	        },
+			  onShow: function() {
+			  	console.log('App Show');
+			  },
+			  onHide: function() {
+			  	console.log('App Hide');
+			  },
+	        methods: {  
+	            ...mapMutations(['login'])  
+	        }  
+	    }  
 </script>
 
 <style>
@@ -62,7 +75,7 @@
 		display: flex;
 		flex: 1;
 		flex-direction: column;
-		background-color: #efeff4;
+		background-color: #F3F4F5;
 		padding: 0;
 	}
 

@@ -161,7 +161,7 @@
 				</navigator>
 			</view>
 		</scroll-view>
-		<view class="dui-fixed-bottom-btn" @tap="logOut">
+		<view class="dui-fixed-bottom-btn" @click="logOut">
 			<text>退出登录</text>
 		</view>
 	</view>
@@ -445,6 +445,7 @@
 			},
 			logOut:function(){
 				var that=this;
+				console.log(1)
 				uni.getStorage({//获得保存在本地的用户信息
 				    key: 'userLogin',  
 				    success:(res) => {

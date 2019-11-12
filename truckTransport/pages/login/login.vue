@@ -121,6 +121,7 @@
 								mask: true,
 								duration: 3000
 					    	});
+							console.log(res.data)
 							service.addUser(res.data);
 					    	that.toMain(res.data);
 						}else{

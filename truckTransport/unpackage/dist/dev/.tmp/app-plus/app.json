@@ -10,10 +10,12 @@
     "pages/orderlist/orderlist",
     "pages/orderdetail/orderdetail",
     "pages/mymoney/mymoney",
+    "pages/mymoney/myrecharge",
     "pages/mymoney/myinvoicing",
     "pages/mymoney/myinvoicing-trip",
     "pages/mymoney/myinvoicing-history",
     "pages/mymoney/mycoupon",
+    "pages/mymoney/mycoupon-gift",
     "pages/mymoney/mydetailed",
     "pages/mymoney/myinvoicing-rule",
     "pages/userinfo/userinfo",
@@ -44,7 +46,10 @@
     "pages/servicecenter/complaintorder",
     "pages/servicecenter/servicecenter-list",
     "pages/servicecenter/servicecenter-detail",
-    "pages/servicecenter/feedback"
+    "pages/servicecenter/feedback",
+    "pages/viplevel/viplevel",
+    "pages/viplevel/corporate-vip",
+    "pages/viplevel/up-strategy"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -58,6 +63,6 @@
     "autoclose": false
   },
   "appname": "truckTransport",
-  "compilerVersion": "2.3.6",
+  "compilerVersion": "2.3.7",
   "usingComponents": {}
 }

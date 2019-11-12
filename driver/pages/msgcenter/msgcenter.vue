@@ -3,7 +3,7 @@
 		<scroll-view scroll-y="true">
 			<view class="dui-msgcenter-list">
 				<block v-for="(item,index) in lists" :key="item.notice_id">
-					<navigator :url="'msgdetails?id='+item.notice_id" class="dui-msgcenter-item-box">
+					<view class="dui-msgcenter-item-box">
 						<view class="dui-msgcenter-item">
 							<view v-if="item.msg_type===0" class="dui-msgcenter-logo">
 								<image src="../../static/img/setup.png"></image>
@@ -22,7 +22,7 @@
 								</view>
 							</view>
 						</view>
-					</navigator>
+					</view>
 				</block>
 			</view>
 			<view class="loading">{{loadingText}}</view>
