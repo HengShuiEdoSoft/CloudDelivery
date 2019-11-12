@@ -6,7 +6,9 @@
 				<view class="dui-money-card">
 					<text>当前余额(元)</text>
 					<text>0.00</text>
-					<text class="dui-money-recharge-btn">立即充值▸</text>
+					<navigator url="/pages/mymoney/myrecharge" class="dui-money-recharge-btn">
+						立即充值▸
+					</navigator>
 				</view>
 				<view class="dui-money-list-item" style="padding-left:20upx ; padding-right: 20upx;">
 					<view class="dui-money-number">
@@ -79,8 +81,8 @@
 <script>
 	export default {
 		onNavigationBarButtonTap: function(e) {
-			var index=e.index;
-			if(index===0){
+			var index = e.index;
+			if (index === 0) {
 				uni.navigateTo({
 					url: "/pages/mymoney/mydetailed"
 				});

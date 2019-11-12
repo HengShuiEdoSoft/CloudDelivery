@@ -88,6 +88,11 @@
 				}
 			}
 		}, {
+			"path": "pages/mymoney/myrecharge",
+			"style": {
+				"navigationBarTitleText": "充值中心"
+			}
+		}, {
 			"path": "pages/mymoney/myinvoicing",
 			"style": {
 				"navigationBarTitleText": "开具发票"
@@ -133,11 +138,18 @@
 				"navigationBarTitleText": "我的优惠券"
 			}
 		}, {
+			"path": "pages/mymoney/mycoupon-gift",
+			"style": {
+				"navigationBarTitleText": "我的优惠券"
+			}
+		},
+		{
 			"path": "pages/mymoney/mydetailed",
 			"style": {
 				"navigationBarTitleText": "余额明细"
 			}
-		}, {
+		},
+		{
 			"path": "pages/mymoney/myinvoicing-rule",
 			"style": {
 				"navigationBarTitleText": "开票规则",
@@ -154,12 +166,14 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/userinfo/userinfo",
 			"style": {
 				"navigationBarTitleText": "个人资料"
 			}
-		}, {
+		},
+		{
 			"path": "pages/userinfo/nichengchange",
 			"style": {
 				"navigationBarTitleText": "编辑昵称",
@@ -175,43 +189,51 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/userinfo/phonenum",
 			"style": {
 				"navigationBarTitleText": "手机号"
 			}
-		}, {
+		},
+		{
 			"path": "pages/userinfo/industry",
 			"style": {
 				"navigationBarTitleText": "选择行业"
 			}
-		}, {
+		},
+		{
 			"path": "pages/userinfo/realinfo",
 			"style": {
 				"navigationBarTitleText": "实名信息"
 			}
-		}, {
+		},
+		{
 			"path": "pages/userinfo/phoneverify",
 			"style": {
 				"navigationBarTitleText": "验证手机号"
 			}
-		}, {
+		},
+		{
 			"path": "pages/userinfo/changephone",
 			"style": {
 				"navigationBarTitleText": "更换手机号"
 			}
-		}, {
+		},
+		{
 			"path": "pages/address/address",
 			"style": {
 				"navigationBarTitleText": "常用地址",
 				"enablePullDownRefresh": true
 			}
-		}, {
+		},
+		{
 			"path": "pages/address/addaddress",
 			"style": {
 				"navigationBarTitleText": "添加常用地址"
 			}
-		}, {
+		},
+		{
 			"path": "pages/address/editaddress",
 			"style": {
 				"navigationBarTitleText": "编辑常用地址",
@@ -228,7 +250,8 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/pricedetail/pricedetail",
 			"style": {
 				"navigationBarTitleText": "价格明细",
@@ -244,12 +267,14 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/transportstandard",
 			"style": {
 				"navigationBarTitleText": "货运收费标准"
 			}
-		}, {
+		},
+		{
 			"path": "pages/driver/driver",
 			"style": {
 				"navigationBarTitleText": "我的司机",
@@ -267,12 +292,14 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/driver/driverexplain",
 			"style": {
-				"navigationBarTitleText": "我的司机说明"			
+				"navigationBarTitleText": "我的司机说明"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/setup",
 			"style": {
 				"navigationBarTitleText": "更多设置"
@@ -283,42 +310,50 @@
 			"style": {
 				"navigationBarTitleText": "选择城市"
 			}
-		}, {
+		},
+		{
 			"path": "pages/order/order",
 			"style": {
 				"navigationBarTitleText": "确认订单"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/userprotocol",
 			"style": {
 				"navigationBarTitleText": "用户协议"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/privacypolicy",
 			"style": {
 				"navigationBarTitleText": "隐私政策"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/about",
 			"style": {
 				"navigationBarTitleText": "关于"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/resetpwd",
 			"style": {
 				"navigationBarTitleText": ""
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/vercode",
 			"style": {
 				"navigationBarTitleText": ""
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/commonroutes",
 			"style": {
 				"navigationBarTitleText": "常用路线"
 			}
-		}, {
+		},
+		{
 			"path": "pages/setup/commonroutes1",
 			"style": {
 				"navigationBarTitleText": "常用路线",
@@ -334,14 +369,16 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/servicecenter/servicecenter",
 			"style": {
 				"navigationBarTitleText": "客服中心",
 				"navigationBarBackgroundColor": "#434456",
-				"navigationBarTextStyle":"white"
+				"navigationBarTextStyle": "white"
 			}
-		}, {
+		},
+		{
 			"path": "pages/servicecenter/complaintorder",
 			"style": {
 				"navigationBarTitleText": "选择投诉订单",
@@ -358,7 +395,8 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/servicecenter/servicecenter-list",
 			"style": {
 				"navigationBarTitleText": "下单叫车",
@@ -375,7 +413,8 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/servicecenter/servicecenter-detail",
 			"style": {
 				"navigationBarTitleText": "常见问题反馈",
@@ -392,11 +431,42 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/servicecenter/feedback",
 			"style": {
 				"navigationBarTitleText": "我的反馈记录",
 				"enablePullDownRefresh": true,
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e7",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/viplevel/viplevel",
+			"style": {
+				"navigationBarTitleText": "会员等级"
+			}
+		},
+		{
+			"path": "pages/viplevel/corporate-vip",
+			"style": {
+				"navigationBarTitleText": "升级为企业会员"
+			}
+		},
+		{
+			"path": "pages/viplevel/up-strategy",
+			"style": {
+				"navigationBarTitleText": "升级攻略",
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {
