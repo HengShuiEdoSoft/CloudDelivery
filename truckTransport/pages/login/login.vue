@@ -83,10 +83,7 @@
 				this.positionTop = uni.getSystemInfoSync().windowHeight - 100;
 			},
 			bindLogin() {
-				var that=this
-				/**
-				 * 使用 uni.request 将账号信息发送至服务端，客户端在回调函数中获取结果信息。
-				 */
+				var that=this;
 				if(!this.$drmking.isPhone(this.phone)){
 					uni.showToast({
 						'icon':'none',
@@ -132,14 +129,14 @@
 								content: res.msg,
 								showCancel: false
 							});
-						}
-					})
-					.catch(function(error) {
+					}
+				})
+				.catch(function(error) {
 					    uni.showToast({
 					    	content: error,
 					    	showCancel: false
 					    });
-					})
+				})
 			},
 			oauth(value) {
 				uni.login({
