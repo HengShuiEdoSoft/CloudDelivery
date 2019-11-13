@@ -14,7 +14,7 @@
 			</view>
 		</view>
 		<view class="btn-row">
-			<button class="primary" type="primary" @tap="bindLogin(requestUrl)">登 录</button>
+			<button class="primary" type="primary" @tap="bindLogin">登 录</button>
 		</view>
 		<view class="action-row">
 				<navigator url="../reg/reg">注册账号</navigator>
@@ -82,7 +82,7 @@
 				 */
 				this.positionTop = uni.getSystemInfoSync().windowHeight - 100;
 			},
-			bindLogin(requestUrl) {
+			bindLogin() {
 				var that=this
 				/**
 				 * 使用 uni.request 将账号信息发送至服务端，客户端在回调函数中获取结果信息。
