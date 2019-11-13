@@ -16,7 +16,7 @@ uniFly['retry_number'] = 3;
 //uniFly.headers={'Access-Control-Allow-Origin':'*'};
 //自定义请求拦截
 uniFly.requestInterceptors.success = function(request) {
-	let userinfo=uni.getStorageInfoSync("userLogin")||'';
+	let userinfo=drmking.cacheData("userLogin");
 	if (userinfo) {
 		request.body['phone'] = userinfo.phone;
 		request.body['token'] = userinfo.token;
