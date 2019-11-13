@@ -4,19 +4,22 @@ import App from './App'
 import store from './store'
 import drmking from './common/drmking.js';
 import uniFly from 'unifly';
+import OnFire from 'onfire.js';
+
+
 // 设置基础url
 uniFly.baseUrl = 'https://hll.hda365.com';
 // 设置请求超时
 uniFly.timeOut = 20000
 // 错误自动尝试次数
 uniFly['retry_number'] = 3;
-//uniFly.headers={'Access-Control-Allow-Origin':'https://hll.hda365.com'};
+//uniFly.headers={'Access-Control-Allow-Origin':'*'};
 //自定义请求拦截
 uniFly.requestInterceptors.success = function(request) {
-	var user = drmking.cacheData('user');
-	if (user) {
-		request.body['phone'] = user.phone;
-		request.body['token'] = user.token;
+	let userinfo=uni.getStorageInfoSync("userLogin")||'';
+	if (userinfo) {
+		request.body['phone'] = userinfo.phone;
+		request.body['token'] = userinfo.token;
 	}
 	request.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 	if (request.params.retry_number) {
@@ -68,6 +71,7 @@ Vue.config.productionTip = false
 Vue.prototype.$store = store
 Vue.prototype.$drmking = drmking
 Vue.prototype.$uniFly = uniFly
+Vue.prototype.$fire = new OnFire();
 
 
 App.mpType = 'app'

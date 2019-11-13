@@ -41,7 +41,7 @@
 			    params: {}
 			  })
 			  .then(function(res) {
-				  console.log(res);
+				  //console.log(res);
 			    if(res.code==0){	
 			    	that.carsInfos=res.data;
 					var title=that.carsInfos[id].title+"详情页";

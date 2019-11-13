@@ -14,7 +14,7 @@
 			</view>
 		</view>
 		<view class="btn-row">
-			<button class="primary" type="primary" @tap="bindLogin(requestUrl)">登 录</button>
+			<button class="primary" type="primary" @tap="bindLogin">登 录</button>
 		</view>
 		<view class="action-row">
 				<navigator url="../reg/reg">注册账号</navigator>
@@ -47,7 +47,6 @@
 				hasProvider: true,
 				phone: '',
 				pwd: '',
-				requestUrl:'/api/user/login',
 				positionTop: 0
 			}
 		},
@@ -83,11 +82,8 @@
 				 */
 				this.positionTop = uni.getSystemInfoSync().windowHeight - 100;
 			},
-			bindLogin(requestUrl) {
-				var that=this
-				/**
-				 * 使用 uni.request 将账号信息发送至服务端，客户端在回调函数中获取结果信息。
-				 */
+			bindLogin() {
+				var that=this;
 				if(!this.$drmking.isPhone(this.phone)){
 					uni.showToast({
 						'icon':'none',
@@ -107,35 +103,40 @@
 				const data = {
 					phone: this.phone,
 					pwd: this.pwd
-				};  
-					this.$uniFly
-					  .post({
-					    url: requestUrl,
-					    params: data
-					  })
-					  .then(function(res) {
-					    if(res.code===0){
-					    	uni.showToast({
-								title: '登录成功',
-								icon: 'success',
-								mask: true,
-								duration: 3000
-					    	});
-							service.addUser(res.data);
-					    	that.toMain(res.data);
-						}else{
+				};
+				this.$uniFly
+				.post({
+					url: "/api/user/login",
+					params: data
+				})
+				.then(function(res) {
+					if(res.code===0){
+						uni.showToast({
+							title: '登录成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+						});
+						const user={
+							phone:res.data.phone,
+							token:res.data.token
+						}
+						that.$drmking.cacheData("userLogin",user,2592000);
+						service.addUser(res.data);
+						that.toMain(user);
+					}else if(res.code===1){
 							uni.showToast({
 								content: res.msg,
 								showCancel: false
 							});
-						}
-					  })
-					  .catch(function(error) {
+					}
+				})
+				.catch(function(error) {
 					    uni.showToast({
 					    	content: error,
 					    	showCancel: false
 					    });
-					  })
+				})
 			},
 			oauth(value) {
 				uni.login({
@@ -159,7 +160,6 @@
 			},
 			toMain(userInfo) {
 				this.login(userInfo);
-				console.log("1")
 				if (this.forcedLogin) {
 					uni.reLaunch({
 						url: '../index/index',

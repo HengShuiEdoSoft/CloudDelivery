@@ -40,7 +40,6 @@
 					that.$drmking.cacheData("CITY_SELECT",res.data,2596000);
 					that.currentCity=that.list[0].city_title;
 					that.currentId=that.list[0].city_id;
-					console.log(res.data);
 				}
 			  })
 			  .catch(function(error) {

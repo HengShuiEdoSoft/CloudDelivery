@@ -161,7 +161,7 @@
 				</navigator>
 			</view>
 		</scroll-view>
-		<view class="dui-fixed-bottom-btn" @tap="logOut">
+		<view class="dui-fixed-bottom-btn" @click="logOut">
 			<text>退出登录</text>
 		</view>
 	</view>
@@ -445,21 +445,18 @@
 			},
 			logOut:function(){
 				var that=this;
-				uni.getStorage({//获得保存在本地的用户信息
-				    key: 'userLogin',  
-				    success:(res) => {
-				        that.logout(res.data);
-						uni.showToast({
-							title: '退出登录',
-							//icon: 'success',
-							mask: true,
-							duration: 3000
-						});
-						uni.navigateTo({
-							url:"/pages/index/index"
-						})
-				    }  
-				}); 
+				let userInfo;
+				userInfo=uni.getStorageInfoSync("userLogin");
+				that.logout(res.data);
+				uni.showToast({
+					title: '退出登录',
+					//icon: 'success',
+					mask: true,
+					duration: 3000
+				});
+				uni.navigateTo({
+					url:"/pages/index/index"
+				}) 
 			}
 		},
 	}

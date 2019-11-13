@@ -3,7 +3,7 @@
 		<scroll-view scroll-y="true">
 			<view class="dui-msgcenter-list">
 				<block v-for="(item,index) in lists" :key="item.notice_id">
-					<navigator :url="'msgdetails?id='+item.notice_id" class="dui-msgcenter-item-box">
+					<view class="dui-msgcenter-item-box">
 						<view class="dui-msgcenter-item">
 							<view v-if="item.msg_type===0" class="dui-msgcenter-logo">
 								<image src="../../static/img/setup.png"></image>
@@ -22,7 +22,7 @@
 								</view>
 							</view>
 						</view>
-					</navigator>
+					</view>
 				</block>
 			</view>
 			<view class="loading">{{loadingText}}</view>
@@ -62,22 +62,14 @@
 					return false;
 			    }
 			    _self.loadingText = '加载中...';
-			    uni.showNavigationBarLoading();
-				uni.getStorage({//获得保存在本地的用户信息
-				    key: 'userLogin',  
-				    success:(res) => {  
-				        _self.userinfo=res.data  	                    
-				    }  
-				}); 
+			    uni.showNavigationBarLoading(); 
 				 const data={
-					 phone:_self.userinfo.phone,
-					 token:_self.userinfo.token,
 					 page:_self.page
 				 }
 			    this.$uniFly
 				.post({
 					url: "/api/notice/getnoticelist",
-					param: data
+					params: data
 				})	
 				.then({function(res){
 					if(res.code===0){

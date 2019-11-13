@@ -161,7 +161,7 @@
 			    this.$uniFly
 				.post({
 					url: "/api/wallet_log/getwalletloglist",
-					param: data
+					params: data
 				})	
 				.then({function(res){
 					if(res.code===0){
@@ -209,7 +209,7 @@
 				this.$uniFly
 				.post({
 					url: "/api/wallet_log/getwalletloglist",
-					param: data
+					params: data
 				})	
 				.then({function(res){
 					if(res.code===0){

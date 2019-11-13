@@ -160,7 +160,7 @@
 		   		_self.getnewsList(_self.page1,_self.status[0]);
 		   		break;
 		   	case 1:
-				_self.getnewsList(_self.page2,that.status[1]);
+				_self.getnewsList(_self.page2,_self.status[1]);
 		   		break;
 		   	case 2:
 		   		_self.getnewsList(_self.page3,_self.status[2]);
@@ -196,7 +196,7 @@
 						_self.getnewsList(_self.page1,_self.status[0]);
 						break;
 					case 1:
-						_self.getnewsList(_self.page2,that.status[1]);
+						_self.getnewsList(_self.page2,_self.status[1]);
 						break;
 					case 2:
 						_self.getnewsList(_self.page3,_self.status[2]);
@@ -206,34 +206,14 @@
 			swiperChange:function(e) {			
 				var index=e.target.current || e.detail.current;
 				this.current = index;
-				_self = this;
-				switch (_self.current){
-					case 0:
-						_self.getnewsList(_self.page1,_self.status[0]);
-						break;
-					case 1:
-						_self.getnewsList(_self.page2,that.status[1]);
-						break;
-					case 2:
-						_self.getnewsList(_self.page3,_self.status[2]);
-						break;		   	
-				}
 			},
 			getmorenews : function(page,status){
 				if(_self.loadingText[_self.current] != '' && _self.loadingText[_self.current] != '加载更多'){
 					return false;
 			    }
 			    _self.loadingText[_self.current] = '加载中...';
-			    uni.showNavigationBarLoading();
-				uni.getStorage({//获得保存在本地的用户信息
-				    key: 'userLogin',  
-				    success:(res) => {  
-				        _self.userinfo=res.data  	                    
-				    }  
-				}); 
+			    uni.showNavigationBarLoading(); 
 				 const data={
-					 phone:_self.userinfo.phone,
-					 token:_self.userinfo.token,
 					 page:page,
 					 pagesize:10,
 					 status:status
@@ -241,7 +221,7 @@
 			    this.$uniFly
 				.post({
 					url:"/api/order/getorderlist",
-					param: data
+					params: data
 				})	
 				.then({function(res){
 					if(res.code===0){
@@ -273,16 +253,8 @@
 			},
 			getnewsList: function(page,status){
 			    page = 1;
-			    uni.showNavigationBarLoading();
-				uni.getStorage({//获得保存在本地的用户信息
-				    key: 'userLogin',  
-				    success:(res) => {  
-				        _self.userinfo=res.data 	                    
-				    }  
-				}); 
+			    uni.showNavigationBarLoading(); 
 				 const data={
-					 phone:_self.userinfo.phone,
-					 token:_self.userinfo.token,
 					 page:page,
 					 pagesize:10,
 					 status:status
@@ -290,14 +262,14 @@
 			    this.$uniFly
 				.post({
 					url:"/api/order/getorderlist",
-					param: data
+					params: data
 				})
 				.then({function(res){
+					console.log(res.data)
 					if(res.code===0){
-						console.log(res.data)
-						page++;
-						_self.newsList[_self.current] = res.data;
 						
+						page++;
+						_self.newsList[_self.current] = res.data;						
 						uni.hideNavigationBarLoading();
 						uni.stopPullDownRefresh();
 						_self.loadingText[_self.current] = '加载更多';

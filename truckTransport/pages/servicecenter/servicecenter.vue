@@ -16,13 +16,13 @@
 					<text>常见问题</text>
 				</view>
 				<view class="dui-basic-list">
-					<block v-for="(item,index) in lists" :key="index">
-						<navigator :url="'servicecenter-list?id=' + index">
+					<block v-for="(item,index) in lists" :key="item.article_category_id">
+						<navigator :url="'servicecenter-list?id=' + item.article_category_id">
 							<view class="dui-basic-list-item">
 								<view class="dui-basic-list-item__container">
 									<view class="dui-basic-list-item__content">
 										<view class="dui-basic-list-item__content-title">
-											{{item.name}}
+											{{item.stitle}}
 										</view>
 									</view>
 									<view class="dui-basic-list-item__extra">
@@ -68,22 +68,81 @@
 			return {
 				tel: "010-8888",
 				lists: [{
-					"name": "下单叫车"
+					"stitle": "下单叫车",
+					article_category_id:1
 				}, {
-					"name": "费用与支付"
+					"stitle": "费用与支付",
+					article_category_id:2
 				}, {
-					"name": "拉货途中"
+					"stitle": "拉货途中",
+					article_category_id:3
 				}, {
-					"name": "售后服务"
+					"stitle": "售后服务",
+					article_category_id:4
 				}, {
-					"name": "其他问题"
+					"stitle": "其他问题",
+					article_category_id:5
 				}]
 			}
+		},
+		onLoad(){
+			let that=this;
+			this.$uniFly
+			.get({
+				url: "/api/article_category/getarticlecategorylist",
+				params: {}
+			})	
+			.then({function(res){
+				if(res.code===0){
+					console.log(res.data)
+					that.lists=res.data;
+					
+				}else{
+					uni.showToast({
+					    content: res.msg,
+					    showCancel: false
+					});
+				}
+				}
+			})
+			.catch(function(error) {
+			    uni.showToast({
+			  	    content: error,
+			  	    showCancel: false
+			    });
+			});
 		},
 		methods: {
 			call: function(e) {
 				uni.makePhoneCall({
 					phoneNumber: '010-8888' //仅为示例
+				});
+			},
+			getList:function(){
+				let that=this;
+				this.$uniFly
+				.get({
+					url: "/api/article_category/getarticlecategorylist",
+					param: {}
+				})	
+				.then({function(res){
+					if(res.code===0){
+						console.log(res.data)
+						that.lists=res.data;
+						
+					}else{
+						uni.showToast({
+						    content: res.msg,
+						    showCancel: false
+						});
+					}
+					}
+				})
+				.catch(function(error) {
+				    uni.showToast({
+				  	    content: error,
+				  	    showCancel: false
+				    });
 				});
 			}
 		}

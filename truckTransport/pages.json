@@ -135,18 +135,21 @@
 		}, {
 			"path": "pages/mymoney/mycoupon",
 			"style": {
-				"navigationBarTitleText": "我的优惠券"
+				"navigationBarTitleText": "我的优惠券",
+				"enablePullDownRefresh": true
 			}
 		}, {
 			"path": "pages/mymoney/mycoupon-gift",
 			"style": {
-				"navigationBarTitleText": "我的优惠券"
+				"navigationBarTitleText": "我的礼物",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/mymoney/mydetailed",
 			"style": {
-				"navigationBarTitleText": "余额明细"
+				"navigationBarTitleText": "余额明细",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
