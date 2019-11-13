@@ -13,12 +13,12 @@
 					<view class="dui-vip-phone">
 						188****8888
 					</view>
-					<view class="">
-
+					<view class="dui-vip-steps">
+						当前成长值 : 0
 					</view>
 				</view>
 				<view class="dui-vip-strategy">
-					<navigator url="" class="dui-vip-growth">
+					<navigator url="get-value" class="dui-vip-growth">
 						升级白银会员还差1成长值 >
 					</navigator>
 					<navigator url="up-strategy" class="dui-vip-strategy-btn">
@@ -60,6 +60,38 @@
 						</view>
 					</view>
 				</view>
+				<view class="dui-vip-equity">
+					<view class="dui-vip-equity-title">
+						优惠礼包
+					</view>
+					<view class="dui-vip-Receive-item">
+						<view class="dui-vip-Receive-body">
+							<view>【白银会员】:</view>
+							<view>3元优惠券+5元余额券+20元优惠券(9米6)</view>
+						</view>
+						<navigator url="/pages/mymoney/mycoupon-gift" class="dui-vip-Receive-btn">
+							领取
+						</navigator>
+					</view>
+					<view class="dui-vip-Receive-item">
+						<view class="dui-vip-Receive-body">
+							<view>【黄金会员】:</view>
+							<view>3元优惠券+5元余额券+20元优惠券(9米6)</view>
+						</view>
+					</view>
+					<view class="dui-vip-Receive-item">
+						<view class="dui-vip-Receive-body">
+							<view>【铂金会员】:</view>
+							<view>3元优惠券+5元余额券+20元优惠券(9米6)</view>
+						</view>
+					</view>
+					<view class="dui-vip-Receive-item">
+						<view class="dui-vip-Receive-body">
+							<view>【钻石会员】:</view>
+							<view>3元优惠券+5元余额券+20元优惠券(9米6)</view>
+						</view>
+					</view>
+				</view>
 			</view>
 		</scroll-view>
 	</view>
@@ -74,7 +106,7 @@
 
 	.dui-vip-bj {
 		position: absolute;
-		top: -1425upx;
+		top: -1480upx;
 		left: 50%;
 		width: 1780upx;
 		height: 1780upx;
@@ -89,7 +121,7 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		height: 300upx;
+		height: 250upx;
 		box-sizing: border-box;
 		margin-top: 20upx;
 		padding: 40upx 40upx 0 40upx;
@@ -198,4 +230,32 @@
 		font-size: 26upx;
 		margin-top: 20upx;
 	}
+
+	.dui-vip-Receive-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 40upx;
+		margin-top: 40upx;
+	}
+
+	.dui-vip-Receive-body view {
+		font-size: 24upx;
+	}
+
+	.dui-vip-Receive-btn {
+		padding: 5upx 20upx;
+		font-size: 28upx;
+		color: #FF5723;
+		border: 1px solid #FF5723;
+		border-radius: 40upx;
+		text-align: center;
+	}
+	.dui-vip-steps {
+		margin-top: 30upx;
+		width: 100%;
+		font-size: 30upx;
+		color:#424456 ;
+	}
+	
 </style>

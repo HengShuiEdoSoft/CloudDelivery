@@ -480,6 +480,24 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/viplevel/get-value",
+			"style": {
+				"navigationBarTitleText": "成长获取值记录",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8e7",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
+							"float": "left",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
 		}
 	],
 
