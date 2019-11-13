@@ -80,22 +80,14 @@
 		},
 		methods:{
 			getDetail:function(){
-				var that=this;
-				uni.getStorage({//获得保存在本地的用户信息
-				    key: 'userLogin',  
-				    success:(res) => {  
-				        that.userinfo=res.data  	                    
-				    }  
-				}); 
+				var that=this; 
 				 const data={
-					 phone:this.userinfo.phone,
-					 token:this.userinfo.token,
 					 ocode:this.ocode
 				 }
 				 this.$uniFly
 				 .post({
 				 	url: "/api/order/getorder",
-				 	param: data
+				 	params: data
 				 })	
 				 .then({function(res){
 				 	if(res.code===0){

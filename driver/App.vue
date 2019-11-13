@@ -1,27 +1,29 @@
 <script>
-	 import {  
+	 import { 
 	        mapMutations  
 	    } from 'vuex';  
-	    export default {  
-	        onLaunch: function () {  
-				console.log('App Launch');
-				var that=this;
-	            uni.getStorage({//获得保存在本地的用户信息  
-	                key: 'userLogin',  
-	                success:(res) => {  
-	                    that.login(res.data)
-	                }  
-	            });  
+	    export default { 
+			methods: {
+			    ...mapMutations(['login']),
+			} ,
+	        onLaunch: function () {
+				let user=uni.getStorageInfoSync("userLogin")||'';
+				if(user.userid){
+					var that=this;
+					uni.getStorage({//获得保存在本地的用户信息  
+					    key: 'userLogin',  
+					    success:(res) => {
+							that.login(res.data)					                    
+					    }  
+					});
+				}  
 	        },
 			  onShow: function() {
 			  	console.log('App Show');
 			  },
 			  onHide: function() {
 			  	console.log('App Hide');
-			  },
-	        methods: {  
-	            ...mapMutations(['login'])  
-	        }  
+			  } 
 	    }  
 </script>
 

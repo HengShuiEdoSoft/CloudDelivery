@@ -129,7 +129,6 @@
 			    params: {}
 			  })
 			  .then(function(res) {
-				  console.log(res);
 			    if(res.code===0){	
 			    	that.carTypes=res.data;
 					that.$drmking.cacheData("carInfos",res.data,2592000);

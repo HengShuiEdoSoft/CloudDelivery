@@ -7,15 +7,13 @@
 			    ...mapMutations(['login']),
 			} ,
 	        onLaunch: function () {
-				let user=uni.getStorageInfoSync("userLogin")||'';
-				if(user.userid){
+				let userLogin=uni.getStorageInfoSync("userLogin")||'';
+				if(userLogin.userid){
 					var that=this;
 					uni.getStorage({//获得保存在本地的用户信息  
 					    key: 'userLogin',  
-					    success:(res) => { 
-							if(that.hasLogin){
-								that.login(res.data)
-							}	                    
+					    success:(res) => {
+							that.login(res.data)					                    
 					    }  
 					});
 				}  

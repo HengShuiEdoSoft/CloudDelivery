@@ -90,7 +90,7 @@
 			this.$uniFly
 			.get({
 				url: "/api/article_category/getarticlecategorylist",
-				param: {}
+				params: {}
 			})	
 			.then({function(res){
 				if(res.code===0){

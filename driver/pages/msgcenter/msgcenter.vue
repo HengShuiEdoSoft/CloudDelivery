@@ -62,22 +62,14 @@
 					return false;
 			    }
 			    _self.loadingText = '加载中...';
-			    uni.showNavigationBarLoading();
-				uni.getStorage({//获得保存在本地的用户信息
-				    key: 'userLogin',  
-				    success:(res) => {  
-				        _self.userinfo=res.data  	                    
-				    }  
-				}); 
+			    uni.showNavigationBarLoading(); 
 				 const data={
-					 phone:_self.userinfo.phone,
-					 token:_self.userinfo.token,
 					 page:_self.page
 				 }
 			    this.$uniFly
 				.post({
 					url: "/api/notice/getnoticelist",
-					param: data
+					params: data
 				})	
 				.then({function(res){
 					if(res.code===0){

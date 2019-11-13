@@ -47,7 +47,6 @@
 				hasProvider: true,
 				phone: '',
 				pwd: '',
-				requestUrl:'/api/user/login',
 				positionTop: 0
 			}
 		},
@@ -107,39 +106,40 @@
 				const data = {
 					phone: this.phone,
 					pwd: this.pwd
-				};  
-					this.$uniFly
-					  .post({
-					    url: requestUrl,
-					    params: data
-					  })
-					  .then(function(res) {
-					    if(res.code===0){
-					    	uni.showToast({
-								title: '登录成功',
-								icon: 'success',
-								mask: true,
-								duration: 3000
-					    	});
-							service.addUser(res.data);
-							const user={
-								phone:res.data.phone,
-								token:res.data.token
-							}
-					    	that.toMain(user);
-						}else{
+				};
+				this.$uniFly
+				.post({
+					url: "/api/user/login",
+					params: data
+				})
+				.then(function(res) {
+					if(res.code===0){
+						uni.showToast({
+							title: '登录成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+						});
+						const user={
+							phone:res.data.phone,
+							token:res.data.token
+						}
+						that.$drmking.cacheData("userLogin",user,2592000);
+						service.addUser(res.data);
+						that.toMain(user);
+					}else if(res.code===1){
 							uni.showToast({
 								content: res.msg,
 								showCancel: false
 							});
 						}
-					  })
-					  .catch(function(error) {
+					})
+					.catch(function(error) {
 					    uni.showToast({
 					    	content: error,
 					    	showCancel: false
 					    });
-					  })
+					})
 			},
 			oauth(value) {
 				uni.login({
@@ -162,7 +162,7 @@
 				});
 			},
 			toMain(userInfo) {
-				this.login(userInfo); 
+				this.login(userInfo);
 				if (this.forcedLogin) {
 					uni.reLaunch({
 						url: '../index/index',
