@@ -115,7 +115,7 @@
 				    this.$uniFly
 					.post({
 						url: '/api/address/getaddresslist',
-						param: data
+						params: data
 					})
 					.then({function(res){
 						console.log(res.data)
