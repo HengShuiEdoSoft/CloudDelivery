@@ -1,22 +1,14 @@
 <script>
 	 import { 
-			mapState,
 	        mapMutations  
 	    } from 'vuex';  
-	    export default {  
+	    export default { 
+			methods: {
+			    ...mapMutations(['login']),
+			} ,
 	        onLaunch: function () {
-				console.log('App Show');
-	        },
-			  onShow: function() {
-			  	this.loginIn();
-			  },
-			  onHide: function() {
-			  	console.log('App Hide');
-			  },
-			computed: mapState(['forcedLogin', 'hasLogin']),  
-	        methods: {  
-	            ...mapMutations(['login']),
-				loginIn:function() {
+				let user=uni.getStorageInfoSync("userLogin")||'';
+				if(user.userid){
 					var that=this;
 					uni.getStorage({//获得保存在本地的用户信息  
 					    key: 'userLogin',  
@@ -25,9 +17,15 @@
 								that.login(res.data)
 							}	                    
 					    }  
-					}); 
-				} 
-	        }  
+					});
+				}  
+	        },
+			  onShow: function() {
+			  	console.log('App Show');
+			  },
+			  onHide: function() {
+			  	console.log('App Hide');
+			  } 
 	    }  
 </script>
 

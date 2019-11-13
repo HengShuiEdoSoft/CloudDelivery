@@ -11,18 +11,16 @@ const store = new Vuex.Store({
         forcedLogin: false,
         hasLogin: false,
         phone: "",
-		userState:"",
 		token:"",
-		usertype:"0"
+		userid:""
 		
     },
     mutations: {
         login(state, user) {
             state.phone = user.phone || '新用户';
-			state.status=user.status||'';
 			state.token = user.token||'';
+			state.userid=user.user_id||'';
             state.hasLogin = true;
-			state.usertype = user.user_type||'0'
 			uni.setStorage({
 				key:'userLogin',
 				data:user
@@ -30,8 +28,8 @@ const store = new Vuex.Store({
         },
         logout(state) {
             state.phone = '新用户';
-            state.status='';
             state.token ='';
+			state.userid='';
             state.hasLogin = false;
 			uni.removeStorage({
 				key:'userLogin'

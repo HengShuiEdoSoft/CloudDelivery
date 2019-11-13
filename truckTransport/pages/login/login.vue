@@ -121,9 +121,12 @@
 								mask: true,
 								duration: 3000
 					    	});
-							console.log(res.data)
 							service.addUser(res.data);
-					    	that.toMain(res.data);
+							const user={
+								phone:res.data.phone,
+								token:res.data.token
+							}
+					    	that.toMain(user);
 						}else{
 							uni.showToast({
 								content: res.msg,
@@ -159,8 +162,7 @@
 				});
 			},
 			toMain(userInfo) {
-				this.login(userInfo);
-				console.log("1")
+				this.login(userInfo); 
 				if (this.forcedLogin) {
 					uni.reLaunch({
 						url: '../index/index',

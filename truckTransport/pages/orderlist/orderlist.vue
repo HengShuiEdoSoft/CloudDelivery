@@ -160,7 +160,7 @@
 		   		_self.getnewsList(_self.page1,_self.status[0]);
 		   		break;
 		   	case 1:
-				_self.getnewsList(_self.page2,that.status[1]);
+				_self.getnewsList(_self.page2,_self.status[1]);
 		   		break;
 		   	case 2:
 		   		_self.getnewsList(_self.page3,_self.status[2]);
@@ -206,18 +206,6 @@
 			swiperChange:function(e) {			
 				var index=e.target.current || e.detail.current;
 				this.current = index;
-				_self = this;
-				switch (_self.current){
-					case 0:
-						_self.getnewsList(_self.page1,_self.status[0]);
-						break;
-					case 1:
-						_self.getnewsList(_self.page2,that.status[1]);
-						break;
-					case 2:
-						_self.getnewsList(_self.page3,_self.status[2]);
-						break;		   	
-				}
 			},
 			getmorenews : function(page,status){
 				if(_self.loadingText[_self.current] != '' && _self.loadingText[_self.current] != '加载更多'){
@@ -287,7 +275,6 @@
 					 pagesize:10,
 					 status:status
 				 }
-				 console.log(data)
 			    this.$uniFly
 				.post({
 					url:"/api/order/getorderlist",
