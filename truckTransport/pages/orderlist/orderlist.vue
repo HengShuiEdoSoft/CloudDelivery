@@ -113,7 +113,6 @@
 			return{
 				current:0,
 				loadingText:['','',''],
-				userinfo:{},
 				page1:1,
 				page2:1,
 				page3:1,
@@ -124,34 +123,13 @@
 					},{
 						name:"已取消",
 				}],
-				newsList:[{
-						has_next:false,
-						list:[{
-							order_id:1,
-							order_price:20,
-							car:"小面包车"
-						}]
-					},{
-						has_next:false,
-						list:[{
-							order_id:1,
-							order_price:20,
-							car:"小面包车"
-						}]
-					},{
-						has_next:false,
-						list:[{
-							order_id:1,
-							order_price:20,
-							car:"小面包车"
-						}]
-					}],
+				newsList:[],
 				status:["0,1,2,3","4,5","11,12,13"]
 			}
 		},
-		onShow:function(){
+		onShow(){
 		    _self = this;
-		    _self.getnewsList(_self.page1,_self.status[0]);
+		    this.getnewsList(_self.page1,_self.status[0]);
 		},
 		onPullDownRefresh:function(){
 		   _self = this;
@@ -208,6 +186,7 @@
 				this.current = index;
 			},
 			getmorenews : function(page,status){
+				_self=this
 				if(_self.loadingText[_self.current] != '' && _self.loadingText[_self.current] != '加载更多'){
 					return false;
 			    }
@@ -252,11 +231,11 @@
 				});
 			},
 			getnewsList: function(page,status){
+				_self=this
 			    page = 1;
-			    uni.showNavigationBarLoading(); 
+			    uni.showNavigationBarLoading();
 				 const data={
 					 page:page,
-					 pagesize:10,
 					 status:status
 				 }
 			    this.$uniFly
@@ -267,7 +246,6 @@
 				.then({function(res){
 					console.log(res.data)
 					if(res.code===0){
-						
 						page++;
 						_self.newsList[_self.current] = res.data;						
 						uni.hideNavigationBarLoading();

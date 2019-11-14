@@ -49,7 +49,8 @@
     "pages/servicecenter/feedback",
     "pages/viplevel/viplevel",
     "pages/viplevel/corporate-vip",
-    "pages/viplevel/up-strategy"
+    "pages/viplevel/up-strategy",
+    "pages/viplevel/get-value"
   ],
   "window": {
     "navigationBarTextStyle": "black",

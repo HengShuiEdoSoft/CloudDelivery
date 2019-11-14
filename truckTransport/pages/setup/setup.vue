@@ -445,9 +445,7 @@
 			},
 			logOut:function(){
 				var that=this;
-				let userInfo;
-				userInfo=uni.getStorageInfoSync("userLogin");
-				that.logout(res.data);
+				that.logout();
 				uni.showToast({
 					title: '退出登录',
 					//icon: 'success',

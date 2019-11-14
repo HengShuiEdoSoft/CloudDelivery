@@ -106,7 +106,7 @@
 				};
 				this.$uniFly
 				.post({
-					url: "/api/user/login",
+					url: '/api/user/login',
 					params: data
 				})
 				.then(function(res) {
@@ -121,7 +121,7 @@
 							phone:res.data.phone,
 							token:res.data.token
 						}
-						that.$drmking.cacheData("userLogin",user,2592000);
+						that.$drmking.cacheData("USER",user,2592000);
 						service.addUser(res.data);
 						that.toMain(user);
 					}else if(res.code===1){

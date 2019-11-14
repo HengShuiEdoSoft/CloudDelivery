@@ -5,7 +5,7 @@ scroll-view {
 }
 .dui-vip-bj {
 	position: absolute;
-	top: -1425rpx;
+	top: -1480rpx;
 	left: 50%;
 	width: 1780rpx;
 	height: 1780rpx;
@@ -28,7 +28,7 @@ scroll-view {
 	    -ms-flex-direction: column;
 	        flex-direction: column;
 	width: 100%;
-	height: 300rpx;
+	height: 250rpx;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
 	margin-top: 20rpx;
@@ -158,4 +158,38 @@ scroll-view {
 	font-size: 26rpx;
 	margin-top: 20rpx;
 }
+.dui-vip-Receive-item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	padding: 0 40rpx;
+	margin-top: 40rpx;
+}
+.dui-vip-Receive-body view {
+	font-size: 24rpx;
+}
+.dui-vip-Receive-btn {
+	padding: 5rpx 20rpx;
+	font-size: 28rpx;
+	color: #FF5723;
+	border: 1px solid #FF5723;
+	border-radius: 40rpx;
+	text-align: center;
+}
+.dui-vip-steps {
+	margin-top: 30rpx;
+	width: 100%;
+	font-size: 30rpx;
+	color:#424456 ;
+}
+
 
