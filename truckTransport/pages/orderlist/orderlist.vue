@@ -146,6 +146,7 @@
 			tabChange:function(e){
 				var index = e.target.dataset.current || e.currentTarget.dataset.current;
 				this.current=index;
+				let that=this;
 				this.getnewsList(that.current);
 			},
 			swiperChange:function(e) {			
@@ -199,7 +200,7 @@
 			getnewsList: function(current){
 				let _self = this;
 			    _self.page[current] = 1;
-			    //uni.showNavigationBarLoading();
+			    uni.showNavigationBarLoading();
 				 const data={
 					 page:this.page[current],
 					 status:this.status[current]

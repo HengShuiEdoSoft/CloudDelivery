@@ -67,22 +67,7 @@
 		data() {
 			return {
 				tel: "010-8888",
-				lists: [{
-					"stitle": "下单叫车",
-					article_category_id:1
-				}, {
-					"stitle": "费用与支付",
-					article_category_id:2
-				}, {
-					"stitle": "拉货途中",
-					article_category_id:3
-				}, {
-					"stitle": "售后服务",
-					article_category_id:4
-				}, {
-					"stitle": "其他问题",
-					article_category_id:5
-				}]
+				lists: []
 			}
 		},
 		onLoad(){
