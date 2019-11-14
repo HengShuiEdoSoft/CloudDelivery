@@ -6,13 +6,13 @@
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
 				<scroll-view class="scroll-container">
-					<view v-if="newsList[0].list.length===0">
+					<view v-if="newsList[0].length===0">
 						<view class="dui-notyet-wrapper">
 							<image src="../../static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator class="ui-order-list-item ui-hujiao" v-for="(item,index) in newsList[0].list" :url="'/pages/orderdetail/orderdetail?id='+item.order_id" :key="item.order_id">
+					<navigator class="ui-order-list-item ui-hujiao" v-for="(item,index) in newsList[0]" :url="'/pages/orderdetail/orderdetail?id='+item.order_id" :key="item.order_id">
 						<view class="ui-order-list-item-top"><text class="ui-order-list-cartype">{{item.car}}</text><text>{{item.sure_time}}</text></view>
 						<view class="ui-divide-line"></view>
 						<view class="ui-order-timeline-container">
@@ -39,13 +39,13 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view class="scroll-container">
-					<view v-if="newsList[1].list.length===0">
+					<view v-if="newsList[1].length===0">
 						<view class="dui-notyet-wrapper">
 							<image src="../../static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator class="ui-order-list-item ui-daizhifu" v-for="(item,index) in newsList[1].list" :url="'/pages/orderdetail/orderdetail?id='+item.order_id" :key="item.order_id">
+					<navigator class="ui-order-list-item ui-daizhifu" v-for="(item,index) in newsList[1]" :url="'/pages/orderdetail/orderdetail?id='+item.order_id" :key="item.order_id">
 						<view class="ui-order-list-item-top"><text class="ui-order-list-cartype">{{item.car}}</text><text>{{item.sure_time}}</text></view>
 						<view class="ui-divide-line"></view>
 						<view class="ui-order-timeline-container">
@@ -71,13 +71,13 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view>
-					<view v-if="newsList[2].list.length===0">
+					<view v-if="newsList[2].length===0">
 						<view class="dui-notyet-wrapper">
 							<image src="../../static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator class="ui-order-list-item ui-daizhifu" v-for="(item,index) in newsList[2].list" :url="'/pages/orderdetail/orderdetail?id='+item.ocode" :key="item.order_id">
+					<navigator class="ui-order-list-item ui-daizhifu" v-for="(item,index) in newsList[2]" :url="'/pages/orderdetail/orderdetail?id='+item.ocode" :key="item.order_id">
 						<view class="ui-order-list-item-top"><text class="ui-order-list-cartype">{{item.car}}</text><text>{{item.sure_time}}</text></view>
 						<view class="ui-divide-line"></view>
 						<view class="ui-order-timeline-container">
@@ -106,16 +106,13 @@
 	</view>
 </template>
 
-<script>
-	var _self,timer = null; 
+<script> 
 	export default {
 		data(){
 			return{
 				current:0,
 				loadingText:['','',''],
-				page1:1,
-				page2:1,
-				page3:1,
+				page:[1,1,1],
 				tab:[{
 						name:"进行中",
 					},{
@@ -123,79 +120,48 @@
 					},{
 						name:"已取消",
 				}],
-				newsList:[],
+				newsList:[{},{},{}],
 				status:["0,1,2,3","4,5","11,12,13"]
 			}
 		},
 		onShow(){
-		    _self = this;
-		    this.getnewsList(_self.page1,_self.status[0]);
+			let that=this;
+		    this.getnewsList(that.current);
 		},
-		onPullDownRefresh:function(){
-		   _self = this;
-		   switch (_self.current){
-		   	case 0:
-		   		_self.getnewsList(_self.page1,_self.status[0]);
-		   		break;
-		   	case 1:
-				_self.getnewsList(_self.page2,_self.status[1]);
-		   		break;
-		   	case 2:
-		   		_self.getnewsList(_self.page3,_self.status[2]);
-		   		break;		   	
+		/*onPullDownRefresh:function(){
+			let that=this;
+		   this.getnewsList(that.current);		   	
 		   }
 		},
 		onReachBottom:function(){
+			let that=this;
 			if(timer != null){
 			   clearTimeout(timer);
 			}
 			timer = setTimeout(function(){
-			   switch (_self.current){
-			   	case 0:
-			   		_self.getmorenews(_self.page1,_self.status[0]);
-			   		break;
-			   	case 1:
-			   		_self.getmorenews(_self.page2,_self.status[1]);
-			   		break;
-			   	case 2:
-			   		_self.getmorenews(_self.page3,_self.status[2]);
-			   		break;
-			   	
-			   }
+			   this.getmorenews(that.current);   
 			}, 1000);
-		 },
+		 },*/
 		methods:{
 			tabChange:function(e){
 				var index = e.target.dataset.current || e.currentTarget.dataset.current;
 				this.current=index;
-				_self = this;
-				switch (_self.current){
-					case 0:
-						_self.getnewsList(_self.page1,_self.status[0]);
-						break;
-					case 1:
-						_self.getnewsList(_self.page2,_self.status[1]);
-						break;
-					case 2:
-						_self.getnewsList(_self.page3,_self.status[2]);
-						break;		   	
-				}
+				this.getnewsList(that.current);
 			},
 			swiperChange:function(e) {			
 				var index=e.target.current || e.detail.current;
 				this.current = index;
 			},
-			getmorenews : function(page,status){
-				_self=this
-				if(_self.loadingText[_self.current] != '' && _self.loadingText[_self.current] != '加载更多'){
+			getmorenews : function(current){
+				let _self = this;
+				if(_self.loadingText[current] != '' && _self.loadingText[current] != '加载更多'){
 					return false;
 			    }
-			    _self.loadingText[_self.current] = '加载中...';
+			    _self.loadingText[current] = '加载中...';
 			    uni.showNavigationBarLoading(); 
 				 const data={
-					 page:page,
-					 pagesize:10,
-					 status:status
+					page:this.page[current],
+					status:this.status[current]
 				 }
 			    this.$uniFly
 				.post({
@@ -207,13 +173,13 @@
 						_self.loadingText[_self.current] = '';
 						if(!res.data.has_next){
 							uni.hideNavigationBarLoading();
-							_self.loadingText[_self.current] = '已加载全部';
+							_self.loadingText[current] = '已加载全部';
 							return false;
 						}
-						page++;
+						_self.page[current]++;
 						//console.log(res);
-						_self.newsList[_self.current] = _self.newsList[_self.current].concat(res.data);
-						_self.loadingText[_self.current] = '加载更多';
+						_self.newsList[current] = _self.newsList[current].concat(res.data);
+						_self.loadingText[current] = '加载更多';
 						uni.hideNavigationBarLoading();
 					}else{
 						uni.showToast({
@@ -230,13 +196,13 @@
 				    });
 				});
 			},
-			getnewsList: function(page,status){
-				_self=this
-			    page = 1;
-			    uni.showNavigationBarLoading();
+			getnewsList: function(current){
+				let _self = this;
+			    _self.page[current] = 1;
+			    //uni.showNavigationBarLoading();
 				 const data={
-					 page:page,
-					 status:status
+					 page:this.page[current],
+					 status:this.status[current]
 				 }
 			    this.$uniFly
 				.post({
@@ -246,11 +212,11 @@
 				.then({function(res){
 					console.log(res.data)
 					if(res.code===0){
-						page++;
-						_self.newsList[_self.current] = res.data;						
+						_self.page[current]++;
+						_self.newsList[current] = res.data;						
 						uni.hideNavigationBarLoading();
 						uni.stopPullDownRefresh();
-						_self.loadingText[_self.current] = '加载更多';
+						_self.loadingText[current] = '加载更多';
 					}else{
 						uni.showToast({
 						    content: res.msg,
