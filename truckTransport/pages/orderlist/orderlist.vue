@@ -6,7 +6,7 @@
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
 				<scroll-view class="scroll-container">
-					<view v-if="newsList[0].length===0">
+					<view v-if="empty[0]">
 						<view class="dui-notyet-wrapper">
 							<image src="../../static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
@@ -39,7 +39,7 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view class="scroll-container">
-					<view v-if="newsList[1].length===0">
+					<view v-if="empty[1]">
 						<view class="dui-notyet-wrapper">
 							<image src="../../static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
@@ -71,7 +71,7 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view>
-					<view v-if="newsList[2].length===0">
+					<view v-if="empty[2]">
 						<view class="dui-notyet-wrapper">
 							<image src="../../static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
@@ -111,6 +111,7 @@
 		data(){
 			return{
 				current:0,
+				empty:[false,false,false],
 				loadingText:['','',''],
 				page:[1,1,1],
 				has_next: [true, true, true],
@@ -137,14 +138,14 @@
 		},
 		onReachBottom:function(){
 			this.getnewsList();
-			let that=this;
+			/*let that=this;
 			let timer=null;
 			if(timer != null){
 			   clearTimeout(timer);
 			}
 			timer = setTimeout(function(){
 			   this.getnewsList();   
-			}, 1000);
+			}, 1000);*/
 		 },
 		methods:{
 			tabChange:function(e){
@@ -177,8 +178,9 @@
 						.then(function(res) {
 							uni.hideNavigationBarLoading();
 							if (res.code === 0 ) {
-								if(res.data.list.length > 0){
+								if(res.data.list.length > 0){						
 									let list = res.data.list;
+									_self.$set(_self.empty,current,false);
 									// let list=_self.parseOrderList(res.data);
 									_self.newsList[current] = _self.reload[current] ? list : _self.newsList[current].concat(list);
 									_self.$set(_self.newsList, current, _self.newsList[current]);
@@ -192,6 +194,7 @@
 										_self.$set(_self.loadingText, current, '已加载全部');
 									}
 								}else{
+									_self.$set(_self.empty,current,true);
 									_self.$set(_self.loadingText, current, '');
 								}							
 							} else {
