@@ -77,7 +77,7 @@
 				url: "/api/article_category/getarticlecategorylist",
 				params: {}
 			})	
-			.then({function(res){
+			.then(function(res){
 				if(res.code===0){
 					console.log(res.data)
 					that.lists=res.data;
@@ -87,7 +87,6 @@
 					    content: res.msg,
 					    showCancel: false
 					});
-				}
 				}
 			})
 			.catch(function(error) {

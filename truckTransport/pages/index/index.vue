@@ -30,15 +30,15 @@
 		<navigator class="ui-top-city-select" url="/pages/cityselect/cityselect?city=衡水市">当前城市：衡水市<text>切换</text></navigator>
 		<view class="ui-car-select">
 			<view class="ui-car-name-list">
-				<view class="ui-car-name-item" v-for="(item,index) in carTypes" :key="item.car_id" :class="{active:current==index}"
+				<view class="ui-car-name-item" v-for="(item,key,index) in carTypes" :key="item.car_id" :class="{active:current==index}"
 				 :data-current="index" @tap="tabChange">{{item.car_title}}</view>
 			</view>
 			<view class="ui-divide-line"></view>
 			<view>
 				<swiper class="ui-carinfos" @change="swiperChange" :current="current">
-					<swiper-item class="ui-carinfo-item" v-for="(item,index) in carTypes" :key="item.car_id">
+					<swiper-item class="ui-carinfo-item" v-for="(item,key,index) in carTypes" :key="item.car_id">
 						<view class="ui-carinfo-body">
-							<navigator :url="'/pages/cardetail/cardetail?id='+index" hover-class="none">
+							<navigator :url="'/pages/cardetail/cardetail?id='+key" hover-class="none">
 								<image :src="item.car_icon" class="ui-carinfo-image"></image>
 								<view class="ui-carinfo-cont">
 									<view>载重:{{item.car_load}}公斤</view>
@@ -111,40 +111,16 @@
 				price: 0,
 				hasLocation: false,
 				location: {},
-				carlistUrl: '/api/car/getcarlist',
 				carTypes: []
 			}
 		},
         computed: mapState(['forcedLogin', 'hasLogin', 'phone']),
         onLoad() {
-			let carlistUrl=this.carlistUrl;
-			let that=this;
 			if(this.$drmking.cacheData("carInfos")){
-				that.carTypes=that.$drmking.cacheData("carInfos");
+				this.carTypes=this.$drmking.cacheData("carInfos");
 				return;
 			}
-			this.$uniFly
-			  .get({
-			    url: carlistUrl,
-			    params: {}
-			  })
-			  .then(function(res) {
-			    if(res.code===0){	
-			    	that.carTypes=res.data;
-					that.$drmking.cacheData("carInfos",res.data,2592000);
-				}else{
-					uni.showToast({
-						content: res.msg,
-						showCancel: false
-					});
-				}	
-			  })
-			  .catch(function(error) {
-			    uni.showToast({
-			    	content: error,
-			    	showCancel: false
-			    });
-			  })
+			this.getCarList();
             this.getLocation();
         },
 		methods:{
@@ -161,15 +137,9 @@
 				    uni.showModal({
 				        title: '未登录',
 				        content: '您未登录，需要登录后才能继续',
-				        /**
-				         * 如果需要强制登录，不显示取消按钮
-				         */
 				        showCancel: true,
 				        success: (res) => {
 				            if (res.confirm) {
-								/**
-								 * 如果需要强制登录，使用reLaunch方式
-								 */
 				                uni.navigateTo({
 				                    url: '../login/login'
 				                });
@@ -182,6 +152,32 @@
 						url:url
 					}) 
 				} 
+			},
+			getCarList:function(){
+				let that=this;
+				this.$uniFly
+				  .get({
+				    url: "/api/car/getcarlist",
+				    params: {}
+				  })
+				  .then(function(res) {
+					  console.log(1)
+				    if(res.code===0){	
+				    	that.carTypes=res.data;
+						that.$drmking.cacheData("carInfos",res.data,2592000);
+					}else{
+						uni.showToast({
+							content: res.msg,
+							showCancel: false
+						});
+					}	
+				  })
+				  .catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				  })
 			},
 			orderSure(){
 				uni.navigateTo({

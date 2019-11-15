@@ -163,7 +163,7 @@
 					url: "/api/wallet_log/getwalletloglist",
 					params: data
 				})	
-				.then({function(res){
+				.then(function(res){
 					if(res.code===0){
 						_self.loadingText[_self.current] = '';
 						if(!res.data.has_next){
@@ -181,7 +181,6 @@
 						    content: res.msg,
 						    showCancel: false
 						});
-					}
 					}
 				})
 				.catch(function(error) {
@@ -211,7 +210,7 @@
 					url: "/api/wallet_log/getwalletloglist",
 					params: data
 				})	
-				.then({function(res){
+				.then(function(res){
 					if(res.code===0){
 						_self.loadingText[_self.current] = '';
 						if(!res.data.has_next){
@@ -229,7 +228,6 @@
 						    content: res.msg,
 						    showCancel: false
 						});
-					}
 					}
 				})
 				.catch(function(error) {

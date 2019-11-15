@@ -113,6 +113,9 @@
 				current:0,
 				loadingText:['','',''],
 				page:[1,1,1],
+				has_next: [true, true, true],
+				reload: [true, true, true],
+				newsList: [[], [], []],
 				tab:[{
 						name:"进行中",
 					},{
@@ -120,118 +123,92 @@
 					},{
 						name:"已取消",
 				}],
-				newsList:[{},{},{}],
 				status:["0,1,2,3","4,5","11,12,13"]
 			}
 		},
 		onShow(){
-			let that=this;
-		    this.getnewsList(that.current);
+		    this.getnewsList();
 		},
-		/*onPullDownRefresh:function(){
-			let that=this;
-		   this.getnewsList(that.current);		   	
-		   }
+		onPullDownRefresh:function(){
+			this.$set(this.has_next, this.current, true);
+			this.$set(this.reload, this.current, true);
+			this.$set(this.page, this.current, 1);
+			this.getnewsList();
 		},
 		onReachBottom:function(){
+			this.getnewsList();
 			let that=this;
+			let timer=null;
 			if(timer != null){
 			   clearTimeout(timer);
 			}
 			timer = setTimeout(function(){
-			   this.getmorenews(that.current);   
+			   this.getnewsList();   
 			}, 1000);
-		 },*/
+		 },
 		methods:{
 			tabChange:function(e){
 				var index = e.target.dataset.current || e.currentTarget.dataset.current;
 				this.current=index;
-				let that=this;
-				this.getnewsList(that.current);
+				this.$set(this.has_next, this.current, true);
+				this.$set(this.reload, this.current, true);
+				this.$set(this.page, this.current, 1);
+				this.getnewsList();
 			},
 			swiperChange:function(e) {			
 				var index=e.target.current || e.detail.current;
 				this.current = index;
 			},
-			getmorenews : function(current){
+			getnewsList: function() {
 				let _self = this;
-				if(_self.loadingText[current] != '' && _self.loadingText[current] != '加载更多'){
-					return false;
-			    }
-			    _self.loadingText[current] = '加载中...';
-			    uni.showNavigationBarLoading(); 
-				 const data={
-					page:this.page[current],
-					status:this.status[current]
-				 }
-			    this.$uniFly
-				.post({
-					url:"/api/order/getorderlist",
-					params: data
-				})	
-				.then({function(res){
-					if(res.code===0){
-						_self.loadingText[_self.current] = '';
-						if(!res.data.has_next){
+				let current = _self.current;
+				if (_self.has_next[current]) {
+					uni.showNavigationBarLoading();
+					_self.$set(_self.loadingText, current, '加载中...');
+					const data = {
+						page: this.page[current],
+						status: this.status[current]
+					};
+					this.$uniFly
+						.post({
+							url: '/api/order/getorderlist',
+							params: data
+						})
+						.then(function(res) {
 							uni.hideNavigationBarLoading();
-							_self.loadingText[current] = '已加载全部';
-							return false;
-						}
-						_self.page[current]++;
-						//console.log(res);
-						_self.newsList[current] = _self.newsList[current].concat(res.data);
-						_self.loadingText[current] = '加载更多';
-						uni.hideNavigationBarLoading();
-					}else{
-						uni.showToast({
-						    content: res.msg,
-						    showCancel: false
+							if (res.code === 0 ) {
+								if(res.data.list.length > 0){
+									let list = res.data.list;
+									// let list=_self.parseOrderList(res.data);
+									_self.newsList[current] = _self.reload[current] ? list : _self.newsList[current].concat(list);
+									_self.$set(_self.newsList, current, _self.newsList[current]);
+									_self.$set(_self.page, current, _self.page[current]++);
+									_self.$set(_self.reload, current, false);
+									_self.$set(_self.has_next, current, res.has_next);
+									if(res.has_next){
+										_self.$set(_self.loadingText, current, '加载更多');
+									}
+									else{
+										_self.$set(_self.loadingText, current, '已加载全部');
+									}
+								}else{
+									_self.$set(_self.loadingText, current, '');
+								}							
+							} else {
+								uni.showToast({
+									content: res.msg,
+									showCancel: false
+								});
+							}
+						})
+						.catch(function(error) {
+							uni.hideNavigationBarLoading();
+							uni.showToast({
+								content: error,
+								showCancel: false
+							});
 						});
-					}
-					}
-				})
-				.catch(function(error) {
-				    uni.showToast({
-				  	    content: error,
-				  	    showCancel: false
-				    });
-				});
-			},
-			getnewsList: function(current){
-				let _self = this;
-			    _self.page[current] = 1;
-			    uni.showNavigationBarLoading();
-				 const data={
-					 page:this.page[current],
-					 status:this.status[current]
-				 }
-			    this.$uniFly
-				.post({
-					url:"/api/order/getorderlist",
-					params: data
-				})
-				.then({function(res){
-					console.log(res.data)
-					if(res.code===0){
-						_self.page[current]++;
-						_self.newsList[current] = res.data;						
-						uni.hideNavigationBarLoading();
-						uni.stopPullDownRefresh();
-						_self.loadingText[current] = '加载更多';
-					}else{
-						uni.showToast({
-						    content: res.msg,
-						    showCancel: false
-						});
-					}
-					}
-			    })
-				.catch(function(error) {
-				    uni.showToast({
-				  	    content: error,
-				  	    showCancel: false
-				    });
-				})
+				}
 			}
 		}
 	}

@@ -7,8 +7,7 @@
 			    ...mapMutations(['login']),
 			} ,
 	        onLaunch: function () {
-				let userLogin=this.$drmking.cacheData("USER");
-				if(userLogin.phone){
+				if(this.$drmking.cacheData("USER")){
 					var that=this;
 					uni.getStorage({//获得保存在本地的用户信息  
 					    key: 'userLogin',  

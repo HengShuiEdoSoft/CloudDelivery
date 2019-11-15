@@ -2,9 +2,15 @@
 	<view class="content ">
 		<view class="ui-divide-line"></view>
 		<scroll-view class="scroll-container" scroll-y>
+			<view v-if="lists.length===0">
+				<view class="dui-notyet-wrapper">
+					<image src="../../static/img/NoOrder.jpg" mode=""></image>
+					<text>您还没有常用地址</text>
+				</view>
+			</view>
 			<block v-for="(item,index) in lists" :key="item.address_id">
 				<view class="dui-basic-list">
-					<navigator :url="'editaddress?id=' + item.address_id">
+					<navigator :url="'editaddress?id=' + index">
 						<view class="dui-basic-list-item">
 							<view class="dui-basic-list-item__container">
 								<view class="dui-basic-list-item__content">
@@ -35,110 +41,85 @@
 </template>
 
 <script>
-	var _self,timer = null;
 	export default {
 		data() {
 			return {
 				loadingText:'',
 				page:1,
+				reload:true,
+				has_next:true,
 				lists: []
 			}
 		},
 		onShow:function(){
-			_self = this;
 			this.getList();
 		},
 		onPullDownRefresh:function(){
-			   _self = this;
-			   this.getList();
+			this.has_next=true;
+			this.reload=true;
+			this.page=1;
+			this.getList();
 		},
 		onReachBottom:function(){
+			let _self=this;
+			let timer=null;
 			if(timer != null){
 				clearTimeout(timer);
 			}
 			timer = setTimeout(function(){
-				_self.getmore();
+				_self.getList();
 			}, 1000);
 		},
 		methods: {
-			getmore : function(){
-					let _self=this;
-					if(_self.loadingText != '' && _self.loadingText != '加载更多'){
-						return false;
-				    }
-				    _self.loadingText = '加载中...';
-				    uni.showNavigationBarLoading(); 
-					 const data={
-						 page:this.page
-					 }
-					 console.log(data);
-				    this.$uniFly
-					.post({
-						url: "/api/address/getaddresslist",
-						params: data
-					})	
-					.then({function(res){
-						if(res.code===0){
-							_self.loadingText = '';
-							if(!res.data.has_next){
-								uni.hideNavigationBarLoading();
-								_self.loadingText = '已加载全部';
-								return false;
-							}
-							_self.page++;
-							//console.log(res);
-							_self.lists = _self.lists.concat(res.data);
-							_self.loadingText = '加载更多';
-							uni.hideNavigationBarLoading();
-						}else{
-							uni.showToast({
-							    content: res.msg,
-							    showCancel: false
-							});
-						}
-						}
-					})
-					.catch(function(error) {
-					    uni.showToast({
-					  	    content: error,
-					  	    showCancel: false
-					    });
-					});
-			},
 			getList : function(){
-					let _self=this;
-				    _self.page = 1;
-				    uni.showNavigationBarLoading();
-					 const data={
-						 page:_self.page
-					 }
-				    this.$uniFly
+				let _self=this;
+				if (_self.has_next) {
+					uni.showNavigationBarLoading();
+					_self.loadingText='加载中...';
+					const data = {
+						page: this.page
+					};
+					this.$uniFly
 					.post({
 						url: '/api/address/getaddresslist',
 						params: data
 					})
-					.then({function(res){
-						console.log(res.data)
-						if(res.code===0){
-							_self.page++;
-							_self.lists = res.data;							
-							uni.hideNavigationBarLoading();
-							uni.stopPullDownRefresh();
-							_self.loadingText = '加载更多';
-						}else{
+					.then(function(res) {
+						uni.hideNavigationBarLoading();
+						if (res.code === 0 ) {
+							if(res.data.list.length > 0){
+								let list = res.data.list;
+								console.log(res)
+								// let list=_self.parseOrderList(res.data);
+								_self.lists = _self.reload ? list : _self.lists.concat(list);
+								_self.page++;
+								_self.reload=false;
+								_self.has_next=res.has_next;
+								console.log(res.has_next)
+								if(res.has_next){
+									_self.loadingText='加载更多';
+								}
+								else{
+									_self.loadingText='已加载全部';
+								}
+							}else{
+								_self.loadingText='';
+							}							
+						} else {
 							uni.showToast({
-							    content: res.msg,
-							    showCancel: false
+								content: res.msg,
+								showCancel: false
 							});
-							}
 						}
 					})
 					.catch(function(error) {
-					    uni.showToast({
-					  	    content: error,
-					  	    showCancel: false
-					    });
-					})
+						uni.hideNavigationBarLoading();
+						uni.showToast({
+							content: error,
+							showCancel: false
+						});
+					});
+				}
 			}
 		}	
 	}

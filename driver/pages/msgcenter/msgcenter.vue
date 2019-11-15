@@ -71,7 +71,7 @@
 					url: "/api/notice/getnoticelist",
 					params: data
 				})	
-				.then({function(res){
+				.then(function(res){
 					if(res.code===0){
 						_self.loadingText = '';
 						if(!res.data.has_next){
@@ -89,7 +89,6 @@
 						    content: res.msg,
 						    showCancel: false
 						});
-					}
 					}
 				})
 				.catch(function(error) {
@@ -118,7 +117,7 @@
 					url: '/api/notice/getnoticelist',
 					param: data
 				})
-				.then({function(res){
+				.then(function(res){
 					console.log(res.data)
 					if(res.code===0){
 						_self.page++;
@@ -132,7 +131,6 @@
 						    content: res.msg,
 						    showCancel: false
 						});
-					}
 					}
 			    })
 				.catch(function(error) {

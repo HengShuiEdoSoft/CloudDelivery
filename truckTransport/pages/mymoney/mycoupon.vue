@@ -53,6 +53,7 @@
 			    params: {}
 			  })
 			  .then(function(res) {
+				console.log("success")
 			    if(res.code===0){	
 			    	that.list=res.data;
 					console.log(res.data)

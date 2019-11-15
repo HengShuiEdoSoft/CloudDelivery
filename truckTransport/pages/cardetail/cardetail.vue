@@ -1,17 +1,17 @@
 <template>
 	<view class="content cardetail-content">
 		<swiper>
-			<swiper-item v-for="item in carsInfos[id].images" :key="item.id" class="ui-cardetail-item">
+			<swiper-item v-for="item in carsInfos.id.images" :key="item.id" class="ui-cardetail-item">
 				<image :src="item.img"></image>
 			</swiper-item>
 		</swiper>
 		<view class="ui-cardetail-container">
 			<view class="ui-cardetail-title">载货空间及重量</view>
-			<view class="ui-cardetail-body"><text class="ui-dot"></text><text>{{"载货空间"+carsInfos[id].car_cargo_volume+"方，载重"+carsInfos[id].car_load+"公斤"}}</text></view>
+			<view class="ui-cardetail-body"><text class="ui-dot"></text><text>{{"载货空间"+carsInfos.id.car_cargo_volume+"方，载重"+carsInfos.id.car_load+"公斤"}}</text></view>
 		</view>
 		<view class="ui-cardetail-container">
 			<view class="ui-cardetail-title">用车参考</view>
-			<view class="ui-cardetail-body" v-for="item in carsInfos[id].car_refererances" :key="item.id"><text class="ui-dot"></text><text>{{item.car_refer}}</text></view>
+			<view class="ui-cardetail-body" v-for="item in carsInfos.id.car_refererances" :key="item.id"><text class="ui-dot"></text><text>{{item.car_refer}}</text></view>
 		</view>
 	</view>
 </template>
@@ -31,7 +31,7 @@
 			let that=this;
 			if(this.$drmking.cacheData("carInfos")){
 				that.carsInfos=this.$drmking.cacheData("carInfos");
-				let title=that.carsInfos[id].title+"详情页";
+				let title=that.carsInfos.id.title+"详情页";
 				uni.setNavigationBarTitle({title:title});
 				return;
 			}
@@ -44,7 +44,7 @@
 				  //console.log(res);
 			    if(res.code==0){	
 			    	that.carsInfos=res.data;
-					var title=that.carsInfos[id].title+"详情页";
+					var title=that.carsInfos.id.title+"详情页";
 					uni.setNavigationBarTitle({title:title});
 				}
 			  })
