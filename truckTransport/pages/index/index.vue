@@ -80,6 +80,7 @@
 				</swiper>
 			</view>
 		</view>
+		<view class="uni-timeline-box">
 		<view class="uni-timeline">
 			<view class="uni-timeline-item uni-timeline-first-item">
 				<view class="uni-timeline-item-divider">发</view>
@@ -119,8 +120,12 @@
 						<view class="ui-subtext">{{order.trip.destination.contact}} {{order.trip.destination.phone}}</view>
 					</block>
 				</view>
+				<view class="delete_address">删除</view>
 			</view>
 		</view>
+		
+		</view>
+		
 		<view class="ui-home-bottom">
 			<view class="ui-home-price-container">
 				<view class="ui-cost-price">
