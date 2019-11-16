@@ -27,19 +27,18 @@
 				</view>
 			</uni-drawer>
 		</view>
-		<navigator class="ui-top-city-select" :url="'/pages/cityselect/cityselect?city=' + location_city.city.city_title + '&status=1'">
+		<navigator class="ui-top-city-select" :url="'/pages/cityselect/cityselect?city=' + location_city.city.city_title + '&status=1&channel=changeCity'">
 			当前城市：{{ location_city.city.city_title }}
 			<text>切换</text>
 		</navigator>
 		<view class="ui-car-select">
 			<view class="ui-car-name-list">
-				<view class="ui-car-name-item" v-for="(item,key,index) in carTypes" :key="item.car_id" :class="{active:current===index}"
-				 :data-current="index" @click="tabChange">{{item.car_title}}</view>
+				<view class="ui-car-name-item" v-for="(item,index) in location_city.cars_list" :key="item.car_id" :class="{active:current===index}" @click="tabChange(index)">{{item.car_title}}</view>
 			</view>
 			<view class="ui-divide-line"></view>
 			<view>
 				<swiper class="ui-carinfos" @change="swiperChange" :current="current">
-					<swiper-item class="ui-carinfo-item" v-for="(item,key,index) in carTypes" :key="item.car_id">
+					<swiper-item class="ui-carinfo-item" v-for="(item,key) in location_city.cars_list" :key="item.car_id">
 						<view class="ui-carinfo-body">
 							<navigator :url="'/pages/cardetail/cardetail?id='+key" hover-class="none">
 								<image :src="item.car_icon" class="ui-carinfo-image"></image>
@@ -113,7 +112,8 @@
 						amap_citycode: '0318',
 						status: 1
 					},
-					cars: {}
+					cars: {},
+					cars_list:[]
 				}
 			}
 		},
@@ -132,8 +132,7 @@
         	this.location_city = location_city;
         },
 		methods:{
-			tabChange:function(e){
-				var index = e.target.dataset.current || e.currentTarget.dataset.current;
+			tabChange:function(index){
 				this.current=index;
 			},
 			swiperChange:function(e) {			

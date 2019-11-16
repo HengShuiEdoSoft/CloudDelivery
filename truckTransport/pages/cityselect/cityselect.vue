@@ -15,16 +15,16 @@ export default {
 	data() {
 		return {
 			currentCity: '',
-			currentId: '',
-			current: 1,
-			type: 1,
+			status: 1,
+			channel:'',
 			citydata: {}
 		};
 	},
 	async onLoad(options) {
+		let that = this;
 		this.currentCity = options.city;
 		this.status = parseInt(options.status);
-		let that = this;
+		this.channel = options.channel;
 		that.citydata = await that.$drmking.getCityList(that);
 		let list = [];
 		for (let i in that.citydata) {
@@ -38,15 +38,13 @@ export default {
 		that.$refs['sortPickerList'].initPage(list);
 	},
 	methods: {
-		getSelect(data) {			
-			if(this.status==1){
-				this.$fire.fire('changeCity',this.citydata[data.value]);
-			}else{
-				
+		getSelect(data) {
+			if(!this.$drmking.isEmpty(this.channel)){
+				this.$fire.fire(this.channel,this.citydata[data.value]);
 			}
-			uni.navigateBack({
-				delta:100
-			});
+			setTimeout(function(){
+				uni.navigateBack();
+			},100);
 		},
 	}
 };
