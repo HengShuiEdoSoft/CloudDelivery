@@ -5,7 +5,7 @@
 			<view class="ui-tip">当前城市</view>
 			<text class="ui-city">{{ currentCity }}</text>
 		</view>
-		<SortPickerList ref="sortPickerList" @clickData="getSelect"></SortPickerList>
+		<view class="ui-city-list"><SortPickerList ref="sortPickerList" @clickData="getSelect"></SortPickerList></view>
 	</view>
 </template>
 <script>
@@ -16,7 +16,7 @@ export default {
 		return {
 			currentCity: '',
 			status: 1,
-			channel:'',
+			channel: '',
 			citydata: {}
 		};
 	},
@@ -39,13 +39,14 @@ export default {
 	},
 	methods: {
 		getSelect(data) {
-			if(!this.$drmking.isEmpty(this.channel)){
-				this.$fire.fire(this.channel,this.citydata[data.value]);
+			this.currentCity = data.name;
+			if (!this.$drmking.isEmpty(this.channel)) {
+				this.$fire.fire(this.channel, this.citydata[data.value]);
 			}
-			setTimeout(function(){
+			setTimeout(function() {
 				uni.navigateBack();
-			},100);
-		},
+			}, 100);
+		}
 	}
 };
 </script>
@@ -59,6 +60,11 @@ export default {
 }
 .ui-city-container {
 	padding: 0 30upx;
+	height: 16vh;
+}
+.ui-city-list{
+	height: 83vh;
+	overflow: hidden;
 }
 .ui-city {
 	margin: 20upx 0 40upx;
