@@ -141,8 +141,8 @@ textarea {
 	overflow-y: auto;
 }
 
-.uni-timeline {	
-	margin: 0!important;
+.uni-timeline {
+	margin: 0 !important;
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -159,6 +159,30 @@ textarea {
 	padding-bottom: 20upx;
 	box-sizing: border-box;
 	overflow: hidden;
+}
+
+.uni-timeline-item .delete_address {
+	font-size: 12px;
+	color: #333333;
+	border: 1px solid #ddd;
+	line-height: 18px;
+	padding: 3px 8px;
+	height: 18px;
+}
+
+.add_address_box {
+	border-top: 1px solid #ddd;
+	padding: 10px 0 0 0;
+	justify-content: flex-end;
+}
+
+.uni-timeline-item .add_address {
+	font-size: 12px;
+	color: #333333;
+	border: 1px solid #ddd;
+	line-height: 18px;
+	padding: 3px 8px;
+	height: 18px;
 }
 
 .uni-timeline-item .uni-timeline-item-keynode {

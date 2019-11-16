@@ -95,8 +95,8 @@
 					</block>
 				</view>
 			</view>
-			<view v-for="(item,index) in order.trip.transfer" :key="index" class="uni-timeline-item uni-timeline-last-item">
-				<view class="uni-timeline-item-divider">·</view>
+			<view v-for="(item,index) in order.trip.transfer" :key="index" class="uni-timeline-item">
+				<view class="uni-timeline-item-divider"></view>
 				<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
 					<block v-if="item.localtion==''">
 						<view class="ui-address">请输入收货地址</view>
@@ -121,6 +121,9 @@
 					</block>
 				</view>
 				<view class="delete_address">删除</view>
+			</view>
+			<view class="uni-timeline-item add_address_box">
+				<view class="add_address">添加收货地址</view>
 			</view>
 		</view>
 		
