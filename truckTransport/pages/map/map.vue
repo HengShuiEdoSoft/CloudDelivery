@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<map class="map" id="map1" ref="map1" :longitude="longitude" :latitude="latitude"
-         :markers="marker" :show-location="true" type='gcj02'></map>
+         :markers="marker" type='gcj02'></map>
 		<uni-popup ref="permission" mode="fixed">
 		    <view class="popup-view">
 		        <text class="popup-title">需要用户授权位置权限</text>
@@ -31,7 +31,6 @@
 				location: {},
 				locationAddress: '',
 				type: '',
-				list: city.list,
 				amapPlugin:'',
 				key:'22c3c30a9a061677192b5c1ae9b9055f',
 				latitude: 37.73,
@@ -43,7 +42,7 @@
 				}]
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getLocation();
 		},
 		onReady () {
@@ -83,8 +82,7 @@
 			            that.hasLocation = true;
 			            that.longitude=-res.longitude;
 						that.latitude=res.latitude;
-						console.log('当前位置的经度：' + res.longitude);
-						console.log('当前位置的纬度：' + res.latitude);
+						console.log(res)
 						uni.openLocation({
 						    latitude: res.latitude,
 						    longitude: res.longitude,
@@ -179,8 +177,8 @@
 				uni.chooseLocation({
 					success: (res) => {
 						this.hasLocation = true,
-							this.location = formatLocation(res.longitude, res.latitude),
-							this.locationAddress = res.address
+						this.location = formatLocation(res.longitude, res.latitude),
+						this.locationAddress = res.address
 					}
 				})
 			},

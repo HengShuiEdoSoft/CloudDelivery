@@ -27,11 +27,14 @@
 				</view>
 			</uni-drawer>
 		</view>
-		<navigator class="ui-top-city-select" :url="'/pages/cityselect/cityselect?city='+cityData.city_title" @tap="changecity">当前城市：{{cityData.city_title}}<text>切换</text></navigator>
+		<navigator class="ui-top-city-select" :url="'/pages/cityselect/cityselect?city=' + location_city.city.city_title + '&status=1'">
+			当前城市：{{ location_city.city.city_title }}
+			<text>切换</text>
+		</navigator>
 		<view class="ui-car-select">
 			<view class="ui-car-name-list">
-				<view class="ui-car-name-item" v-for="(item,key,index) in carTypes" :key="item.car_id" :class="{active:current==index}"
-				 :data-current="index" @tap="tabChange">{{item.car_title}}</view>
+				<view class="ui-car-name-item" v-for="(item,key,index) in carTypes" :key="item.car_id" :class="{active:current===index}"
+				 :data-current="index" @click="tabChange">{{item.car_title}}</view>
 			</view>
 			<view class="ui-divide-line"></view>
 			<view>
@@ -91,12 +94,6 @@
 	} from 'vuex'
 	import uniDrawer from "@/components/drawer/drawer.vue"
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
-	var util = require('../../common/util.js');
-	//var $drmking = require('../../common/drmking.js');
-	var formatLocation = util.formatLocation;
-	// #ifdef APP-PLUS
-	import permision from "@/common/permission.js"
-	// #endif
 
 	export default {
 		components: {
@@ -108,23 +105,31 @@
 				visible: false,
 				current: 0,
 				price: 0,
-				cityData:{
-					city_title:"衡水",city_id:1
-				},
-				hasLocation: false,
-				location: {},
-				carTypes: []
+				location_city: {
+					city: {
+						city_id: 19,
+						city_title: '衡水市',
+						is_default: 1,
+						amap_citycode: '0318',
+						status: 1
+					},
+					cars: {}
+				}
 			}
 		},
         computed: mapState(['forcedLogin', 'hasLogin', 'phone']),
-        onLoad() {
-			this.getLocation();
-			if(this.$drmking.cacheData("carInfos")){
-				this.carTypes=this.$drmking.cacheData("carInfos");
-				return;
-			}
-			this.getCarList();
-            
+        async onLoad() {
+        	let that = this;
+        	this.$fire.on('changeCity', function(data) {
+        		console.log(data);
+        		that.$drmking.setLocationCity(that, data);
+        	});
+        	let location_city = this.$drmking.getLocationCity();
+        	if (this.$drmking.isEmpty(location_city)) {
+        		await this.$drmking.changeLocationCity(this);
+        		location_city = this.$drmking.getLocationCity();
+        	}
+        	this.location_city = location_city;
         },
 		methods:{
 			tabChange:function(e){
@@ -134,12 +139,6 @@
 			swiperChange:function(e) {			
 				var index=e.target.current || e.detail.current;
 				this.current = index;
-			},
-			changecity:function(){
-				var that = this;
-				this.$fire.on('setCity',function(cityData){
-					that.cityData=cityData;
-				})				
 			},
 			navTo:function(url){
 				if (!this.hasLogin) {
@@ -162,131 +161,10 @@
 					}) 
 				} 
 			},
-			getCarList:function(){
-				let that=this;
-				this.$uniFly
-				  .get({
-				    url: "/api/car/getcarlist",
-				    params: {}
-				  })
-				  .then(function(res) {
-				    if(res.code===0){	
-				    	that.carTypes=res.data;
-						that.$drmking.cacheData("carInfos",res.data,2592000);
-					}else{
-						uni.showToast({
-							content: res.msg,
-							showCancel: false
-						});
-					}	
-				  })
-				  .catch(function(error) {
-				    uni.showToast({
-				    	content: error,
-				    	showCancel: false
-				    });
-				  })
-			},
 			orderSure(){
 				uni.navigateTo({
 					url:"/pages/order/order"
 				})
-			},
-			async getLocation() {
-				let status;
-			    // #ifdef APP-PLUS
-			    status = await this.checkPermission();
-			    if (status !== 1) {
-			        return;
-			    }
-			    // #endif
-			    // #ifdef MP-WEIXIN || MP-TOUTIAO || MP-QQ
-			    status = await this.getSetting();
-			    if (status === 2) {
-			        this.showConfirm();
-			        return;
-			    }
-			    // #endif
-			
-			    this.doGetLocation();
-			},
-			doGetLocation() {
-			    uni.getLocation({
-			        success: (res) => {
-			            this.hasLocation = true;
-			            this.location = formatLocation(res.longitude, res.latitude);
-						//console.log(location);
-			        },
-			        fail: (err) => {
-			            // #ifdef MP-BAIDU
-			            if (err.errCode === 202 || err.errCode === 10003) { // 202模拟器 10003真机 user deny
-			                this.showConfirm();
-			            }
-			            // #endif
-			            // #ifndef MP-BAIDU
-			            if (err.errMsg.indexOf("auth deny") >= 0) {
-			                uni.showToast({
-			                    title: "访问位置被拒绝"
-			                })
-			            } else {
-			                uni.showToast({
-			                    title: err.errMsg
-			                })
-			            }
-			            // #endif
-			        }
-			    })
-			},
-			getSetting: function() {
-			    return new Promise((resolve, reject) => {
-			        uni.getSetting({
-			            success: (res) => {
-			                if (res.authSetting['scope.userLocation'] === undefined) {
-			                    resolve(0);
-			                    return;
-			                }
-			                if (res.authSetting['scope.userLocation']) {
-			                    resolve(1);
-			                } else {
-			                    resolve(2);
-			                }
-			            }
-			        });
-			    });
-				},
-			async checkPermission() {
-			    let status = permision.isIOS ? await permision.requestIOS('location') :
-			        await permision.requestAndroid('android.permission.ACCESS_FINE_LOCATION');
-			
-			    if (status === null || status === 1) {
-			        status = 1;
-			    } else if (status === 2) {
-			        uni.showModal({
-			            content: "系统定位已关闭",
-			            confirmText: "设置",
-			            success: function(res) {
-			                if (res.confirm) {
-			                    permision.gotoiOSSetting();
-			                }
-			            }
-			        })
-			    } else if (status.code) {
-			        uni.showModal({
-			            content: status.message
-			        })
-			    } else {
-			        uni.showModal({
-			            content: "需要定位权限",
-			            confirmText: "设置",
-			            success: function(res) {
-			                if (res.confirm) {
-			                    permision.gotoAppSetting();
-			                }
-			            }
-			        })
-			    }
-			
-			    return status;
 			}
 		},
 		onNavigationBarButtonTap(e) {
