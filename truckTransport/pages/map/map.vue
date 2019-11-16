@@ -1,12 +1,7 @@
 <template>
 	<view class="content">
-		<map class="map" id="map1" ref="map1" :longitude="location.longitude" :latitude="location.latitude"
-            :show-location="true" type="gcj02"></map>
-		<uni-popup ref="selectcity" mode="fixed">
-		    <view class="popup-view">
-		        <uni-indexed-list :options="list" :show-select="false" @click="bindClick" />
-		    </view>
-		</uni-popup>
+		<map class="map" id="map1" ref="map1" :longitude="longitude" :latitude="latitude"
+         :markers="marker" :show-location="true" type='gcj02'></map>
 		<uni-popup ref="permission" mode="fixed">
 		    <view class="popup-view">
 		        <text class="popup-title">需要用户授权位置权限</text>
@@ -20,8 +15,6 @@
 </template>
 
 <script>
-	import city from '@/common/city.data.js'
-	import uniIndexedList from '@/components/uni-indexed-list/uni-indexed-list.vue'
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	var util = require('@/common/util.js');
 	var formatLocation = util.formatLocation;
@@ -30,7 +23,6 @@
 	// #endif
 	export default {
 		components: {
-			uniIndexedList,
 			uniPopup
 		},
 		data() {
@@ -39,19 +31,25 @@
 				location: {},
 				locationAddress: '',
 				type: '',
-				list: city.list
+				list: city.list,
+				amapPlugin:'',
+				key:'22c3c30a9a061677192b5c1ae9b9055f',
+				latitude: 37.73,
+				longitude: 115.68,
+				marker:[{
+					latitude: 37.73,
+					longitude: 115.68,
+					iconPath: '../../../static/location.png'					
+				}]
 			}
 		},
 		onLoad() {
 			this.getLocation();
 		},
 		onReady () {
-		    this.map = uni.createMapContext("map1", this);
+		    //this.map = uni.createMapContext("map1", this);
 		},
 		methods: {
-			bindClick(e) {
-				console.log('点击item，返回数据' + JSON.stringify(e))
-			},
 			togglePopup(type, open) {
 				this.type = type;
 				this.$refs[open].open();
@@ -80,15 +78,18 @@
 			doGetLocation() {
 				var that=this;
 			    uni.getLocation({
-					type:' gcj02',
-			        success: (res) => {
-			            this.hasLocation = true;
-			            this.location = formatLocation(res.longitude, res.latitude);
-						 uni.openLocation({
+					type:'gcj02',
+			        success: (res) => {	
+			            that.hasLocation = true;
+			            that.longitude=-res.longitude;
+						that.latitude=res.latitude;
+						console.log('当前位置的经度：' + res.longitude);
+						console.log('当前位置的纬度：' + res.latitude);
+						uni.openLocation({
 						    latitude: res.latitude,
 						    longitude: res.longitude,
 						    success: function () {
-						        console.log('success');
+						         console.log('success');
 						    }
 						});
 			        },

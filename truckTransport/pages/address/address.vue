@@ -2,7 +2,7 @@
 	<view class="content ">
 		<view class="ui-divide-line"></view>
 		<scroll-view class="scroll-container" scroll-y>
-			<view v-if="lists.length===0">
+			<view v-if="empty">
 				<view class="dui-notyet-wrapper">
 					<image src="../../static/img/NoOrder.jpg" mode=""></image>
 					<text>您还没有常用地址</text>
@@ -45,6 +45,7 @@
 		data() {
 			return {
 				loadingText:'',
+				empty:false,
 				page:1,
 				reload:true,
 				has_next:true,
@@ -89,7 +90,7 @@
 						if (res.code === 0 ) {
 							if(res.data.list.length > 0){
 								let list = res.data.list;
-								console.log(res)
+								_self.empty=false;
 								// let list=_self.parseOrderList(res.data);
 								_self.lists = _self.reload ? list : _self.lists.concat(list);
 								_self.page++;
@@ -103,6 +104,7 @@
 									_self.loadingText='已加载全部';
 								}
 							}else{
+								_self.empty=true;
 								_self.loadingText='';
 							}							
 						} else {

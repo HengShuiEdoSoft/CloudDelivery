@@ -21,6 +21,8 @@
     "Maps": {
       "coordType": "gcj02"
     },
+    "OAuth": {},
+    "Payment": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }

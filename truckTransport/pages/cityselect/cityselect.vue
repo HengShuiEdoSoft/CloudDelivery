@@ -51,9 +51,13 @@
 		},
 		methods: {
 			getSelect:function(index){
+				let that=this;
 				this.current=index;
 				this.currentCity=this.list[index].city_title;
 				this.currentId=this.list[index].city_id;
+				const cityData=this.list[index]
+				this.$fire.fire('setCity',cityData);
+				uni.navigateBack();
 			}
 		}
 	}

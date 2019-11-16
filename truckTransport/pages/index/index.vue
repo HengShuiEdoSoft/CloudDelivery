@@ -27,7 +27,7 @@
 				</view>
 			</uni-drawer>
 		</view>
-		<navigator class="ui-top-city-select" url="/pages/cityselect/cityselect?city=衡水市">当前城市：衡水市<text>切换</text></navigator>
+		<navigator class="ui-top-city-select" :url="'/pages/cityselect/cityselect?city='+cityData.city_title" @tap="changecity">当前城市：{{cityData.city_title}}<text>切换</text></navigator>
 		<view class="ui-car-select">
 			<view class="ui-car-name-list">
 				<view class="ui-car-name-item" v-for="(item,key,index) in carTypes" :key="item.car_id" :class="{active:current==index}"
@@ -89,7 +89,6 @@
 	import {
 		mapState
 	} from 'vuex'
-
 	import uniDrawer from "@/components/drawer/drawer.vue"
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	var util = require('../../common/util.js');
@@ -109,6 +108,9 @@
 				visible: false,
 				current: 0,
 				price: 0,
+				cityData:{
+					city_title:"衡水",city_id:1
+				},
 				hasLocation: false,
 				location: {},
 				carTypes: []
@@ -116,12 +118,13 @@
 		},
         computed: mapState(['forcedLogin', 'hasLogin', 'phone']),
         onLoad() {
+			this.getLocation();
 			if(this.$drmking.cacheData("carInfos")){
 				this.carTypes=this.$drmking.cacheData("carInfos");
 				return;
 			}
 			this.getCarList();
-            this.getLocation();
+            
         },
 		methods:{
 			tabChange:function(e){
@@ -131,6 +134,12 @@
 			swiperChange:function(e) {			
 				var index=e.target.current || e.detail.current;
 				this.current = index;
+			},
+			changecity:function(){
+				var that = this;
+				this.$fire.on('setCity',function(cityData){
+					that.cityData=cityData;
+				})				
 			},
 			navTo:function(url){
 				if (!this.hasLogin) {
@@ -161,7 +170,6 @@
 				    params: {}
 				  })
 				  .then(function(res) {
-					  console.log(1)
 				    if(res.code===0){	
 				    	that.carTypes=res.data;
 						that.$drmking.cacheData("carInfos",res.data,2592000);
@@ -207,7 +215,7 @@
 			        success: (res) => {
 			            this.hasLocation = true;
 			            this.location = formatLocation(res.longitude, res.latitude);
-						console.log(location);
+						//console.log(location);
 			        },
 			        fail: (err) => {
 			            // #ifdef MP-BAIDU
