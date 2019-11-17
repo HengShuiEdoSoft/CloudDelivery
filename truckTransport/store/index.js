@@ -84,6 +84,9 @@ const store = new Vuex.Store({
 		}
 	},
 	mutations: {
+		set_order:function(state,order){
+			state.order=order;
+		},
 		login(state, user) {
 			state.phone = user.phone || '新用户';
 			state.token = user.token || '';
