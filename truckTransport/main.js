@@ -85,7 +85,7 @@ new Promise(async (resolve, reject) => {
 	await drmking.getCarInfos(app);
 	await drmking.getCityList(app);
 	let city = drmking.getDefaultCity();
-	drmking.setLocationCity(app, city);
+	await drmking.setLocationCity(app, city);
 	resolve(config);
 }).then(function(res) {
 	app.$mount();

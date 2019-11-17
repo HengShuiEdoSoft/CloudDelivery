@@ -181,8 +181,7 @@ export default {
 		};
 	},
 	computed: mapState(['forcedLogin', 'hasLogin', 'phone','order','sysconfig']),
-	async onLoad() {
-		console.log(this.sysconfig)
+	async onLoad() {		
 		let that = this;
 		this.$fire.on('changeCity', function(data) {
 			console.log(data);
@@ -190,6 +189,7 @@ export default {
 		});
 		let location_city = this.$drmking.getLocationCity();
 		if (this.$drmking.isEmpty(location_city)) {
+			console.log(123);
 			await this.$drmking.changeLocationCity(this);
 			location_city = this.$drmking.getLocationCity();
 		}
