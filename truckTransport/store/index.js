@@ -13,14 +13,14 @@ const store = new Vuex.Store({
 		phone: "",
 		token: "",
 		userid: "",
-		sysconfig:{
-			
+		sysconfig: {
+
 		},
 		order: {
-			city_id: 19,
-			city_title: '衡水市',
-			car_id: 1,
-			car_title: '小面包车',
+			city_id: 0,
+			city_title: '',
+			car_id: 0,
+			car_title: '',
 			is_now: true,
 			user_driver_favorites: false,
 			car_time: '',
@@ -32,23 +32,7 @@ const store = new Vuex.Store({
 			pay_order_price: 0,
 			distance: 0,
 			remark: '订单备注',
-			attach: [{
-					attach_id: 1,
-					attach_title: '返程费用',
-					attach_type: 1,
-					attach_price: 50,
-					attach_price_rate: 0.01,
-					attach_remark: '免费'
-				},
-				{
-					attach_id: 2,
-					attach_title: '装卸费用',
-					attach_type: 0,
-					attach_price: 100,
-					attach_price_rate: 0,
-					attach_remark: '免费'
-				}
-			],
+			attach: [],
 			trip: {
 				departure: {
 					lat: '',
@@ -59,14 +43,13 @@ const store = new Vuex.Store({
 					phone: ''
 				},
 				transfer: [{
-						lat: '',
-						lon: '',
-						localtion: '',
-						address: '',
-						contact: '',
-						phone: ''
-					}
-				],
+					lat: '',
+					lon: '',
+					localtion: '',
+					address: '',
+					contact: '',
+					phone: ''
+				}],
 				destination: {
 					lat: '',
 					lon: '',
@@ -80,12 +63,28 @@ const store = new Vuex.Store({
 	},
 	mutations: {
 		set_sysconfig: function(state, sysconfig) {
-			// state.sysconfig = sysconfig;
-			Vue.set(state,'sysconfig',sysconfig);
+			Vue.set(state, 'sysconfig', sysconfig);
+		},
+		set_order_car: function(state, car) {
+			Vue.set(state.order, 'car_id', car.car_id);
+			Vue.set(state.order, 'car_title', car.car_title);
+		},
+		set_order_attach: function(state, attach) {
+			Vue.set(state.order, 'attach', attach);
+		},
+		up_order_attach_status: function(state, index, status) {
+			Vue.set(state.order.attach[index], 'status', status);
+		},
+		set_order_city: function(state, locattion_city) {
+			Vue.set(state.order, 'city_id', locattion_city.city.city_id);
+			Vue.set(state.order, 'city_title', locattion_city.city.city_title);
+			if (locattion_city.cars.length > 1) {
+				Vue.set(state.order, 'car_id', locattion_city.cars[0].car_id);
+				Vue.set(state.order, 'car_title', locattion_city.cars[0].car_title);
+			}
 		},
 		set_order: function(state, order) {
-			// state.order = order;
-			Vue.set(state,'order',order);
+			Vue.set(state, 'order', order);
 		},
 		login(state, user) {
 			state.phone = user.phone || '新用户';

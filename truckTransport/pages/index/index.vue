@@ -178,9 +178,10 @@ export default {
 			console.log(data);
 			that.$drmking.setLocationCity(that, data);
 		});
-		let location_city = this.$drmking.getLocationCity();
+		let location_city = await this.$drmking.getLocationCity();
 		if (this.$drmking.isEmpty(location_city)) {
-			console.log(13);
+			this.$drmking.getDefaultCity();
+			console.log(12);
 			await this.$drmking.changeLocationCity(this);
 			location_city = this.$drmking.getLocationCity();
 		}

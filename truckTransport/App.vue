@@ -4,13 +4,31 @@ export default {
 	methods: {
 		...mapMutations(['login'])
 	},
-	onLaunch: async function() {
-		let config = await this.$drmking.getSystemConfig(this);
-		this.$store.commit('set_sysconfig', config);
-		await this.$drmking.getCarInfos(this);
-		await this.$drmking.getCityList(this);
-		let city = this.$drmking.getDefaultCity();
-		await this.$drmking.setLocationCity(this, city);
+	onLaunch: function() {
+		// // 获取运行配置
+		// let config = await this.$drmking.getSystemConfig(this);
+		// // 更新store状态
+		// this.$store.commit('set_sysconfig', config);
+		// // 获取车辆信息
+		// await this.$drmking.getCarInfos(this);
+		// // 获取城市列表
+		// await this.$drmking.getCityList(this);
+		// // 获取附加服务列表
+		// let attach_list =await this.$drmking.getAttachList(this);
+		// let attach=[];
+		// for(let i in attach_list){
+		// 	attach_list[i]['status']=false;
+		// 	attach.push(attach_list[i]);
+		// }
+		// // 将附加服务加入order
+		// this.$store.commit('set_order_attach', attach);
+		// // 获取默认城市
+		// let city = this.$drmking.getDefaultCity();
+		// // 设置默认城市显示
+		// await this.$drmking.setLocationCity(this, city);
+		// // 更新订单城市信息
+		// let locattion_city= await this.$drmking.getLocationCity();
+		// this.$store.commit('set_order_city', locattion_city);
 		if (this.$drmking.cacheData('USER')) {
 			var that = this;
 			uni.getStorage({

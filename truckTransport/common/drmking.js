@@ -189,6 +189,27 @@ let drmking = {
 		});
 		return city;
 	},
+	// 获取附加服务类目
+	getAttachList: async function(vue) {
+		let that = this;
+		let cache_key = 'attachlist';
+		let attachlist = that.cacheData(cache_key);
+		if (that.isEmpty(attachlist)) {
+			attachlist = await vue.$uniFly.get({
+				url: '/api/attach/getattachlist'
+			}).then(function(res) {
+				if (res.code == 0) {
+					that.cacheData(cache_key, res.data, 300);
+					return res.data;
+				} else {
+					return null;
+				}
+			}).catch(function(error) {
+				return null;
+			});
+		}
+		return attachlist;
+	},
 	// 获取城市列表
 	getCityList: async function(vue) {
 		let that = this;
