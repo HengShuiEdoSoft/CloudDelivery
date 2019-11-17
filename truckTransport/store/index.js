@@ -13,6 +13,9 @@ const store = new Vuex.Store({
 		phone: "",
 		token: "",
 		userid: "",
+		sysconfig:{
+			
+		},
 		order: {
 			city_id: 19,
 			city_title: '衡水市',
@@ -84,8 +87,13 @@ const store = new Vuex.Store({
 		}
 	},
 	mutations: {
-		set_order:function(state,order){
-			state.order=order;
+		set_sysconfig: function(state, sysconfig) {
+			// state.sysconfig = sysconfig;
+			Vue.set(state,'sysconfig',sysconfig);
+		},
+		set_order: function(state, order) {
+			// state.order = order;
+			Vue.set(state,'order',order);
 		},
 		login(state, user) {
 			state.phone = user.phone || '新用户';

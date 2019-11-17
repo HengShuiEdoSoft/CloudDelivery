@@ -76,6 +76,30 @@ let drmking = {
 			return true;
 		}
 	},
+	// 获取系统运行配置
+	getSystemConfig: async function(vue) {
+		let that = this;
+		let cache_key = 'SystemConfig';
+		let system_config = this.cacheData(cache_key);
+		if (that.isEmpty(system_config)) {
+			let data = await vue.$uniFly.get({
+				url: '/api/common/config',
+			}).then(function(res) {
+				if (res.code == 0) {
+					that.cacheData(cache_key, res.data, 3600);
+					return res.data;
+				} else {
+					return null;
+				}
+			}).catch(function(error) {
+				return null;
+			});
+			return data;
+		} else {
+			return system_config;
+		}
+	},
+	// 获取车型数据
 	getCarInfos: async function(vue) {
 		let that = this;
 		let cache_key = 'carInfos';

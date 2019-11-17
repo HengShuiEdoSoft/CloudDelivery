@@ -180,8 +180,9 @@ export default {
 			},			
 		};
 	},
-	computed: mapState(['forcedLogin', 'hasLogin', 'phone','order']),
+	computed: mapState(['forcedLogin', 'hasLogin', 'phone','order','sysconfig']),
 	async onLoad() {
+		console.log(this.sysconfig)
 		let that = this;
 		this.$fire.on('changeCity', function(data) {
 			console.log(data);

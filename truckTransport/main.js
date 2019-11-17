@@ -16,7 +16,7 @@ uniFly['retry_number'] = 3;
 //uniFly.headers={'Access-Control-Allow-Origin':'*'};
 //自定义请求拦截
 uniFly.requestInterceptors.success = function(request) {
-	let userinfo=drmking.cacheData("USER");
+	let userinfo = drmking.cacheData("USER");
 	if (userinfo) {
 		request.body['phone'] = userinfo.phone;
 		request.body['token'] = userinfo.token;
@@ -77,7 +77,19 @@ Vue.prototype.$fire = new OnFire();
 App.mpType = 'app'
 
 const app = new Vue({
-    store,
-    ...App
-})
-app.$mount()
+	store,
+	...App
+});
+new Promise(async (resolve, reject) => {
+	let config = await drmking.getSystemConfig(app);
+	await drmking.getCarInfos(app);
+	await drmking.getCityList(app);
+	let city = drmking.getDefaultCity();
+	drmking.setLocationCity(app, city);
+	resolve(config);
+}).then(function(res) {
+	app.$mount();
+	app.$store.commit('set_sysconfig', res);
+}).catch((err) => {
+
+});
