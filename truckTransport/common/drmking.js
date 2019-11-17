@@ -300,13 +300,14 @@ let drmking = {
 		// #ifdef APP-PLUS
 		status = await that.checkPermission();
 		if (status !== 1) {
+			uni.showConfirm();
 			flag = false;
 		}
 		// #endif
 		// #ifdef MP-WEIXIN || MP-TOUTIAO || MP-QQ
 		status = await that.getLocationSetting();
 		if (status === 2) {
-			that.showConfirm();
+			uni.showConfirm();
 			flag = false;
 		}
 		// #endif

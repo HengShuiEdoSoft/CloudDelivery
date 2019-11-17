@@ -4,7 +4,13 @@ export default {
 	methods: {
 		...mapMutations(['login'])
 	},
-	onLaunch: function() {
+	onLaunch: async function() {
+		let config = await this.$drmking.getSystemConfig(this);
+		this.$store.commit('set_sysconfig', config);
+		await this.$drmking.getCarInfos(this);
+		await this.$drmking.getCityList(this);
+		let city = this.$drmking.getDefaultCity();
+		await this.$drmking.setLocationCity(this, city);
 		if (this.$drmking.cacheData('USER')) {
 			var that = this;
 			uni.getStorage({

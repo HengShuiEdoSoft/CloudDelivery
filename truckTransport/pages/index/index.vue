@@ -81,63 +81,54 @@
 			</view>
 		</view>
 		<view class="uni-timeline-box">
-		<view class="uni-timeline">
-			<view class="uni-timeline-item uni-timeline-first-item">
-				<view class="uni-timeline-item-divider">发</view>
-				<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
-					<block v-if="order.trip.departure.localtion==''">
-						<view class="ui-address">请输入发货地址</view>
-					</block>
-					<block v-else>
-						<view class="ui-address">{{order.trip.departure.localtion}}</view>
-						<view class="ui-subtext">{{order.trip.departure.address}}</view>
-						<view class="ui-subtext">{{order.trip.departure.contact}} {{order.trip.departure.phone}}</view>
-					</block>
+			<view class="uni-timeline">
+				<view class="uni-timeline-item uni-timeline-first-item">
+					<view class="uni-timeline-item-divider">发</view>
+					<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
+						<block v-if="order.trip.departure.localtion == ''"><view class="ui-address">请输入发货地址</view></block>
+						<block v-else>
+							<view class="ui-address">{{ order.trip.departure.localtion }}</view>
+							<view class="ui-subtext">{{ order.trip.departure.address }}</view>
+							<view class="ui-subtext">{{ order.trip.departure.contact }} {{ order.trip.departure.phone }}</view>
+						</block>
+					</view>
 				</view>
-			</view>
-			<view v-for="(item,index) in order.trip.transfer" :key="index" class="uni-timeline-item">
-				<view class="uni-timeline-item-divider"></view>
-				<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
-					<block v-if="item.localtion==''">
-						<view class="ui-address">请输入收货地址</view>
-					</block>
-					<block v-else>
-						<view class="ui-address">{{item.localtion}}</view>
-						<view class="ui-subtext">{{item.address}}</view>
-						<view class="ui-subtext">{{item.contact}} {{item.phone}}</view>
-					</block>
+				<view v-for="(item, index) in order.trip.transfer" :key="index" class="uni-timeline-item">
+					<view class="uni-timeline-item-divider"></view>
+					<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
+						<block v-if="item.localtion == ''"><view class="ui-address">请输入收货地址</view></block>
+						<block v-else>
+							<view class="ui-address">{{ item.localtion }}</view>
+							<view class="ui-subtext">{{ item.address }}</view>
+							<view class="ui-subtext">{{ item.contact }} {{ item.phone }}</view>
+						</block>
+					</view>
 				</view>
-			</view>
-			<view class="uni-timeline-item uni-timeline-last-item">
-				<view class="uni-timeline-item-divider">收</view>
-				<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
-					<block v-if="order.trip.destination.localtion==''">
-						<view class="ui-address">请输入收货地址</view>
-					</block>
-					<block v-else>
-						<view class="ui-address">{{order.trip.destination.localtion}}</view>
-						<view class="ui-subtext">{{order.trip.destination.address}}</view>
-						<view class="ui-subtext">{{order.trip.destination.contact}} {{order.trip.destination.phone}}</view>
-					</block>
+				<view class="uni-timeline-item uni-timeline-last-item">
+					<view class="uni-timeline-item-divider">收</view>
+					<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
+						<block v-if="order.trip.destination.localtion == ''"><view class="ui-address">请输入收货地址</view></block>
+						<block v-else>
+							<view class="ui-address">{{ order.trip.destination.localtion }}</view>
+							<view class="ui-subtext">{{ order.trip.destination.address }}</view>
+							<view class="ui-subtext">{{ order.trip.destination.contact }} {{ order.trip.destination.phone }}</view>
+						</block>
+					</view>
+					<view class="delete_address">删除</view>
 				</view>
-				<view class="delete_address">删除</view>
-			</view>
-			<view class="uni-timeline-item add_address_box">
-				<view class="add_address">添加收货地址</view>
+				<view class="uni-timeline-item add_address_box"><view class="add_address">添加收货地址</view></view>
 			</view>
 		</view>
-		
-		</view>
-		
+
 		<view class="ui-home-bottom">
 			<view class="ui-home-price-container">
 				<view class="ui-cost-price">
 					<text>￥</text>
-					<text class="ui-price-now">{{order.pay_order_price}}</text>
-					<text class="ui-origin-price">￥{{order.order_price}}</text>
+					<text class="ui-price-now">{{ order.pay_order_price }}</text>
+					<text class="ui-origin-price">￥{{ order.order_price }}</text>
 					<view class="ui-home-discount">
 						优惠券已折扣
-						<text>{{order.coupon_price}}元</text>
+						<text>{{ order.coupon_price }}元</text>
 					</view>
 				</view>
 				<navigator class="ui-price-detail" url="/pages/pricedetail/pricedetail">价格明细</navigator>
@@ -177,11 +168,11 @@ export default {
 				},
 				cars: {},
 				cars_list: []
-			},			
+			},
 		};
 	},
-	computed: mapState(['forcedLogin', 'hasLogin', 'phone','order','sysconfig']),
-	async onLoad() {		
+	computed: mapState(['forcedLogin', 'hasLogin', 'phone', 'sysconfig', 'order']),
+	async onLoad() {
 		let that = this;
 		this.$fire.on('changeCity', function(data) {
 			console.log(data);
@@ -189,7 +180,7 @@ export default {
 		});
 		let location_city = this.$drmking.getLocationCity();
 		if (this.$drmking.isEmpty(location_city)) {
-			console.log(123);
+			console.log(13);
 			await this.$drmking.changeLocationCity(this);
 			location_city = this.$drmking.getLocationCity();
 		}

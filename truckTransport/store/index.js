@@ -23,14 +23,14 @@ const store = new Vuex.Store({
 			car_title: '小面包车',
 			is_now: true,
 			user_driver_favorites: false,
-			car_time: '2019-10-26 13:09',
-			contact: '王先生',
-			phone: '13333333333',
-			user_coupon_id: 1,
-			coupon_price: 50,
-			order_price: 786.8,
-			pay_order_price: 736.8,
-			distance: 134,
+			car_time: '',
+			contact: '',
+			phone: '',
+			user_coupon_id: 0,
+			coupon_price: 0,
+			order_price: 0,
+			pay_order_price: 0,
+			distance: 0,
 			remark: '订单备注',
 			attach: [{
 					attach_id: 1,
@@ -59,29 +59,21 @@ const store = new Vuex.Store({
 					phone: ''
 				},
 				transfer: [{
-						lat: 37.712368,
-						lon: 115.702935,
-						localtion: '河北省衡水桃城区',
-						address: '河北省衡水桃城区',
-						contact: '王先生',
-						phone: '13333333333'
-					},
-					{
-						lat: 100,
-						lon: 100,
-						localtion: '河北省衡水桃城区',
-						address: '河北省衡水桃城区',
-						contact: '王先生',
-						phone: '13333333333'
+						lat: '',
+						lon: '',
+						localtion: '',
+						address: '',
+						contact: '',
+						phone: ''
 					}
 				],
 				destination: {
-					lat: 100,
-					lon: 100,
-					localtion: '河北省衡水桃城区',
-					address: '河北省衡水桃城区',
-					contact: '王先生',
-					phone: '13333333333'
+					lat: '',
+					lon: '',
+					localtion: '',
+					address: '',
+					contact: '',
+					phone: ''
 				}
 			}
 		}

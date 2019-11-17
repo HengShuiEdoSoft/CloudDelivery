@@ -80,16 +80,4 @@ const app = new Vue({
 	store,
 	...App
 });
-new Promise(async (resolve, reject) => {
-	let config = await drmking.getSystemConfig(app);
-	await drmking.getCarInfos(app);
-	await drmking.getCityList(app);
-	let city = drmking.getDefaultCity();
-	await drmking.setLocationCity(app, city);
-	resolve(config);
-}).then(function(res) {
-	app.$mount();
-	app.$store.commit('set_sysconfig', res);
-}).catch((err) => {
-
-});
+app.$mount();
