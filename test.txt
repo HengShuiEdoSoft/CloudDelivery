@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-message
-bb
-Shit
-=======
-https://github.com/HengShuiEdoSoft/CloudDelivery.git
->>>>>>> 4c157711380ac0bdafd3682de92379828d883e0e

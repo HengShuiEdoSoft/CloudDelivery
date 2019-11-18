@@ -97,6 +97,7 @@
     },
     "allowsInlineMediaPlayback": true,
     "uni-app": {
+<<<<<<< HEAD
       "compilerVersion": "2.4.2",
       "control": "v8",
       "nvueCompiler": "uni-app",
@@ -104,6 +105,12 @@
       "nvue": {
         "flex-direction": "column"
       }
+=======
+      "compilerVersion": "2.3.7",
+      "control": "v8",
+      "nvueCompiler": "weex",
+      "renderer": "auto"
+>>>>>>> 358e1bff63c2fbf2795bdac6cbf7b831891ffd39
     }
   }
 }

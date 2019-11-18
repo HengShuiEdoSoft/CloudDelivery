@@ -1,18 +1,4 @@
 
-page {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-webkit-flex-direction: column;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
-	background-color: #efeff4
-}
 view {
 	font-size: 28rpx;
 	line-height: inherit
@@ -69,7 +55,42 @@ view {
 	background: #fff
 }
 map{
+	position:relative;
 	width:750rpx;
 	height:1334rpx;
+}
+.input-row .title{
+	width:56rpx;
+}
+.ui-select-container{
+	position:absolute;
+	left:1%;
+	bottom:0;
+	width:98%;
+	height:386rpx;
+	background: #fff;
+}
+.btn-row {
+	margin-left: 10rpx;
+	margin-right:10rpx;
+}
+.m-input{
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	padding:26rpx 0;
+	width: 100%;
+}
+.input-group{
+	margin-top:20rpx;
+	padding:0 20rpx;
+}
+.input-row-b{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:-ms-flexbox;
+	display:flex;
+	width:50%;
 }
 

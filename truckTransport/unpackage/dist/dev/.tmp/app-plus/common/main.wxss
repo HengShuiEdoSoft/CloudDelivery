@@ -1033,12 +1033,21 @@ textarea {
 }
 
 /*每个页面公共css */
+<<<<<<< HEAD
 page {
 	min-height: 100%;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
+=======
+page {
+	min-height: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+>>>>>>> 358e1bff63c2fbf2795bdac6cbf7b831891ffd39
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -1047,6 +1056,7 @@ page {
 
 
 /* 原生组件模式下需要注意组件外部样式 */
+<<<<<<< HEAD
 m-input {
 	width: 100%;
 	min-height: 100%;
@@ -1075,6 +1085,36 @@ m-input {
 .input-group {
 	background-color: #ffffff;
 	margin-top: 40rpx;
+=======
+m-input {
+	width: 100%;
+	min-height: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.content {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	background-color: #f3f4f5;
+	padding: 0;
+}
+.input-group {
+	background-color: #ffffff;
+	margin-top: 40rpx;
+>>>>>>> 358e1bff63c2fbf2795bdac6cbf7b831891ffd39
 	position: relative;
 }
 
@@ -1101,6 +1141,7 @@ m-input {
 		transform: scaleY(.5);
 		background-color: #c8c7cc;
 	} */
+<<<<<<< HEAD
 .input-row {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -1140,4 +1181,45 @@ m-input {
 button.primary {
 	background-color: #ff5723;
 }
+=======
+.input-row {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	position: relative;
+}
+.input-row .title {
+	width: 12%;
+	height: 50rpx;
+	min-height: 50rpx;
+	padding: 25rpx 0;
+	padding-left: 30rpx;
+	line-height: 50rpx;
+}
+.input-row.border::after {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 15rpx;
+	height: 1rpx;
+	content: '';
+	-webkit-transform: scaleY(0.5);
+	-ms-transform: scaleY(0.5);
+	    transform: scaleY(0.5);
+	background-color: #c8c7cc;
+}
+.btn-row {
+	margin-top: 24rpx;
+	padding: 40rpx;
+}
+button.primary {
+	background-color: #ff5723;
+}
+>>>>>>> 358e1bff63c2fbf2795bdac6cbf7b831891ffd39
 

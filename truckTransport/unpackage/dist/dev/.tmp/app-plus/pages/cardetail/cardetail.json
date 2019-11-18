@@ -1,6 +1,10 @@
 {
   "navigationBarTitleText": "小面包车详情页",
+<<<<<<< HEAD
   "usingComponents": {
     "parser": "/components/jyf-Parser/index"
   }
+=======
+  "usingComponents": {}
+>>>>>>> 358e1bff63c2fbf2795bdac6cbf7b831891ffd39
 }
