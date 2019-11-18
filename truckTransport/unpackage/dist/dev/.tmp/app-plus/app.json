@@ -35,6 +35,7 @@
     "pages/setup/setup",
     "pages/cityselect/cityselect",
     "pages/order/order",
+    "pages/order/requirement",
     "pages/setup/userprotocol",
     "pages/setup/privacypolicy",
     "pages/setup/about",

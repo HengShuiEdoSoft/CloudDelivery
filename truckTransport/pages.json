@@ -321,6 +321,12 @@
 			}
 		},
 		{
+			"path": "pages/order/requirement",
+			"style": {
+				"navigationBarTitleText": "额外要求"
+			}
+		},
+		{
 			"path": "pages/setup/userprotocol",
 			"style": {
 				"navigationBarTitleText": "用户协议"
