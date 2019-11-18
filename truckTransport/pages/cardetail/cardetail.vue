@@ -28,7 +28,9 @@ export default {
 	data() {
 		return {
 			id: 0,
-			carsInfos: [],
+			carsInfos: {
+				
+			},
 			car: {},
 			car_refererances:''
 		};

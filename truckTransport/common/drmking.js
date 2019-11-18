@@ -90,6 +90,7 @@ let drmking = {
 		let attach = [];
 		for (let i in attach_list) {
 			attach_list[i]['status'] = false;
+			attach_list[i]['order_price'] = 0;
 			attach.push(attach_list[i]);
 		}
 		// 将附加服务加入order
