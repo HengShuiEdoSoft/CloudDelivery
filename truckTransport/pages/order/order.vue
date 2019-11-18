@@ -20,16 +20,16 @@
 				</view>
 			</navigator>
 			<view>
-				<view class="ui-list-item">
+				<navigator class="ui-list-item" url="/pages/order/remark">
 					<view class="ui-li-title">订单备注</view>
 					<view class="ui-li-right">
 						如货物类别等
 						<text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
 					</view>
-				</view>
+				</navigator>
 				<view class="ui-list-item">
-					<view>1人跟车</view>
-					<view>2人跟车</view>
+					<view class="ui-remark-item" @tap="isone(0)" :class="{active:isOne===1}">1人跟车</view>
+					<view class="ui-remark-item" @tap="isone(1)" :class="{active:isOne===2}">2人跟车</view>
 				</view>
 			</view>
 		</view>
@@ -117,6 +117,7 @@ export default {
 	data() {
 		return {
 			type: '',
+			isOne:0,
 			current: null,
 			is_now: false,
 			car_time: null,
@@ -164,6 +165,9 @@ export default {
 		gotopay(type) {
 			this.cancel(type);
 			//支付
+		},
+		isone:function(index){
+			this.isOne=index+1;
 		}
 	}
 };
@@ -273,4 +277,15 @@ radio {
 .ui-li-youhui .ui-li-title {
 	color: #999;
 }
+.ui-remark-item{
+	margin:8upx;
+	line-height: 48upx;
+	padding:8upx 24upx;
+	background: #eee;
+	border-radius: 36px;
+}
+.ui-remark-item.active{
+	color:#FF9801;
+	background: #FAF6DB;
+	}
 </style>

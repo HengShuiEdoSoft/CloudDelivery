@@ -36,6 +36,7 @@
     "pages/cityselect/cityselect",
     "pages/order/order",
     "pages/order/requirement",
+    "pages/order/remark",
     "pages/setup/userprotocol",
     "pages/setup/privacypolicy",
     "pages/setup/about",
@@ -58,13 +59,13 @@
     "navigationBarBackgroundColor": "white",
     "backgroundColor": "#f3f4f5"
   },
-  "nvueCompiler": "uni-app",
+  "nvueCompiler": "weex",
   "renderer": "auto",
   "splashscreen": {
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
   "appname": "truckTransport",
-  "compilerVersion": "2.4.2",
+  "compilerVersion": "2.3.7",
   "usingComponents": {}
 }

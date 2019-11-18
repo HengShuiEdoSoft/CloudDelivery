@@ -1,11 +1,18 @@
 <template>
 	<view class="content">
-		<view class="dui-notyet-wrapper">
+		<view class="dui-notyet-wrapper" v-if="empty">
 			<image src="../../static/img/NoDriver.jpg" mode=""></image>
 			<text>收藏好司机直接发单给他们</text>
 			<view class="dui-notyet-btn" @tap="togglePopup('center', 'collection')">去收藏司机 </view>
 		</view>
-		<uni-popup ref="collection" :type="type" :custom="true" :mask-click="false">
+		<view class="ui-list">
+			<view class="ui-list-item" v-for="(item,index) in lists" :key="user_driver_favorites_id" @longtap="deleteDriver(item.user_driver_favorites_id)">
+				<view class="ui-list-title">{{item.dname}}</view>
+				<view class="ui-list-subtext">{{item.phone}}</view>
+			</view>
+			<view class="loading">{{loadingText}}</view>
+		</view>
+		<uni-popup ref="collection" :type="type" :custom="true" :mask-click="true">
 			<view class="dui-collection-wrapper">
 				暂无
 			</view>
@@ -30,12 +37,130 @@
 			return {
 				show: false,
 				type:"",
+				loadingText:'',
+				empty:false,
+				page:1,
+				reload:true,
+				has_next:true,
+				lists: []
 			}
+		},
+		onShow:function(){
+			this.getList();
+		},
+		onPullDownRefresh:function(){
+			this.has_next=true;
+			this.reload=true;
+			this.page=1;
+			this.getList();
+		},
+		onReachBottom:function(){
+			let _self=this;
+			let timer=null;
+			if(timer != null){
+				clearTimeout(timer);
+			}
+			timer = setTimeout(function(){
+				_self.getList();
+			}, 1000);
 		},
 		methods: {
 			togglePopup(type, open) {
 				this.type = type;
 				this.$refs[open].open()
+			},
+			deleteDriver:function(id){
+				uni.showModal({
+					title: '温馨提示',
+					content: '您确定要删除该条信息吗',
+					showCancel: true,
+					success: res => {
+						if (res.confirm) {
+							const data={
+								user_driver_favorites_id:id
+							}
+							this.$uniFly
+							.post({
+								url: '/api/user_driver_favorites/deluserdriverfavorites',
+								params: data
+							})
+							.then(function(res) {
+								uni.hideNavigationBarLoading();
+								if (res.code === 0 ) {
+									uni.showToast({
+										title: '删除',
+										icon: 'success',
+										mask: true,
+										duration: 3000
+									});							
+								} else {
+									uni.showToast({
+										content: res.msg,
+										showCancel: false
+									});
+								}
+							})
+							.catch(function(error) {
+								uni.hideNavigationBarLoading();
+								uni.showToast({
+									content: error,
+									showCancel: false
+								});
+							});
+						}
+					}
+				});
+			},
+			getList : function(){
+				let _self=this;
+				if (_self.has_next) {
+					uni.showNavigationBarLoading();
+					_self.loadingText='加载中...';
+					const data = {
+						page: this.page
+					};
+					this.$uniFly
+					.post({
+						url: '/api/user_driver_favorites/getuserdriverfavoriteslist',
+						params: data
+					})
+					.then(function(res) {
+						uni.hideNavigationBarLoading();
+						if (res.code === 0 ) {
+							if(res.data.list.length > 0){
+								let list = res.data.list;
+								_self.empty=false;
+								// let list=_self.parseOrderList(res.data);
+								_self.lists = _self.reload ? list : _self.lists.concat(list);
+								_self.page++;
+								_self.reload=false;
+								_self.has_next=res.has_next;
+								console.log(res.has_next)
+								if(res.has_next){
+									_self.loadingText='加载更多';
+								}
+								else{
+									_self.loadingText='已加载全部';
+								}
+							}else{
+								_self.empty=true;
+								_self.loadingText='';
+							}							
+						} else {
+							uni.showToast({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+					})
+					.catch(function(error) {
+						uni.hideNavigationBarLoading();
+						uni.showToast({
+							content: error,
+							showCancel: false
+						});
+					});
+				}
 			}
 		}
 	}
@@ -66,5 +191,17 @@
 		padding: 50upx;
 		background-color: #fff;
 		border-radius: 10upx;
+	}
+	.ui-list-title{
+		font-size:14px;
+		color:#212121;
+	}
+	.ui-list-subtext{
+		color:#9E9E9E;
+		font-size:12px;
+	}
+	.ui-list-item{
+		padding:20upx 30upx;
+		background: #fff;
 	}
 </style>

@@ -23,4 +23,16 @@
 	background-color: #fff;
 	border-radius: 10rpx;
 }
+.ui-list-title{
+	font-size:14px;
+	color:#212121;
+}
+.ui-list-subtext{
+	color:#9E9E9E;
+	font-size:12px;
+}
+.ui-list-item{
+	padding:20rpx 30rpx;
+	background: #fff;
+}
 

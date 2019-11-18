@@ -1,0 +1,1 @@
+<view class="content"><view class="ui-divide-bar"></view><view class="ui-remark-container"><view><textarea placeholder="输入备注(如货物类别)" maxlength="200" focus></textarea></view><view><button class="primary" type="primary" data-event-opts="{{[['tap',[['sure',['$event']]]]]}}" bindtap="__e">确定</button></view></view></view>

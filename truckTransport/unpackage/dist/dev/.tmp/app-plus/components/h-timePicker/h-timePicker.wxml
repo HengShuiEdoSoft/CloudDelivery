@@ -1,0 +1,1 @@
+<view><picker class="time-picker" mode="multiSelector" value="{{multiIndex}}" range="{{multiArray}}" data-event-opts="{{[['change',[['bindStartMultiPickerChange',['$event']]]],['columnchange',[['bindMultiPickerColumnChange',['$event']]]]]}}" bindchange="__e" bindcolumnchange="__e"><slot name="pCon"></slot></picker></view>

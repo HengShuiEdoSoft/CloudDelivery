@@ -325,6 +325,11 @@
 			"style": {
 				"navigationBarTitleText": "额外要求"
 			}
+		},{
+			"path": "pages/order/remark",
+			"style": {
+				"navigationBarTitleText": "备注"
+			}
 		},
 		{
 			"path": "pages/setup/userprotocol",
