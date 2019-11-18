@@ -10,7 +10,7 @@
 			</view>
 			<block v-for="(item,index) in lists" :key="item.address_id">
 				<view class="dui-basic-list">
-					<navigator :url="'editaddress?id=' + index">
+					<navigator :url="'editaddress?data=' + JSON.stringify(item)">
 						<view class="dui-basic-list-item">
 							<view class="dui-basic-list-item__container">
 								<view class="dui-basic-list-item__content">

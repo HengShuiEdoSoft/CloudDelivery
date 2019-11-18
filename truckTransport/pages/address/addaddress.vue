@@ -6,7 +6,7 @@
 					<view class="dui-basic-list-item__icon"><text class="iconfont icon-weizhi"></text></view>
 					<view class="dui-basic-list-item__content">
 						<view class="dui-basic-list-item__content-title">
-							<input type="text" value="" v-model="address" placeholder="请输入地址(必填)" disabled />
+							<input type="text" value="" v-model="address" placeholder="请输入地址(必填)"/>
 						</view>
 					</view>
 					<view class="dui-basic-list-item__extra"><text class="iconfont icon-gengduo-shuxiang"></text></view>
@@ -17,7 +17,7 @@
 					<view class="dui-basic-list-item__icon"><text class="iconfont icon-weizhi"></text></view>
 					<view class="dui-basic-list-item__content">
 						<view class="dui-basic-list-item__content-title">
-							<input type="text" value="" v-model="floor" maxlength="20" placeholder="楼层及门牌号(选填)" />
+							<input type="text" value="" v-model="house" maxlength="20" placeholder="楼层及门牌号(选填)" />
 						</view>
 					</view>
 				</view>
@@ -36,7 +36,7 @@
 						<view class="dui-basic-list-item__icon"><text class="iconfont icon-dianhua"></text></view>
 						<view class="dui-basic-list-item__content">
 							<view class="dui-basic-list-item__content-title">
-								<input type="text" value="" v-model="phone" maxlength="11" placeholder="联系电话(选填)" />
+								<input type="text" value="" v-model="address_phone" maxlength="11" placeholder="联系电话(选填)" />
 							</view>
 						</view>
 					</view>
@@ -53,27 +53,27 @@
 		data() {
 			return {
 				address: '',
-				floor: '',
+				house: '',
 				name: "",
-				phone: ""
+				address_phone: ""
 			}
 		},
 		methods: {
 			addAddress(){
 				const data={
 					name:this.name,
-					address_phone:this.phone,
+					address_phone:this.address_phone,
 					address:this.address,
-					house:this.floor	
+					house:this.house	
 				}
 				this.$uniFly
 				.post({
-					url: '/api/address/addAddress',
+					url:'/api/address/addAddress',
 					params: data
 				})
 				.then(function(res) {
 					uni.hideNavigationBarLoading();
-					if (res.code === 0 ) {
+					if (res.code === 0) {
 						uni.showToast({
 							title: '添加成功',
 							icon: 'success',

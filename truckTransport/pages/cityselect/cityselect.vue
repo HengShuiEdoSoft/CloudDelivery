@@ -18,7 +18,7 @@ export default {
 			status: 1,
 			channel: '',
 			citydata: {}
-		};
+		}
 	},
 	async onLoad(options) {
 		let that = this;
@@ -43,9 +43,9 @@ export default {
 			if (!this.$drmking.isEmpty(this.channel)) {
 				this.$fire.fire(this.channel, this.citydata[data.value]);
 			}
-			setTimeout(function() {
-				uni.navigateBack();
-			}, 100);
+			uni.navigateBack({
+				delta:1
+			});
 		}
 	}
 };

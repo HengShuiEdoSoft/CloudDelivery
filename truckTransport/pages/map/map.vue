@@ -1,7 +1,30 @@
 <template>
 	<view class="content">
 		<map class="map" id="map1" ref="map1" :longitude="longitude" :latitude="latitude"
-         :markers="marker" type='gcj02'></map>
+         :markers="marker" type='gcj02'>
+			<cover-view class="ui-select-container">
+				<view class="input-group">
+					<view class="input-row border">
+						<text class="title iconfont icon-dianhua"></text>
+						<input type="text" focus v-model="house" value="13123" placeholder="楼层及门牌号" class="m-input">
+					</view>
+					<view class="input-row border">
+						<view class="input-row-b">
+							<text class="title iconfont icon-dianhua"></text>
+							<input type="text" focus v-model="name" value="13123" placeholder="联系人" class="m-input">
+						</view>
+						<view class=" input-row-b">
+							<text class="title iconfont icon-dianhua"></text>
+							<input type="text" focus v-model="address_phone" value="" placeholder="联系电话" class="m-input">
+						</view>
+					</view>
+					
+				</view>
+				<view class="btn-row">
+					<button class="primary" type="primary" @tap="sure">选择出发地</button>
+				</view>
+			</cover-view>
+		 </map>
 		<uni-popup ref="permission" mode="fixed">
 		    <view class="popup-view">
 		        <text class="popup-title">需要用户授权位置权限</text>
@@ -29,6 +52,9 @@
 			return {
 				hasLocation: false,
 				location: {},
+				house:"",
+				address_phone:"",
+				name:"",
 				locationAddress: '',
 				type: '',
 				amapPlugin:'',
@@ -83,13 +109,6 @@
 			            that.longitude=-res.longitude;
 						that.latitude=res.latitude;
 						console.log(res)
-						uni.openLocation({
-						    latitude: res.latitude,
-						    longitude: res.longitude,
-						    success: function () {
-						         console.log('success');
-						    }
-						});
 			        },
 			        fail: (err) => {
 			            // #ifdef MP-BAIDU
@@ -190,18 +209,10 @@
 </script>
 
 <style>
-	page {
-		display: flex;
-		flex-direction: column;
-		box-sizing: border-box;
-		background-color: #efeff4
-	}
-
 	view {
 		font-size: 28upx;
 		line-height: inherit
 	}
-
 	.example {
 		padding: 0 30upx 30upx
 	}
@@ -251,7 +262,36 @@
 		background: #fff
 	}
 	map{
+		position:relative;
 		width:750upx;
 		height:1334upx;
+	}
+	.input-row .title{
+		width:56upx;
+	}
+	.ui-select-container{
+		position:absolute;
+		left:1%;
+		bottom:0;
+		width:98%;
+		height:386upx;
+		background: #fff;
+	}
+	.btn-row {
+		margin-left: 10upx;
+		margin-right:10upx;
+	}
+	.m-input{
+		flex: 1;
+		padding:26upx 0;
+		width: 100%;
+	}
+	.input-group{
+		margin-top:20upx;
+		padding:0 20upx;
+	}
+	.input-row-b{
+		display:flex;
+		width:50%;
 	}
 </style>
