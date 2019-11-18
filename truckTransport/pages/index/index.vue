@@ -136,9 +136,9 @@
 			</view>
 			<view class="ui-home-btns">
 				<view class="ui-use-now" @tap="orderSure">现在用车</view>
-				<view class="ui-appoint">
+				<view class="ui-appoint" style="display: flex;justify-content: center;">
 					<text class="iconfont icon-shijian-xianxing"></text>
-					预约
+					<hTimePicker sTime="0" cTime="23" interval="10" sDay="0" dayNum="3" @changeTime="changeTime"><view slot="pCon" class="changeTime">预约</view></hTimePicker>
 				</view>
 			</view>
 		</view>
@@ -149,16 +149,18 @@
 import { mapState } from 'vuex';
 import uniDrawer from '@/components/drawer/drawer.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
-
+import hTimePicker from '@/components/h-timePicker/h-timePicker.vue';
 export default {
 	components: {
 		uniDrawer,
-		uniPopup
+		uniPopup,
+		hTimePicker
 	},
 	data() {
 		return {
 			visible: false,
 			current: 0,
+			is_now: false,
 			location_city: {
 				city: {
 					city_id: 0,
@@ -264,9 +266,32 @@ export default {
 				});
 			}
 		},
+		changeTime(date_time) {
+			this.is_now = false;
+			this.goOrderSure(date_time);
+		},
 		orderSure() {
+			this.is_now = true;
+			this.goOrderSure();
+		},
+		goOrderSure(date_time) {
+			let now = new Date();
+			let use_car_diff_time = parseInt(this.sysconfig.use_car_diff_time);
+			if (date_time) {
+				let time = Date.parse(date_time);
+				if (time < now.getTime() + use_car_diff_time * 60 * 1000) {
+					uni.showToast({
+						icon: 'none',
+						title: '预约时间间隔不能小于' + use_car_diff_time + '分钟'
+					});
+					return;
+				}
+				date_time=time;
+			} else {
+				date_time = now.getTime() + (use_car_diff_time + 5) * 60 * 1000;				
+			}
 			uni.navigateTo({
-				url: '/pages/order/order'
+				url: '/pages/order/order?time=' + date_time + '&is_now=' + this.is_now
 			});
 		}
 	},
