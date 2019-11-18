@@ -60,7 +60,7 @@
 				<swiper class="ui-carinfos" @change="swiperChange" :current="current">
 					<swiper-item class="ui-carinfo-item" v-for="(item, index) in location_city.cars_list" :key="item.car_id">
 						<view class="ui-carinfo-body">
-							<navigator :url="'/pages/cardetail/cardetail?id=' + index" hover-class="none">
+							<navigator :url="'/pages/cardetail/cardetail?id=' + item.car_id" hover-class="none">
 								<image :src="item.car_icon" class="ui-carinfo-image"></image>
 								<view class="ui-carinfo-cont">
 									<view>载重:{{ item.car_load }}公斤</view>
@@ -161,10 +161,10 @@ export default {
 			current: 0,
 			location_city: {
 				city: {
-					city_id: 19,
-					city_title: '衡水市',
+					city_id: 0,
+					city_title: '',
 					is_default: 1,
-					amap_citycode: '0318',
+					amap_citycode: '',
 					status: 1
 				},
 				cars: {},
@@ -207,10 +207,14 @@ export default {
 	methods: {
 		tabChange: function(index) {
 			this.current = index;
+			let car = this.location_city.cars_list[this.current];
+			this.$store.commit('set_order_car', car);
 		},
 		swiperChange: function(e) {
 			var index = e.target.current || e.detail.current;
 			this.current = index;
+			let car = this.location_city.cars_list[this.current];
+			this.$store.commit('set_order_car', car);
 		},
 		addAddress() {
 			let max_address_num = parseInt(this.sysconfig.max_address_num);
@@ -231,7 +235,7 @@ export default {
 			if (type == 'destination') {
 				if (this.order.trip.transfer.length > 0) {
 					let destination = this.order.trip.transfer.splice(this.order.trip.transfer.length - 1, 1);
-					this.order.trip.destination = destination;
+					this.order.trip.destination = destination[0];
 				} else {
 					uni.showToast({
 						title: '最少有一个收货地址'

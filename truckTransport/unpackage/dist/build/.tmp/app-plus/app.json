@@ -57,13 +57,21 @@
     "navigationBarBackgroundColor": "white",
     "backgroundColor": "#f3f4f5"
   },
+<<<<<<< HEAD
+  "nvueCompiler": "uni-app",
+=======
   "nvueCompiler": "weex",
+>>>>>>> 358e1bff63c2fbf2795bdac6cbf7b831891ffd39
   "renderer": "auto",
   "splashscreen": {
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
   "appname": "truckTransport",
+<<<<<<< HEAD
+  "compilerVersion": "2.4.2",
+=======
   "compilerVersion": "2.3.7",
+>>>>>>> 358e1bff63c2fbf2795bdac6cbf7b831891ffd39
   "usingComponents": {}
 }
