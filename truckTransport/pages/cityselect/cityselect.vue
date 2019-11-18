@@ -19,7 +19,7 @@ export default {
 			current: 1,
 			type: 1,
 			citydata: {}
-		};
+		}
 	},
 	async onLoad(options) {
 		this.currentCity = options.city;
@@ -45,7 +45,7 @@ export default {
 				
 			}
 			uni.navigateBack({
-				delta:100
+				delta:1
 			});
 		},
 	}

@@ -17,7 +17,7 @@
 					<view class="dui-basic-list-item__icon"><text class="iconfont icon-weizhi"></text></view>
 					<view class="dui-basic-list-item__content">
 						<view class="dui-basic-list-item__content-title">
-							<input type="text" value="" v-model="floor" maxlength="20" placeholder="楼层及门牌号(选填)" />
+							<input type="text" value="" v-model="house" maxlength="20" placeholder="楼层及门牌号(选填)" />
 						</view>
 					</view>
 				</view>
@@ -53,7 +53,7 @@
 		data() {
 			return {
 				address: '',
-				floor: '',
+				house: '',
 				name: "",
 				phone: ""
 			}
@@ -64,16 +64,16 @@
 					name:this.name,
 					address_phone:this.phone,
 					address:this.address,
-					house:this.floor	
+					house:this.house	
 				}
 				this.$uniFly
 				.post({
-					url: '/api/address/addAddress',
+					url:'/api/address/addAddress',
 					params: data
 				})
 				.then(function(res) {
 					uni.hideNavigationBarLoading();
-					if (res.code === 0 ) {
+					if (res.code === 0) {
 						uni.showToast({
 							title: '添加成功',
 							icon: 'success',
