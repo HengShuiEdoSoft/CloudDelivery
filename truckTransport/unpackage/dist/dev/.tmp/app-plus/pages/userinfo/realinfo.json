@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "实名信息",
+  "usingComponents": {
+    "m-input": "/components/m-input"
+  }
+}
