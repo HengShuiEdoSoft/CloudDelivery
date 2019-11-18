@@ -1,17 +1,17 @@
 <template>
 	<view class="content cardetail-content">
 		<swiper>
-			<swiper-item v-for="item in carsInfos.id.images" :key="item.id" class="ui-cardetail-item">
+			<swiper-item v-for="item in carsInfos[id].images" :key="item.car_id" class="ui-cardetail-item">
 				<image :src="item.img"></image>
 			</swiper-item>
 		</swiper>
 		<view class="ui-cardetail-container">
 			<view class="ui-cardetail-title">载货空间及重量</view>
-			<view class="ui-cardetail-body"><text class="ui-dot"></text><text>{{"载货空间"+carsInfos.id.car_cargo_volume+"方，载重"+carsInfos.id.car_load+"公斤"}}</text></view>
+			<view class="ui-cardetail-body"><text class="ui-dot"></text><text>{{"载货空间"+carsInfos[id].car_cargo_volume+"方，载重"+carsInfos[id].car_load+"公斤"}}</text></view>
 		</view>
 		<view class="ui-cardetail-container">
 			<view class="ui-cardetail-title">用车参考</view>
-			<view class="ui-cardetail-body" v-for="item in carsInfos.id.car_refererances" :key="item.id"><text class="ui-dot"></text><text>{{item.car_refer}}</text></view>
+			<view class="ui-cardetail-body" v-for="item in carsInfos[id].car_refererances" :key="item.car_id"><text class="ui-dot"></text><text>{{item.car_refer}}</text></view>
 		</view>
 	</view>
 </template>
@@ -26,7 +26,7 @@
 			}
 		},
 		onLoad(options) {
-			this.id=parseInt(options.id)-1;
+			this.id=parseInt(options.id);
 			let carlistUrl=this.carlistUrl;
 			let that=this;
 			if(this.$drmking.cacheData("carInfos")){

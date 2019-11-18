@@ -58,9 +58,9 @@
 			<view class="ui-divide-line"></view>
 			<view>
 				<swiper class="ui-carinfos" @change="swiperChange" :current="current">
-					<swiper-item class="ui-carinfo-item" v-for="(item, key) in location_city.cars_list" :key="item.car_id">
+					<swiper-item class="ui-carinfo-item" v-for="(item, index) in location_city.cars_list" :key="item.car_id">
 						<view class="ui-carinfo-body">
-							<navigator :url="'/pages/cardetail/cardetail?id=' + key" hover-class="none">
+							<navigator :url="'/pages/cardetail/cardetail?id=' + index" hover-class="none">
 								<image :src="item.car_icon" class="ui-carinfo-image"></image>
 								<view class="ui-carinfo-cont">
 									<view>载重:{{ item.car_load }}公斤</view>

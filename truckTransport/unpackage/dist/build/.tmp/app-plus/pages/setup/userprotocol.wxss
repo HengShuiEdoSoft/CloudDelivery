@@ -1,0 +1,13 @@
+
+.content {
+	background-color: #fff;
+}
+.scroll-container {
+	height: 100%;
+}
+.dui-protocol-tips {
+	padding: 50rpx 20rpx;
+	font-size: 28rpx;
+	line-height: 40rpx;
+}
+

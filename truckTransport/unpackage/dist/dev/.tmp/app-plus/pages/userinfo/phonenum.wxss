@@ -1,0 +1,8 @@
+
+.ui-info-list-item:first-child {
+	line-height: 80rpx;
+}
+.ui-info-list-item:first-child .ui-info-list-center{
+	height:80rpx;
+}
+

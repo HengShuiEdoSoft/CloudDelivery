@@ -1,0 +1,17 @@
+{
+  "navigationBarTitleText": "我的反馈记录",
+  "enablePullDownRefresh": true,
+  "bounce": "none",
+  "titleNView": {
+    "buttons": [
+      {
+        "text": "",
+        "fontSrc": "/static/font/iconfont.ttf",
+        "fontSize": "27",
+        "float": "left",
+        "color": "#424456"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

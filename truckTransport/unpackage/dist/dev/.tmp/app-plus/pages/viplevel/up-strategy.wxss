@@ -1,0 +1,30 @@
+
+.content {
+	background-color: #fff;
+}
+scroll-view {
+	height: 100%;
+}
+.dui-up-item {
+	padding: 40rpx 0;
+	border-bottom: 1rpx solid #e2e2e2;
+}
+.dui-up-column {
+	padding-left: 20rpx;
+	font-size: 30rpx;
+	border-left: 8rpx solid #FF5723;
+}
+.dui-up-content-box {
+	margin-top: 40rpx;
+	padding: 0 30rpx;
+}
+.dui-up-content-title {
+	font-size: 28rpx;
+}
+.dui-up-content-body {
+	margin-top: 30rpx;
+	font-size: 26rpx;
+	line-height: 40rpx;
+	color: #999;
+}
+
