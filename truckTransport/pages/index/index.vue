@@ -103,6 +103,7 @@
 							<view class="ui-subtext">{{ item.contact }} {{ item.phone }}</view>
 						</block>
 					</view>
+					<view class="delete_address" @tap="deleteAddress('transfer', index)">删除</view>
 				</view>
 				<view class="uni-timeline-item uni-timeline-last-item">
 					<view class="uni-timeline-item-divider">收</view>
@@ -114,9 +115,9 @@
 							<view class="ui-subtext">{{ order.trip.destination.contact }} {{ order.trip.destination.phone }}</view>
 						</block>
 					</view>
-					<view class="delete_address">删除</view>
+					<view class="delete_address" @tap="deleteAddress('destination')">删除</view>
 				</view>
-				<view class="uni-timeline-item add_address_box"><view class="add_address">添加收货地址</view></view>
+				<view class="uni-timeline-item add_address_box"><view class="add_address" @tap="addAddress">添加收货地址</view></view>
 			</view>
 		</view>
 
@@ -169,23 +170,39 @@ export default {
 				cars: {},
 				cars_list: []
 			},
+			address_tpl: {
+				lat: '',
+				lon: '',
+				localtion: '',
+				address: '',
+				contact: '',
+				phone: ''
+			}
 		};
 	},
 	computed: mapState(['forcedLogin', 'hasLogin', 'phone', 'sysconfig', 'order']),
-	async onLoad() {
+	onLoad() {
 		let that = this;
+		that.$drmking
+			.init(that)
+			.then(async () => {
+				let location_city = await that.$drmking.getLocationCity();
+				if (that.$drmking.isEmpty(location_city)) {
+					that.$drmking.getDefaultCity();
+					console.log(12);
+					await that.$drmking.changeLocationCity(that);
+					location_city = that.$drmking.getLocationCity();
+				}
+				that.location_city = location_city;
+			})
+			.catch(e => {
+				//TODO handle the exception
+				console.log(e);
+			});
 		this.$fire.on('changeCity', function(data) {
 			console.log(data);
 			that.$drmking.setLocationCity(that, data);
 		});
-		let location_city = await this.$drmking.getLocationCity();
-		if (this.$drmking.isEmpty(location_city)) {
-			this.$drmking.getDefaultCity();
-			console.log(12);
-			await this.$drmking.changeLocationCity(this);
-			location_city = this.$drmking.getLocationCity();
-		}
-		this.location_city = location_city;
 	},
 	methods: {
 		tabChange: function(index) {
@@ -194,6 +211,34 @@ export default {
 		swiperChange: function(e) {
 			var index = e.target.current || e.detail.current;
 			this.current = index;
+		},
+		addAddress() {
+			let max_address_num = parseInt(this.sysconfig.max_address_num);
+			if (this.order.trip.transfer.length >= max_address_num - 2) {
+				uni.showToast({
+					title: '最多添加个' + (max_address_num - 2) + '中转地址'
+				});
+				return;
+			}
+			this.order.trip.transfer.push(this.order.trip.destination);
+			this.order.trip.destination = this.address_tpl;
+			this.$store.commit('set_order', this.order);
+		},
+		deleteAddress(type, index) {
+			if (type == 'transfer') {
+				this.order.trip.transfer.splice(index, 1);
+			}
+			if (type == 'destination') {
+				if (this.order.trip.transfer.length > 0) {
+					let destination = this.order.trip.transfer.splice(this.order.trip.transfer.length - 1, 1);
+					this.order.trip.destination = destination;
+				} else {
+					uni.showToast({
+						title: '最少有一个收货地址'
+					});
+				}
+			}
+			this.$store.commit('set_order', this.order);
 		},
 		navTo: function(url) {
 			if (!this.hasLogin) {

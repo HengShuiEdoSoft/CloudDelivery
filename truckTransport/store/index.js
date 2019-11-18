@@ -42,14 +42,7 @@ const store = new Vuex.Store({
 					contact: '',
 					phone: ''
 				},
-				transfer: [{
-					lat: '',
-					lon: '',
-					localtion: '',
-					address: '',
-					contact: '',
-					phone: ''
-				}],
+				transfer: [],
 				destination: {
 					lat: '',
 					lon: '',

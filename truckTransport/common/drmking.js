@@ -76,6 +76,32 @@ let drmking = {
 			return true;
 		}
 	},
+	init: async function(vue) {
+		// 获取运行配置
+		let config = await this.getSystemConfig(vue);
+		// 更新store状态
+		vue.$store.commit('set_sysconfig', config);
+		// 获取车辆信息
+		await this.getCarInfos(vue);
+		// 获取城市列表
+		await this.getCityList(vue);
+		// 获取附加服务列表
+		let attach_list = await this.getAttachList(vue);
+		let attach = [];
+		for (let i in attach_list) {
+			attach_list[i]['status'] = false;
+			attach.push(attach_list[i]);
+		}
+		// 将附加服务加入order
+		vue.$store.commit('set_order_attach', attach);
+		// 获取默认城市
+		let city = this.getDefaultCity();
+		// 设置默认城市显示
+		await this.setLocationCity(vue, city);
+		// 更新订单城市信息
+		let locattion_city = await this.getLocationCity();
+		vue.$store.commit('set_order_city', locattion_city);
+	},
 	// 获取系统运行配置
 	getSystemConfig: async function(vue) {
 		let that = this;
