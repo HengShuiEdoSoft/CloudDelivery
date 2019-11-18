@@ -161,10 +161,10 @@ export default {
 			current: 0,
 			location_city: {
 				city: {
-					city_id: 19,
-					city_title: '衡水市',
+					city_id: 0,
+					city_title: '',
 					is_default: 1,
-					amap_citycode: '0318',
+					amap_citycode: '',
 					status: 1
 				},
 				cars: {},
@@ -207,10 +207,14 @@ export default {
 	methods: {
 		tabChange: function(index) {
 			this.current = index;
+			let car = this.location_city.cars_list[this.current];
+			this.$store.commit('set_order_car', car);
 		},
 		swiperChange: function(e) {
 			var index = e.target.current || e.detail.current;
 			this.current = index;
+			let car = this.location_city.cars_list[this.current];
+			this.$store.commit('set_order_car', car);
 		},
 		addAddress() {
 			let max_address_num = parseInt(this.sysconfig.max_address_num);
