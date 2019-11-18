@@ -231,7 +231,7 @@ export default {
 			if (type == 'destination') {
 				if (this.order.trip.transfer.length > 0) {
 					let destination = this.order.trip.transfer.splice(this.order.trip.transfer.length - 1, 1);
-					this.order.trip.destination = destination;
+					this.order.trip.destination = destination[0];
 				} else {
 					uni.showToast({
 						title: '最少有一个收货地址'
