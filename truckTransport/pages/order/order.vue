@@ -12,10 +12,10 @@
 			</view>
 		</view>
 		<view class="ui-order-container">
-			<view class="ui-list-item">
+			<navigator class="ui-list-item" url="/pages/order/requirement">
 				<view class="ui-li-title">额外需求</view>
 				<view class="ui-li-right">是否需要搬运、返程等服务<text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
-			</view>
+			</navigator>
 			<view>
 				<view class="ui-list-item">
 					<view class="ui-li-title">订单备注</view>
