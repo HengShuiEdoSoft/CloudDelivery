@@ -5,7 +5,7 @@
 			<view class="ui-tip">当前城市</view>
 			<text class="ui-city">{{ currentCity }}</text>
 		</view>
-		<SortPickerList ref="sortPickerList" @clickData="getSelect"></SortPickerList>
+		<view class="ui-city-list"><SortPickerList ref="sortPickerList" @clickData="getSelect"></SortPickerList></view>
 	</view>
 </template>
 <script>
@@ -15,16 +15,16 @@ export default {
 	data() {
 		return {
 			currentCity: '',
-			currentId: '',
-			current: 1,
-			type: 1,
+			status: 1,
+			channel: '',
 			citydata: {}
 		}
 	},
 	async onLoad(options) {
+		let that = this;
 		this.currentCity = options.city;
 		this.status = parseInt(options.status);
-		let that = this;
+		this.channel = options.channel;
 		that.citydata = await that.$drmking.getCityList(that);
 		let list = [];
 		for (let i in that.citydata) {
@@ -38,16 +38,15 @@ export default {
 		that.$refs['sortPickerList'].initPage(list);
 	},
 	methods: {
-		getSelect(data) {			
-			if(this.status==1){
-				this.$fire.fire('changeCity',this.citydata[data.value]);
-			}else{
-				
+		getSelect(data) {
+			this.currentCity = data.name;
+			if (!this.$drmking.isEmpty(this.channel)) {
+				this.$fire.fire(this.channel, this.citydata[data.value]);
 			}
 			uni.navigateBack({
 				delta:1
 			});
-		},
+		}
 	}
 };
 </script>
@@ -61,6 +60,11 @@ export default {
 }
 .ui-city-container {
 	padding: 0 30upx;
+	height: 16vh;
+}
+.ui-city-list{
+	height: 83vh;
+	overflow: hidden;
 }
 .ui-city {
 	margin: 20upx 0 40upx;

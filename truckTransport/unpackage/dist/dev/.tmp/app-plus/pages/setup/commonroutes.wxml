@@ -1,1 +1,0 @@
-<view class="content"><view class="ui-divide-line"></view><view class="dui-notyet-wrapper"><image src="../../static/img/map.jpg" mode></image><text>暂无可用路线</text><navigator url><view class="dui-notyet-btn">添加常用路线</view></navigator></view></view>

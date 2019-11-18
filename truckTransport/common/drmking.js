@@ -76,6 +76,30 @@ let drmking = {
 			return true;
 		}
 	},
+	// 获取系统运行配置
+	getSystemConfig: async function(vue) {
+		let that = this;
+		let cache_key = 'SystemConfig';
+		let system_config = this.cacheData(cache_key);
+		if (that.isEmpty(system_config)) {
+			let data = await vue.$uniFly.get({
+				url: '/api/common/config',
+			}).then(function(res) {
+				if (res.code == 0) {
+					that.cacheData(cache_key, res.data, 3600);
+					return res.data;
+				} else {
+					return null;
+				}
+			}).catch(function(error) {
+				return null;
+			});
+			return data;
+		} else {
+			return system_config;
+		}
+	},
+	// 获取车型数据
 	getCarInfos: async function(vue) {
 		let that = this;
 		let cache_key = 'carInfos';
@@ -107,22 +131,24 @@ let drmking = {
 		let car_infos = await this.getCarInfos(vue);
 		let city_price = await this.getCityPriceList(vue, city.city_id);
 		let city_data;
-		if(this.isEmpty(city_price)){
+		if (this.isEmpty(city_price)) {
 			city_data = {
 				city: city,
 				cars: {}
 			}
-		}
-		else{
-			let cars={};
-			for(let car_id in city_price){
+		} else {
+			let cars = {};
+			let cars_list = [];
+			for (let car_id in city_price) {
 				let car = car_infos[car_id];
-				car['base_price_json']=city_price[car_id]['base_price_json'];
-				cars[car_id]=car;
+				car['base_price_json'] = city_price[car_id]['base_price_json'];
+				cars[car_id] = car;
+				cars_list.push(car);
 			}
 			city_data = {
 				city: city,
-				cars: cars
+				cars: cars,
+				cars_list: cars_list,
 			}
 		}
 		this.cacheData(location_city_key, city_data, 0);
@@ -162,6 +188,27 @@ let drmking = {
 			return null;
 		});
 		return city;
+	},
+	// 获取附加服务类目
+	getAttachList: async function(vue) {
+		let that = this;
+		let cache_key = 'attachlist';
+		let attachlist = that.cacheData(cache_key);
+		if (that.isEmpty(attachlist)) {
+			attachlist = await vue.$uniFly.get({
+				url: '/api/attach/getattachlist'
+			}).then(function(res) {
+				if (res.code == 0) {
+					that.cacheData(cache_key, res.data, 300);
+					return res.data;
+				} else {
+					return null;
+				}
+			}).catch(function(error) {
+				return null;
+			});
+		}
+		return attachlist;
 	},
 	// 获取城市列表
 	getCityList: async function(vue) {
@@ -274,17 +321,17 @@ let drmking = {
 		// #ifdef APP-PLUS
 		status = await that.checkPermission();
 		if (status !== 1) {
+			uni.showConfirm();
 			flag = false;
 		}
 		// #endif
 		// #ifdef MP-WEIXIN || MP-TOUTIAO || MP-QQ
 		status = await that.getLocationSetting();
 		if (status === 2) {
-			that.showConfirm();
+			uni.showConfirm();
 			flag = false;
 		}
 		// #endif
-		console.log(flag);
 		if (flag) {
 			let city = await new Promise((resolve, reject) => {
 				uni.getLocation({

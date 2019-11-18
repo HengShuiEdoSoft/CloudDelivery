@@ -16,7 +16,7 @@ uniFly['retry_number'] = 3;
 //uniFly.headers={'Access-Control-Allow-Origin':'*'};
 //自定义请求拦截
 uniFly.requestInterceptors.success = function(request) {
-	let userinfo=drmking.cacheData("USER");
+	let userinfo = drmking.cacheData("USER");
 	if (userinfo) {
 		request.body['phone'] = userinfo.phone;
 		request.body['token'] = userinfo.token;
@@ -77,7 +77,38 @@ Vue.prototype.$fire = new OnFire();
 App.mpType = 'app'
 
 const app = new Vue({
-    store,
-    ...App
-})
-app.$mount()
+	store,
+	...App
+});
+new Promise(async (resolve, reject)=>{
+	// 获取运行配置
+	let config = await drmking.getSystemConfig(app);
+	// 更新store状态
+	app.$store.commit('set_sysconfig', config);
+	// 获取车辆信息
+	await drmking.getCarInfos(app);
+	// 获取城市列表
+	await drmking.getCityList(app);
+	// 获取附加服务列表
+	let attach_list = await drmking.getAttachList(app);
+	let attach = [];
+	for (let i in attach_list) {
+		attach_list[i]['status'] = false;
+		attach.push(attach_list[i]);
+	}
+	// 将附加服务加入order
+	app.$store.commit('set_order_attach', attach);
+	// 获取默认城市
+	let city = app.$drmking.getDefaultCity();
+	// 设置默认城市显示
+	await drmking.setLocationCity(app, city);
+	// 更新订单城市信息
+	let locattion_city = await drmking.getLocationCity();
+	app.$store.commit('set_order_city', locattion_city);
+	resolve(true);
+}).then((res)=>{
+	app.$mount();
+});
+
+
+
