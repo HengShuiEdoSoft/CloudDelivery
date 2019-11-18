@@ -139,7 +139,6 @@ export default {
 		this.car_time = parseInt(options.time);
 		let date = new Date(this.car_time);
 		this.date = date.Format('MM月dd日 hh:mm');
-		this.date = date.Format('MM月dd日 hh:mm');
 		this.car_time=date.Format('yyyy-MM-dd hh:mm:ss');
 		this.is_now = options.is_now;
 	},
