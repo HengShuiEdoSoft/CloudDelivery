@@ -1,2 +1,1 @@
-setCssToHead([".",[1],"ui-info-list-item:first-child { line-height: ",[0,80],"; }\n.",[1],"ui-info-list-item:first-child .",[1],"ui-info-list-center{ height:",[0,80],"; }\n",],undefined,{path:"./pages/userinfo/phonenum.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/userinfo/phonenum.wxml') } }));

@@ -1,2 +1,1 @@
-setCssToHead([".",[1],"scroll-container { height: 100%; }\n.",[1],"ui-order-cont { -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; }\n.",[1],"dui-basic-list-item__content-title { font-size: ",[0,28],"; }\n.",[1],"dui-basic-list-item__content-note { font-size: ",[0,24],"; }\n",],undefined,{path:"./pages/mymoney/mydetailed.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/mymoney/mydetailed.wxml') } }));

@@ -1,2 +1,1 @@
-setCssToHead([".",[1],"content { background-color: #fff; }\n.",[1],"scroll-container { height: 100%; }\n.",[1],"dui-privacy-tips { padding: ",[0,50],"; font-size: ",[0,28],"; line-height: ",[0,40],"; }\n",],undefined,{path:"./pages/setup/privacypolicy.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/setup/privacypolicy.wxml') } }));

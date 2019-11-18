@@ -117,6 +117,7 @@ radio {
 }
 .ui-li-youhui .ui-li-title {
 	color: #999;
+<<<<<<< HEAD
 }
 .ui-remark-item{
 	margin:8rpx;
@@ -128,5 +129,7 @@ radio {
 .ui-remark-item.active{
 	color:#FF9801;
 	background: #FAF6DB;
+=======
+>>>>>>> 73701f51999e54dffe98500dfd0e6a6045224efe
 }
 

@@ -1,2 +1,1 @@
-setCssToHead([".",[1],"scroll-container { height: 100%; padding-bottom: ",[0,80],"; }\n",],undefined,{path:"./pages/servicecenter/servicecenter-list.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/servicecenter/servicecenter-list.wxml') } }));
