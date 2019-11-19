@@ -222,6 +222,7 @@ export default {
 			let max_address_num = parseInt(this.sysconfig.max_address_num);
 			if (this.order.trip.transfer.length >= max_address_num - 2) {
 				uni.showToast({
+					icon:'none',
 					title: '最多添加个' + (max_address_num - 2) + '中转地址'
 				});
 				return;
@@ -240,6 +241,7 @@ export default {
 					this.order.trip.destination = destination[0];
 				} else {
 					uni.showToast({
+						icon:'none',
 						title: '最少有一个收货地址'
 					});
 				}
