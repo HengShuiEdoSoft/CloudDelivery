@@ -138,9 +138,8 @@
 								_self.lists = _self.reload ? list : _self.lists.concat(list);
 								_self.page++;
 								_self.reload=false;
-								_self.has_next=res.has_next;
-								console.log(res.has_next)
-								if(res.has_next){
+								_self.has_next=res.data.has_next;
+								if(res.data.has_next){
 									_self.loadingText='加载更多';
 								}
 								else{

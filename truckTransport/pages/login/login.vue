@@ -117,13 +117,13 @@
 							mask: true,
 							duration: 3000
 						});
-						const user={
-							phone:res.data.phone,
-							token:res.data.token
-						}
-						that.$drmking.cacheData("USER",user,2592000);
+						// const user={
+						// 	phone:res.data.phone,
+						// 	token:res.data.token
+						// }
+						// that.$drmking.cacheData('USER',user,2592000);
 						service.addUser(res.data);
-						that.toMain(user);
+						that.toMain(res.data);
 					}else if(res.code===1){
 							uni.showToast({
 								content: res.msg,

@@ -146,15 +146,7 @@
 			    }
 			    _self.loadingText[_self.current] = '加载中...';
 			    uni.showNavigationBarLoading();
-				uni.getStorage({//获得保存在本地的用户信息
-				    key: 'userLogin',  
-				    success:(res) => {  
-				        _self.userinfo=res.data  	                    
-				    }  
-				}); 
 				 const data={
-					 phone:_self.userinfo.phone,
-					 token:_self.userinfo.token,
 					 page:page,
 					 source_type:source_type
 				 }
@@ -193,15 +185,7 @@
 			getList:function(page,source_type){
 				page = 1;
 				uni.showNavigationBarLoading();
-				uni.getStorage({//获得保存在本地的用户信息
-				    key: 'userLogin',  
-				    success:(res) => {  
-				        _self.userinfo=res.data 	                    
-				    }  
-				}); 
 				const data={
-					phone:_self.userinfo.phone,
-					token:_self.userinfo.token,
 					page:page,
 					source_type:source_type
 				}

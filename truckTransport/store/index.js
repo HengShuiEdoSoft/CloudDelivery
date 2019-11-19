@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import drmking from '@/common/drmking.js';
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -10,9 +10,9 @@ const store = new Vuex.Store({
 		 */
 		forcedLogin: false,
 		hasLogin: false,
-		phone: "",
-		token: "",
-		userid: "",
+		// phone: "",
+		// token: "",
+		// userid: "",
 		sysconfig: {
 
 		},
@@ -103,24 +103,14 @@ const store = new Vuex.Store({
 		sun_order: function(state, order) {
 
 		},
-		login(state, user) {
-			state.phone = user.phone || '新用户';
-			state.token = user.token || '';
-			state.userid = user.user_id || '';
+		login(state, user) {			
 			state.hasLogin = true;
-			uni.setStorage({
-				key: 'userLogin',
-				data: user
-			})
+			state.user=user;
+			drmking.cacheData('USER',user,2592000);
 		},
 		logout(state) {
-			state.phone = '新用户';
-			state.token = '';
-			state.userid = '';
 			state.hasLogin = false;
-			uni.removeStorage({
-				key: 'userLogin'
-			})
+			drmking.cacheData('USER',{},0);
 		}
 	}
 })

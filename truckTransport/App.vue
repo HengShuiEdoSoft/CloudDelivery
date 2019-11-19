@@ -5,15 +5,9 @@ export default {
 		...mapMutations(['login'])
 	},
 	onLaunch: function() {
-		if (this.$drmking.cacheData('USER')) {
-			var that = this;
-			uni.getStorage({
-				//获得保存在本地的用户信息
-				key: 'userLogin',
-				success: res => {
-					that.login(res.data);
-				}
-			});
+		let user = this.$drmking.cacheData('USER');
+		if (user) {
+			this.login(user);
 		}
 	},
 	onShow: function() {

@@ -85,19 +85,11 @@
 						},1000)
 					},	
 	        changenum() {   
-				let userData={};
+				let userData=this.$drmking.cacheData('USER');
 				let that=this;
-				uni.getStorage({//获得保存在本地的用户信息
-				    key: 'userLogin',  
-				    success:(res) => {  
-				        userData=res.data;  	                    
-				    }  
-				});
 				const data = {
-					phone:userData.phone,
 				    new_phone: this.new_phone,
 				    vercode: this.vercode,
-					token:userData.token
 				}
 				this.$uniFly
 				  .post({
@@ -106,8 +98,8 @@
 				  })
 				  .then(function(res) {
 				    if(res.code===0){
-						userData.phone=that.new_phone;
-						this.login(userData);
+						// userData.phone=that.new_phone;
+						this.login(res.data);
 				    	uni.showToast({
 				    	    title: '变更成功',
 							icon: 'success',
