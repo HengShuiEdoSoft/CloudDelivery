@@ -8,14 +8,14 @@
 			</view>
 			<view class="ui-list-item">
 				<text class="iconfont icon-dianhua"></text>
-				<input placeholder="18709886268" value="18709886268" />
+				<input placeholder="18888888888" :value="order.phone" @blur="setPhone" />
 			</view>
 		</view>
 		<view class="ui-order-container">
 			<navigator class="ui-list-item" url="/pages/order/requirement">
 				<view class="ui-li-title">额外需求</view>
 				<view class="ui-li-right">
-					是否需要搬运、返程等服务
+					{{ order_attach_des ? order_attach_des : '无' }}
 					<text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
 				</view>
 			</navigator>
@@ -23,13 +23,13 @@
 				<navigator class="ui-list-item" url="/pages/order/remark">
 					<view class="ui-li-title">订单备注</view>
 					<view class="ui-li-right">
-						如货物类别等
+						{{ order.remark ? order.remark : '' }}
 						<text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
 					</view>
 				</navigator>
 				<view class="ui-list-item">
-					<view class="ui-remark-item" @tap="isone(0)" :class="{active:isOne===1}">1人跟车</view>
-					<view class="ui-remark-item" @tap="isone(1)" :class="{active:isOne===2}">2人跟车</view>
+					<view class="ui-remark-item" @tap="isone(1)" :class="{ active: isOne === 1 }">1人跟车</view>
+					<view class="ui-remark-item" @tap="isone(2)" :class="{ active: isOne === 2 }">2人跟车</view>
 				</view>
 			</view>
 		</view>
@@ -51,11 +51,11 @@
 			<view class="ui-home-price-container">
 				<view class="ui-cost-price">
 					<text>￥</text>
-					<text class="ui-price-now">20</text>
-					<text class="ui-origin-price">￥35</text>
+					<text class="ui-price-now">{{ order.pay_order_price }}</text>
+					<text class="ui-origin-price">￥{{ order.order_price }}</text>
 					<view class="ui-home-discount">
 						优惠券已折扣
-						<text>8元</text>
+						<text>{{ order.coupon_price }}元</text>
 					</view>
 				</view>
 				<navigator class="ui-price-detail" url="/pages/pricedetail/pricedetail">价格明细</navigator>
@@ -66,8 +66,8 @@
 			<view class="ui-pop-container">
 				<view class="ui-cost-price">
 					<text>￥</text>
-					<text class="ui-price-now">20</text>
-					<text class="ui-origin-price">￥35</text>
+					<text class="ui-price-now">{{ order.pay_order_price }}</text>
+					<text class="ui-origin-price">￥{{ order.order_price }}</text>
 				</view>
 				<view class="ui-li-youhui">
 					<view class="ui-li-title">点击选择优惠券</view>
@@ -109,18 +109,22 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 export default {
+	computed: mapState(['sysconfig', 'order']),
 	components: {
 		uniPopup
 	},
 	data() {
 		return {
 			type: '',
-			isOne:0,
+			isOne: 0,
 			current: null,
-			is_now: false,
-			car_time: null,
+			order_is_now: false,
+			order_user_driver_favorites: false,
+			order_car_time: null,
+			order_attach_des: '',
 			date: null,
 			items: [
 				{
@@ -137,15 +141,44 @@ export default {
 		};
 	},
 	onLoad(options) {
-		this.car_time = parseInt(options.time);
-		let date = new Date(this.car_time);
+		let that = this;
+		let des = [];
+		for (let i = 0; i < that.order.attach.length; i++) {
+			if (that.order.attach[i].status) {
+				des.push(that.order.attach[i].attach_title);
+			}
+		}
+		that.order_attach_des = des.join('、');
+		that.$fire.on('order_attach_des', function(data) {
+			if (data.is_change) {
+				let des = [];
+				for (let i = 0; i < that.order.attach.length; i++) {
+					if (data.attach_index.indexOf(i.toString()) !== -1) {
+						that.order.attach[i].status = true;
+						des.push(that.order.attach[i].attach_title);
+					} else {
+						that.order.attach[i].status = false;
+					}
+				}
+				that.$store.commit('set_order_attach', that.order.attach);
+				that.order_attach_des = des.join('、');
+			}
+		});
+		that.$fire.on('order_remark', function(data) {
+			that.$store.commit('set_order_remark', data);
+		});
+		this.order_car_time = parseInt(options.time);
+		let date = new Date(this.order_car_time);
 		this.date = date.Format('MM月dd日 hh:mm');
-		this.car_time=date.Format('yyyy-MM-dd hh:mm:ss');
-		this.is_now = options.is_now;
+		this.order_car_time = date.Format('yyyy-MM-dd hh:mm:ss');
+		this.order_is_now = options.is_now;
 	},
 	methods: {
+		setPhone(e) {
+			this.order.phone = e.detail.value;
+		},
 		switchChange: function(e) {
-			console.log('switch1 发生 change 事件，携带值为', e.target.value);
+			this.order.user_driver_favorites = e.target.value;
 		},
 		radioChange: function(evt) {
 			for (let i = 0; i < this.items.length; i++) {
@@ -155,7 +188,8 @@ export default {
 				}
 			}
 		},
-		togglePopup(type, open) {
+		// 下一步，去支付
+		async togglePopup(type, open) {
 			this.type = type;
 			this.$refs[open].open();
 		},
@@ -166,8 +200,8 @@ export default {
 			this.cancel(type);
 			//支付
 		},
-		isone:function(index){
-			this.isOne=index+1;
+		isone: function(index) {
+			this.isOne = index;
 		}
 	}
 };
@@ -277,15 +311,15 @@ radio {
 .ui-li-youhui .ui-li-title {
 	color: #999;
 }
-.ui-remark-item{
-	margin:8upx;
+.ui-remark-item {
+	margin: 8upx;
 	line-height: 48upx;
-	padding:8upx 24upx;
+	padding: 8upx 24upx;
 	background: #eee;
 	border-radius: 36px;
 }
-.ui-remark-item.active{
-	color:#FF9801;
-	background: #FAF6DB;
-	}
+.ui-remark-item.active {
+	color: #ff9801;
+	background: #faf6db;
+}
 </style>

@@ -196,6 +196,7 @@ export default {
 					location_city = that.$drmking.getLocationCity();
 				}
 				that.location_city = location_city;
+				
 			})
 			.catch(e => {
 				//TODO handle the exception

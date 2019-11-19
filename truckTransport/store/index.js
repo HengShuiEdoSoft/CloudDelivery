@@ -34,7 +34,7 @@ const store = new Vuex.Store({
 			distance: 0,
 			distance_price: 0,
 			attach_price: 0,
-			remark: '订单备注',
+			remark: '',
 			attach: [],
 			trip: {
 				departure: {
@@ -85,8 +85,8 @@ const store = new Vuex.Store({
 			Vue.set(state.order, 'attach', attach);
 			Vue.set(state.order, 'attach_price', attach_price);
 		},
-		up_order_attach_status: function(state, index, status) {
-			Vue.set(state.order.attach[index], 'status', status);
+		set_order_remark: function(state, remark) {
+			Vue.set(state.order, 'remark', remark);
 		},
 		set_order_city: function(state, locattion_city) {
 			Vue.set(state.order, 'city_id', locattion_city.city.city_id);
