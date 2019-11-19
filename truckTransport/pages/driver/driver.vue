@@ -6,7 +6,7 @@
 			<view class="dui-notyet-btn" @tap="togglePopup('center', 'collection')">去收藏司机 </view>
 		</view>
 		<view class="ui-list">
-			<view class="ui-list-item" v-for="(item,index) in lists" :key="user_driver_favorites_id" @longtap="deleteDriver(item.user_driver_favorites_id)">
+			<view class="ui-list-item" v-for="(item,index) in lists" :key="item.user_driver_favorites_id" @longtap="deleteDriver(item.user_driver_favorites_id)">
 				<view class="ui-list-title">{{item.dname}}</view>
 				<view class="ui-list-subtext">{{item.phone}}</view>
 			</view>
@@ -134,9 +134,8 @@
 								_self.lists = _self.reload ? list : _self.lists.concat(list);
 								_self.page++;
 								_self.reload=false;
-								_self.has_next=res.has_next;
-								console.log(res.has_next)
-								if(res.has_next){
+								_self.has_next=res.data.has_next;
+								if(res.data.has_next){
 									_self.loadingText='加载更多';
 								}
 								else{
