@@ -277,8 +277,8 @@ export default {
 		goOrderSure(date_time) {
 			let now = new Date();
 			let use_car_diff_time = parseInt(this.sysconfig.use_car_diff_time);
-			if (date_time) {
-				let time = Date.parse(date_time);
+			if (date_time) {				
+				let time = Date.parse(date_time.replace(/-/g,'/'));
 				if (time < now.getTime() + use_car_diff_time * 60 * 1000) {
 					uni.showToast({
 						icon: 'none',
