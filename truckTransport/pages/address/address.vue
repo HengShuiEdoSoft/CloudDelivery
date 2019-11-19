@@ -8,7 +8,7 @@
 					<text>您还没有常用地址</text>
 				</view>
 			</view>
-			<block v-for="(item,index) in lists" :key="item.address_id">
+			<block  v-if="!empty" v-for="(item,index) in lists" :key="item.address_id" @longtap="deleteAddress(item.address_id)">
 				<view class="dui-basic-list">
 					<navigator :url="'editaddress?data=' + JSON.stringify(item)">
 						<view class="dui-basic-list-item">
@@ -47,6 +47,7 @@
 				loadingText:'',
 				empty:false,
 				page:1,
+				id:0,
 				reload:true,
 				has_next:true,
 				lists: []
@@ -72,6 +73,48 @@
 			}, 1000);
 		},
 		methods: {
+			deleteAddress:function(id){
+				uni.showModal({
+					title: '温馨提示',
+					content: '您确定要删除该条信息吗',
+					showCancel: true,
+					success: res => {
+						if (res.confirm) {
+							const data={
+								address_id:id
+							}
+							this.$uniFly
+							.post({
+								url: '/api/address/deladdress',
+								params: data
+							})
+							.then(function(res) {
+								uni.hideNavigationBarLoading();
+								if (res.code === 0 ) {
+									uni.showToast({
+										title: '删除',
+										icon: 'success',
+										mask: true,
+										duration: 3000
+									});							
+								} else {
+									uni.showToast({
+										content: res.msg,
+										showCancel: false
+									});
+								}
+							})
+							.catch(function(error) {
+								uni.hideNavigationBarLoading();
+								uni.showToast({
+									content: error,
+									showCancel: false
+								});
+							});
+						}
+					}
+				});
+			},
 			getList : function(){
 				let _self=this;
 				if (_self.has_next) {

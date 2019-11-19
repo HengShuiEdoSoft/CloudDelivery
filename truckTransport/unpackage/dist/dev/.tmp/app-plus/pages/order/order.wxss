@@ -118,4 +118,15 @@ radio {
 .ui-li-youhui .ui-li-title {
 	color: #999;
 }
+.ui-remark-item{
+	margin:8rpx;
+	line-height: 48rpx;
+	padding:8rpx 24rpx;
+	background: #eee;
+	border-radius: 36px;
+}
+.ui-remark-item.active{
+	color:#FF9801;
+	background: #FAF6DB;
+}
 

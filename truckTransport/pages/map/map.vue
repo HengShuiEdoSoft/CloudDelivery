@@ -5,12 +5,12 @@
 			<cover-view class="ui-select-container">
 				<view class="input-group">
 					<view class="input-row border">
-						<text class="title iconfont icon-dianhua"></text>
+						<text class="title iconfont icon-qiyeyuanquwuye"></text>
 						<input type="text" focus v-model="house" value="13123" placeholder="楼层及门牌号" class="m-input">
 					</view>
 					<view class="input-row border">
 						<view class="input-row-b">
-							<text class="title iconfont icon-dianhua"></text>
+							<text class="title iconfont icon-yonghu"></text>
 							<input type="text" focus v-model="name" value="13123" placeholder="联系人" class="m-input">
 						</view>
 						<view class=" input-row-b">
@@ -188,8 +188,7 @@
 			                }
 			            }
 			        })
-			    }
-			
+			    }			
 			    return status;
 			},
 			chooseLocation: function () {
