@@ -188,8 +188,7 @@
 			                }
 			            }
 			        })
-			    }
-			
+			    }			
 			    return status;
 			},
 			chooseLocation: function () {
