@@ -29,14 +29,14 @@ uniFly.requestInterceptors.success = function(request) {
 			request.body['retry_number'] = request.params['retry_number'] = 1;
 		}
 	}
-	if (request.params.retry_number == 1) {
-		uni.showLoading();
-	}
+	// if (request.params.retry_number == 1) {
+	// 	uni.showLoading();
+	// }
 	return request
 }
 // 自定义响应成功拦截
 uniFly.responseInterceptors.success = function(response) {
-	uni.hideLoading()
+	// uni.hideLoading()
 	if (drmking.isJsonString(response.data)) {
 		response.data = JSON.parse(response.data);
 	}
@@ -56,7 +56,7 @@ uniFly.responseInterceptors.error = function(response) {
 	}
 	params.retry_number++;
 	if (params.retry_number > uniFly.retry_number) {
-		uni.hideLoading();
+		// uni.hideLoading();
 		return response;
 	} else {
 		return uniFly[method]({
