@@ -14,6 +14,9 @@ const store = new Vuex.Store({
 		// phone: "",
 		// token: "",
 		// userid: "",
+		user:{
+			
+		},
 		sysconfig: {
 
 		},
