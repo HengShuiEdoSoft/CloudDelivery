@@ -12,7 +12,7 @@
 			</view>
 		</view>
 		<view class="ui-coupon-list">
-			<view class="ui-coupon-item" v-for="(item,index) in list" :key="item.coupon_type_id">
+			<view class="ui-coupon-item" v-for="(item,index) in list" :key="item.user_coupon_id">
 				<view class="ui-coupon-item-body">
 					<view>
 						<view class="ui-coupon-price"><text>￥</text><text class="ui-coupon-price-num">{{item.coupon_price}}</text></view>
@@ -21,12 +21,12 @@
 					<view class="ui-coupon-center">
 						<view>拉货就找云配送</view>
 						<view class="ui-coupon-time">满{{item.sill}}使用</view>
-						<view @tap="isShow" class="ui-coupon-detail-btn">更多详情<text class="iconfont icon-gengduo-hengxiang"></text></view>
+						<view @tap="seeDetail(index)" class="ui-coupon-detail-btn">更多详情<text class="iconfont icon-gengduo-hengxiang"></text></view>
 					</view>
-					<view v-if="item.status===1"><navigator class="ui-coupon-use" :url="'/pages/index/index'+item.coupon_type_id">立即使用</navigator></view>
+					<view v-if="item.status===1"><navigator class="ui-coupon-use" :url="'/pages/index/index'+item.user_coupon_id">立即使用</navigator></view>
 					<view v-if="item.status===0"><view class="ui-coupon-use-b">不可用</view></view>
 				</view>
-				<view :class="{active:show}" class="ui-coupon-detail">
+				<view :class="{active:index==current}" class="ui-coupon-detail">
 					<view>1.适用车型：{{item.car_title}}</view>
 					<view>2.适用城市（区域）：全国</view>
 					<view>3.使用限制：满{{item.sill}}使用</view>
@@ -49,7 +49,7 @@
 			let that=this;
 			this.$uniFly
 			  .get({
-			    url: "/api/coupon_type/getcoupontypelist",
+			    url: "/api/user_coupon/getusercouponlist",
 			    params: {}
 			  })
 			  .then(function(res) {
@@ -67,8 +67,8 @@
 			  })
 		},
 		methods: {
-			isShow:function(){
-				this.show = !this.show
+			seeDetail(index){
+				this.currentb=index;
 			}
 		}
 	}

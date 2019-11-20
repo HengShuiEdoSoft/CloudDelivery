@@ -9,7 +9,8 @@
 			</view>
 		</view>
 		<view class="ui-coupon-list">
-			<view class="ui-coupon-item" v-for="(item,index) in list" :key="item.coupon_type_id"  v-if="item.status===1" data-current="index">
+			<radio-group @change="radioChange">
+			<view class="ui-coupon-item" v-for="(item,index) in list" :key="item.user_coupon_id"  v-if="item.status===1">
 				<view class="ui-coupon-item-body">
 					<view>
 						<view class="ui-coupon-price"><text>￥</text><text class="ui-coupon-price-num">{{item.coupon_price}}</text></view>
@@ -18,16 +19,17 @@
 					<view class="ui-coupon-center">
 						<view>拉货就找云配送</view>
 						<view class="ui-coupon-time">满{{item.sill}}使用</view>
-						<view @tap="isShow" class="ui-coupon-detail-btn">更多详情<text class="iconfont icon-gengduo-hengxiang"></text></view>
+						<view @tap="seeDetail(index)"class="ui-coupon-detail-btn">更多详情<text class="iconfont icon-gengduo-hengxiang"></text></view>
 					</view>
-					<view><view class="ui-coupon-use" @tap="selectCoupon">使用</view></view>
+					<view><radio :value="item.user_coupon_id" :checked="index === current"/></view>
 				</view>
-				<view :class="{active:show}" class="ui-coupon-detail">
+				<view :class="{active:index==currentb}" class="ui-coupon-detail">
 					<view>1.适用车型：{{item.car_title}}</view>
 					<view>2.适用城市（区域）：全国</view>
 					<view>3.使用限制：满{{item.sill}}使用</view>
 				</view>
 			</view>
+			</radio-group>
 		</view>
 		</scroll-view>
 	</view>
@@ -38,11 +40,11 @@
 		data() {
 			return {
 				current:0,
+				currentb:0,
 				select:{
-					coupon_type_id:0,
+					user_coupon_id:0,
 					sill:0
-				}
-				show:false,
+				},
 				list:[]
 			}
 		},
@@ -67,12 +69,19 @@
 			  })
 		},
 		methods: {
-			isShow:function(){
-				this.show = !this.show
+			seeDetail(index){
+				this.currentb=index;
 			},
-			selectCoupon:function(){
-				this.select.coupon_type_id=this.list[current].coupon_type_id;
-				this.select.sill=this.list[current].sill;
+			radioChange:function(evt){
+				for (let i = 0; i < this.list.length; i++) {
+				    if (this.list[i].user_coupon_id == evt.target.value) {
+				        this.current = i;
+						this.select.user_coupon_id=this.list[current].user_coupon_id;
+						this.select.sill=this.list[current].sill;
+				        break;
+				    }
+				}
+				
 				//onfire
 			}
 		}
