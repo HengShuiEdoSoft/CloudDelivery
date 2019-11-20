@@ -10,6 +10,7 @@ const store = new Vuex.Store({
 		 */
 		forcedLogin: false,
 		hasLogin: false,
+		isCompany:false,
 		// phone: "",
 		// token: "",
 		// userid: "",
@@ -103,6 +104,9 @@ const store = new Vuex.Store({
 		sun_order: function(state, order) {
 
 		},
+		becompany(isCompany){
+			state.isCompany=isCompany
+		},
 		login(state, user) {			
 			state.hasLogin = true;
 			state.user=user;
@@ -111,7 +115,7 @@ const store = new Vuex.Store({
 		logout(state) {
 			state.hasLogin = false;
 			drmking.cacheData('USER',{},0);
-		}
+		},
 	}
 })
 

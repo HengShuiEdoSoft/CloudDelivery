@@ -17,7 +17,7 @@
 				</view>
 				<view class="dui-basic-list">
 					<block v-for="(item,index) in lists" :key="item.article_category_id">
-						<navigator :url="'servicecenter-list?id=' + item.article_category_id">
+						<navigator :url="'servicecenter-list?id=' + item.sname">
 							<view class="dui-basic-list-item">
 								<view class="dui-basic-list-item__container">
 									<view class="dui-basic-list-item__content">

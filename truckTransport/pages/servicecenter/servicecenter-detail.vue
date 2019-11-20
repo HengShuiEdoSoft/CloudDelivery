@@ -31,6 +31,10 @@
 				});
 			}
 		},
+		onLoad(options){
+			this.scode=options.id;
+			this.getData();
+		},
 		data() {
 			return {
 				tel: "010-8888",
@@ -45,6 +49,33 @@
 				uni.makePhoneCall({
 					phoneNumber: '010-8888' //仅为示例
 				});
+			},
+			getData(){
+				let _self=this;
+				const data={
+					scode:this.scode
+				}
+				this.$uniFly
+				.get({
+					url: "/api/article/getarticledetail",
+					params: data
+				})	
+				.then(function(res){
+					if (res.code === 0 ) {
+						_self.lists=res.data								
+					}else{
+						uni.showToast({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showToast({
+						content: error,
+						showCancel: false
+					});
+				});	
 			}
 		}
 	}
