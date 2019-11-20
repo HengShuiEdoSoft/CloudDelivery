@@ -208,7 +208,7 @@ const store = new Vuex.Store({
 	},
 	actions: {
 		set_order_coupon(context) {
-			if (context.state.order.order_price > 0) {
+			if (context.state.order.order_price > 0 && context.state.order.user_coupon_id == 0) {
 				uniFly.post({
 					url: '/api/user_coupon/getusercouponlist',
 					params: {

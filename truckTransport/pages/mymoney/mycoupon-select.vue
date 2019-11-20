@@ -48,17 +48,18 @@
 				list:[]
 			}
 		},
-		onLoad() {
+		onLoad(options) {
 			let that=this;
 			this.$uniFly
-			  .get({
+			  .post({
 			    url: "/api/user_coupon/getusercouponlist",
-			    params: {}
+			    params: {
+					
+				}
 			  })
 			  .then(function(res) {
-				console.log("success")
 			    if(res.code===0){	
-			    	that.list=res.data;
+			    	that.list=res.data.list;
 				}
 			  })
 			  .catch(function(error) {
