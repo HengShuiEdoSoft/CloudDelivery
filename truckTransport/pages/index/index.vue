@@ -150,6 +150,7 @@ import { mapState } from 'vuex';
 import uniDrawer from '@/components/drawer/drawer.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import hTimePicker from '@/components/h-timePicker/h-timePicker.vue';
+let amap = require('@/common/amap-wx.js');
 export default {
 	components: {
 		uniDrawer,
@@ -173,13 +174,14 @@ export default {
 				cars_list: []
 			},
 			address_tpl: {
-				lat: '',
-				lon: '',
-				localtion: '',
+				lat: '39.907761',
+				lon: '116.405467',
+				localtion: '北京',
 				address: '',
 				contact: '',
 				phone: ''
-			}
+			},
+			map_key: ''
 		};
 	},
 	computed: mapState(['forcedLogin', 'hasLogin', 'phone', 'sysconfig', 'order']),
@@ -196,7 +198,7 @@ export default {
 					location_city = that.$drmking.getLocationCity();
 				}
 				that.location_city = location_city;
-				
+				that.map_key = that.sysconfig.amap_api[Math.floor(Math.random() * that.sysconfig.amap_api.length)];
 			})
 			.catch(e => {
 				//TODO handle the exception
@@ -219,35 +221,89 @@ export default {
 			let car = this.location_city.cars_list[this.current];
 			this.$store.commit('set_order_car', car);
 		},
+		cheackTrip() {
+			let that = this;
+			let trip = that.order.trip;
+			let origin = '';
+			let waypoints = [];
+			let destination = '';
+			// 判断出发地是否为空
+			if (trip.departure.localtion != '') {
+				origin = trip.departure.lon + ',' + trip.departure.lat;
+				for (let i = 0; i < trip.transfer.length; i++) {
+					if (trip.transfer[i].localtion != '') {
+						waypoints.push(trip.transfer[i].lon + ',' + trip.transfer[i].lat);
+					}
+				}
+				if (trip.destination.localtion != '') {
+					destination = trip.destination.lon + ',' + trip.destination.lat;
+				}
+			}
+			let flag = false;
+			if (origin != '') {
+				if (destination != '' || waypoints.length > 0) {
+					flag = true;
+				}
+			}
+			if (flag) {
+				if (destination == '') {
+					destination = waypoints.slice(waypoints.length - 1, 1)[0];
+				}
+				let map = new amap.AMapWX({ key: 'dda21b01a2a7cb53b46c90c718d2bafb' });
+				map.getDrivingRoute({
+					strategy: 4,
+					origin: origin,
+					waypoints: waypoints.join(';'),
+					destination: destination,
+					success: function(data) {
+						that.$store.commit('set_order_trip', { trip: that.order.trip, distance: data.paths[0].distance });
+					},
+					fail: function(info) {
+						uni.showModal({
+							title: '路线计算失败，是否重新计算',
+							content: '',
+							success: function(res) {
+								if (res.confirm) {
+									console.log('用户点击确定');
+								} else if (res.cancel) {
+									console.log('用户点击取消');
+								}
+							}
+						});
+					}
+				});
+			}
+		},
 		addAddress() {
 			let max_address_num = parseInt(this.sysconfig.max_address_num);
 			if (this.order.trip.transfer.length >= max_address_num - 2) {
 				uni.showToast({
-					icon:'none',
+					icon: 'none',
 					title: '最多添加个' + (max_address_num - 2) + '中转地址'
 				});
 				return;
 			}
 			this.order.trip.transfer.push(this.order.trip.destination);
 			this.order.trip.destination = this.address_tpl;
-			this.$store.commit('set_order', this.order);
+			this.cheackTrip();
 		},
 		deleteAddress(type, index) {
 			if (type == 'transfer') {
 				this.order.trip.transfer.splice(index, 1);
+				this.cheackTrip();
 			}
 			if (type == 'destination') {
 				if (this.order.trip.transfer.length > 0) {
 					let destination = this.order.trip.transfer.splice(this.order.trip.transfer.length - 1, 1);
 					this.order.trip.destination = destination[0];
+					this.cheackTrip();
 				} else {
 					uni.showToast({
-						icon:'none',
+						icon: 'none',
 						title: '最少有一个收货地址'
 					});
 				}
 			}
-			this.$store.commit('set_order', this.order);
 		},
 		navTo: function(url) {
 			if (!this.hasLogin) {
@@ -280,8 +336,8 @@ export default {
 		goOrderSure(date_time) {
 			let now = new Date();
 			let use_car_diff_time = parseInt(this.sysconfig.use_car_diff_time);
-			if (date_time) {				
-				let time = Date.parse(date_time.replace(/-/g,'/'));
+			if (date_time) {
+				let time = Date.parse(date_time.replace(/-/g, '/'));
 				if (time < now.getTime() + use_car_diff_time * 60 * 1000) {
 					uni.showToast({
 						icon: 'none',
@@ -289,9 +345,9 @@ export default {
 					});
 					return;
 				}
-				date_time=time;
+				date_time = time;
 			} else {
-				date_time = now.getTime() + (use_car_diff_time + 5) * 60 * 1000;				
+				date_time = now.getTime() + (use_car_diff_time + 5) * 60 * 1000;
 			}
 			uni.navigateTo({
 				url: '/pages/order/order?time=' + date_time + '&is_now=' + this.is_now

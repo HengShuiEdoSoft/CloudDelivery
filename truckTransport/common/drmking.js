@@ -76,6 +76,74 @@ let drmking = {
 			return true;
 		}
 	},
+	distancePrice: function(price_json = [], distance = 0) {
+		distance = parseInt(distance);
+		if (price_json.length == 0 || distance == 0) {
+			return 0;
+		}
+		let run = 0;
+		let price = 0;
+		let count = price_json.length - 1;
+		for (let i = 0; i < price_json.length; i++) {
+			let row = price_json[i];
+			row.num = parseInt(row.num);
+			row.price = parseFloat(row.price);
+			if (distance <= row.num) {
+				switch (row.type) {
+					case 's':
+						{
+							price = row.price;
+							run = distance;
+							break;
+						}
+					case 'e':
+						{
+							let _distance = distance - run;
+							run = distance;
+							price += parseFloat(_distance * row.price);
+							break;
+						}
+					default:
+						{
+							let _distance = distance - run;
+							run = distance;
+							price += parseFloat(_distance * row.price);
+							break;
+						}
+				}
+				if (i <= count) {
+					break;
+				}
+			} else {
+				switch (row.type) {
+					case 's':
+						{
+							price = row.price;
+							run = row.num;
+							break;
+						}
+					case 'e':
+						{
+							let _distance = distance - run;
+							price += parseFloat(_distance * row.price);
+							break;
+						}
+					default:
+						{
+							let _distance = row.num - run;
+							run = row.num;
+							price += parseFloat(_distance * row.price);
+							break;
+						}
+				}
+				if (i == count) {
+					break;
+				}
+			}
+		}
+		return price;
+	},
+	// 初始化
 	init: async function(vue) {
 		// 获取运行配置
 		let config = await this.getSystemConfig(vue);
