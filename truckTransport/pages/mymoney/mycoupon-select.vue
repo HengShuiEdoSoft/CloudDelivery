@@ -52,7 +52,7 @@
 			let that=this;
 			this.$uniFly
 			  .get({
-			    url: "/api/coupon_type/getcoupontypelist",
+			    url: "/api/user_coupon/getusercouponlist",
 			    params: {}
 			  })
 			  .then(function(res) {
