@@ -69,7 +69,7 @@
 					<text class="ui-price-now">{{ order.pay_order_price }}</text>
 					<text class="ui-origin-price">￥{{ order.order_price }}</text>
 				</view>
-				<view class="ui-li-youhui">
+				<view class="ui-li-youhui" @tap="couponSelect">
 					<view class="ui-li-title">点击选择优惠券</view>
 					<view class="ui-li-right">
 						更多
@@ -187,6 +187,12 @@ export default {
 					break;
 				}
 			}
+		},
+		couponSelect:function(){
+			//onfire
+			uni.navigateTo({
+				url:'/pages/mymoney/mycoupon-select'
+			})
 		},
 		// 下一步，去支付
 		async togglePopup(type, open) {

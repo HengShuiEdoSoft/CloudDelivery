@@ -15,6 +15,7 @@
     "pages/mymoney/myinvoicing-trip",
     "pages/mymoney/myinvoicing-history",
     "pages/mymoney/mycoupon",
+    "pages/mymoney/mycoupon-select",
     "pages/mymoney/mycoupon-gift",
     "pages/mymoney/mydetailed",
     "pages/mymoney/myinvoicing-rule",
@@ -59,13 +60,13 @@
     "navigationBarBackgroundColor": "white",
     "backgroundColor": "#f3f4f5"
   },
-  "nvueCompiler": "uni-app",
+  "nvueCompiler": "weex",
   "renderer": "auto",
   "splashscreen": {
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
   "appname": "truckTransport",
-  "compilerVersion": "2.4.2",
+  "compilerVersion": "2.3.7",
   "usingComponents": {}
 }
