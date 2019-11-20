@@ -4,8 +4,12 @@
 		<checkbox-group class="ui-list" @change="checkboxChange">
 			<label class="ui-list-item" v-for="(item, index) in order.attach" :key="item.attach_id">
 				<view class="ui-list-item-container">
-					<view class="ui-list-text" v-if="item.attach_type === 0">{{ item.attach_title + '(' + item.attach_remark + ')' }}</view>
-					<view class="ui-list-text" v-if="item.attach_type === 1">{{ item.attach_title + '(' + item.attach_remark + ')' }}</view>
+					<view class="ui-list-text" v-if="item.attach_type === 0">
+						{{ item.attach_title + '(' + (parserFloat(item.attach_price) == 0 ? item.attach_remark : item.attach_price) + '元)' }}
+					</view>
+					<view class="ui-list-text" v-if="item.attach_type === 1">
+						{{ item.attach_title + '(' + (parserFloat(item.attach_price_rate) == 0 ? item.attach_remark : ('订单总额的'+(parserFloat(item.attach_price_rate)*100)) + '%)' }}
+					</view>
 					<view class="ui-select-icon"><checkbox :value="String(index)" :checked="item.status" color="#FF5723" /></view>
 				</view>
 			</label>
