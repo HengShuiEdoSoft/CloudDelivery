@@ -5,7 +5,7 @@
 			<view class="dui-money-card-wrapper">
 				<view class="dui-money-card">
 					<text>当前余额(元)</text>
-					<text>0.00</text>
+					<text>{{list.wallet}}</text>
 					<navigator url="/pages/mymoney/myrecharge" class="dui-money-recharge-btn">
 						立即充值▸
 					</navigator>
@@ -48,7 +48,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="dui-money-list-group">
+		<view class="dui-money-list-group" @tap="invoice">
 			<navigator url="myinvoicing">
 				<view class="dui-money-number" style="padding: 20upx 30upx;">
 					<view>
@@ -71,7 +71,7 @@
 						<text>查看全部 ></text>
 					</view>
 					<view class="dui-coupon-title-tips">
-						优惠券
+						各种优惠券
 					</view>
 				</view>
 			</navigator>
@@ -79,6 +79,10 @@
 	</view>
 </template>
 <script>
+	import service from '../../service.js';
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		onNavigationBarButtonTap: function(e) {
 			var index = e.index;
@@ -89,10 +93,58 @@
 			}
 		},
 		data() {
-			return {}
+			return {
+				list:{
+					wallet:12.00
+				}
+			}
 		},
+		onShow() {
+			//钱包余额
+			//this.list.wallet=
+		},
+		computed: mapState(['isCompany']),
 		methods: {
-
+			getData:function(){
+				let _self = this;
+				this.$uniFly
+				.get({
+					url: "url",
+					params: {}
+				})	
+				.then(function(res){
+					if (res.code === 0 ) {
+						_self.list=res.data								
+					}else{
+						uni.showToast({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showToast({
+						content: error,
+						showCancel: false
+					});
+				});	
+			},
+			invoice:function(){
+				if(!this.isCompany){
+					uni.showModal({
+						title: '非企业用户',
+						content: '您的账号为非企业账号，是否继续成为企业账号',
+						showCancel: true,
+						success: res => {
+							if (res.confirm) {
+								uni.navigateTo({
+									url: '/pages/viplevel/corporate-vip'
+								});
+							}
+						}
+					});
+				}
+			}
 		}
 	}
 </script>

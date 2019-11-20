@@ -8,7 +8,13 @@
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y>
-					<view class="dui-basic-list">
+					<view v-if="empty[0]">
+						<view class="dui-notyet-wrapper">
+							<image src="../../static/img/NoOrder.jpg" mode=""></image>
+							<text>您还没有账单信息</text>
+						</view>
+					</view>
+					<view class="dui-basic-list" v-if="!empty[0]">
 						<block v-for="(item,index) in lists[0].list" :key="item.wallet_log_id">
 							<navigator url="">
 								<view class="dui-basic-list-item">
@@ -39,7 +45,13 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y>
-					<view class="dui-basic-list">
+					<view v-if="empty[1]">
+						<view class="dui-notyet-wrapper">
+							<image src="../../static/img/NoOrder.jpg" mode=""></image>
+							<text>您还没有账单信息</text>
+						</view>
+					</view>
+					<view class="dui-basic-list" v-if="!empty[1]">
 						<block v-for="(item,index) in lists[1].list" :key="item.wallet_log_id">
 							<navigator url="">
 								<view class="dui-basic-list-item">
@@ -73,153 +85,101 @@
 </template>
 
 <script>
-	var _self,timer = null;
 	export default {
 		data() {
 			return {
 				current: 0,
-				loadingText:['',''],
-				page1:1,
-				page2:1,
+				empty:[false,false,false],
+				loadingText:['','',''],
+				page:[1,1,1],
+				has_next: [true, true, true],
+				reload: [true, true, true],
 				tab: [{
 					name: "流水明细",
 				}, {
 					name: "充值明细",
 				}],
 				source_type:['0,1,2','0'],
-				lists: []
+				lists: [[],[]]
 			}
 		},
 		onShow:function(){
-		    _self = this;
-			_self.getList(_self.page1,_self.source_type[0]);
+			this.getList();
 		 	
 		},
 		onPullDownRefresh:function(){
-		   _self = this;
-		   switch (_self.current){
-		   	case 0:
-		   		_self.getList(_self.page1,_self.source_type[0]);
-		   		break;
-		   	case 1:
-				_self.getList(_self.page2,that.source_type[1]);
-		   		break;
-			}	
+		   this.$set(this.has_next, this.current, true);
+		   this.$set(this.reload, this.current, true);
+		   this.$set(this.page, this.current, 1);
+		   this.getList();
 		},
 		onReachBottom:function(){
-			if(timer != null){
-			   clearTimeout(timer);
-			}
-			timer = setTimeout(function(){
-			   switch (_self.current){
-			   	case 0:
-			   		_self.getmore(_self.page1,_self.source_type[0]);
-			   		break;
-			   	case 1:
-			   		_self.getmore(_self.page2,_self.source_type[1]);
-			   		break;
-			   	
-			   }
-			}, 1000);
+			this.getList();
 		 },
 		methods: {
 			tabChange: function(e) {
 				var index = e.target.dataset.current || e.currentTarget.dataset.current;
 				this.current = index;
-				_self = this;
-				switch (_self.current){
-					case 0:
-						_self.getList(_self.page1,_self.source_type[0]);
-						break;
-					case 1:
-								_self.getList(_self.page2,that.source_type[1]);
-						break;
-							}	
+				this.$set(this.has_next, this.current, true);
+				this.$set(this.reload, this.current, true);
+				this.$set(this.page, this.current, 1);
+				this.getList();	
 			},
 			swiperChange: function(e) {
 				var index = e.target.current || e.detail.current;
 				this.current = index;
 			},
-			getmore : function(page,source_type){
-				if(_self.loadingText[_self.current] != '' && _self.loadingText[_self.current] != '加载更多'){
-					return false;
-			    }
-			    _self.loadingText[_self.current] = '加载中...';
-			    uni.showNavigationBarLoading();
-				 const data={
-					 page:page,
-					 source_type:source_type
-				 }
-			    this.$uniFly
-				.post({
-					url: "/api/wallet_log/getwalletloglist",
-					params: data
-				})	
-				.then(function(res){
-					if(res.code===0){
-						_self.loadingText[_self.current] = '';
-						if(!res.data.has_next){
-							uni.hideNavigationBarLoading();
-							_self.loadingText[_self.current] = '已加载全部';
-							return false;
-						}
-						page++;
-						//console.log(res);
-						_self.list[_self.current]= _self.list[_self.current].concat(res.data);
-						_self.loadingText[_self.current] = '加载更多';
-						uni.hideNavigationBarLoading();
-					}else{
-						uni.showToast({
-						    content: res.msg,
-						    showCancel: false
-						});
+			getList:function(){
+				let _self = this;
+				let current = _self.current;
+				if (_self.has_next[current]) {
+					uni.showNavigationBarLoading();
+					_self.$set(_self.loadingText, current, '加载中...');
+					const data={
+						page:this.page[current],
+						source_type:this.source_type[current]
 					}
-				})
-				.catch(function(error) {
-				    uni.showToast({
-				  	    content: error,
-				  	    showCancel: false
-				    });
-				});
-			},
-			getList:function(page,source_type){
-				page = 1;
-				uni.showNavigationBarLoading();
-				const data={
-					page:page,
-					source_type:source_type
-				}
-				this.$uniFly
-				.post({
-					url: "/api/wallet_log/getwalletloglist",
-					params: data
-				})	
-				.then(function(res){
-					if(res.code===0){
-						_self.loadingText[_self.current] = '';
-						if(!res.data.has_next){
-							uni.hideNavigationBarLoading();
-							_self.loadingText[_self.current] = '已加载全部';
-							return false;
-						}
-						page++;
-						//console.log(res);
-						_self.list = _self.list.concat(res.data);
-						_self.loadingText[_self.current] = '加载更多';
+					this.$uniFly
+					.post({
+						url: "/api/wallet_log/getwalletloglist",
+						params: data
+					})	
+					.then(function(res){
 						uni.hideNavigationBarLoading();
-					}else{
+						if (res.code === 0 ) {
+							if(res.data.list.length > 0){						
+								let list = res.data.list;
+								_self.$set(_self.empty,current,false);
+								// let list=_self.parseOrderList(res.data);
+								_self.lists[current] = _self.reload[current] ? list : _self.lists[current].concat(list);
+								_self.$set(_self.lists, current, _self.lists[current]);
+								_self.$set(_self.page, current, _self.page[current]++);
+								_self.$set(_self.reload, current, false);
+								_self.$set(_self.has_next, current, res.has_next);
+								if(res.has_next){
+									_self.$set(_self.loadingText, current, '加载更多');
+								}
+								else{
+									_self.$set(_self.loadingText, current, '已加载全部');
+								}
+							}else{
+								_self.$set(_self.empty,current,true);
+								_self.$set(_self.loadingText, current, '');
+							}							
+						}else{
+							uni.showToast({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+					})
+					.catch(function(error) {
 						uni.showToast({
-						    content: res.msg,
-						    showCancel: false
+							content: error,
+							showCancel: false
 						});
-					}
-				})
-				.catch(function(error) {
-				    uni.showToast({
-				  	    content: error,
-				  	    showCancel: false
-				    });
-				});
+					});
+				}	
 			}
 		}
 	}
