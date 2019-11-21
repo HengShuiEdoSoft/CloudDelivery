@@ -158,7 +158,7 @@ export default {
 		// #ifdef APP-PLUS
 		that.pay_platform = 'app';
 		// #endif
-		
+
 		if (that.$drmking.isEmpty(that.order.contact)) {
 			that.order.contact = that.user.realname;
 		}
@@ -388,15 +388,95 @@ export default {
 					})
 					.then(res => {
 						if (res.code == 0) {
-							uni.showToast({
-								icon:'none',
-								title:'订单支付完成！'
-							});
-							setTimeout(function() {
-								uni.navigateTo({
-									url:'/pages/index/index'
+							// 余额支付成功直接返回首页
+							if (that.provider == 'syspay') {
+								that.$store.commit('login', res.data.data);
+								uni.showToast({
+									icon: 'none',
+									title: '订单支付完成！'
 								});
-							}, 500);
+								setTimeout(function() {
+									uni.navigateTo({
+										url: '/pages/index/index'
+									});
+								}, 1500);
+							} else {
+								// 微信或支付宝支付,调用uni.requestPayment,拉起第三方支付
+								// 微信小程序支付
+								// #ifdef MP-WEIXIN
+								uni.requestPayment({
+									provider: that.provider,
+									orderInfo: res.data.data, //微信、支付宝订单数据
+									timeStamp: res.data.data.timeStamp,
+									nonceStr: res.data.data.nonceStr,
+									package: res.data.data.package,
+									signType: res.data.data.signType,
+									paySign: res.data.data.paySign,
+									success: function(res) {
+										console.log('success:' + JSON.stringify(res));
+										uni.showToast({
+											icon: 'none',
+											title: '订单支付完成！'
+										});
+										setTimeout(function() {
+											uni.navigateTo({
+												url: '/pages/index/index'
+											});
+										}, 1500);
+									},
+									fail: function(err) {
+										console.log('fail:' + JSON.stringify(err));
+										uni.showModal({
+											title: '订单支付失败，重新尝试？',
+											content: res.msg,
+											success: function(res) {
+												if (res.confirm) {
+													that.pay();
+												} else if (res.cancel) {
+													that.$refs['pay'].close();
+													return;
+												}
+											}
+										});
+									}
+								});
+								// #endif
+								// app支付
+								// #ifdef APP-PLUS
+								uni.requestPayment({
+									provider: that.provider,
+									orderInfo: res.data.data, //微信、支付宝订单数据
+									success: function(res) {
+										console.log('success:' + JSON.stringify(res));
+										uni.showToast({
+											icon: 'none',
+											title: '订单支付完成！'
+										});
+										setTimeout(function() {
+											uni.navigateTo({
+												url: '/pages/index/index'
+											});
+										}, 1500);
+									},
+									fail: function(err) {
+										console.log('fail:' + JSON.stringify(err));
+										uni.showModal({
+											title: '订单支付失败，重新尝试？',
+											content: res.msg,
+											success: function(res) {
+												if (res.confirm) {
+													that.pay();
+												} else if (res.cancel) {
+													that.$refs['pay'].close();
+													return;
+												}
+											}
+										});
+									}
+								});
+								// #endif
+								console.log(res.data);
+							}
 						} else {
 							uni.showModal({
 								title: '订单支付失败，重新尝试？',
