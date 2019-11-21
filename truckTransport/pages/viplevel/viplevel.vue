@@ -5,7 +5,7 @@
 			<view class="dui-service-wrapper">
 				<view class="dui-vip-card">
 					<view class="dui-vip-type">
-						<text>普通会员</text>
+						<text>{{levellist.level_title}}</text>
 						<navigator url="corporate-vip">
 							升级为企业会员
 						</navigator>
@@ -14,12 +14,12 @@
 						188****8888
 					</view>
 					<view class="dui-vip-steps">
-						当前成长值 : 0
+						当前成长值 : {{levellist.user_level_id}}
 					</view>
 				</view>
 				<view class="dui-vip-strategy">
 					<navigator url="get-value" class="dui-vip-growth">
-						升级白银会员还差1成长值 >
+						距离下一等级还差{{levellist.level_rule}}成长值 >
 					</navigator>
 					<navigator url="up-strategy" class="dui-vip-strategy-btn">
 						升级攻略
@@ -97,6 +97,47 @@
 	</view>
 </template>
 <script>
+	export default{
+		data(){
+			return{
+				levellist:{}
+			}
+		},
+		onShow(){
+			this.getLevel();
+		},
+		onLoad(){
+			//this.getGift();
+		},
+		methods:{
+			getLevel:function(){
+				let that=this
+				this.$uniFly
+				.get({
+					url: '/api/user_level/getuserlevellist',
+					params:{}
+				})
+				.then(function(res) {
+					if (res.code === 0 ) {
+						for(var key in res.data){
+							that.levellist=res.data[key]
+						}						
+					} else {
+						uni.showToast({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showToast({
+						content: error,
+						showCancel: false
+					});
+				});
+			}
+		}
+	}
 </script>
 <style>
 	scroll-view {

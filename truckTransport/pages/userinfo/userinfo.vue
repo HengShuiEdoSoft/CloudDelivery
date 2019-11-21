@@ -24,12 +24,12 @@
 				<view class="ui-info-list-center"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999"></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</navigator>
-			<view class="ui-divide-line"></view>
+			<!--<view class="ui-divide-line"></view>
 			<navigator class="ui-info-list-item" url="/pages/userinfo/industry">
 				<view class="ui-info-list-left">行业</view>
 				<view class="ui-info-list-center"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999"></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
-			</navigator>
+			</navigator>-->
 			<view class="ui-divide-line"></view>
 			<navigator class="ui-info-list-item" url="/pages/userinfo/realinfo">
 				<view class="ui-info-list-left">实名信息</view>

@@ -190,6 +190,9 @@ export default {
 		},
 		couponSelect:function(){
 			//onfire
+			this.$fire.on(couponSelect,function(data){
+				
+			});
 			uni.navigateTo({
 				url:'/pages/mymoney/mycoupon-select'
 			})

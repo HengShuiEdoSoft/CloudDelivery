@@ -101,34 +101,10 @@
 		},
 		onShow() {
 			//钱包余额
-			//this.list.wallet=
+			this.list.wallet=this.user.wallet;
 		},
-		computed: mapState(['isCompany']),
+		computed: mapState(['isCompany','user']),
 		methods: {
-			getData:function(){
-				let _self = this;
-				this.$uniFly
-				.get({
-					url: "url",
-					params: {}
-				})	
-				.then(function(res){
-					if (res.code === 0 ) {
-						_self.list=res.data								
-					}else{
-						uni.showToast({
-							content: res.msg,
-							showCancel: false
-						});
-					}
-				})
-				.catch(function(error) {
-					uni.showToast({
-						content: error,
-						showCancel: false
-					});
-				});	
-			},
 			invoice:function(){
 				if(!this.isCompany){
 					uni.showModal({
@@ -140,6 +116,10 @@
 								uni.navigateTo({
 									url: '/pages/viplevel/corporate-vip'
 								});
+							}else{
+								uni.navigateTo({
+									url:'/pages/mymoney/mymoney'
+								})
 							}
 						}
 					});

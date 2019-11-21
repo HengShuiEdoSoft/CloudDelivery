@@ -50,12 +50,14 @@
 		},
 		onLoad(options) {
 			let that=this;
+			const data = {
+				page: this.page,
+				pagesize:40
+			};
 			this.$uniFly
 			  .post({
 			    url: "/api/user_coupon/getusercouponlist",
-			    params: {
-					
-				}
+			    params: data
 			  })
 			  .then(function(res) {
 			    if(res.code===0){	
@@ -84,6 +86,7 @@
 				}
 				
 				//onfire
+				this.$fire.fire(couponSelect,this.select);
 			}
 		}
 	}

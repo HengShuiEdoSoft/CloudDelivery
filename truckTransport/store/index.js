@@ -66,7 +66,7 @@ const store = new Vuex.Store({
 		 */
 		forcedLogin: false,
 		hasLogin: false,
-		isCompany: false,
+		isCompany: true,
 		// phone: "",
 		// token: "",
 		// userid: "",

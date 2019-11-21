@@ -1,0 +1,30 @@
+
+.ui-invioce-list{
+	background: #fff;
+}
+.ui-invioce-item{
+	padding:30rpx;
+}
+.ui-invioce-cont{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:-ms-flexbox;
+	display:flex;
+	line-height:48rpx;
+	font-size:14px;
+}
+.ui-invioce-cont>view:first-child{
+	-webkit-box-flex:1;
+	-webkit-flex:1;
+	    -ms-flex:1;
+	        flex:1;
+}
+.ui-invioce-status{
+	color:#FF5723;
+	font-size:12px;
+}
+.ui-invioce-time{
+	color:#9E9E9E;
+	font-size:12px;
+}
+
