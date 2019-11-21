@@ -14,15 +14,15 @@
 				<view>￥{{order.car_base_price_json[0]['price']}}</view>
 			</view>
 			<view class="ui-price-list-item" v-if="order.distance_price > 0">
-				<view class="ui-pli-name">超出里程价（{{order.distance-order.car_base_price_json[0]['num']}}公里）</view>
+				<view class="ui-pli-name">超出里程价（{{Math.abs(order.distance-order.car_base_price_json[0]['num'])}}公里）</view>
 				<view>￥{{order.distance_price-order.car_base_price_json[0]['price']}}</view>
 			</view>
 			<block v-for="(item,index) in order.attach" :key="index">
-				<view class="ui-price-list-item" v-if="item.status==1">
+				<view class="ui-price-list-item" v-if="item.status==true">
 					<view class="ui-pli-name">{{item.attach_title}}</view>
 					<view>￥{{item.order_price}}</view>
 				</view>
-			</block>			
+			</block>
 			<view class="ui-price-list-item" v-if="order.user_coupon_id > 0">
 				<view class="ui-pli-name">优惠券</view>
 				<view>-￥{{ order.coupon_price }}</view>

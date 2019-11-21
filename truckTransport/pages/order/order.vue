@@ -167,6 +167,9 @@ export default {
 		that.$fire.on('order_remark', function(data) {
 			that.$store.commit('set_order_remark', data);
 		});
+		that.$fire.on('order_coupon', function(data) {
+			that.$store.commit('sure_order', data);
+		});		
 		this.order_car_time = parseInt(options.time);
 		let date = new Date(this.order_car_time);
 		this.date = date.Format('MM月dd日 hh:mm');

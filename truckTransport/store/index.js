@@ -128,21 +128,22 @@ const store = new Vuex.Store({
 			this.commit('set_order_coupon');
 		},
 		// 选择附加服务更新价格
-		set_order_attach: function(state, attach, flag = true) {
+		set_order_attach: function(state, attach) {
 			let distance_price = parseFloat(state.order.distance_price);
 			let attach_price = 0;
 			// 计价方式 0=>'价格',1=>'单价%比'
 			for (let i = 0; i < attach.length; i++) {
 				let order_price = 0;
 				let attach_row = attach[i];
-				if (attach_row.status == 1) {
-					if (attach_row.attach_type === 0) {
-						order_price += parseFloat(attach_row.attach_price);
+				if (attach_row.status == true) {
+					attach_row.attach_type = parseInt(attach_row.attach_type);
+					if (attach_row.attach_type == 0) {
+						order_price = parseFloat(attach_row.attach_price);
 					} else {
 						order_price += distance_price * parseFloat(attach_row.attach_price_rate);
 					}
 					attach_row.order_price = order_price;
-					attach_price = attach_price + attach_price;
+					attach_price = order_price + attach_price;
 				}
 			}
 			Vue.set(state.order, 'attach', attach);
@@ -188,10 +189,24 @@ const store = new Vuex.Store({
 		},
 		// 获取优惠券
 		set_order_coupon: function(state) {
-			let order_price = parseFloat(state.order.distance_price) + parseFloat(state.order.attach_price);
-			Vue.set(state.order, 'order_price', order_price);
-			Vue.set(state.order, 'pay_order_price', order_price);
-			this.dispatch('set_order_coupon');
+			if (state.order.distance == 0) {
+				Vue.set(state.order, 'order_price', 0);
+				Vue.set(state.order, 'pay_order_price', 0);
+				Vue.set(state.order, 'user_coupon_id', 0);
+				Vue.set(state.order, 'coupon_price', 0);
+				Vue.set(state.order, 'distance', 0);
+				Vue.set(state.order, 'distance_price', 0);
+				Vue.set(state.order, 'attach_price', 0);
+			} else {
+				let order_price = parseFloat(state.order.distance_price) + parseFloat(state.order.attach_price);
+				Vue.set(state.order, 'order_price', order_price);
+				let pay_order_price = order_price;
+				if (state.order.user_coupon_id > 0) {
+					pay_order_price = order_price - parseFloat(state.order.coupon_price);
+				}
+				Vue.set(state.order, 'pay_order_price', pay_order_price);
+				this.dispatch('set_order_coupon');
+			}
 		},
 		becompany(isCompany) {
 			state.isCompany = isCompany

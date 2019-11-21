@@ -59,7 +59,8 @@ export default {
 	onPullDownRefresh: function() {
 		this.has_next = true;
 		this.reload = true;
-		this.getList();
+		this.getList();		
+		uni.stopPullDownRefresh();
 	},
 	onReachBottom: function() {
 		this.getList();
