@@ -89,6 +89,7 @@ const store = new Vuex.Store({
 			phone: '',
 			user_coupon_id: 0,
 			coupon_price: 0,
+			coupon_title: '',
 			order_price: 0,
 			pay_order_price: 0,
 			distance: 0,
@@ -173,6 +174,9 @@ const store = new Vuex.Store({
 			Vue.set(state.order, 'distance_price', distance_price);
 			this.commit('set_order_attach', state.order.attach);
 		},
+		sure_order_trip: function(state, trip) {
+			Vue.set(state.order, 'trip', trip);
+		},
 		// 订单变更,更新价格
 		set_order: function(state, order) {
 			Vue.set(state, 'order', order);
@@ -180,10 +184,11 @@ const store = new Vuex.Store({
 		},
 		// 计算价格
 		sure_order: function(state, coupon) {
-			if (coupon !== undefined) {
+			if (coupon !== undefined && state.order.order_price > 0) {
 				let pay_order_price = state.order.order_price - parseFloat(coupon.coupon_price);
 				Vue.set(state.order, 'coupon_price', coupon.coupon_price);
 				Vue.set(state.order, 'user_coupon_id', coupon.user_coupon_id);
+				Vue.set(state.order, 'coupon_title', coupon.coupon_title);
 				Vue.set(state.order, 'pay_order_price', pay_order_price);
 			}
 		},
@@ -193,6 +198,7 @@ const store = new Vuex.Store({
 				Vue.set(state.order, 'order_price', 0);
 				Vue.set(state.order, 'pay_order_price', 0);
 				Vue.set(state.order, 'user_coupon_id', 0);
+				Vue.set(state.order, 'coupon_title', '');
 				Vue.set(state.order, 'coupon_price', 0);
 				Vue.set(state.order, 'distance', 0);
 				Vue.set(state.order, 'distance_price', 0);
@@ -239,6 +245,7 @@ const store = new Vuex.Store({
 							context.commit('sure_order', {
 								coupon_price: parseFloat(res.data.list[0].coupon_price),
 								user_coupon_id: parseInt(res.data.list[0].user_coupon_id),
+								coupon_title: res.data.list[0].coupon_title
 							});
 						}
 					}

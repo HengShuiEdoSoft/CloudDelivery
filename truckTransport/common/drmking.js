@@ -207,7 +207,7 @@ let drmking = {
 					for (let key in res.data) {
 						res.data[key]['car_images'] = res.data[key]['car_images'].split(',');
 					}
-					that.cacheData(cache_key, res.data, 300);
+					that.cacheData(cache_key, res.data, 3600);
 					return res.data;
 				} else {
 					return null;
@@ -294,7 +294,7 @@ let drmking = {
 				url: '/api/attach/getattachlist'
 			}).then(function(res) {
 				if (res.code == 0) {
-					that.cacheData(cache_key, res.data, 300);
+					that.cacheData(cache_key, res.data, 3600);
 					return res.data;
 				} else {
 					return null;
@@ -322,7 +322,7 @@ let drmking = {
 							break;
 						}
 					}
-					that.cacheData(cache_key, res.data, 300);
+					that.cacheData(cache_key, res.data, 3600);
 					return res.data;
 				} else {
 					return null;
@@ -397,7 +397,7 @@ let drmking = {
 				}
 			}).then(function(res) {
 				if (res.code == 0) {
-					that.cacheData(cache_key, res.data, 300);
+					that.cacheData(cache_key, res.data, 3600);
 					return res.data;
 				} else {
 					return null;
