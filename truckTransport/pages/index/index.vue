@@ -319,6 +319,7 @@ export default {
 						}
 					}
 				});
+				return false;
 			} else {
 				uni.navigateTo({
 					url: url
@@ -336,6 +337,10 @@ export default {
 
 		goOrderSure(date_time) {
 			let that = this;
+			if (!this.hasLogin) {
+				that.navTo();
+				return;
+			}
 			let trip = that.order.trip;
 			// 判断出发地是否为空
 			if (trip.departure.localtion == '') {

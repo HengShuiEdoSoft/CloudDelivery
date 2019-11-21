@@ -185,7 +185,7 @@ const store = new Vuex.Store({
 		// 计算价格
 		sure_order: function(state, coupon) {
 			if (coupon !== undefined && state.order.order_price > 0) {
-				let pay_order_price = state.order.order_price - parseFloat(coupon.coupon_price);
+				let pay_order_price = (state.order.order_price - parseFloat(coupon.coupon_price)).toFixed(2);
 				Vue.set(state.order, 'coupon_price', coupon.coupon_price);
 				Vue.set(state.order, 'user_coupon_id', coupon.user_coupon_id);
 				Vue.set(state.order, 'coupon_title', coupon.coupon_title);
@@ -204,11 +204,11 @@ const store = new Vuex.Store({
 				Vue.set(state.order, 'distance_price', 0);
 				Vue.set(state.order, 'attach_price', 0);
 			} else {
-				let order_price = parseFloat(state.order.distance_price) + parseFloat(state.order.attach_price);
+				let order_price = (parseFloat(state.order.distance_price) + parseFloat(state.order.attach_price)).toFixed(2);
 				Vue.set(state.order, 'order_price', order_price);
 				let pay_order_price = order_price;
 				if (state.order.user_coupon_id > 0) {
-					pay_order_price = order_price - parseFloat(state.order.coupon_price);
+					pay_order_price = (order_price - parseFloat(state.order.coupon_price)).toFixed(2);
 				}
 				Vue.set(state.order, 'pay_order_price', pay_order_price);
 				this.dispatch('set_order_coupon');
@@ -235,7 +235,7 @@ const store = new Vuex.Store({
 					params: {
 						car_id: context.state.order.car_id,
 						sill: context.state.order.order_price,
-						staus: 1,
+						status: 1,
 						pagesize: 1,
 						exp_time: 1,
 					}

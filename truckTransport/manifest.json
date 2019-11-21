@@ -54,6 +54,9 @@
                         "appkey_ios" : "1981562e16917a2e623efae93fa36614",
                         "appkey_android" : "e6ace276009af99b3dd34fb388f1acea"
                     }
+                },
+                "payment" : {
+                    "alipay" : {}
                 }
             },
             "icons" : {

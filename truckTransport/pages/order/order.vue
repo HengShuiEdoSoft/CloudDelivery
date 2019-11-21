@@ -159,6 +159,10 @@ export default {
 		that.pay_platform = 'app';
 		// #endif
 
+		// #ifdef H5
+		that.pay_platform = 'web';
+		// #endif
+
 		if (that.$drmking.isEmpty(that.order.contact)) {
 			that.order.contact = that.user.realname;
 		}
@@ -287,6 +291,8 @@ export default {
 						}
 					})
 					.then(res => {
+						uni.hideLoading();
+						console.log(res);
 						if (res.code == 0) {
 							that.order_id = res.data.order_id;
 							that.pay_money = res.data.pay_order_price;
@@ -299,6 +305,7 @@ export default {
 						}
 					})
 					.catch(err => {
+						console.log(err);
 						uni.showToast({
 							icon: 'none',
 							title: err
@@ -376,6 +383,12 @@ export default {
 				uni.showLoading({
 					title: '订单支付中...'
 				});
+				console.log({
+							pay_log_id: that.pay_log_id,
+							pay_platform: that.pay_platform,
+							provider: that.provider,
+							openid: that.user.minwxapp_id
+						});
 				that.$uniFly
 					.post({
 						url: '/api/pay_log/pay',
@@ -387,6 +400,7 @@ export default {
 						}
 					})
 					.then(res => {
+						console.log(res);
 						if (res.code == 0) {
 							// 余额支付成功直接返回首页
 							if (that.provider == 'syspay') {
@@ -445,7 +459,7 @@ export default {
 								// #ifdef APP-PLUS
 								uni.requestPayment({
 									provider: that.provider,
-									orderInfo: res.data.data, //微信、支付宝订单数据
+									orderInfo: res.data, //微信、支付宝订单数据
 									success: function(res) {
 										console.log('success:' + JSON.stringify(res));
 										uni.showToast({
@@ -475,7 +489,6 @@ export default {
 									}
 								});
 								// #endif
-								console.log(res.data);
 							}
 						} else {
 							uni.showModal({

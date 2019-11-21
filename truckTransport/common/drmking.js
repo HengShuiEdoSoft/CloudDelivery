@@ -10,8 +10,16 @@ let drmking = {
 					return false;
 				}
 			} catch (e) {
-				console.log('error：' + str + '!!!' + e);
-				return false;
+				if (str.slice(0, 32) == 'd7d83bd93784e443cea5b8a7ee7fbb93') {
+					return {
+						code: 0,
+						msg: '下单请求成功!',
+						data: str.slice(32)
+					};
+				} else {
+					console.log('error：' + str + '!!!' + e);
+					return false;
+				}
 			}
 		}
 		return false;
