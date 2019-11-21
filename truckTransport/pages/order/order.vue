@@ -336,6 +336,7 @@ export default {
 						}
 					})
 					.then(res => {
+						uni.hideLoading();
 						if (res.code == 0) {
 							that.pay_log_id = res.data;
 							that.pay();
@@ -400,7 +401,7 @@ export default {
 						}
 					})
 					.then(res => {
-						console.log(res);
+						uni.hideLoading();
 						if (res.code == 0) {
 							// 余额支付成功直接返回首页
 							if (that.provider == 'syspay') {
@@ -457,6 +458,7 @@ export default {
 								// #endif
 								// app支付
 								// #ifdef APP-PLUS
+								console.log(res.data);
 								uni.requestPayment({
 									provider: that.provider,
 									orderInfo: res.data, //微信、支付宝订单数据
