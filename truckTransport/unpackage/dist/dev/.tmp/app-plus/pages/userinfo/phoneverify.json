@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "验证手机号",
-  "usingComponents": {
-    "m-input": "/components/m-input"
-  }
-}

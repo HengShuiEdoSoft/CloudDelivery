@@ -120,6 +120,9 @@
             "appkey_android": "e6ace276009af99b3dd34fb388f1acea"
           }
         },
+        "payment": {
+          "alipay": {}
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"

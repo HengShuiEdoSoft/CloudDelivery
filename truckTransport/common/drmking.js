@@ -10,8 +10,16 @@ let drmking = {
 					return false;
 				}
 			} catch (e) {
-				console.log('error：' + str + '!!!' + e);
-				return false;
+				if (str.slice(0, 32) == 'd7d83bd93784e443cea5b8a7ee7fbb93') {
+					return {
+						code: 0,
+						msg: '下单请求成功!',
+						data: str.slice(32)
+					};
+				} else {
+					console.log('error：' + str + '!!!' + e);
+					return false;
+				}
 			}
 		}
 		return false;
@@ -207,7 +215,7 @@ let drmking = {
 					for (let key in res.data) {
 						res.data[key]['car_images'] = res.data[key]['car_images'].split(',');
 					}
-					that.cacheData(cache_key, res.data, 300);
+					that.cacheData(cache_key, res.data, 3600);
 					return res.data;
 				} else {
 					return null;
@@ -294,7 +302,7 @@ let drmking = {
 				url: '/api/attach/getattachlist'
 			}).then(function(res) {
 				if (res.code == 0) {
-					that.cacheData(cache_key, res.data, 300);
+					that.cacheData(cache_key, res.data, 3600);
 					return res.data;
 				} else {
 					return null;
@@ -322,7 +330,7 @@ let drmking = {
 							break;
 						}
 					}
-					that.cacheData(cache_key, res.data, 300);
+					that.cacheData(cache_key, res.data, 3600);
 					return res.data;
 				} else {
 					return null;
@@ -397,7 +405,7 @@ let drmking = {
 				}
 			}).then(function(res) {
 				if (res.code == 0) {
-					that.cacheData(cache_key, res.data, 300);
+					that.cacheData(cache_key, res.data, 3600);
 					return res.data;
 				} else {
 					return null;

@@ -50,12 +50,13 @@ export default {
 			current: 0,
 			user_coupon_id: 0,
 			coupon_price: 0,
+			coupon_title:'',
 			list: []
 		};
 	},
 	computed: mapState(['order']),
 	onBackPress(e) {
-		this.$fire.fire('order_coupon', { user_coupon_id: this.user_coupon_id, coupon_price: this.coupon_price });
+		this.$fire.fire('order_coupon', { user_coupon_id: this.user_coupon_id,coupon_title: this.coupon_title, coupon_price: this.coupon_price });
 	},
 	onLoad() {
 		let that = this;
@@ -93,6 +94,8 @@ export default {
 			for (let i = 0; i < this.list.length; i++) {
 				if (this.list[i].user_coupon_id == this.user_coupon_id) {
 					this.coupon_price = this.list[i].coupon_price;
+					this.coupon_title = this.list[i].coupon_title;
+					
 					break;
 				}
 			}

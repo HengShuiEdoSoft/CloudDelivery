@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"content { background-color: #fff; }\n.",[1],"dui-resetpwd-title+wx-view { padding: ",[0,30]," 0 ",[0,40]," 0; font-size: ",[0,25],"; color: #a8a8a8; }\n.",[1],"dui-resetpwd-btn+wx-view { padding-top: ",[0,40],"; font-size: ",[0,25],"; color: #a8a8a8; text-align: center; }\n",],undefined,{path:"./pages/setup/vercode.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/setup/vercode.wxml') } }));

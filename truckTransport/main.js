@@ -37,8 +37,11 @@ uniFly.requestInterceptors.success = function(request) {
 // 自定义响应成功拦截
 uniFly.responseInterceptors.success = function(response) {
 	// uni.hideLoading()
-	if (drmking.isJsonString(response.data)) {
+	let result = drmking.isJsonString(response.data);
+	if (result === true) {
 		response.data = JSON.parse(response.data);
+	} else if (typeof result === 'object') {
+		response.data = result;
 	}
 	return Promise.resolve(response.data)
 }
