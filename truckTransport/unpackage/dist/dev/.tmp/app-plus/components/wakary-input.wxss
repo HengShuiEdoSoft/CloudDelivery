@@ -1,5 +1,5 @@
 
-@-webkit-keyframes twinkling-data-v-81be0006 {
+@-webkit-keyframes twinkling-data-v-557abe3e {
 0% {
 		opacity: 0.2;
 }
@@ -10,7 +10,7 @@
 		opacity: 0.2;
 }
 }
-@keyframes twinkling-data-v-81be0006 {
+@keyframes twinkling-data-v-557abe3e {
 0% {
 		opacity: 0.2;
 }
@@ -21,10 +21,10 @@
 		opacity: 0.2;
 }
 }
-.code-box.data-v-81be0006 {
+.code-box.data-v-557abe3e {
 	text-align: center;
 }
-.flex-box.data-v-81be0006 {
+.flex-box.data-v-557abe3e {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -38,7 +38,7 @@
 	        flex-wrap: wrap;
 	position: relative;
 }
-.flex-box .hide-input.data-v-81be0006 {
+.flex-box .hide-input.data-v-557abe3e {
 	position: absolute;
 	top: 0;
 	left: -100%;
@@ -48,7 +48,7 @@
 	z-index: 9;
 	opacity: 1;
 }
-.flex-box .item.data-v-81be0006 {
+.flex-box .item.data-v-557abe3e {
 	position: relative;
 	width: 90rpx;
 	height: 90rpx;
@@ -58,30 +58,30 @@
 	color: #333333;
 	line-height: 90rpx;
 }
-.flex-box .item.data-v-81be0006:last-child {
+.flex-box .item.data-v-557abe3e:last-child {
 	margin-right: 0;
 }
-.flex-box .middle.data-v-81be0006 {
+.flex-box .middle.data-v-557abe3e {
 	border: none;
 }
-.flex-box .box.data-v-81be0006 {
+.flex-box .box.data-v-557abe3e {
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
 	border: 2rpx solid #cccccc;
 	border-radius: 6rpx;
 }
-.flex-box .bottom.data-v-81be0006 {
+.flex-box .bottom.data-v-557abe3e {
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
 	border-bottom: 8rpx solid #212121;
 }
-.flex-box .active.data-v-81be0006 {
+.flex-box .active.data-v-557abe3e {
 	border-color: #FF5723;
 }
-.flex-box .active .line.data-v-81be0006 {
+.flex-box .active .line.data-v-557abe3e {
 	display: block;
 }
-.flex-box .line.data-v-81be0006 {
+.flex-box .line.data-v-557abe3e {
 	display: none;
 	position: absolute;
 	left: 50%;
@@ -92,14 +92,14 @@
 	width: 2rpx;
 	height: 40rpx;
 	background: #333333;
-	-webkit-animation: twinkling-data-v-81be0006 1s infinite ease;
-	        animation: twinkling-data-v-81be0006 1s infinite ease;
+	-webkit-animation: twinkling-data-v-557abe3e 1s infinite ease;
+	        animation: twinkling-data-v-557abe3e 1s infinite ease;
 }
-.flex-box .dot.data-v-81be0006{
+.flex-box .dot.data-v-557abe3e{
 	font-size: 80rpx;
 	line-height: 40rpx;
 }
-.flex-box .bottom-line.data-v-81be0006 {
+.flex-box .bottom-line.data-v-557abe3e {
 	height: 4px;
 	background: #000000;
 	width: 80%;

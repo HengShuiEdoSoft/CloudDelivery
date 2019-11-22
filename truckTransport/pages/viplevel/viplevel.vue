@@ -19,7 +19,7 @@
 				</view>
 				<view class="dui-vip-strategy">
 					<navigator url="get-value" class="dui-vip-growth">
-						距离下一等级还差{{levellist.level_rule}}成长值 >
+						距离下一等级还差{{list}}成长值 >
 					</navigator>
 					<navigator url="up-strategy" class="dui-vip-strategy-btn">
 						升级攻略
@@ -100,14 +100,16 @@
 	export default{
 		data(){
 			return{
-				levellist:{}
+				levellist:{},
+				list:0,
 			}
 		},
 		onShow(){
 			this.getLevel();
+			this.getData();
 		},
 		onLoad(){
-			//this.getGift();
+			
 		},
 		methods:{
 			getLevel:function(){
@@ -122,6 +124,31 @@
 						for(var key in res.data){
 							that.levellist=res.data[key]
 						}						
+					} else {
+						uni.showToast({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showToast({
+						content: error,
+						showCancel: false
+					});
+				});
+			},
+			getData:function(){
+				let that=this
+				this.$uniFly
+				.post({
+					url: '/api/user/getdrivecenter',
+					params:{}
+				})
+				.then(function(res) {
+					if (res.code === 0 ) {
+						that.list=res.data
+									
 					} else {
 						uni.showToast({
 							content: res.msg,

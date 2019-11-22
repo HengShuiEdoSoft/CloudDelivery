@@ -16,11 +16,11 @@
 					</navigator>
 					<view class="dui-user-total">
 						<view class="dui-user-total-item">
-							<text>20</text>
+							<text>{{list.order_total}}</text>
 							<text>总接单</text>
 						</view>
 						<view class="dui-user-total-item">
-							<text>123.45</text>
+							<text>{{list.order_total_price}}</text>
 							<text>总收入</text>
 							<navigator url="/pages/user/pickup" class="dui-user-pickup">提现</navigator>
 						</view>
@@ -30,21 +30,21 @@
 							<text>今日</text>
 							<view class="dui-user-income-box">
 								<text>接单量/收入</text>
-								<text>0/0.00</text>
+								<text>{{list.day_order_total}}/{{list.day_order_total_price}}</text>
 							</view>
 						</view>
 						<view class="dui-user-income-item">
 							<text>本周</text>
 							<view class="dui-user-income-box">
 								<text>接单量/收入</text>
-								<text>0/0.00</text>
+								<text>{list.week_order_total}}/{{list.week_order_total_price}}</text>
 							</view>
 						</view>
 						<view class="dui-user-income-item">
 							<text>本月</text>
 							<view class="dui-user-income-box">
 								<text>接单量/收入</text>
-								<text>0/0.00</text>
+								<text>{list.month_order_total}}/{{list.month_order_total_price}}</text>
 							</view>
 						</view>
 						<view class="dui-user-income-item">
@@ -88,10 +88,36 @@
 			}
 		},
 		data() {
-			return {}
+			return {
+				list:{}
+			}
 		},
 		methods: {
-
+			getData:function(){
+				let that=this
+				this.$uniFly
+				.post({
+					url: '/api/user/getusernextlevel',
+					params:{}
+				})
+				.then(function(res) {
+					if (res.code === 0 ) {
+						that.list=res.data
+										
+					} else {
+						uni.showToast({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showToast({
+						content: error,
+						showCancel: false
+					});
+				});
+			}
 		}
 	}
 </script>

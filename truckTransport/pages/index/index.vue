@@ -184,7 +184,7 @@ export default {
 			map_key: ''
 		};
 	},
-	computed: mapState(['forcedLogin', 'hasLogin', 'phone', 'sysconfig', 'order']),
+	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'sysconfig', 'order']),
 	onLoad() {
 		let that = this;
 		that.$drmking
