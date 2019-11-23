@@ -150,7 +150,8 @@ import { mapState } from 'vuex';
 import uniDrawer from '@/components/drawer/drawer.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import hTimePicker from '@/components/h-timePicker/h-timePicker.vue';
-let amap = require('@/common/amap-wx.js');
+// let amap = require('@/common/amap-wx.js');
+let amap = require("@/common/amap.js");
 export default {
 	components: {
 		uniDrawer,
@@ -181,7 +182,7 @@ export default {
 				contact: '',
 				phone: ''
 			},
-			map_key: ''
+			map_key: 'dda21b01a2a7cb53b46c90c718d2bafb'
 		};
 	},
 	computed: mapState(['forcedLogin', 'hasLogin', 'phone', 'sysconfig', 'order']),
@@ -193,12 +194,10 @@ export default {
 				let location_city = await that.$drmking.getLocationCity();
 				if (that.$drmking.isEmpty(location_city)) {
 					that.$drmking.getDefaultCity();
-					console.log(12);
 					await that.$drmking.changeLocationCity(that);
 					location_city = that.$drmking.getLocationCity();
 				}
-				that.location_city = location_city;
-				that.map_key = that.sysconfig.amap_api[Math.floor(Math.random() * that.sysconfig.amap_api.length)];
+				that.location_city = location_city;				 
 			})
 			.catch(e => {
 				//TODO handle the exception
@@ -248,30 +247,45 @@ export default {
 			if (flag) {
 				if (destination == '') {
 					destination = waypoints.slice(waypoints.length - 1, 1)[0];
-				}
-				let map = new amap.AMapWX({ key: 'dda21b01a2a7cb53b46c90c718d2bafb' });
-				map.getDrivingRoute({
-					strategy: 4,
-					origin: origin,
-					waypoints: waypoints.join(';'),
-					destination: destination,
-					success: function(data) {
-						that.$store.commit('set_order_trip', { trip: that.order.trip, distance: data.paths[0].distance });
-					},
-					fail: function(info) {
-						uni.showModal({
-							title: '路线计算失败，是否重新计算',
-							content: '',
-							success: function(res) {
-								if (res.confirm) {
-									console.log('用户点击确定');
-								} else if (res.cancel) {
-									console.log('用户点击取消');
-								}
+				}				
+				amap.getDrivingRoute(origin,destination,waypoints).then(data=>{
+					that.$store.commit('set_order_trip', { trip: that.order.trip, distance: data.paths[0].distance });
+				}).catch(err=>{
+					uni.showModal({
+						title: '路线计算失败，是否重新计算',
+						content: '',
+						success: function(res) {
+							if (res.confirm) {
+								console.log('用户点击确定');
+							} else if (res.cancel) {
+								console.log('用户点击取消');
 							}
-						});
-					}
+						}
+					});
 				});
+				// let map = new amap.AMapWX({ key: that.map_key });
+				// map.getDrivingRoute({
+				// 	strategy: 4,
+				// 	origin: origin,
+				// 	waypoints: waypoints.join(';'),
+				// 	destination: destination,
+				// 	success: function(data) {
+				// 		that.$store.commit('set_order_trip', { trip: that.order.trip, distance: data.paths[0].distance });
+				// 	},
+				// 	fail: function(info) {
+				// 		uni.showModal({
+				// 			title: '路线计算失败，是否重新计算',
+				// 			content: '',
+				// 			success: function(res) {
+				// 				if (res.confirm) {
+				// 					console.log('用户点击确定');
+				// 				} else if (res.cancel) {
+				// 					console.log('用户点击取消');
+				// 				}
+				// 			}
+				// 		});
+				// 	}
+				// });
 			}
 		},
 		addAddress() {

@@ -519,7 +519,15 @@
 				}
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/amap/amap_choice/amap_choice",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/amap/search_address_list/search_address_list",
+            "style" : {}
+        }
+    ],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
