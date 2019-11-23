@@ -11,7 +11,7 @@
 						</navigator>
 					</view>
 					<view class="dui-vip-phone">
-						188****8888
+						{{username}}
 					</view>
 					<view class="dui-vip-steps">
 						当前成长值 : {{levellist.user_level_id}}
@@ -28,35 +28,14 @@
 				<view class="dui-vip-equity">
 					<view class="dui-vip-equity-title">会员权益</view>
 					<view class="dui-vip-giftpackage-list">
-						<view class="dui-vip-giftpackage-item">
-							<view class="dui-vip-giftpackage unlock">
+						<view class="dui-vip-giftpackage-item" v-for="(item,index) in levellist.gift_pack_list" :key="item.gift_pack_id">
+							<view class="dui-vip-giftpackage" v-if="item.status===0" >
+								<text class="iconfont icon-suoding"></text>
+							</view>
+							<view class="dui-vip-giftpackage unlock" v-if="item.status===1">
 								<text class="iconfont icon-youhuijuan"></text>
 							</view>
-							<text>优惠礼包</text>
-						</view>
-						<view class="dui-vip-giftpackage-item">
-							<view class="dui-vip-giftpackage">
-								<text class="iconfont icon-suoding"></text>
-							</view>
-							<text>优惠礼包</text>
-						</view>
-						<view class="dui-vip-giftpackage-item">
-							<view class="dui-vip-giftpackage">
-								<text class="iconfont icon-suoding"></text>
-							</view>
-							<text>优惠礼包</text>
-						</view>
-						<view class="dui-vip-giftpackage-item">
-							<view class="dui-vip-giftpackage">
-								<text class="iconfont icon-suoding"></text>
-							</view>
-							<text>优惠礼包</text>
-						</view>
-						<view class="dui-vip-giftpackage-item">
-							<view class="dui-vip-giftpackage">
-								<text class="iconfont icon-suoding"></text>
-							</view>
-							<text>优惠礼包</text>
+							<text>{{item.gift_pack_title}}</text>
 						</view>
 					</view>
 				</view>
@@ -64,30 +43,9 @@
 					<view class="dui-vip-equity-title">
 						优惠礼包
 					</view>
-					<view class="dui-vip-Receive-item">
+					<view class="dui-vip-Receive-item" v-for="(item,index) in levellist.gift_pack_list" :key="item.gift_pack_id">
 						<view class="dui-vip-Receive-body">
-							<view>【白银会员】:</view>
-							<view>3元优惠券+5元余额券+20元优惠券(9米6)</view>
-						</view>
-						<navigator url="/pages/mymoney/mycoupon-gift" class="dui-vip-Receive-btn">
-							领取
-						</navigator>
-					</view>
-					<view class="dui-vip-Receive-item">
-						<view class="dui-vip-Receive-body">
-							<view>【黄金会员】:</view>
-							<view>3元优惠券+5元余额券+20元优惠券(9米6)</view>
-						</view>
-					</view>
-					<view class="dui-vip-Receive-item">
-						<view class="dui-vip-Receive-body">
-							<view>【铂金会员】:</view>
-							<view>3元优惠券+5元余额券+20元优惠券(9米6)</view>
-						</view>
-					</view>
-					<view class="dui-vip-Receive-item">
-						<view class="dui-vip-Receive-body">
-							<view>【钻石会员】:</view>
+							<view>【{{item.gift_pack_title}}】:</view>
 							<view>3元优惠券+5元余额券+20元优惠券(9米6)</view>
 						</view>
 					</view>
@@ -97,21 +55,30 @@
 	</view>
 </template>
 <script>
+	import {mapState} from 'vuex'
 	export default{
 		data(){
 			return{
 				levellist:{},
 				list:0,
+				username:""
 			}
 		},
 		onShow(){
+			this.getUsername();
 			this.getLevel();
 			this.getData();
 		},
 		onLoad(){
 			
 		},
+		computed: mapState(['user']),
 		methods:{
+			getUsername:function(){
+				if(this.user){
+					this.username=this.user.phone.replace(this.user.phone.substring(3,7),"****");
+				}
+			},
 			getLevel:function(){
 				let that=this
 				this.$uniFly
@@ -142,7 +109,7 @@
 				let that=this
 				this.$uniFly
 				.post({
-					url: '/api/user/getdrivecenter',
+					url: '/api/user/getusernextlevel',
 					params:{}
 				})
 				.then(function(res) {
@@ -235,7 +202,6 @@
 		font-size: 28upx;
 		color: #805025;
 	}
-
 	.dui-vip-strategy-btn {
 		padding: 5upx 16upx;
 		font-size: 24upx;
@@ -279,7 +245,10 @@
 		background-color: #f2f2f4;
 		border-radius: 50%;
 	}
-
+	.active .dui-vip-giftpackage{
+		border:2px solid rgba(255,255,255,.6);
+		box-sizing: border-box;
+	}
 	.dui-vip-giftpackage.unlock {
 		background-color: #FF5723;
 	}

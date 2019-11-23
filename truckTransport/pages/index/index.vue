@@ -5,7 +5,7 @@
 				<view class="ui-drawer-top">
 					<navigator url="/pages/userinfo/userinfo"><image src="../../static/img/HeadImg.jpg" class="ui-portrait"></image></navigator>
 					<view class="ui-drawer-top-body">
-						<view class="ui-username"><text>135****5687</text></view>
+						<view class="ui-username"><text>{{username}}</text></view>
 						<navigator url="../viplevel/viplevel">
 							<view class="ui-member-level">
 								<text>会员等级</text>
@@ -162,6 +162,7 @@ export default {
 			visible: false,
 			current: 0,
 			is_now: false,
+			username:"",
 			location_city: {
 				city: {
 					city_id: 0,
@@ -186,6 +187,7 @@ export default {
 	},
 	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'sysconfig', 'order']),
 	onLoad() {
+		this.getUsername();
 		let that = this;
 		that.$drmking
 			.init(that)
@@ -220,6 +222,9 @@ export default {
 			this.current = index;
 			let car = this.location_city.cars_list[this.current];
 			this.$store.commit('set_order_car', car);
+		},
+		getUsername(){
+			this.username=this.user.phone.replace(this.user.phone.substring(3,7),"****");
 		},
 		cheackTrip() {
 			let that = this;
