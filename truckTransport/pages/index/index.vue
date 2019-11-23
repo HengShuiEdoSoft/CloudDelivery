@@ -5,7 +5,9 @@
 				<view class="ui-drawer-top">
 					<navigator url="/pages/userinfo/userinfo"><image src="../../static/img/HeadImg.jpg" class="ui-portrait"></image></navigator>
 					<view class="ui-drawer-top-body">
-						<view class="ui-username"><text>{{username}}</text></view>
+						<view class="ui-username">
+							<text>{{ username }}</text>
+						</view>
 						<navigator url="../viplevel/viplevel">
 							<view class="ui-member-level">
 								<text>会员等级</text>
@@ -150,7 +152,7 @@ import { mapState } from 'vuex';
 import uniDrawer from '@/components/drawer/drawer.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import hTimePicker from '@/components/h-timePicker/h-timePicker.vue';
-let amap = require("@/common/amap.js");
+let amap = require('@/common/amap.js');
 export default {
 	components: {
 		uniDrawer,
@@ -162,7 +164,7 @@ export default {
 			visible: false,
 			current: 0,
 			is_now: false,
-			username:"",
+			username: '',
 			location_city: {
 				city: {
 					city_id: 0,
@@ -181,13 +183,11 @@ export default {
 				address: '',
 				contact: '',
 				phone: ''
-			},
-			map_key: 'dda21b01a2a7cb53b46c90c718d2bafb'
+			}
 		};
 	},
 	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'sysconfig', 'order']),
 	onLoad() {
-		this.getUsername();
 		let that = this;
 		that.$drmking
 			.init(that)
@@ -198,7 +198,8 @@ export default {
 					await that.$drmking.changeLocationCity(that);
 					location_city = that.$drmking.getLocationCity();
 				}
-				that.location_city = location_city;				 
+				that.location_city = location_city;
+				this.getUsername();
 			})
 			.catch(e => {
 				//TODO handle the exception
@@ -221,8 +222,13 @@ export default {
 			let car = this.location_city.cars_list[this.current];
 			this.$store.commit('set_order_car', car);
 		},
-		getUsername(){
-			this.username=this.user.phone.replace(this.user.phone.substring(3,7),"****");
+		getUsername() {
+			if(this.user.phone){
+				this.username = this.user.phone.replace(this.user.phone.substring(3, 7), '****');
+			}
+			else{
+				this.username='18888888888';
+			}
 		},
 		cheackTrip() {
 			let that = this;
@@ -251,22 +257,24 @@ export default {
 			if (flag) {
 				if (destination == '') {
 					destination = waypoints.slice(waypoints.length - 1, 1)[0];
-				}				
-				amap.getDrivingRoute(origin,destination,waypoints).then(data=>{
-					that.$store.commit('set_order_trip', { trip: that.order.trip, distance: data.paths[0].distance });
-				}).catch(err=>{
-					uni.showModal({
-						title: '路线计算失败，是否重新计算',
-						content: '',
-						success: function(res) {
-							if (res.confirm) {
-								console.log('用户点击确定');
-							} else if (res.cancel) {
-								console.log('用户点击取消');
+				}
+				amap.getDrivingRoute(origin, destination, waypoints)
+					.then(data => {
+						that.$store.commit('set_order_trip', { trip: that.order.trip, distance: data.paths[0].distance });
+					})
+					.catch(err => {
+						uni.showModal({
+							title: '路线计算失败，是否重新计算',
+							content: '',
+							success: function(res) {
+								if (res.confirm) {
+									console.log('用户点击确定');
+								} else if (res.cancel) {
+									console.log('用户点击取消');
+								}
 							}
-						}
+						});
 					});
-				});
 			}
 		},
 		addAddress() {
@@ -363,7 +371,7 @@ export default {
 					trip.destination = trip.transfer.slice(trip.transfer.length - 1, 1)[0];
 				}
 			}
-			that.$store.commit('sure_order_trip',trip);
+			that.$store.commit('sure_order_trip', trip);
 			let now = new Date();
 			let use_car_diff_time = parseInt(this.sysconfig.use_car_diff_time);
 			if (date_time) {
