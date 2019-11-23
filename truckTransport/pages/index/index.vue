@@ -150,7 +150,6 @@ import { mapState } from 'vuex';
 import uniDrawer from '@/components/drawer/drawer.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import hTimePicker from '@/components/h-timePicker/h-timePicker.vue';
-// let amap = require('@/common/amap-wx.js');
 let amap = require("@/common/amap.js");
 export default {
 	components: {
@@ -263,29 +262,6 @@ export default {
 						}
 					});
 				});
-				// let map = new amap.AMapWX({ key: that.map_key });
-				// map.getDrivingRoute({
-				// 	strategy: 4,
-				// 	origin: origin,
-				// 	waypoints: waypoints.join(';'),
-				// 	destination: destination,
-				// 	success: function(data) {
-				// 		that.$store.commit('set_order_trip', { trip: that.order.trip, distance: data.paths[0].distance });
-				// 	},
-				// 	fail: function(info) {
-				// 		uni.showModal({
-				// 			title: '路线计算失败，是否重新计算',
-				// 			content: '',
-				// 			success: function(res) {
-				// 				if (res.confirm) {
-				// 					console.log('用户点击确定');
-				// 				} else if (res.cancel) {
-				// 					console.log('用户点击取消');
-				// 				}
-				// 			}
-				// 		});
-				// 	}
-				// });
 			}
 		},
 		addAddress() {
