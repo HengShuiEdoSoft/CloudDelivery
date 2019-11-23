@@ -27,13 +27,19 @@
 				<view>
 					<view class="ui-ts-title">基本路费</view>
 					<view class="ui-ts-list">
-						<view class="ui-ts-list-item" v-for="(item,index) in carStandard.base_price_json" :key="index">
+						<view class="ui-ts-list-item" v-for="(item,index) in carBasicPrice.base_price_json" :key="index">
 							<view v-if="item.type=='s'">{{"起步价("+item.num+"公里)"}}</view>
 							<view v-if="item.type=='s'">{{item.price+"元"}}</view>
 							<view v-if="item.type=='m'">{{"分段价(~"+item.num+"公里)"}}</view>
 							<view v-if="item.type=='m'">{{item.price+"元/公里"}}</view>
 							<view v-if="item.type=='e'">{{"分段价("+item.num+"公里及以上)"}}</view>
 							<view v-if="item.type=='e'">{{item.price+"元/公里"}}</view>
+						</view>
+					</view>
+					<view class="ui-ts-title">附加服务</view>
+					<view class="ui-ts-list">
+						<view class="ui-ts-list-item" v-for="(item,key) in carAttachPrice" :key="item.attach_id">
+							<view v-if="item.type=='s'">{{"起步价("+item.num+"公里)"}}</view>
 						</view>
 					</view>
 				</view>
@@ -79,44 +85,72 @@
 						size:"4.2*1.8*1.8米",
 						volum:"13.6方"
 				}],
-				carStandard:{}
+				carAttachPrice:{},
+				carBasicPrice:{}
 			}
 		},
 		onLoad() {
-			const data={
-				city_id:this.currentId
-			}
 			let that=this;
 			this.currentCity = this.carTypes[0].car_id.toString();			
-			if(that.$drmking.cacheData("carStandard")){
-				that.carStandard=that.$drmking.cacheData("carStandard")[that.currentCity];
-				console.log(that.carStandard)
+			if(that.$drmking.cacheData("carBasicPrice")){
+				that.carBasicPrice=that.$drmking.cacheData("carBasicPrice")[that.currentCity];
 				return;
 			}
-			this.$uniFly
-			  .get({
-			    url: "/api/city_price/getcitypricebycityid",
-			    params: data
-			  })
-			  .then(function(res) {
-			    if(res.code===0){	
-			    	console.log(res.data)					
-					that.$drmking.cacheData("carStandard",res.data,2592000);
-					that.carStandard=res.data[that.currentCity];
-				}
-			  })
-			  .catch(function(error) {
-			    uni.showToast({
-			    	content: error,
-			    	showCancel: false
-			    });
-			  })						
+			if(that.$drmking.cacheData("carAttachPrice")){
+				that.carAttachPrice=that.$drmking.cacheData("carAttachPrice")[that.currentCity];
+				return;
+			}
+			this.getBsicPrice();
+			this.getAttachPrice();
 		},
 		methods:{
 			swiperChange:function(e) {
 				var index=e.target.current || e.detail.current;
 				this.current=index;
 				this.currentCity = this.carTypes[index].car_id.toString();
+			},
+			getBsicPrice:function(){
+				const data={
+					city_id:this.currentId
+				}
+				let that=this;
+				this.$uniFly
+				  .get({
+				    url: "/api/city_price/getcitypricebycityid",
+				    params: data
+				  })
+				  .then(function(res) {
+				    if(res.code===0){					
+						that.$drmking.cacheData("carBasicPrice",res.data,2592000);
+						that.carBasicPrice=res.data[that.currentCity];
+					}
+				  })
+				  .catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				})		
+			},
+			getAttachPrice:function(){
+				let that=this;
+				this.$uniFly
+				  .get({
+				    url: "/api/attach/getattachlist",
+				    params: {}
+				  })
+				  .then(function(res) {
+				    if(res.code===0){					
+						that.$drmking.cacheData("carAttachPrice",res.data,2592000);
+						that.carStandard=res.data;
+					}
+				  })
+				  .catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				})		
 			}
 		}
 	}

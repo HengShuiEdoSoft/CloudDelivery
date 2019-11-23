@@ -15,11 +15,14 @@
 						</view>
 					</view>
 					<navigator
-						class="ui-order-list-item ui-hujiao"
+						class="ui-order-list-item"
 						v-for="(item, index) in newsList[0]"
 						:url="'/pages/orderdetail/orderdetail?id=' + item.order_id"
-						:key="item.order_id"
-					>
+						:key="item.order_id">
+						<view class="ui-daizhifu" v-if="item.status===0">待支付</view>
+						<view class="ui-hujiao"  v-if="item.status===1">呼叫中...</view>
+						<view class="ui-hujiao"  v-if="item.status===2">等待运送</view>
+						<view class="ui-hujiao"  v-if="item.status===3">运送中</view>
 						<view class="ui-order-list-item-top">
 							<text class="ui-order-list-cartype">{{ item.car }}</text>
 							<text>{{ item.sure_time }}</text>
@@ -57,6 +60,7 @@
 						:url="'/pages/orderdetail/orderdetail?id=' + item.order_id"
 						:key="item.order_id"
 					>
+						<view class="ui-wancheng">已完成</view>
 						<view class="ui-order-list-item-top">
 							<text class="ui-order-list-cartype">{{ item.car }}</text>
 							<text>{{ item.sure_time }}</text>
@@ -94,6 +98,9 @@
 						:url="'/pages/orderdetail/orderdetail?id=' + item.ocode"
 						:key="item.order_id"
 					>
+						<view class="ui-quxiao" v-if="item.status===11">取消订单</view>
+						<view class="ui-quxiao" v-if="item.status===12">支付超时</view>
+						<view class="ui-quxiao" v-if="item.status===13">呼叫超时</view>
 						<view class="ui-order-list-item-top">
 							<text class="ui-order-list-cartype">{{ item.car }}</text>
 							<text>{{ item.sure_time }}</text>

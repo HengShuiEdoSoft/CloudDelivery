@@ -7,11 +7,11 @@
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</view>
 			<view class="ui-divide-line"></view>
-			<navigator class="ui-info-list-item" url="/pages/userinfo/nichengchange">
+			<!--<navigator class="ui-info-list-item" url="/pages/userinfo/nichengchange">
 				<view class="ui-info-list-left">昵称</view>
 				<view class="ui-info-list-center"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999"></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
-			</navigator>
+			</navigator>-->
 			<view class="ui-divide-line"></view>
 			<view class="ui-info-list-item" @tap="togglePopup('center', 'sexchose')">
 				<view class="ui-info-list-left">性别</view>

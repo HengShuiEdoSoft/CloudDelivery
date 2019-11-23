@@ -3,7 +3,7 @@
 		<scroll-view>
 			<view class="ui-orderdetail-cont ui-orderdetail-top">
 				<image src="../../static/img/HeadImg.jpg" class="ui-od-portrait"></image>
-				<view>{{list.dname}}（135****0986）</view>
+				<view>{{list.dname}}</view>
 			</view>
 			<view class="ui-orderdetail-cont">
 				<view class="ui-orderdetail-date">

@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<map class="map" id="map1" ref="map1" :longitude="longitude" :latitude="latitude"
-         :markers="marker" type='gcj02'>
+         :markers="marker" type='gcj02' @tap="selectPoint">
 			<cover-view class="ui-select-container">
 				<view class="input-group">
 					<view class="input-row border">
@@ -38,12 +38,14 @@
 </template>
 
 <script>
+	import AMapWX from '@/common/amap-wx.js'
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	var util = require('@/common/util.js');
 	var formatLocation = util.formatLocation;
 	// #ifdef APP-PLUS
 	import permision from "@/common/permission.js"
 	// #endif
+	let mapSearch = weex.requireModule('mapSearch')
 	export default {
 		components: {
 			uniPopup
@@ -69,10 +71,13 @@
 			}
 		},
 		onShow() {
+			this.amapPlugin = new amapFile.AMapWX({
+			        key: this.key
+			});
 			this.getLocation();
 		},
 		onReady () {
-		    //this.map = uni.createMapContext("map1", this);
+		    uni.createMapContext("map1");
 		},
 		methods: {
 			togglePopup(type, open) {
@@ -202,6 +207,23 @@
 			},
 			clear: function() {
 			    this.hasLocation = false
+			},
+			selectPoint(e) {
+			    console.log(e);
+			},
+			reverseGeocode() {
+			    var point = this.markers[0]
+			    mapSearch.reverseGeocode({
+			        point: {
+			            latitude: point.latitude,
+			            longitude: point.longitude
+			        }
+			    }, ret => {
+			        console.log(JSON.stringify(ret));
+			        uni.showModal({
+			            content: JSON.stringify(ret)
+			        })
+			    })
 			}
 		}
 	}
