@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"scroll-container { height: 100%; margin-bottom: ",[0,140],"; }\n.",[1],"icon-weizhi { margin: 0 ",[0,10],"; font-size: ",[0,36],"; }\n",],undefined,{path:"./pages/address/address.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/address/address.wxml') } }));

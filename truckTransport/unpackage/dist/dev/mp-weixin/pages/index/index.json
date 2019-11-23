@@ -1,9 +1,0 @@
-{
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTitleText": "云配送",
-  "titleImage": "static/img/logoText.png",
-  "usingComponents": {
-    "uni-drawer": "/components/drawer/drawer",
-    "uni-popup": "/components/uni-popup/uni-popup"
-  }
-}
