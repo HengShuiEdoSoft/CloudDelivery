@@ -120,6 +120,9 @@
             "appkey_android": "e6ace276009af99b3dd34fb388f1acea"
           }
         },
+        "payment": {
+          "alipay": {}
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
@@ -129,10 +132,13 @@
     },
     "allowsInlineMediaPlayback": true,
     "uni-app": {
-      "compilerVersion": "2.3.7",
+      "compilerVersion": "2.4.2",
       "control": "v8",
-      "nvueCompiler": "weex",
-      "renderer": "auto"
+      "nvueCompiler": "uni-app",
+      "renderer": "auto",
+      "nvue": {
+        "flex-direction": "column"
+      }
     }
   }
 }

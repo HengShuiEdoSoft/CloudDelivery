@@ -53,20 +53,22 @@
     "pages/viplevel/viplevel",
     "pages/viplevel/corporate-vip",
     "pages/viplevel/up-strategy",
-    "pages/viplevel/get-value"
+    "pages/viplevel/get-value",
+    "pages/amap/amap_choice/amap_choice",
+    "pages/amap/search_address_list/search_address_list"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "white",
     "backgroundColor": "#f3f4f5"
   },
-  "nvueCompiler": "weex",
+  "nvueCompiler": "uni-app",
   "renderer": "auto",
   "splashscreen": {
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
   "appname": "truckTransport",
-  "compilerVersion": "2.3.7",
+  "compilerVersion": "2.4.2",
   "usingComponents": {}
 }

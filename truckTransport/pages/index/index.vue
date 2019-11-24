@@ -109,7 +109,7 @@
 				</view>
 				<view class="uni-timeline-item uni-timeline-last-item">
 					<view class="uni-timeline-item-divider">收</view>
-					<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
+					<view class="uni-timeline-item-content" @tap="navTo('/pages/amap/amap_choice/amap_choice')">
 						<block v-if="order.trip.destination.localtion == ''"><view class="ui-address">请输入收货地址</view></block>
 						<block v-else>
 							<view class="ui-address">{{ order.trip.destination.localtion }}</view>

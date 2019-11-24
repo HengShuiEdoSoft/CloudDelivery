@@ -1,6 +1,13 @@
 let amapFile = require('@/common/amap-wx.js');
+let key;
 // 高德开发者key
-let key = 'dda21b01a2a7cb53b46c90c718d2bafb';
+// #ifdef H5
+key = '3ec9a0ac95f2a5fedb5128e0b70c0e02';
+// #endif
+// #ifdef APP-PLUS
+key = 'dda21b01a2a7cb53b46c90c718d2bafb';
+// #endif
+key = 'dda21b01a2a7cb53b46c90c718d2bafb';
 let myAmapFun = new amapFile.AMapWX({
 	key
 });
@@ -43,11 +50,12 @@ class Amap {
 	 * @param {string} keywords 
 	 * @param {string} location 
 	 */
-	static getInputtips(city, location = '', keywords = '') {
+	static getInputtips(city,  keywords = '',location = '',citylimit=true) {
 		return new Promise((resolve, reject) => myAmapFun.getInputtips({
-			keywords,
-			location,
-			city,
+			keywords: keywords,
+			location: location,
+			city: city,
+			citylimit:citylimit,
 			success: resolve,
 			fail: reject
 		}));
@@ -76,6 +84,7 @@ class Amap {
 			origin: origin,
 			waypoints: waypoints.join(';'),
 			destination: destination,
+			strategy:strategy,
 			success: resolve,
 			fail: reject
 		}));
