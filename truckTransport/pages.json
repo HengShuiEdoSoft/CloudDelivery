@@ -521,7 +521,11 @@
 		}
 	    ,{
             "path" : "pages/amap/amap_choice/amap_choice",
-            "style" : {}
+            "style": {
+            	"navigationBarTitleText": "选择地图",
+				"titleNView":false,
+				"backgroundColor":"#fff"
+            }
         }
         ,{
             "path" : "pages/amap/search_address_list/search_address_list",
