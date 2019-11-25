@@ -3,7 +3,7 @@
 		<view class="ui-info-list">
 			<view class="ui-info-list-item">
 				<view class="ui-info-list-left">手机号</view>
-				<view class="ui-info-list-center"><input placeholder="去设置" :value="num" disabled="true" placeholder-style="color:#999"></view>
+				<view class="ui-info-list-center"><input placeholder="去设置" :value="phone" disabled="true" placeholder-style="color:#999"></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</view>
 		</view>
@@ -17,16 +17,17 @@
 	export default{
 		data(){
 			return{
-				num:""
+				phone:"",
 			}
 		},
 		onLoad(options){
-			this.num=options.num;
+			this.phone=options.num;
 		},
 		methods:{
-			tochangenum(){
+			tochangenum(){	
+				var url='/pages/userinfo/phoneverify?num='+this.phone;
 				uni.navigateTo({
-					url:"/pages/setup/phoneverify?num=136****9999"
+				    url:url
 				})
 			}
 		}

@@ -3,36 +3,14 @@
 		<view class="ui-divide-line"></view>
 		<scroll-view scroll-y="true">
 			<view class="dui-recharge-list">
-				<view class="dui-recharge-item active">
+				<view class="dui-recharge-item" :class="{active:key===cur}" v-for="(item,key) in list" :key="key" @tap="chargrchange(key)">
+					<view>
 					<view class="dui-recharge-no">
-						400元
+						{{item.pay_money}}元
 					</view>
 					<view class="dui-recharge-describe">
-						送20优惠券
+						送{{item.coupon_price_total}}优惠券
 					</view>
-				</view>
-				<view class="dui-recharge-item">
-					<view class="dui-recharge-no">
-						1000元
-					</view>
-					<view class="dui-recharge-describe">
-						送20优惠券
-					</view>
-				</view>
-				<view class="dui-recharge-item">
-					<view class="dui-recharge-no">
-						3000元
-					</view>
-					<view class="dui-recharge-describe">
-						送20优惠券
-					</view>
-				</view>
-				<view class="dui-recharge-item">
-					<view class="dui-recharge-no">
-						6000元
-					</view>
-					<view class="dui-recharge-describe">
-						赠送360 <br> +送20优惠券
 					</view>
 				</view>
 			</view>
@@ -65,41 +43,291 @@
 			</view>
 		</scroll-view>
 		<view class="dui-fixed-bottom-btn">
-			<navigator url="addaddress">
+			<view @tap="gotopay">
 				<button class="primary" type="primary">
 					立即充值
 					<view class="dui-fixed-bottom-tip">
-						(实际到账400元)
+						(实际到账{{pay_money}}元)
 					</view>
 				</button>
-			</navigator>
+			</view>
 		</view>
 	</view>
 </template>
 <script>
+	import { mapState } from 'vuex';
 	export default {
 		data() {
 			return {
 				type: "",
-				current: null,
+				cur:'',
+				current: 0,
 				items: [{
 					name: "支付宝",
-					value: "1",
+					value: "alipay",
 					icon: "iconfont icon-z-alipay"
 				}, {
 					name: "微信",
-					value: "2",
+					value: "wxpay",
 					icon: "iconfont icon-weixin"
-				}]
+				}],
+				list:{},
+				pay_money:0,
+				pay_type:0,
+				pay_cate_id:0,
+				pay_platform:'',
+				provider:'alipay'
+				
 			}
 		},
+		onLoad(){
+			this.getdata();
+			let that = this;
+			// #ifdef MP-WEIXIN
+			that.pay_platform = 'miniapp';
+			// #endif
+			
+			// #ifdef APP-PLUS
+			that.pay_platform = 'app';
+			// #endif
+			
+			// #ifdef H5
+			that.pay_platform = 'web';
+			// #endif
+			
+		},
+		computed: mapState(['user']),
 		methods: {
 			radioChange: function(evt) {
 				for (let i = 0; i < this.items.length; i++) {
 					if (this.items[i].value === evt.target.value) {
 						this.current = i;
+						this.provider=this.items[i].value;
 						break;
 					}
+				}
+			},
+			chargrchange:function(i){
+				this.cur = i;
+				this.pay_money=this.list.i.pay_money;
+				this.pay_id=this.list.i.pay_id;
+			},
+			getdata:function(){
+				let that=this
+				this.$uniFly
+					.get({
+						url: '/api/pay_cate/getpaycatelist',
+						params:{}
+					})
+					.then(function(res) {
+						if (res.code === 0 ) {
+							that.list=res.data;						
+						} else {
+							uni.showToast({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+					})
+					.catch(function(error) {
+						uni.showToast({
+							content: error,
+							showCancel: false
+						});
+					});
+			},
+			gotopay:function(){
+				this.addpaylog();
+			},
+			addpaylog() {
+				let that = this;
+				if (that.pay_id > 0 && that.pay_money > 0) {
+					uni.showLoading({
+						title: '正在创建订单...'
+					});
+					that.$uniFly
+						.post({
+							url: '/api/pay_log/addpaylog',
+							params: {
+								pay_id: that.pay_id,
+								pay_type: that.pay_type,
+								pay_money: that.pay_money
+							}
+						})
+						.then(res => {
+							uni.hideLoading();
+							if (res.code == 0) {
+								that.pay_log_id = res.data;
+								that.pay();
+							} else {
+								uni.showModal({
+									title: '支付失败，重新尝试？',
+									content: res.msg,
+									success: function(res) {
+										if (res.confirm) {
+											that.addpaylog();
+										} else if (res.cancel) {
+											return;
+										}
+									}
+								});
+							}
+						})
+						.catch(err => {
+							uni.showModal({
+								title: '支付失败，重新尝试？',
+								content: res.msg,
+								success: function(res) {
+									if (res.confirm) {
+										that.addpaylog();
+									} else if (res.cancel) {
+										return;
+									}
+								}
+							});
+						});
+				} else {
+					uni.showToast({
+						icon: 'none',
+						title: '订单不存在!'
+					});
+					return;
+				}
+			},
+			pay() {
+				let that = this;
+				if (that.pay_log_id > 0) {
+					uni.showLoading({
+						title: '支付中...'
+					});
+					console.log({
+								pay_log_id: that.pay_log_id,
+								pay_platform: that.pay_platform,
+								provider: that.provider,
+								openid: that.user.minwxapp_id
+							});
+					that.$uniFly
+						.post({
+							url: '/api/pay_log/pay',
+							params: {
+								pay_log_id: that.pay_log_id,
+								pay_platform: that.pay_platform,
+								provider: that.provider,
+								openid: that.user.minwxapp_id
+							}
+						})
+						.then(res => {
+							uni.hideLoading();
+							if (res.code == 0) {
+									// 微信或支付宝支付,调用uni.requestPayment,拉起第三方支付
+									// 微信小程序支付
+									// #ifdef MP-WEIXIN
+									uni.requestPayment({
+										provider: that.provider,
+										orderInfo: res.data.data, //微信、支付宝订单数据
+										timeStamp: res.data.data.timeStamp,
+										nonceStr: res.data.data.nonceStr,
+										package: res.data.data.package,
+										signType: res.data.data.signType,
+										paySign: res.data.data.paySign,
+										success: function(res) {
+											console.log('success:' + JSON.stringify(res));
+											uni.showToast({
+												icon: 'none',
+												title: '支付完成！'
+											});
+											setTimeout(function() {
+												uni.navigateTo({
+													url: '/pages/index/index'
+												});
+											}, 1500);
+										},
+										fail: function(err) {
+											console.log('fail:' + JSON.stringify(err));
+											uni.showModal({
+												title: '支付失败，重新尝试？',
+												content: res.msg,
+												success: function(res) {
+													if (res.confirm) {
+														that.pay();
+													} else if (res.cancel) {
+														return;
+													}
+												}
+											});
+										}
+									});
+									// #endif
+									// app支付
+									// #ifdef APP-PLUS
+									console.log(res.data);
+									uni.requestPayment({
+										provider: that.provider,
+										orderInfo: res.data, //微信、支付宝订单数据
+										success: function(res) {
+											console.log('success:' + JSON.stringify(res));
+											uni.showToast({
+												icon: 'none',
+												title: '支付完成！'
+											});
+											setTimeout(function() {
+												uni.navigateTo({
+													url: '/pages/index/index'
+												});
+											}, 1500);
+										},
+										fail: function(err) {
+											console.log('fail:' + JSON.stringify(err));
+											uni.showModal({
+												title: '支付失败，重新尝试？',
+												content: res.msg,
+												success: function(res) {
+													if (res.confirm) {
+														that.pay();
+													} else if (res.cancel) {
+														return;
+													}
+												}
+											});
+										}
+									});
+									// #endif
+							} else {
+								uni.showModal({
+									title: '订单支付失败，重新尝试？',
+									content: res.msg,
+									success: function(res) {
+										if (res.confirm) {
+											that.pay();
+										} else if (res.cancel) {
+											that.$refs['pay'].close();
+											return;
+										}
+									}
+								});
+							}
+						})
+						.catch(err => {
+							uni.showModal({
+								title: '订单支付失败，重新尝试？',
+								content: res.msg,
+								success: function(res) {
+									if (res.confirm) {
+										that.pay();
+									} else if (res.cancel) {
+										that.$refs['pay'].close();
+										return;
+									}
+								}
+							});
+						});
+				} else {
+					uni.showToast({
+						icon: 'none',
+						title: '订单不存在!'
+					});
+					that.$refs['pay'].close();
+					return;
 				}
 			}
 		}
@@ -118,7 +346,6 @@
 	.dui-recharge-list {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
 		padding: 30upx 15upx;
 	}
 
@@ -128,15 +355,20 @@
 		justify-content: center;
 		align-items: center;
 		margin-top: 10px;
-		width: 230upx;
-		height: 132upx;
-		text-align: center;
+		padding:0 10upx;
+		width: 240upx;
+		box-sizing: border-box;
+		text-align: center;	
+	}
+	.dui-recharge-item>view{
+		padding:40upx 0;
+		width:100%;
+		box-sizing: border-box;
 		background-color: #f0f4f7;
 	}
-
-	.dui-recharge-item.active {
+	.dui-recharge-item.active>view{
 		background-color: #fdf4ef;
-		border: 1upx solid #FF5723;
+		border: 2upx solid #FF5723;
 	}
 
 	.dui-recharge-no {

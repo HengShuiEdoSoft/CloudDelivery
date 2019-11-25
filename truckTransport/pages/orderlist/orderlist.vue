@@ -18,7 +18,7 @@
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[0]"
 						:url="'/pages/orderdetail/orderdetail?id=' + item.order_id"
-						:key="item.order_id">
+						:key="item.order_id" @longtap="deleteOrder(item.ocode)">
 						<view class="ui-daizhifu" v-if="item.status===0">待支付</view>
 						<view class="ui-hujiao"  v-if="item.status===1">呼叫中...</view>
 						<view class="ui-hujiao"  v-if="item.status===2">等待运送</view>
@@ -32,11 +32,15 @@
 							<view class="ui-order-timeline uni-timeline">
 								<view class="uni-timeline-item uni-timeline-first-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">衡水人民政府</text></view>
+									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.trip.address}}</text></view>
+								</view>
+								<view class="uni-timeline-item" v-for="(passbyitem,index) in item.order_details_json.transfer" :key="index" v-if="item.order_details_json.transfer.length!=0">
+									<view class="uni-timeline-item-divider"></view>
+									<view class="uni-timeline-item-content"><text class="ui-address">{{passbyitem.address}}</text></view>
 								</view>
 								<view class="uni-timeline-item uni-timeline-last-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">怡然城</text></view>
+									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.destination.address}}</text></view>
 								</view>
 							</view>
 							<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
@@ -58,7 +62,7 @@
 						class="ui-order-list-item ui-daizhifu"
 						v-for="(item, index) in newsList[1]"
 						:url="'/pages/orderdetail/orderdetail?id=' + item.order_id"
-						:key="item.order_id"
+						:key="item.order_id" @longtap="deleteOrder(item.ocode)"
 					>
 						<view class="ui-wancheng">已完成</view>
 						<view class="ui-order-list-item-top">
@@ -70,11 +74,15 @@
 							<view class="ui-order-timeline uni-timeline">
 								<view class="uni-timeline-item uni-timeline-first-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">衡水人民政府</text></view>
+									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.trip.address}}</text></view>
+								</view>
+								<view class="uni-timeline-item" v-for="(passbyitem,index) in item.order_details_json.transfer" :key="index" v-if="item.order_details_json.transfer.length!=0">
+									<view class="uni-timeline-item-divider"></view>
+									<view class="uni-timeline-item-content"><text class="ui-address">{{passbyitem.address}}</text></view>
 								</view>
 								<view class="uni-timeline-item uni-timeline-last-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">怡然城</text></view>
+									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.destination.address}}</text></view>
 								</view>
 							</view>
 							<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
@@ -96,7 +104,7 @@
 						class="ui-order-list-item ui-daizhifu"
 						v-for="(item, index) in newsList[2]"
 						:url="'/pages/orderdetail/orderdetail?id=' + item.ocode"
-						:key="item.order_id"
+						:key="item.order_id" @longtap="deleteOrder(item.ocode)"
 					>
 						<view class="ui-quxiao" v-if="item.status===11">取消订单</view>
 						<view class="ui-quxiao" v-if="item.status===12">支付超时</view>
@@ -110,11 +118,15 @@
 							<view class="ui-order-timeline uni-timeline">
 								<view class="uni-timeline-item uni-timeline-first-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">衡水人民政府</text></view>
+									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.trip.address}}</text></view>
+								</view>
+								<view class="uni-timeline-item" v-for="(passbyitem,index) in item.order_details_json.transfer" :key="index" v-if="item.order_details_json.transfer.length!=0">
+									<view class="uni-timeline-item-divider"></view>
+									<view class="uni-timeline-item-content"><text class="ui-address">{{passbyitem.address}}</text></view>
 								</view>
 								<view class="uni-timeline-item uni-timeline-last-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">怡然城</text></view>
+									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.destination.address}}</text></view>
 								</view>
 							</view>
 							<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
@@ -186,6 +198,48 @@ export default {
 		swiperChange: function(e) {
 			var index = e.target.current || e.detail.current;
 			this.current = index;
+		},
+		deleteOrder:function(ocode){
+			uni.showModal({
+				title: '温馨提示',
+				content: '您确定要删除该条信息吗',
+				showCancel: true,
+				success: res => {
+					if (res.confirm) {
+						const data={
+							ocode:ocode
+						}
+						this.$uniFly
+						.post({
+							url: '/api/order/delorder',
+							params: data
+						})
+						.then(function(res) {
+							uni.hideNavigationBarLoading();
+							if (res.code === 0 ) {
+								uni.showToast({
+									title: '删除',
+									icon: 'success',
+									mask: true,
+									duration: 3000
+								});							
+							} else {
+								uni.showToast({
+									content: res.msg,
+									showCancel: false
+								});
+							}
+						})
+						.catch(function(error) {
+							uni.hideNavigationBarLoading();
+							uni.showToast({
+								content: error,
+								showCancel: false
+							});
+						});
+					}
+				}
+			});
 		},
 		getnewsList: function() {
 			let _self = this;

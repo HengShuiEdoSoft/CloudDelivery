@@ -1,0 +1,1 @@
+<view class="content"><view class="ui-divide-line"></view><view class="dui-resetpwd-wrapper"><view class="dui-resetpwd-title">请您输入验证码</view><view>验证码已发送至188****8888</view><view class="dui-resetpwd-btn"><wakary-input vue-id="1" type="box" bind:__l="__l"></wakary-input></view><view>59s可重新获取</view></view></view>

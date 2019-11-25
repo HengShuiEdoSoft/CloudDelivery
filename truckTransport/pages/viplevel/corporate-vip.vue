@@ -2,24 +2,24 @@
 	<view class="content">
 		<view class="input-group">
 			<view class="input-row border">
-				<text class="title">企业姓名</text>
-				<m-input type="text" focus clearable v-model="realname" placeholder="请输入企业名称"></m-input>
+				<text class="title">企业名称</text>
+				<m-input type="text" focus clearable v-model="business_title" placeholder="请输入企业名称"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title">营业执照照片</text>
 				<view class="dui-bosiness-photos">
-					<image :src="imgurl[0]" @click="clk(0)"></image>
+					<image :src="photos[0]" @click="clk(0)"></image>
 				</view>
 			</view>
 			<view class="input-row border">
 				<text class="title">营业执照编号</text>
-				<m-input type="text" clearable v-model="idcardnum" placeholder="请输入营业执照编号"></m-input>
+				<m-input type="text" clearable v-model="business_number" placeholder="请输入营业执照编号"></m-input>
 			</view>
 		</view>
 		<view class="btn-row">
 			<button class="primary" type="primary" @tap="submitRealInfo()">保存</button>
 		</view>
-		<avatar @upload="doUpload" @avtinit="doBefore" quality="0.8" ref="avatar"></avatar>
+		
 	</view>
 </template>
 
@@ -33,15 +33,44 @@
 		},
 		data() {
 			return {
-				realname: '',
-				idcardnum: '',
+				business_title: '',
+				business_number: '',
 				countdown: 60,
-				imgurl: ["../../static/img/addimg.png"]
+				business_photos:"",
+				photos: ["../../static/img/addimg.png"]
 			}
 		},
 		methods: {
 			submitRealInfo() {
-
+				let that=this;
+				const data = {
+				    business_title: this.business_title,
+				    business_photos: this.business_photos,
+					business_number:this.business_number
+				}
+				this.$uniFly
+				  .post({
+				    url: "/api/user/addbusinessinfo",
+				    params: data
+				  })
+				  .then(function(res) {
+				    if(res.code===0){
+				    	uni.showToast({
+				    	    title: '提交成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+				    	});
+				    	uni.navigateBack({
+				    	    delta: 1
+				    	});
+					}
+				  }).catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				  });					      
 			},
 			clk(index) {
 				this.$refs.avatar.fChooseImg(index, {
@@ -53,24 +82,27 @@
 				});
 			},
 			doUpload(rsp) {
-				console.log(rsp);
-				this.$set(this.imgurl, rsp.index, rsp.path);
-				return;
+				let that=this;
+				this.$set(this.photos, rsp.index, rsp.path);
+				//return;
 				uni.uploadFile({
-					url: '',
+					url: 'https://hll.hda365.com/api/file/upload',
 					filePath: rsp.path,
 					name: 'avatar',
 					formData: {
 						'avatar': rsp.path
 					},
-					success: (uploadFileRes) => {
-						console.log(uploadFileRes.data);
+					success: (res) => {
+						if(res.code===0){
+							that.business_photos=res.data;
+						}
 					},
 					complete(res) {
 						console.log(res)
 					}
 				});
-			}
+			},
+			
 		}
 	}
 </script>

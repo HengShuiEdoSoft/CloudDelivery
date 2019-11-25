@@ -117,8 +117,8 @@
 									url: '/pages/viplevel/corporate-vip'
 								});
 							}else{
-								uni.navigateTo({
-									url:'/pages/mymoney/mymoney'
+								uni.navigateBack({
+									delta:1
 								})
 							}
 						}

@@ -150,4 +150,30 @@
 	        flex-grow: 1;
 	background: #ff9801;
 }
+.delete_address{
+	padding:8rpx 20rpx;
+	font-size:14px;
+	border-radius:2px;
+	border:1px solid #eee;
+}
+.add_address_box{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:-ms-flexbox;
+	display:flex;
+	padding-top:20rpx;
+	padding-bottom: 0;
+	border-top:1px solid #eee;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
+}
+.add_address{
+	padding:0 20rpx;
+	font-size:14px;
+	line-height:72rpx;
+	border-radius:2px;
+	border:1px solid #eee;
+}
 

@@ -1,0 +1,38 @@
+
+.dui-notyet-wrapper image {
+	width: 170rpx;
+	height: 200rpx;
+}
+.dui-notyet-wrapper text {
+	margin: 86rpx 0 70rpx 0;
+	color: #8d8d8d;
+}
+.dui-notyet-btn {
+	width: 290rpx;
+	height: 85rpx;
+	line-height: 85rpx;
+	background-color: #fff2de;
+	color: #FF5723;
+	text-align: center;
+	border-radius: 10rpx;
+}
+.dui-collection-wrapper{
+	width: 570rpx;
+	height:560rpx;
+	padding: 50rpx;
+	background-color: #fff;
+	border-radius: 10rpx;
+}
+.ui-list-title{
+	font-size:14px;
+	color:#212121;
+}
+.ui-list-subtext{
+	color:#9E9E9E;
+	font-size:12px;
+}
+.ui-list-item{
+	padding:20rpx 30rpx;
+	background: #fff;
+}
+
