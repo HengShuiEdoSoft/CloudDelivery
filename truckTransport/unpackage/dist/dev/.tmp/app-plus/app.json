@@ -53,7 +53,9 @@
     "pages/viplevel/viplevel",
     "pages/viplevel/corporate-vip",
     "pages/viplevel/up-strategy",
-    "pages/viplevel/get-value"
+    "pages/viplevel/get-value",
+    "pages/amap/amap_choice/amap_choice",
+    "pages/amap/search_address_list/search_address_list"
   ],
   "window": {
     "navigationBarTextStyle": "black",

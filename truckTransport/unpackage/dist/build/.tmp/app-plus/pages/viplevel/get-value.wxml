@@ -1,1 +1,0 @@
-<view class="content"><view class="ui-divide-line"></view><scroll-view scroll-y="true"><view class="dui-get-title">获取记录</view><view class="dui-get-body"><block wx:if="{{empty}}"><view class="dui-notyet-wrapper"><image src="../../static/img/Consultation.jpg" mode></image><text>暂无获取记录</text></view></block></view></scroll-view></view>

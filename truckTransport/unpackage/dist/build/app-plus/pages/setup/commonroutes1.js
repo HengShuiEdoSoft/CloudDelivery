@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"content { background-color: #fff; }\n",],undefined,{path:"./pages/setup/commonroutes1.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/setup/commonroutes1.wxml') } }));

@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "选择城市",
-  "usingComponents": {
-    "sort-picker-list": "/components/nickro-sortPickerList/nickro-sortPickerList"
-  }
-}

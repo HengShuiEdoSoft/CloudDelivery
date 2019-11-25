@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "个人资料",
-  "usingComponents": {
-    "uni-popup": "/components/uni-popup/uni-popup",
-    "avatar": "/components/yq-avatar/yq-avatar"
-  }
-}

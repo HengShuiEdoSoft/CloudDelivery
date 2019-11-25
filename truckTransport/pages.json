@@ -138,7 +138,7 @@
 				"navigationBarTitleText": "我的优惠券",
 				"enablePullDownRefresh": true
 			}
-		},{
+		}, {
 			"path": "pages/mymoney/mycoupon-select",
 			"style": {
 				"navigationBarTitleText": "选择优惠券",
@@ -331,7 +331,7 @@
 			"style": {
 				"navigationBarTitleText": "额外要求"
 			}
-		},{
+		}, {
 			"path": "pages/order/remark",
 			"style": {
 				"navigationBarTitleText": "备注"
@@ -517,6 +517,18 @@
 						}]
 					}
 				}
+			}
+		}, {
+			"path": "pages/amap/amap_choice/amap_choice",
+			"style": {
+				"navigationBarTitleText": "选择地图",
+				"titleNView": false
+			}
+		}, {
+			"path": "pages/amap/search_address_list/search_address_list",
+			"style": {
+				"navigationBarTitleText": "搜索地址",
+				"titleNView": false
 			}
 		}
 	],

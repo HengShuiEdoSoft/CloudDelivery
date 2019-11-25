@@ -1,1 +1,0 @@
-<view data-event-opts="{{[['tap',[['onClick']]]]}}" class="{{['iconfont','icon-'+type]}}" style="{{'color:'+(color)+';'+('font-size:'+(fontSize)+';')}}" bindtap="__e"></view>
