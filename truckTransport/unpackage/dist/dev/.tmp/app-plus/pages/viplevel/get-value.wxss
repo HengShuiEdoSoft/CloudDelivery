@@ -1,0 +1,19 @@
+
+.content {
+	background-color: #fff;
+}
+.dui-get-title {
+	margin: 30rpx 0;
+	padding-left: 10px;
+	font-size: 30rpx;
+	border-left: 4px solid #FF5723;
+}
+.dui-notyet-wrapper image {
+	width: 210rpx;
+	height: 200rpx;
+}
+.dui-notyet-wrapper text {
+	margin: 86rpx 0 70rpx 0;
+	color: #8d8d8d;
+}
+

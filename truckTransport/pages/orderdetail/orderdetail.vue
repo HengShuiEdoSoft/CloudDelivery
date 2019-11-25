@@ -11,19 +11,19 @@
 					<view class="ui-od-ordernumber">订单号 {{list.ocode}}</view>
 				</view>
 				<view class="ui-divide-line"></view>
-				<view class="ui-order-timeline uni-timeline">
-					<view class="uni-timeline-item uni-timeline-first-item">
-						<view class="uni-timeline-item-divider"></view>
-						<view class="uni-timeline-item-content">
-							<text class="ui-address">衡水人民政府</text>
-							<text class="ui-subtext">河北省衡水市和平路</text>
+				<view class="ui-order-timeline-container">
+					<view class="ui-order-timeline uni-timeline">
+						<view class="uni-timeline-item uni-timeline-first-item">
+							<view class="uni-timeline-item-divider"></view>
+							<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.trip.address}}</text></view>
 						</view>
-					</view>
-					<view class="uni-timeline-item uni-timeline-last-item">
-						<view class="uni-timeline-item-divider"></view>
-						<view class="uni-timeline-item-content">
-							<text class="ui-address">怡然城</text>
-							<text class="ui-subtext">河北省衡水市和平路</text>
+						<view class="uni-timeline-item" v-for="(passbyitem,index) in item.order_details_json.transfer" :key="index" v-if="item.order_details_json.transfer.length!=0">
+							<view class="uni-timeline-item-divider"></view>
+							<view class="uni-timeline-item-content"><text class="ui-address">{{passbyitem.address}}</text></view>
+						</view>
+						<view class="uni-timeline-item uni-timeline-last-item">
+							<view class="uni-timeline-item-divider"></view>
+							<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.destination.address}}</text></view>
 						</view>
 					</view>
 				</view>
@@ -33,34 +33,34 @@
 					<view class="ui-od-info-left">订单车型</view>
 					<view class="ui-od-info-right">{{list.car}}</view>
 				</view>
-				<view class="ui-od-info-item">
+				<view class="ui-od-info-item" v-for="(item,index) in list.attach" :key="item.attach_id">
 					<view class="ui-od-info-left">额外需求</view>
-					<view class="ui-od-info-right">搬运、小推车</view>
+					<view class="ui-od-info-right">{{item.attach_title}}</view>
 				</view>
 				<view class="ui-od-info-item">
 					<view class="ui-od-info-left">备注</view>
-					<view class="ui-od-info-right">有很多行李袋，还有几个大箱子，以及两个小柜子</view>
+					<view class="ui-od-info-right">{{list.order_details_json.remark}}</view>
 				</view>
 				<view class="ui-od-info-item">
 					<view class="ui-od-info-left">联系人</view>
-					<view class="ui-od-info-right">{{list.uname}}</view>
+					<view class="ui-od-info-right">{{list.order_details_json.contact}}</view>
 				</view>
 			</view>
 			<view class="ui-orderdetail-cont">
 				<view class="ui-od-price-list">
 					<view class="ui-od-price-type">实付金额</view>
-					<view class="ui-od-price-pay">￥{{list.order_price}}</view>
+					<view class="ui-od-price-pay">￥{{list.pay_order_price}}</view>
 				</view>
 				<view class="ui-od-price-list-b">
 					<view class="ui-od-price-type">订单价格</view>
-					<view class="ui-od-price-right">￥{{list.pay_order_price}}</view>
+					<view class="ui-od-price-right">￥{{list.order_price}}</view>
 				</view>
 				<view class="ui-od-price-list-b">
 					<view class="ui-od-price-type">优惠券</view>
 					<view class="ui-od-price-right">-￥{{list.coupon_price}}</view>
 				</view>
 				<view class="ui-divide-line"></view>
-				<view class="ui-tips">若产生高速费、停车费、搬运费，需用户按实际支付。若涉及逾时等候费请按<navigator>标准费用</navigator>结算。</view>
+				<view class="ui-tips">若产生高速费、停车费、搬运费，需用户按实际支付。若涉及逾时等候费请按<navigator url="/pages/setup/transportstandard">标准费用</navigator>结算。</view>
 			</view>
 		</scroll-view>
 	</view>

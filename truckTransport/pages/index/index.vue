@@ -547,4 +547,24 @@ export default {
 	flex-grow: 1;
 	background: #ff9801;
 }
+.delete_address{
+	padding:8upx 20upx;
+	font-size:14px;
+	border-radius:2px;
+	border:1px solid #eee;
+}
+.add_address_box{
+	display:flex;
+	padding-top:20upx;
+	padding-bottom: 0;
+	border-top:1px solid #eee;
+	justify-content: flex-end;
+}
+.add_address{
+	padding:0 20upx;
+	font-size:14px;
+	line-height:72upx;
+	border-radius:2px;
+	border:1px solid #eee;
+}
 </style>

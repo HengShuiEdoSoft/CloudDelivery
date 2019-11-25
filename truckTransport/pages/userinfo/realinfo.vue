@@ -48,6 +48,11 @@
 				    		title: '成功保存',
 				    		showCancel: false
 				    	});
+						let userinfo=service.getUsers()[0];
+						userinfo.realname=that.realname;
+						userinfo.idcard_number=that.idcard_number;
+						userinfo.idcard_photos=that.idcard_photos;
+						service.addUser(userinfo);
 					}
 				  })
 				  .catch(function(error) {

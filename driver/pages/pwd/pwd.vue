@@ -4,7 +4,7 @@
 		<view class="input-group" style="padding-left: 30upx;padding-right:40upx ;">
 			<view class="input-row border">
 				<text class="title iconfont icon-dianhua"></text>
-				<m-input class="m-input" type="text" clearable focus v-model="account" placeholder="请输入账号"></m-input>
+				<m-input class="m-input" type="text" clearable focus v-model="phone" placeholder="请输入手机号"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-Raidobox-xuanzhong"></text>
@@ -15,7 +15,7 @@
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-suoding"></text>
-				<m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
+				<m-input type="password" displayable v-model="pwd" placeholder="请输入密码"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-suoding"></text>
@@ -25,7 +25,7 @@
 			</view>
 		</view>
 		<view class="btn-row">
-			<button class="primary" type="primary" @tap="findPassword()">重 置 密 码</button>
+			<button class="primary" type="primary" @tap="findPassword(reseturl)">重 置 密 码</button>
 		</view>
 	</view>
 </template>
@@ -39,18 +39,56 @@
 		},
 		data() {
 			return {
-				account: '',
+				phone: '',
 				vercode: '',
-				password: '',
+				pwd: '',
 				confirmpassword: '',
+				requestUrl:'/api/common/sendcode',
+				reseturl:'/api/user/resetpwd',
 				countdown: 60
 			}
 		},
 		methods: {
-			numberst(e) {
-				//其他代码....
-				this.countDown();
-			},
+			numberst(requestUrl){
+						if(!this.$drmking.isPhone(this.phone)){
+							uni.showToast({
+								'icon':'none',
+								title: '手机号码格式不正确！',
+								showCancel: false
+							});
+							return false;
+						}
+						this.countDown();
+						const data={
+							phone:this.phone
+						}
+						this.$uniFly
+						  .post({
+						    url: requestUrl,
+						    params: data
+						  })
+						  .then(function(res) {
+						    if(res.code===0){
+						    	uni.showToast({
+									title: '成功获取验证码',
+									icon: 'success',
+									mask: true,
+									duration: 3000
+						    	});
+							}else{
+								uni.showToast({
+									content: res.msg,
+									showCancel: false
+								});
+							}
+						  })
+						  .catch(function(error) {
+						    uni.showToast({
+						    	content: error,
+						    	showCancel: false
+						    });
+						  });
+					},
 			// 倒计时
 			countDown() {
 				let self = this;
@@ -68,16 +106,17 @@
 					}
 				}, 1000)
 			},
-			findPassword() {
+			findPassword(reseturl) {
 				/**
-				 * 仅做示例
+				 * 
 				 */
-				if (this.account.length < 5) {
+				if(!this.$drmking.isPhone(this.phone)){
 					uni.showToast({
-						icon: 'none',
-						title: '账号最短为 5 个字符'
+						'icon':'none',
+						title: '手机号码格式不正确！',
+						showCancel: false
 					});
-					return;
+					return false;
 				}
 				if (this.vercode.length != 6) {
 					uni.showToast({
@@ -86,7 +125,7 @@
 					});
 					return;
 				}
-				if (this.password.length < 6) {
+				if (this.pwd.length < 6) {
 					uni.showToast({
 						icon: 'none',
 						title: '密码最短为 6 个字符'
@@ -100,11 +139,40 @@
 					});
 					return;
 				}
-				uni.showToast({
-					icon: 'none',
-					title: '重置密码成功',
-					duration: 3000
-				});
+				const data = {
+				        phone: this.phone,
+				        pwd: this.pwd,
+				        vercode: this.vercode,
+						usertype:0
+				    }
+				this.$uniFly
+				  .post({
+				    url: reseturl,
+				    params: data
+				  })
+				  .then(function(res) {
+				    if(res.code===0){
+				    	uni.showToast({
+							title: '重置密码成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+				    	});
+				    	uni.navigateTo({
+				    		url:'/pages/index/index'
+				    	})
+					}else{
+							uni.showToast({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+				  }).catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				  });
 			}
 		}
 	}

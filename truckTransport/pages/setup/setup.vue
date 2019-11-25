@@ -1,10 +1,8 @@
 <template>
 	<view class="content">
-		<!--这个页面的分享是官网推荐的底部弹出分享 功能可以在真机实现-->
-
 		<scroll-view class="scroll-container" scroll-y>
 			<view class="dui-gap"></view>
-			<view class="dui-basic-list">
+			<!--<view class="dui-basic-list">
 				<view class="dui-basic-list-item">
 					<view class="dui-basic-list-item__container dui-reduce">
 						<view class="dui-basic-list-item__content">
@@ -21,7 +19,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="dui-gap"></view>
+			<view class="dui-gap"></view>-->
 			<view class="dui-basic-list">
 				<navigator url="/pages/pwd/pwd">
 					<view class="dui-basic-list-item">
@@ -42,7 +40,7 @@
 				</navigator>
 			</view>
 			<view class="dui-gap"></view>
-			<view class="dui-basic-list">
+			<!--<view class="dui-basic-list">
 				<navigator url="commonroutes">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container">
@@ -58,9 +56,9 @@
 					</view>
 				</navigator>
 			</view>
-			<view class="dui-gap"></view>
+			<view class="dui-gap"></view>-->
 			<view class="dui-basic-list">
-				<navigator url="userprotocol">
+				<!--<navigator url="userprotocol">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container">
 							<view class="dui-basic-list-item__content">
@@ -88,6 +86,7 @@
 						</view>
 					</view>
 				</navigator>
+				-->
 				<navigator url="transportstandard">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container">
@@ -102,7 +101,7 @@
 						</view>
 					</view>
 				</navigator>
-				<navigator url="">
+				<!--<navigator url="">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container">
 							<view class="dui-basic-list-item__content">
@@ -115,11 +114,11 @@
 							</view>
 						</view>
 					</view>
-				</navigator>
+				</navigator>-->
 			</view>
 			<view class="dui-gap"></view>
 			<view class="dui-basic-list">
-				<view class="dui-basic-list-item" @tap="togglePopup()">
+				<!--<view class="dui-basic-list-item" @tap="togglePopup()">
 					<view class="dui-basic-list-item__container">
 						<view class="dui-basic-list-item__content">
 							<view class="dui-basic-list-item__content-title">
@@ -144,7 +143,7 @@
 							</view>
 						</view>
 					</view>
-				</navigator>
+				</navigator>-->
 				<navigator url="about">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container">

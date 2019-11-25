@@ -1,0 +1,132 @@
+
+.ui-home-btns {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+}
+.ui-use-now {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	padding: 20rpx 0;
+	font-size: 20px;
+	background: #ff5723;
+}
+.ui-order-container {
+	margin: 16rpx;
+	padding: 0 20rpx;
+	font-size: 14px;
+	line-height: 92rpx;
+	background: #fff;
+}
+.ui-tip1 {
+	padding: 16rpx 30rpx 0;
+	color: #999;
+	font-size: 14px;
+}
+.ui-tip {
+	padding: 16rpx 30rpx 0;
+	font-size: 12px;
+}
+.ui-tip navigator {
+	display: inline;
+	color: #ff5723;
+}
+.ui-list-item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.iconfont {
+	padding-right: 28rpx;
+}
+input {
+	font-size: 14px;
+	height: 92rpx;
+	line-height: 92rpx;
+}
+.ui-li-title {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	color: #333;
+}
+.ui-li-right {
+	color: #999;
+}
+.ui-pop-container {
+	margin: 16rpx;
+	padding-top: 30rpx;
+	background: #fff;
+	border-radius: 4px;
+}
+.ui-list {
+	padding: 0 30rpx 30rpx;
+	font-size: 14px;
+	line-height: 84rpx;
+}
+.ui-pop-container .ui-list .ui-list-item {
+	height: 96rpx;
+}
+.ui-list .iconfont {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 32px;
+}
+.icon-zhanghuyue {
+	color: #ff5723;
+}
+.icon-z-alipay {
+	color: #45b1ff;
+}
+.icon-weixin {
+	color: #59f04c;
+}
+.ui-paytype-name {
+	display: inline-block;
+}
+.ui-paytype-name > view {
+	line-height: 42rpx;
+}
+.ui-paytype-name .ui-subtext {
+	color: #999;
+	font-size: 12px;
+}
+radio {
+	-webkit-transform: scale(0.7);
+	    -ms-transform: scale(0.7);
+	        transform: scale(0.7);
+}
+.ui-pop-container .ui-tip1 {
+	padding-bottom: 30rpx;
+}
+.ui-li-youhui {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	padding: 20rpx 30rpx;
+	font-size: 14px;
+}
+.ui-li-youhui .ui-li-title {
+	color: #999;
+}
+.ui-remark-item {
+	margin: 8rpx;
+	line-height: 48rpx;
+	padding: 8rpx 24rpx;
+	background: #eee;
+	border-radius: 36px;
+}
+.ui-remark-item.active {
+	color: #ff9801;
+	background: #faf6db;
+}
+

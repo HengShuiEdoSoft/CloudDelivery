@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"content { background-color: #fff; }\n",],undefined,{path:"./pages/setup/resetpwd.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/setup/resetpwd.wxml') } }));

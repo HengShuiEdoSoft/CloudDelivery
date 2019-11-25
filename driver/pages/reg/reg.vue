@@ -4,22 +4,22 @@
 		<view class="input-group dui-input-group-mg">
 			<view class="input-row border">
 				<text class="title iconfont icon-dianhua"></text>
-				<m-input type="text" focus clearable v-model="account" placeholder="请输入账号"></m-input>
+				<m-input type="text" focus v-model="phone" placeholder="请输入账号"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-Raidobox-xuanzhong"></text>
 				<view class="dui-input">
-					<input type="text" clearable v-model="vercode" placeholder="请输入验证码" maxlength="6"></input>
+					<input type="text" v-model="vercode" placeholder="请输入验证码" maxlength="6"></input>
 				</view>
-				<button class="dui-varcode-btn" type="primary" @tap="numberst" :disabled="countdown < 60 && countdown >= 1">{{countdown < 60 && countdown >= 1?`${countdown}秒`:'获取验证码'}}</button>
+				<button class="dui-varcode-btn" type="primary" @tap="numberst(requestUrl)" :disabled="countdown < 60 && countdown >= 1">{{vcodemsg}}</button>
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-suoding"></text>
-				<m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
+				<m-input type="password" displayable v-model="pwd" placeholder="请输入密码"></m-input>
 			</view>
 		</view>
 		<view class="btn-row">
-			<button class="primary" type="primary" @tap="register()">注 册</button>
+			<button class="primary" type="primary" @tap="register(regurl)">注 册</button>
         </view>
     </view>
 </template>
@@ -33,16 +33,55 @@
         },
         data() {
             return {
-                account: '',
-                password: '',
+                phone: '',
+                pwd: '',
                 vercode: '',
-				countdown:60
+				requestUrl:'/api/common/sendcode',
+				regurl:'/api/user/register',
+				countdown:60,
+				vcodemsg:'获取验证码'
             }
         },
         methods: {
-			numberst(e){
-						//其他代码....
+			numberst(requestUrl){
+						if(!this.$drmking.isPhone(this.phone)){
+							uni.showToast({
+								'icon':'none',
+								title: '手机号码格式不正确！',
+								showCancel: false
+							});
+							return false;
+						}
 						this.countDown();
+						const data={
+							phone:this.phone
+						}
+						this.$uniFly
+						  .post({
+						    url: requestUrl,
+						    params: data
+						  })
+						  .then(function(res) {
+						    if(res.code===0){
+						    	uni.showToast({
+									title: '成功获取验证码',
+									icon: 'success',
+									mask: true,
+									duration: 3000
+						    	});
+							}else{
+							uni.showToast({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+						  })
+						  .catch(function(error) {
+						    uni.showToast({
+						    	content: error,
+						    	showCancel: false
+						    });
+						  });
 					},
 					// 倒计时
 					countDown(){
@@ -59,46 +98,64 @@
 							}else{
 								clearInterval(self.clear)
 							}
+							self.vcodemsg=(self.countdown < 60 && self.countdown >= 1)?`${self.countdown}秒`:'获取验证码';
 						},1000)
 					},	
-            register() {
+            register(regurl) {
                 /**
                  * 客户端对账号信息进行一些必要的校验。
                  * 实际开发中，根据业务需要进行处理，这里仅做示例。
                  */
-                if (this.account.length < 5) {
-                    uni.showToast({
-                        icon: 'none',
-                        title: '账号最短为 5 个字符'
-                    });
-                    return;
+                if(!this.$drmking.isPhone(this.phone)){
+                	uni.showToast({
+                		'icon':'none',
+                		title: '手机号码格式不正确！',
+                		showCancel: false
+                	});
+                	return false;
                 }
-                if (this.password.length < 6) {
-                    uni.showToast({
-                        icon: 'none',
-                        title: '密码最短为 6 个字符'
-                    });
-                    return;
-                }           
-		        if (this.vercode.length != 6) {
-				    uni.showToast({
-				        icon: 'none',						
-				        title: '验证码不正确'
-				    });
-				    return;
+				if(this.pwd.length<6){
+					uni.showToast({
+						'icon':'none',
+						title: '密码最少为6位！',
+						showCancel: false
+					});
+					return false;
 				}
                 const data = {
-                    account: this.account,
-                    password: this.password,
-                    email: this.email
+                    phone: this.phone,
+                    pwd: this.pwd,
+                    vercode: this.vercode,
+					usertype:"2"
                 }
-                service.addUser(data);
-                uni.showToast({
-                    title: '注册成功'
-                });
-                uni.navigateBack({
-                    delta: 1
-                });
+				this.$uniFly
+				  .post({
+				    url: regurl,
+				    params: data
+				  })
+				  .then(function(res) {
+				    if(res.code===0){
+				    	uni.showToast({
+							title: '注册成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+				    	});
+				    	uni.navigateTo({
+				    		url:'/pages/login/login'
+				    	})
+					}else{
+							uni.showToast({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+				  }).catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				  });
             }
         }
     }
@@ -126,16 +183,4 @@
 	.dui-varcode-btn[disabled][type=primary] {
 	    background-color: transparent;
 	}
-	.dui-input-group-mg {
-	  margin-top: 66upx;
-	  margin-left: 84upx;
-	  margin-right: 100upx; }
-	
-	.dui-input {
-	  display: flex;
-	  flex-direction: row;
-	  align-items: center;
-	  flex: 1;
-	  width: 100%;
-	  padding: 0 5px; }
 </style>

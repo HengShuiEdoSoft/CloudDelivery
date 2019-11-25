@@ -24,6 +24,7 @@
 
 <script>
 	import mInput from '../../components/m-input.vue';
+	import service from '../../service.js';
 	import {
 	       mapMutations  
 	   } from 'vuex';
@@ -106,6 +107,9 @@
 							mask: true,
 							duration: 3000
 				    	});
+						let userinfo=service.getUsers()[0];
+						userinfo.phone=that.new_phone;
+						service.addUser(userinfo);
 				    	uni.navigateBack({
 				    	    delta: 3
 				    	});

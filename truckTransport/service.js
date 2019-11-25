@@ -13,21 +13,26 @@ const getUsers = function () {
 
 const addUser = function (userInfo) {
     let users = getUsers();
-    users.push({
-        user_type:	userInfo.user_type,	
-        wxapp_id: userInfo.wxapp_id,
-        minwxapp_id:userInfo.minwxapp_id,	
-        avatar:userInfo.avatar,	
-		idcard_photos:userInfo.idcard_photos,	
-        idcard_number:userInfo.idcard_number,	
-        sex:userInfo.sex,
-        realname:userInfo.realname,	
-        user_level_id:userInfo.user_level_id,
-        status:userInfo.status,	
-        wallet:userInfo.wallet,	
-        token:userInfo.token,	
-        user_id:userInfo.user_id
-    });
+	if(users.length===0){
+		users.push({
+			phone:userInfo.phone,
+		    user_type:	userInfo.user_type,	
+		    avatar:userInfo.avatar,	
+			idcard_photos:userInfo.idcard_photos,	
+		    idcard_number:userInfo.idcard_number,	
+		    sex:userInfo.sex,
+		    realname:userInfo.realname,	
+		    user_level_id:userInfo.user_level_id,
+		    status:userInfo.status,	
+		    wallet:userInfo.wallet,	
+		    user_id:userInfo.user_id
+		});
+	}else{
+		for(var key in userInfo) {
+			let user=users[0];
+			user[key]=userInfo[key];
+		}
+	}
     uni.setStorageSync(USERS_KEY, JSON.stringify(users));
 }
 

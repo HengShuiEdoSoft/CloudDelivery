@@ -3,7 +3,7 @@
 		<view class="input-group dui-input-group-mg">
 			<view class="input-row border">
 				<text class="title iconfont icon-dianhua"></text>
-				<m-input type="text" focus clearable v-model="account" placeholder="请输入新手机号码"></m-input>
+				<m-input type="text" focus clearable v-model="new_phone" placeholder="请输入新手机号码"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-Raidobox-xuanzhong"></text>
@@ -24,20 +24,47 @@
 
 <script>
 	import mInput from '../../components/m-input.vue';
+	import {
+	       mapMutations  
+	   } from 'vuex';
 	export default {
 	    components: {
 	        mInput			
 	    },
 	    data() {
 	        return {
-	            account: '',
+	            new_phone: '',
 	            vercode: '',
 				countdown:60
 	        }
 	    },
 	    methods: {
+			...mapMutations(['login']),  
 			numberst(e){
-						//其他代码....
+						const data={
+							new_phone:this.new_phone
+						}
+						this.$uniFly
+						  .post({
+						    url:"/api/common/sendcode",
+						    params: data
+						  })
+						  .then(function(res) {
+						    if(res.code===0){
+						    	uni.showToast({
+									title: '成功获取验证码',
+									icon: 'success',
+									mask: true,
+									duration: 3000
+						    	});
+							}
+						  })
+						  .catch(function(error) {
+						    uni.showToast({
+						    	content: error,
+						    	showCancel: false
+						    });
+						  });
 						this.countDown();
 					},
 					// 倒计时
@@ -57,14 +84,39 @@
 							}
 						},1000)
 					},	
-	        changenum() {        
-		      
-	            uni.showToast({
-	                title: '变更成功'
-	            });
-	            uni.navigateBack({
-	                delta: 3
-	            });
+	        changenum() {   
+				let userData=this.$drmking.cacheData('USER');
+				let that=this;
+				const data = {
+				    new_phone: this.new_phone,
+				    vercode: this.vercode,
+				}
+				this.$uniFly
+				  .post({
+				    url: "/api/user/edituserphone",
+				    params: data
+				  })
+				  .then(function(res) {
+				    if(res.code===0){
+						// userData.phone=that.new_phone;
+						this.login(res.data);
+				    	uni.showToast({
+				    	    title: '变更成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+				    	});
+				    	uni.navigateBack({
+				    	    delta: 3
+				    	});
+					}
+				  }).catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				  });
+	      
 	        }
 	    }
 	}

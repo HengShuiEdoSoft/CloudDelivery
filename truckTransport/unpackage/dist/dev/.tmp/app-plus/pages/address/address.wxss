@@ -1,0 +1,10 @@
+
+.scroll-container {
+	height: 100%;
+	margin-bottom: 140rpx;
+}
+.icon-weizhi {
+	margin: 0 10rpx;
+	font-size: 36rpx;
+}
+
