@@ -139,16 +139,43 @@
 				})
 			},
 			oauth(value) {
+				let that=this;
 				uni.login({
 					provider: value,
 					success: (res) => {
 						uni.getUserInfo({
 							provider: value,
 							success: (infoRes) => {
-								/**
-								 * 实际开发中，获取用户信息后，需要将信息上报至服务端。
-								 * 服务端可以用 userInfo.openId 作为用户的唯一标识新增或绑定用户信息。
-								 */
+								const data={
+									unionId:"",
+									nickName:"",
+									gender:"",
+									avatarUrl:"",
+									usertype:''
+								}
+								that.$uniFly
+								.post({
+									url: '/api/user/wxlogin',
+									params: data
+								})
+								.then(function(res) {
+									uni.hideNavigationBarLoading();
+									if (res.code === 0 ) {
+																
+									} else {
+										uni.showToast({
+											content: res.msg,
+											showCancel: false
+										});
+									}
+								})
+								.catch(function(error) {
+									uni.hideNavigationBarLoading();
+									uni.showToast({
+										content: error,
+										showCancel: false
+									});
+								});
 								this.toMain(infoRes.userInfo.nickName);
 							}
 						});
