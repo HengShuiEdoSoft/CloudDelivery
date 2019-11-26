@@ -80,6 +80,9 @@ export default {
 </script>
 
 <style>
+view{
+	font-size: 28upx;
+}
 .search_input {
 	width: 100vw;
 	display: flex;
@@ -95,11 +98,13 @@ export default {
 	width: 100%;
 }
 .search_tips {
-	width: 100vw;
+	padding:0 30upx;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	z-index: 999;
 	height: calc(100vh - 96upx);
+	box-sizing: border-box;
 	overflow: hidden;
 	background-color: #fff;
 }
@@ -107,7 +112,7 @@ export default {
 .search_tips_item {
 	border-bottom: 1px solid #cccccc;
 	height: 96upx;
-	width: 100vw;
+	width: 100%;
 	padding: 0 5px;
 	line-height: 96upx;
 	box-sizing: border-box;

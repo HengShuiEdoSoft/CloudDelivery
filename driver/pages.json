@@ -98,6 +98,12 @@
 			}
 		},
 		{
+			"path": "pages/servicecenter/servicecenter-list",
+			"style": {
+				"navigationBarTitleText": "常见问题"
+			}
+		},
+		{
 			"path": "pages/user/about",
 			"style": {
 				"navigationBarTitleText": "关于我们"

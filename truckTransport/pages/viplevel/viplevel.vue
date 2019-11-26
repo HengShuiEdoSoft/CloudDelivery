@@ -6,9 +6,12 @@
 				<view class="dui-vip-card">
 					<view class="dui-vip-type">
 						<text>{{levellist.level_title}}</text>
-						<navigator url="corporate-vip">
+						<navigator url="corporate-vip" v-if="!isCompany">
 							升级为企业会员
 						</navigator>
+						<view v-if="isCompany">
+							企业会员
+						</view>
 					</view>
 					<view class="dui-vip-phone">
 						{{username}}
@@ -172,7 +175,7 @@
 		color: #424456;
 	}
 
-	.dui-vip-type navigator {
+	.dui-vip-type navigator,.dui-vip-type view {
 		padding: 5upx 15upx;
 		font-size: 28upx;
 		border: 1px solid #424456;

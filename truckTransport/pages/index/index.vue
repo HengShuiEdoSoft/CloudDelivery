@@ -86,7 +86,7 @@
 			<view class="uni-timeline">
 				<view class="uni-timeline-item uni-timeline-first-item">
 					<view class="uni-timeline-item-divider">发</view>
-					<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
+					<view class="uni-timeline-item-content" @tap="navTo('/pages/amap/amap_choice/amap_choice')">
 						<block v-if="order.trip.departure.localtion == ''"><view class="ui-address">请输入发货地址</view></block>
 						<block v-else>
 							<view class="ui-address">{{ order.trip.departure.localtion }}</view>
@@ -97,7 +97,7 @@
 				</view>
 				<view v-for="(item, index) in order.trip.transfer" :key="index" class="uni-timeline-item">
 					<view class="uni-timeline-item-divider"></view>
-					<view class="uni-timeline-item-content" @tap="navTo('/pages/map/map')">
+					<view class="uni-timeline-item-content" @tap="navTo('/pages/amap/amap_choice/amap_choice')">
 						<block v-if="item.localtion == ''"><view class="ui-address">请输入收货地址</view></block>
 						<block v-else>
 							<view class="ui-address">{{ item.localtion }}</view>
@@ -227,7 +227,7 @@ export default {
 				this.username = this.user.phone.replace(this.user.phone.substring(3, 7), '****');
 			}
 			else{
-				this.username='18888888888';
+				this.username='未登录';
 			}
 		},
 		cheackTrip() {
@@ -558,11 +558,5 @@ export default {
 	border-top:1px solid #eee;
 	justify-content: flex-end;
 }
-.add_address{
-	padding:0 20upx;
-	font-size:14px;
-	line-height:72upx;
-	border-radius:2px;
-	border:1px solid #eee;
-}
+
 </style>

@@ -119,7 +119,7 @@ export default {
 		// 切换城市
 		goCitySelect() {
 			uni.navigateTo({
-				url: '/pages/cityselect/cityselect?city=' + this.city + '&status=' + this.status + '&channel=amapSelectCity'
+				url: '/pages/cityselect/cityselect?city=' + this.address_info.city + '&status=' + this.status + '&channel=amapSelectCity'
 			});
 		},
 		setLocation(e) {
@@ -151,12 +151,15 @@ export default {
 </script>
 
 <style>
+view{
+	font-size: 28upx;
+}	
 .search_input {
 	width: 100vw;
 	display: flex;
 	flex-direction: row;
 	z-index: 999;
-	height: 96rpx;
+	height: 96upx;
 	overflow: hidden;
 	background-color: #fff;
 	align-items: center;
@@ -165,13 +168,17 @@ export default {
 	height: var(--status-bar-height);
 	width: 100%;
 }
+.search_input_input_box{
+	flex:1;
+}
 .search_input_city_box {
+	padding-right:30upx;
 }
 .map_box {
 }
 #amap {
 	width: 100vw;
-	height: calc(100vh - 482rpx - var(--status-bar-height));
+	height: calc(100vh - 482upx - var(--status-bar-height));
 }
 
 .input-row .title {

@@ -169,11 +169,5 @@
 	    -ms-flex-pack: end;
 	        justify-content: flex-end;
 }
-.add_address{
-	padding:0 20rpx;
-	font-size:14px;
-	line-height:72rpx;
-	border-radius:2px;
-	border:1px solid #eee;
-}
+
 
