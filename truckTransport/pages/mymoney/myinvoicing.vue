@@ -8,7 +8,7 @@
 				<view class="dui-basic-list-item__container">
 					<view class="dui-basic-list-item__content">
 						<view class="dui-basic-list-item__content-title">
-							按行程开票
+							开发票
 						</view>
 					</view>
 					<view class="dui-basic-list-item__extra">
