@@ -17,30 +17,45 @@
 					<navigator
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[0]"
-						:url="'/pages/orderdetail/orderdetail?id=' + item.order_id"
-						:key="item.order_id" @longtap="deleteOrder(item.ocode)">
-						<view class="ui-daizhifu" v-if="item.status===0">待支付</view>
-						<view class="ui-hujiao"  v-if="item.status===1">呼叫中...</view>
-						<view class="ui-hujiao"  v-if="item.status===2">等待运送</view>
-						<view class="ui-hujiao"  v-if="item.status===3">运送中</view>
+						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
+						:key="item.order_id"
+						@longtap="deleteOrder(item.order_id)"
+					>
+						<view class="ui-daizhifu" v-if="item.status === 0">待支付</view>
+						<view class="ui-hujiao" v-if="item.status === 1">呼叫中...</view>
+						<view class="ui-hujiao" v-if="item.status === 2">等待运送</view>
+						<view class="ui-hujiao" v-if="item.status === 3">运送中</view>
 						<view class="ui-order-list-item-top">
 							<text class="ui-order-list-cartype">{{ item.car }}</text>
-							<text>{{ item.sure_time }}</text>
+							<text>{{ item.create_time }}</text>
 						</view>
 						<view class="ui-divide-line"></view>
 						<view class="ui-order-timeline-container">
 							<view class="ui-order-timeline uni-timeline">
 								<view class="uni-timeline-item uni-timeline-first-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.trip.address}}</text></view>
+									<view class="uni-timeline-item-content">
+										<text class="ui-address">{{ item.order_details_json.trip.departure.localtion }}{{ item.order_details_json.trip.departure.address }}</text>
+									</view>
 								</view>
-								<view class="uni-timeline-item" v-for="(passbyitem,index) in item.order_details_json.transfer" :key="index" v-if="item.order_details_json.transfer.length!=0">
+								<view
+									class="uni-timeline-item"
+									v-for="(passbyitem, index) in item.order_details_json.transfer"
+									:key="index"
+									v-if="item.order_details_json.transfer.length != 0"
+								>
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">{{passbyitem.address}}</text></view>
+									<view class="uni-timeline-item-content">
+										<text class="ui-address">{{ passbyitem.localtion }}{{ passbyitem.address }}</text>
+									</view>
 								</view>
 								<view class="uni-timeline-item uni-timeline-last-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.destination.address}}</text></view>
+									<view class="uni-timeline-item-content">
+										<text class="ui-address">
+											{{ item.order_details_json.trip.destination.localtion }}{{ item.order_details_json.trip.destination.address }}
+										</text>
+									</view>
 								</view>
 							</view>
 							<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
@@ -61,8 +76,9 @@
 					<navigator
 						class="ui-order-list-item ui-daizhifu"
 						v-for="(item, index) in newsList[1]"
-						:url="'/pages/orderdetail/orderdetail?id=' + item.order_id"
-						:key="item.order_id" @longtap="deleteOrder(item.ocode)"
+						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
+						:key="item.order_id"
+						@longtap="deleteOrder(item.order_id)"
 					>
 						<view class="ui-wancheng">已完成</view>
 						<view class="ui-order-list-item-top">
@@ -74,15 +90,28 @@
 							<view class="ui-order-timeline uni-timeline">
 								<view class="uni-timeline-item uni-timeline-first-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.trip.address}}</text></view>
+									<view class="uni-timeline-item-content">
+										<text class="ui-address">{{ item.order_details_json.trip.departure.localtion }}{{ item.order_details_json.trip.departure.address }}</text>
+									</view>
 								</view>
-								<view class="uni-timeline-item" v-for="(passbyitem,index) in item.order_details_json.transfer" :key="index" v-if="item.order_details_json.transfer.length!=0">
+								<view
+									class="uni-timeline-item"
+									v-for="(passbyitem, index) in item.order_details_json.transfer"
+									:key="index"
+									v-if="item.order_details_json.transfer.length != 0"
+								>
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">{{passbyitem.address}}</text></view>
+									<view class="uni-timeline-item-content">
+										<text class="ui-address">{{ passbyitem.localtion }}{{ passbyitem.address }}</text>
+									</view>
 								</view>
 								<view class="uni-timeline-item uni-timeline-last-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.destination.address}}</text></view>
+									<view class="uni-timeline-item-content">
+										<text class="ui-address">
+											{{ item.order_details_json.trip.destination.localtion }}{{ item.order_details_json.trip.destination.address }}
+										</text>
+									</view>
 								</view>
 							</view>
 							<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
@@ -93,7 +122,7 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view>
+				<scroll-view class="scroll-container">
 					<view v-if="empty[2]">
 						<view class="dui-notyet-wrapper">
 							<image src="../../static/img/NoOrder.jpg" mode=""></image>
@@ -101,32 +130,46 @@
 						</view>
 					</view>
 					<navigator
-						class="ui-order-list-item ui-daizhifu"
+						class="ui-order-list-item"
 						v-for="(item, index) in newsList[2]"
-						:url="'/pages/orderdetail/orderdetail?id=' + item.ocode"
-						:key="item.order_id" @longtap="deleteOrder(item.ocode)"
+						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
+						:key="item.order_id"
+						@longtap="deleteOrder(item.order_id)"
 					>
-						<view class="ui-quxiao" v-if="item.status===11">取消订单</view>
-						<view class="ui-quxiao" v-if="item.status===12">支付超时</view>
-						<view class="ui-quxiao" v-if="item.status===13">呼叫超时</view>
+						<view class="ui-quxiao" v-if="item.status === 11">取消订单</view>
+						<view class="ui-quxiao" v-if="item.status === 12">支付超时</view>
+						<view class="ui-quxiao" v-if="item.status === 13">呼叫超时</view>
 						<view class="ui-order-list-item-top">
 							<text class="ui-order-list-cartype">{{ item.car }}</text>
-							<text>{{ item.sure_time }}</text>
+							<text>{{ item.cancel_time }}</text>
 						</view>
 						<view class="ui-divide-line"></view>
 						<view class="ui-order-timeline-container">
 							<view class="ui-order-timeline uni-timeline">
 								<view class="uni-timeline-item uni-timeline-first-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.trip.address}}</text></view>
+									<view class="uni-timeline-item-content">
+										<text class="ui-address">{{ item.order_details_json.trip.departure.localtion }}{{ item.order_details_json.trip.departure.address }}</text>
+									</view>
 								</view>
-								<view class="uni-timeline-item" v-for="(passbyitem,index) in item.order_details_json.transfer" :key="index" v-if="item.order_details_json.transfer.length!=0">
+								<view
+									class="uni-timeline-item"
+									v-for="(passbyitem, index) in item.order_details_json.transfer"
+									:key="index"
+									v-if="item.order_details_json.transfer.length != 0"
+								>
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">{{passbyitem.address}}</text></view>
+									<view class="uni-timeline-item-content">
+										<text class="ui-address">{{ passbyitem.localtion }}{{ passbyitem.address }}</text>
+									</view>
 								</view>
 								<view class="uni-timeline-item uni-timeline-last-item">
 									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content"><text class="ui-address">{{item.order_details_json.destination.address}}</text></view>
+									<view class="uni-timeline-item-content">
+										<text class="ui-address">
+											{{ item.order_details_json.trip.destination.localtion }}{{ item.order_details_json.trip.destination.address }}
+										</text>
+									</view>
 								</view>
 							</view>
 							<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
@@ -199,44 +242,44 @@ export default {
 			var index = e.target.current || e.detail.current;
 			this.current = index;
 		},
-		deleteOrder:function(ocode){
+		deleteOrder: function(ocode) {
 			uni.showModal({
 				title: '温馨提示',
 				content: '您确定要删除该条信息吗',
 				showCancel: true,
 				success: res => {
 					if (res.confirm) {
-						const data={
-							ocode:ocode
-						}
+						const data = {
+							ocode: ocode
+						};
 						this.$uniFly
-						.post({
-							url: '/api/order/delorder',
-							params: data
-						})
-						.then(function(res) {
-							uni.hideNavigationBarLoading();
-							if (res.code === 0 ) {
+							.post({
+								url: '/api/order/delorder',
+								params: data
+							})
+							.then(function(res) {
+								uni.hideNavigationBarLoading();
+								if (res.code === 0) {
+									uni.showToast({
+										title: '删除',
+										icon: 'success',
+										mask: true,
+										duration: 3000
+									});
+								} else {
+									uni.showToast({
+										content: res.msg,
+										showCancel: false
+									});
+								}
+							})
+							.catch(function(error) {
+								uni.hideNavigationBarLoading();
 								uni.showToast({
-									title: '删除',
-									icon: 'success',
-									mask: true,
-									duration: 3000
-								});							
-							} else {
-								uni.showToast({
-									content: res.msg,
+									content: error,
 									showCancel: false
 								});
-							}
-						})
-						.catch(function(error) {
-							uni.hideNavigationBarLoading();
-							uni.showToast({
-								content: error,
-								showCancel: false
 							});
-						});
 					}
 				}
 			});
@@ -261,8 +304,8 @@ export default {
 						if (res.code === 0) {
 							if (res.data.list.length > 0) {
 								let list = res.data.list;
+								list = _self.parseOrderList(list);
 								_self.$set(_self.empty, current, false);
-								// let list=_self.parseOrderList(res.data);
 								_self.newsList[current] = _self.reload[current] ? list : _self.newsList[current].concat(list);
 								_self.$set(_self.newsList, current, _self.newsList[current]);
 								_self.$set(_self.page, current, _self.page[current]++);
@@ -292,6 +335,12 @@ export default {
 						});
 					});
 			}
+		},
+		parseOrderList(list) {
+			for (let i = 0; i < list.length; i++) {
+				list[i].order_details_json = JSON.parse(list[i].order_details_json);
+			}
+			return list;
 		}
 	}
 };

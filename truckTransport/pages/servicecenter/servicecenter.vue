@@ -12,23 +12,17 @@
 				</view>
 				<view class="dui-gap"></view>
 				<view class="dui-gap"></view>-->
-				
-				<view class="dui-scrvice-custom-wrapper" style="background-color: #fff;">
-					<text>常见问题</text>
-				</view>
+
+				<view class="dui-scrvice-custom-wrapper" style="background-color: #fff;"><text>常见问题</text></view>
 				<view class="dui-basic-list">
-					<block v-for="(item,index) in lists" :key="item.article_category_id">
+					<block v-for="(item, index) in lists" :key="item.article_category_id">
 						<navigator :url="'servicecenter-list?id=' + item.sname">
 							<view class="dui-basic-list-item">
 								<view class="dui-basic-list-item__container">
 									<view class="dui-basic-list-item__content">
-										<view class="dui-basic-list-item__content-title">
-											{{item.stitle}}
-										</view>
+										<view class="dui-basic-list-item__content-title">{{ item.stitle }}</view>
 									</view>
-									<view class="dui-basic-list-item__extra">
-										<text class="iconfont icon-xiayiyeqianjinchakangengduo"></text>
-									</view>
+									<view class="dui-basic-list-item__extra"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 								</view>
 							</view>
 						</navigator>
@@ -46,142 +40,137 @@
 				</navigator>-->
 				<view class="dui-scrvice-tel" @tap="call">
 					<text class="iconfont icon-dianhua"></text>
-					<text>客服热线 {{tel}}</text>
+					<text>客服热线 {{ tel }}</text>
 				</view>
 			</view>
 		</scroll-view>
-		<view class="dui-online-service">
-			<image src="../../static/img/call.jpg" mode=""></image>
-		</view>
+		<view class="dui-online-service"><image src="../../static/img/call.jpg" mode=""></image></view>
 	</view>
 </template>
 <script>
-	export default {
-		onNavigationBarButtonTap: function(e) {
-			var index = e.index;
-			if (index === 0) {
-				uni.navigateTo({
-					url: "/pages/mymoney/mydetailed"
-				});
-			}
-		},
-		data() {
-			return {
-				tel: "010-8888",
-				lists: []
-			}
-		},
-		onLoad(){
-			let that=this;
-			this.$uniFly
+export default {
+	onNavigationBarButtonTap: function(e) {
+		var index = e.index;
+		if (index === 0) {
+			uni.navigateTo({
+				url: '/pages/mymoney/mydetailed'
+			});
+		}
+	},
+	data() {
+		return {
+			tel: '010-8888',
+			lists: []
+		};
+	},
+	onLoad() {
+		let that = this;
+		this.$uniFly
 			.get({
-				url: "/api/article_category/getarticlecategorylist",
+				url: '/api/article_category/getarticlecategorylist',
 				params: {}
-			})	
-			.then(function(res){
-				if(res.code===0){
-					console.log(res.data)
-					that.lists=res.data;
-					
-				}else{
+			})
+			.then(function(res) {
+				if (res.code === 0) {
+					console.log(res.data);
+					that.lists = res.data;
+				} else {
 					uni.showToast({
-					    content: res.msg,
-					    showCancel: false
+						content: res.msg,
+						showCancel: false
 					});
 				}
 			})
 			.catch(function(error) {
-			    uni.showToast({
-			  	    content: error,
-			  	    showCancel: false
-			    });
+				uni.showToast({
+					content: error,
+					showCancel: false
+				});
+			});
+	},
+	methods: {
+		call: function(e) {
+			uni.makePhoneCall({
+				phoneNumber: '010-8888' //仅为示例
 			});
 		},
-		methods: {
-			call: function(e) {
-				uni.makePhoneCall({
-					phoneNumber: '010-8888' //仅为示例
-				});
-			},
-			getList:function(){
-				let that=this;
-				this.$uniFly
+		getList: function() {
+			let that = this;
+			this.$uniFly
 				.get({
-					url: "/api/article_category/getarticlecategorylist",
+					url: '/api/article_category/getarticlecategorylist',
 					param: {}
-				})	
-				.then({function(res){
-					if(res.code===0){
-						console.log(res.data)
-						that.lists=res.data;
-						
-					}else{
+				})
+				.then(function(res) {
+					if (res.code === 0) {
+						console.log(res.data);
+						that.lists = res.data;
+					} else {
 						uni.showToast({
-						    content: res.msg,
-						    showCancel: false
+							content: res.msg,
+							showCancel: false
 						});
-					}
 					}
 				})
 				.catch(function(error) {
-				    uni.showToast({
-				  	    content: error,
-				  	    showCancel: false
-				    });
+					uni.showToast({
+						content: error,
+						showCancel: false
+					});
 				});
-			}
 		}
 	}
+};
 </script>
 <style>
-	.scroll-container {
-		height: 100%;
-	}
+.scroll-container {
+	height: 100%;
+}
 
-	.dui-service-wrapper {
-		padding: 0 15upx;
-		position: relative;
-	}
+.dui-service-wrapper {
+	padding: 0 15upx;
+	position: relative;
+}
 
-	.dui-service-bj {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 300upx;
-		background-color: #434456;
-	}
+.dui-service-bj {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 300upx;
+	background-color: #434456;
+}
 
-	.dui-basic-list-item__container {
-		padding-top: 35upx;
-		padding-bottom: 35upx;
-	}
+.dui-basic-list-item__container {
+	padding-top: 35upx;
+	padding-bottom: 35upx;
+}
 
-	.dui-scrvice-custom-wrapper {
-		position: relative;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 40upx 30upx;
-		font-size: 32upx;
-	}
+.dui-scrvice-custom-wrapper {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 40upx 30upx;
+	font-size: 32upx;
+}
 
-	.dui-scrvice-custom-wrapper navigator {
-		font-size: 28upx;
-	}
+.dui-scrvice-custom-wrapper navigator {
+	font-size: 28upx;
+}
 
-	.dui-basic-list-item__content,
-	.dui-basic-list-item__extra {
-		font-size: 26upx;
-		color: #797979;
-	}
+.dui-basic-list-item__content,
+.dui-basic-list-item__extra {
+	font-size: 26upx;
+	color: #797979;
+}
 
-	.dui-scrvice-order {
-		position: relative;
-		width: 100%;
-		height: 294upx;
-		background-color: #fff;
-		border-radius: 4upx;
-		box-shadow: 0px 2px 5px #e2e2e2;
-	}
+.dui-scrvice-order {
+	position: relative;
+	width: 100%;
+	height: 294upx;
+	background-color: #fff;
+	border-radius: 4upx;
+	box-shadow: 0px 2px 5px #e2e2e2;
+}
 </style>
