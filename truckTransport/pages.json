@@ -100,7 +100,7 @@
 		}, {
 			"path": "pages/mymoney/myinvoicing-trip",
 			"style": {
-				"navigationBarTitleText": "按行程开票",
+				"navigationBarTitleText": "开发票",
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {
