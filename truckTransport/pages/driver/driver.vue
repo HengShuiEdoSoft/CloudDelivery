@@ -5,16 +5,27 @@
 			<text>收藏好司机直接发单给他们</text>
 			<view class="dui-notyet-btn" @tap="togglePopup('center', 'collection')">去收藏司机 </view>
 		</view>
-		<view class="ui-list">
+		<view class="ui-list" v-if="!empty">
 			<view class="ui-list-item" v-for="(item,index) in lists" :key="item.user_driver_favorites_id" @longtap="deleteDriver(item.user_driver_favorites_id)">
 				<view class="ui-list-title">{{item.dname}}</view>
 				<view class="ui-list-subtext">{{item.phone}}</view>
+			</view>
+			<view class="dui-fixed-bottom-btn">
+				<button class="primary" type="primary" @tap="togglePopup('center', 'collection')">去收藏司机</button>
 			</view>
 			<view class="loading">{{loadingText}}</view>
 		</view>
 		<uni-popup ref="collection" :type="type" :custom="true" :mask-click="true">
 			<view class="dui-collection-wrapper">
-				暂无
+				<view class="input-group">
+					<view class="input-row border">
+						<text class="title iconfont icon-dianhua"></text>
+						<input type="text" focus v-model="driver_phone" value="13123" placeholder="手机号码" class="m-input">
+					</view>
+				</view>	
+				<view class="btn-row">
+					<button class="primary" type="primary" @tap="addDriver()">添加收藏</button>
+				</view>
 			</view>
 		</uni-popup>
 	</view>
@@ -42,7 +53,8 @@
 				page:1,
 				reload:true,
 				has_next:true,
-				lists: []
+				lists: [],
+				driver_phone:""
 			}
 		},
 		onShow:function(){
@@ -160,6 +172,33 @@
 						});
 					});
 				}
+			},
+			addDriver:function(){
+				let that=this;
+				const data={
+					driver_phone:this.driver_phone
+				}
+				this.$uniFly
+				.post({
+					url: '/api/user_driver_favorites/adduserdriverfavorites',
+					params: data
+				})
+				.then(function(res) {
+					if (res.code === 0 ) {
+													
+					} else {
+						uni.showToast({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showToast({
+						content: error,
+						showCancel: false
+					});
+				});
 			}
 		}
 	}
@@ -202,5 +241,8 @@
 	.ui-list-item{
 		padding:20upx 30upx;
 		background: #fff;
+	}
+	.input-row input{
+		padding:12px 0;
 	}
 </style>

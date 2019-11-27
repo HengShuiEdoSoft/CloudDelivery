@@ -143,7 +143,7 @@
 				}
 			}
 		},
-        computed: mapState(['forcedLogin', 'hasLogin', 'userName']),
+        computed: mapState(['forcedLogin', 'hasLogin', 'user']),
         onLoad() {
             if (!this.hasLogin) {
                 uni.showModal({
@@ -194,7 +194,57 @@
 			optionsYes:function(){
 				this.visible=!this.visible
 				//请求数据
-			}
+			},
+			getList:function(){
+				let _self=this;
+					if (_self.has_next) {
+						uni.showNavigationBarLoading();
+						_self.loadingText='加载中...';
+						const data = {
+							page: this.page
+						};
+						this.$uniFly
+						.post({
+							url: '/api/address/getaddresslist',
+							params: data
+						})
+						.then(function(res) {
+							uni.hideNavigationBarLoading();
+							if (res.code === 0 ) {
+								if(res.data.list.length > 0){
+									let list = res.data.list;
+									_self.empty=false;
+									// let list=_self.parseOrderList(res.data);
+									_self.lists = _self.reload ? list : _self.lists.concat(list);
+									_self.page++;
+									_self.reload=false;
+									_self.has_next=res.data.has_next;
+									if(res.data.has_next){
+										_self.loadingText='加载更多';
+									}
+									else{
+										_self.loadingText='已加载全部';
+									}
+								}else{
+									_self.empty=true;
+									_self.loadingText='';
+								}							
+							} else {
+								uni.showToast({
+									content: res.msg,
+									showCancel: false
+								});
+							}
+						})
+						.catch(function(error) {
+							uni.hideNavigationBarLoading();
+							uni.showToast({
+								content: error,
+								showCancel: false
+							});
+						});
+					}
+				}
 		}
     }
 </script>

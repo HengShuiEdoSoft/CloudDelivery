@@ -49,7 +49,7 @@
 			</view>
 		</view>
 		<view class="dui-money-list-group" @tap="invoice">
-			<navigator url="myinvoicing">
+			<navigator url="myinvoicing" v-if="isCompany">
 				<view class="dui-money-number" style="padding: 20upx 30upx;">
 					<view>
 						<text class="iconfont icon-fapiaotianchong"></text>

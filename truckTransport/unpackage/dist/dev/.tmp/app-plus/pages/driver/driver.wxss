@@ -35,4 +35,7 @@
 	padding:20rpx 30rpx;
 	background: #fff;
 }
+.input-row input{
+	padding:12px 0;
+}
 
