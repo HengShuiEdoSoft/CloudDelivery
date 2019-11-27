@@ -206,7 +206,6 @@ export default {
 				console.log(e);
 			});
 		this.$fire.on('changeCity', function(data) {
-			console.log(data);
 			that.$drmking.setLocationCity(that, data);
 		});
 		this.$fire.on('setTrip', function(data) {

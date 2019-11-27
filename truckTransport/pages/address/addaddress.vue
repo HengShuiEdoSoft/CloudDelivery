@@ -2,11 +2,11 @@
 	<view class="content ">
 		<view class="dui-basic-list">
 			<view class="dui-basic-list-item">
-				<view class="dui-basic-list-item__container">
+				<view class="dui-basic-list-item__container" @tap="amap_choice">
 					<view class="dui-basic-list-item__icon"><text class="iconfont icon-weizhi"></text></view>
 					<view class="dui-basic-list-item__content">
 						<view class="dui-basic-list-item__content-title">
-							<input type="text" value="" v-model="address" placeholder="请输入地址(必填)"/>
+							<input type="text" :value="address" placeholder="请输入地址(必填)"/>
 						</view>
 					</view>
 					<view class="dui-basic-list-item__extra"><text class="iconfont icon-gengduo-shuxiang"></text></view>
@@ -17,7 +17,7 @@
 					<view class="dui-basic-list-item__icon"><text class="iconfont icon-weizhi"></text></view>
 					<view class="dui-basic-list-item__content">
 						<view class="dui-basic-list-item__content-title">
-							<input type="text" value="" v-model="house" maxlength="20" placeholder="楼层及门牌号(选填)" />
+							<input type="text" :value="house" maxlength="20" placeholder="楼层及门牌号(选填)" />
 						</view>
 					</view>
 				</view>
@@ -28,7 +28,7 @@
 						<view class="dui-basic-list-item__icon"><text class="iconfont  icon--kefu"></text></view>
 						<view class="dui-basic-list-item__content">
 							<view class="dui-basic-list-item__content-title">
-								<input type="text" value="" v-model="name" maxlength="10" placeholder="联系人(选填)" />
+								<input type="text" :value="name" maxlength="10" placeholder="联系人(选填)" />
 							</view>
 						</view>
 					</view>
@@ -36,7 +36,7 @@
 						<view class="dui-basic-list-item__icon"><text class="iconfont icon-dianhua"></text></view>
 						<view class="dui-basic-list-item__content">
 							<view class="dui-basic-list-item__content-title">
-								<input type="text" value="" v-model="address_phone" maxlength="11" placeholder="联系电话(选填)" />
+								<input type="text" :value="address_phone" maxlength="11" placeholder="联系电话(选填)" />
 							</view>
 						</view>
 					</view>
@@ -58,7 +58,25 @@
 				address_phone: ""
 			}
 		},
+		onLoad() {
+			this.$fire.on('setAddress', function(data) {
+				console.log(data);
+			});
+		},
 		methods: {
+			amap_choice(){
+				let url = '/pages/amap/amap_choice/amap_choice?status=0&channel=setAddress';
+				if (type == 'departure') {
+					url += 'status=1';
+				} else if (type == 'transfer') {
+					url += 'status=0&transfer_index=' + transfer_index;
+				} else {
+					url += 'status=0&is_destination=true';
+				}
+				uni.navigateTo({
+					url: url
+				});
+			},
 			addAddress(){
 				const data={
 					name:this.name,
