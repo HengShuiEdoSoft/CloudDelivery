@@ -10,7 +10,7 @@
 						立即充值▸
 					</navigator>
 				</view>
-				<view class="dui-money-list-item" style="padding-left:20upx ; padding-right: 20upx;">
+				<!-- <view class="dui-money-list-item" style="padding-left:20upx ; padding-right: 20upx;">
 					<view class="dui-money-number">
 						<view>
 							<text class="iconfont icon-Raidobox-xuanzhong"></text>
@@ -45,7 +45,7 @@
 							</text>
 						</view>
 					</view>
-				</view>
+				</view> -->
 			</view>
 		</view>
 		<view class="dui-money-list-group" @tap="invoice">
