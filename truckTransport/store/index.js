@@ -99,18 +99,18 @@ const store = new Vuex.Store({
 			attach: [],
 			trip: {
 				departure: {
-					lat: '39.989643',
-					lon: '116.481028',
-					localtion: '衡水市',
+					lat: '',
+					lon: '',
+					localtion: '',
 					address: '',
 					contact: '',
 					phone: ''
 				},
 				transfer: [],
 				destination: {
-					lat: '39.90816',
-					lon: '116.434446',
-					localtion: '冀州市',
+					lat: '',
+					lon: '',
+					localtion: '',
 					address: '',
 					contact: '',
 					phone: ''
