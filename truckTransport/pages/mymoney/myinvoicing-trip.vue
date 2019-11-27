@@ -19,7 +19,7 @@
 						<view class="ui-ocode">订单号：{{item.ocode}}</view>
 						<view>行程：{{item.order_details_json.trip.address}} - {{item.order_details_json.destination.address}}</view>
 					</view>
-					<view><checkbox :value="item.orderid" :checked="item.status" color="#FF5723" /></view>
+					<view><checkbox :value="item.order_id" :checked="item.status" color="#FF5723" /></view>
 				</view>
 				<view class="ui-order-price">￥{{item.order_price}}</view>	
 			</checkbox-group>
@@ -44,7 +44,7 @@
 				has_next:true,
 				lists: [],
 				values:'',
-				price:""
+				price:0
 			}
 		},
 		onNavigationBarButtonTap: function(e) {
@@ -77,13 +77,16 @@
 		methods: {
 			checkboxChange: function (e) {
 			    var items = this.lists;
-			    this.values = e.detail.order_id;
+			    this.values = e.detail.value;
 			    for (var i = 0, lenI = items.length; i < lenI; ++i) {
 			        const item = items[i]
+					
 			        if(this.values.includes(item.order_id)){
-			            this.$set(item,'checked',true)
+			            this.$set(item,'checked',true);
+						this.price+=items[i].order_price;
 			        }else{
-			            this.$set(item,'checked',false)
+			            this.$set(item,'checked',false);
+						this.price-=items[i].order_price;
 			        }
 			    }
 			},
@@ -141,7 +144,7 @@
 				let that=this;
 				const data={
 					order_ids:this.values,
-					price:34
+					price:this.price
 				};
 				this.$uniFly
 					.post({
@@ -150,7 +153,12 @@
 					})
 					.then(function(res) {
 						if (res.code === 0 ) {
-														
+							uni.showToast({
+								title: '已提交发票申请',
+								icon: 'success',
+								mask: true,
+								duration: 3000
+							});							
 					} else {
 						uni.showToast({
 							content: res.msg,
