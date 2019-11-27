@@ -4,7 +4,6 @@ import store from '@/store';
 import drmking from '@/common/drmking.js';
 import uniFly from 'unifly';
 import OnFire from 'onfire.js';
-
 // 设置基础url
 uniFly.baseUrl = 'https://hll.hda365.com';
 // 设置请求超时
