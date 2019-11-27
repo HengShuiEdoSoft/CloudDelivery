@@ -31,12 +31,16 @@
 				});
 			}
 		},
+		onLoad(options){
+			this.scode=options.id;
+			this.getData();
+		},
 		data() {
 			return {
 				tel: "010-8888",
 				lists: [{
-					"title": "如何申请售后?",
-					"content": "请拨打售后电话"
+					"title": "哪里可以下单叫车?",
+					"content": "A.云配送-APP B.云配送-官网 C.微信小程序"
 				}]
 			}
 		},
@@ -45,6 +49,33 @@
 				uni.makePhoneCall({
 					phoneNumber: '010-8888' //仅为示例
 				});
+			},
+			getData(){
+				let _self=this;
+				const data={
+					scode:this.scode
+				}
+				this.$uniFly
+				.get({
+					url: "/api/article/getarticledetail",
+					params: data
+				})	
+				.then(function(res){
+					if (res.code === 0 ) {
+						_self.lists=res.data								
+					}else{
+						uni.showToast({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showToast({
+						content: error,
+						showCancel: false
+					});
+				});	
 			}
 		}
 	}

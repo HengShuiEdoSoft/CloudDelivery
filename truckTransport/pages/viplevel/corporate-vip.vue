@@ -24,6 +24,7 @@
 </template>
 
 <script>
+	import { mapMutations } from 'vuex';
 	import mInput from '@/components/m-input.vue';
 	import avatar from "@/components/yq-avatar/yq-avatar.vue";
 	export default {
@@ -41,6 +42,7 @@
 			}
 		},
 		methods: {
+			...mapMutations(['becompany']),
 			submitRealInfo() {
 				let that=this;
 				const data = {
@@ -61,6 +63,7 @@
 							mask: true,
 							duration: 3000
 				    	});
+						that.becompany(true);
 				    	uni.navigateBack({
 				    	    delta: 1
 				    	});

@@ -146,7 +146,7 @@
 						uni.getUserInfo({
 							provider: value,
 							success: (infoRes) => {
-								const data={
+								/*const data={
 									unionId:"",
 									nickName:"",
 									gender:"",
@@ -175,8 +175,8 @@
 										content: error,
 										showCancel: false
 									});
-								});
-								this.toMain(infoRes.userInfo.nickName);
+								});*/
+								
 							}
 						});
 					},

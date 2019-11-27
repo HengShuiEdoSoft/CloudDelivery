@@ -10,7 +10,7 @@
 			<view class="ui-invioce-list" v-if="!empty">
 				<view class="ui-invioce-item" v-for="(item,index) in lists" :key="item.invoice_id">
 					<view class="ui-invioce-cont">
-						<view>订单号{{item.waybill_num}}</view>
+						<view>快递单号{{item.waybill_num}}</view>
 						<view v-if='item.status===0' class="ui-invioce-status">未处理</view>
 						<view v-if='item.status===1' class="ui-invioce-status">已处理</view>
 					</view>

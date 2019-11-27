@@ -52,7 +52,7 @@ scroll-view {
 	font-size: 40rpx;
 	color: #424456;
 }
-.dui-vip-type navigator {
+.dui-vip-type navigator,.dui-vip-type view {
 	padding: 5rpx 15rpx;
 	font-size: 28rpx;
 	border: 1px solid #424456;
