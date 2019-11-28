@@ -9614,17 +9614,17 @@ var eBZB=_n('view')
 var bCZB=_oz(z,52,c7YB,o6YB,gg)
 _(eBZB,bCZB)
 _(tAZB,eBZB)
-var oDZB=_n('view')
-var xEZB=_v()
-_(oDZB,xEZB)
-var oFZB=function(cHZB,fGZB,hIZB,gg){
-var cKZB=_oz(z,57,cHZB,fGZB,gg)
-_(hIZB,cKZB)
-return hIZB
-}
-xEZB.wxXCkey=2
-_2z(z,55,oFZB,c7YB,o6YB,gg,xEZB,'coupon_item','coupon_index','coupon_type_id')
+var oDZB=_v()
 _(tAZB,oDZB)
+var xEZB=function(fGZB,oFZB,cHZB,gg){
+var oJZB=_n('view')
+var cKZB=_oz(z,57,fGZB,oFZB,gg)
+_(oJZB,cKZB)
+_(cHZB,oJZB)
+return cHZB
+}
+oDZB.wxXCkey=2
+_2z(z,55,xEZB,c7YB,o6YB,gg,oDZB,'coupon_item','coupon_index','coupon_type_id')
 _(a0YB,tAZB)
 _(o8YB,a0YB)
 return o8YB
