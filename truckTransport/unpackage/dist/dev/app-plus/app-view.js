@@ -3996,37 +3996,41 @@ Z([a,[[2,'+'],[[2,'+'],[1,'距离下一等级还差'],[[7],[3,'score']]],[1,'成
 Z([3,'dui-vip-strategy-btn'])
 Z([3,'up-strategy'])
 Z([3,'升级攻略'])
-Z([3,'key'])
+Z([3,'item_level_key'])
 Z([3,'item_level'])
 Z([[7],[3,'levellist']])
 Z([3,'user_level_id'])
 Z([3,'dui-vip-equity'])
 Z([3,'dui-vip-equity-title'])
 Z([a,[[2,'+'],[[6],[[7],[3,'item_level']],[3,'level_title']],[1,'会员权益']]])
-Z([3,'dui-vip-giftpackage-list'])
-Z([3,'index'])
-Z([3,'level'])
-Z([[6],[[7],[3,'levellist']],[3,'gift_pack_list']])
+Z([3,'gift_pack_index'])
+Z([3,'gift_pack_item'])
+Z([[6],[[7],[3,'item_level']],[3,'gift_pack_list']])
 Z([3,'gift_pack_id'])
+Z([3,'dui-vip-giftpackage-list'])
 Z([3,'dui-vip-giftpackage-item'])
-Z([[2,'==='],[[6],[[7],[3,'item']],[3,'status']],[1,0]])
+Z([[2,'=='],[[6],[[7],[3,'gift_pack_item']],[3,'status']],[1,0]])
 Z([3,'dui-vip-giftpackage'])
 Z([3,'iconfont icon-suoding'])
-Z([[2,'==='],[[6],[[7],[3,'item']],[3,'status']],[1,1]])
+Z([[2,'=='],[[6],[[7],[3,'gift_pack_item']],[3,'status']],[1,1]])
 Z([3,'dui-vip-giftpackage unlock'])
 Z([3,'iconfont icon-youhuijuan'])
-Z([a,[[2,'+'],[[6],[[7],[3,'item']],[3,'gift_pack_title']],[[7],[3,'index']]]])
+Z([a,[[6],[[7],[3,'gift_pack_item']],[3,'gift_pack_title']]])
 Z(z[27])
 Z(z[28])
 Z([3,'优惠礼包'])
-Z(z[31])
-Z([3,'item'])
-Z(z[33])
-Z(z[34])
+Z([3,'gift_index'])
+Z([3,'gift_item'])
+Z([[6],[[7],[3,'gift_pack_item']],[3,'gift_list']])
+Z([3,'gift_id'])
 Z([3,'dui-vip-Receive-item'])
 Z([3,'dui-vip-Receive-body'])
-Z([a,[[2,'+'],[[2,'+'],[1,'【'],[[6],[[7],[3,'item']],[3,'gift_pack_title']]],[1,'】:']]])
-Z([3,'3元优惠券+5元余额券+20元优惠券(9米6)'])
+Z([a,[[2,'+'],[[2,'+'],[1,'【'],[[6],[[7],[3,'gift_pack_item']],[3,'gift_pack_title']]],[1,'】:']]])
+Z([3,'coupon_index'])
+Z([3,'coupon_item'])
+Z([[6],[[7],[3,'gift_item']],[3,'coupon_list']])
+Z([3,'coupon_type_id'])
+Z([a,[[2,'+'],[[2,'+'],[[2,'+'],[[2,'+'],[1,''],[[6],[[7],[3,'coupon_item']],[3,'coupon_title']]],[1,' ']],[[6],[[7],[3,'coupon_item']],[3,'coupon_price']]],[1,'元']]])
 })(__WXML_GLOBAL__.ops_cached.$gwx_67);return __WXML_GLOBAL__.ops_cached.$gwx_67
 }
 __WXML_GLOBAL__.ops_set.$gwx=z;
@@ -9557,55 +9561,46 @@ _rz(z,tIYB,'class',28,cEYB,oDYB,gg)
 var eJYB=_oz(z,29,cEYB,oDYB,gg)
 _(tIYB,eJYB)
 _(aHYB,tIYB)
-var bKYB=_n('view')
-_rz(z,bKYB,'class',30,cEYB,oDYB,gg)
-var oLYB=_v()
-_(bKYB,oLYB)
-var xMYB=function(fOYB,oNYB,cPYB,gg){
+var bKYB=_v()
+_(aHYB,bKYB)
+var oLYB=function(oNYB,xMYB,fOYB,gg){
+var hQYB=_n('view')
+_rz(z,hQYB,'class',34,oNYB,xMYB,gg)
 var oRYB=_n('view')
-_rz(z,oRYB,'class',35,fOYB,oNYB,gg)
+_rz(z,oRYB,'class',35,oNYB,xMYB,gg)
 var cSYB=_v()
 _(oRYB,cSYB)
-if(_oz(z,36,fOYB,oNYB,gg)){cSYB.wxVkey=1
+if(_oz(z,36,oNYB,xMYB,gg)){cSYB.wxVkey=1
 var lUYB=_n('view')
-_rz(z,lUYB,'class',37,fOYB,oNYB,gg)
+_rz(z,lUYB,'class',37,oNYB,xMYB,gg)
 var aVYB=_n('text')
-_rz(z,aVYB,'class',38,fOYB,oNYB,gg)
+_rz(z,aVYB,'class',38,oNYB,xMYB,gg)
 _(lUYB,aVYB)
 _(cSYB,lUYB)
 }
 var oTYB=_v()
 _(oRYB,oTYB)
-if(_oz(z,39,fOYB,oNYB,gg)){oTYB.wxVkey=1
+if(_oz(z,39,oNYB,xMYB,gg)){oTYB.wxVkey=1
 var tWYB=_n('view')
-_rz(z,tWYB,'class',40,fOYB,oNYB,gg)
+_rz(z,tWYB,'class',40,oNYB,xMYB,gg)
 var eXYB=_n('text')
-_rz(z,eXYB,'class',41,fOYB,oNYB,gg)
+_rz(z,eXYB,'class',41,oNYB,xMYB,gg)
 _(tWYB,eXYB)
 _(oTYB,tWYB)
 }
 var bYYB=_n('text')
-var oZYB=_oz(z,42,fOYB,oNYB,gg)
+var oZYB=_oz(z,42,oNYB,xMYB,gg)
 _(bYYB,oZYB)
 _(oRYB,bYYB)
 cSYB.wxXCkey=1
 oTYB.wxXCkey=1
-_(cPYB,oRYB)
-return cPYB
-}
-oLYB.wxXCkey=2
-_2z(z,33,xMYB,cEYB,oDYB,gg,oLYB,'level','index','gift_pack_id')
-_(aHYB,bKYB)
-_(oFYB,aHYB)
-return oFYB
-}
-cBYB.wxXCkey=2
-_2z(z,25,hCYB,e,s,gg,cBYB,'item_level','key','user_level_id')
+_(hQYB,oRYB)
+_(fOYB,hQYB)
 var x1YB=_n('view')
-_rz(z,x1YB,'class',43,e,s,gg)
+_rz(z,x1YB,'class',43,oNYB,xMYB,gg)
 var o2YB=_n('view')
-_rz(z,o2YB,'class',44,e,s,gg)
-var f3YB=_oz(z,45,e,s,gg)
+_rz(z,o2YB,'class',44,oNYB,xMYB,gg)
+var f3YB=_oz(z,45,oNYB,xMYB,gg)
 _(o2YB,f3YB)
 _(x1YB,o2YB)
 var c4YB=_v()
@@ -9620,16 +9615,32 @@ var bCZB=_oz(z,52,c7YB,o6YB,gg)
 _(eBZB,bCZB)
 _(tAZB,eBZB)
 var oDZB=_n('view')
-var xEZB=_oz(z,53,c7YB,o6YB,gg)
+var xEZB=_v()
 _(oDZB,xEZB)
+var oFZB=function(cHZB,fGZB,hIZB,gg){
+var cKZB=_oz(z,57,cHZB,fGZB,gg)
+_(hIZB,cKZB)
+return hIZB
+}
+xEZB.wxXCkey=2
+_2z(z,55,oFZB,c7YB,o6YB,gg,xEZB,'coupon_item','coupon_index','coupon_type_id')
 _(tAZB,oDZB)
 _(a0YB,tAZB)
 _(o8YB,a0YB)
 return o8YB
 }
 c4YB.wxXCkey=2
-_2z(z,48,h5YB,e,s,gg,c4YB,'item','index','gift_pack_id')
-_(eRXB,x1YB)
+_2z(z,48,h5YB,oNYB,xMYB,gg,c4YB,'gift_item','gift_index','gift_id')
+_(fOYB,x1YB)
+return fOYB
+}
+bKYB.wxXCkey=2
+_2z(z,32,oLYB,cEYB,oDYB,gg,bKYB,'gift_pack_item','gift_pack_index','gift_pack_id')
+_(oFYB,aHYB)
+return oFYB
+}
+cBYB.wxXCkey=2
+_2z(z,25,hCYB,e,s,gg,cBYB,'item_level','item_level_key','user_level_id')
 _(aPXB,eRXB)
 _(lOXB,aPXB)
 _(r,lOXB)

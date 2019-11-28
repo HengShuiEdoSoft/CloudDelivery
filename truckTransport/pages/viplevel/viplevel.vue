@@ -16,24 +16,30 @@
 					<navigator url="get-value" class="dui-vip-growth">距离下一等级还差{{ score }}成长值 ></navigator>
 					<navigator url="up-strategy" class="dui-vip-strategy-btn">升级攻略</navigator>
 				</view>
-				<view class="dui-vip-equity" v-for="(item_level, key) in levellist" :key="item_level.user_level_id">
+				<view class="dui-vip-equity" v-for="(item_level, item_level_key) in levellist" :key="item_level.user_level_id">
 					<view class="dui-vip-equity-title">{{ item_level.level_title }}会员权益</view>
-					<view class="dui-vip-giftpackage-list">
-						<view class="dui-vip-giftpackage-item" v-for="(level, index) in levellist.gift_pack_list" :key="item.gift_pack_id">
-							<view class="dui-vip-giftpackage" v-if="item.status === 0"><text class="iconfont icon-suoding"></text></view>
-							<view class="dui-vip-giftpackage unlock" v-if="item.status === 1"><text class="iconfont icon-youhuijuan"></text></view>
-							<text>{{ item.gift_pack_title }}{{index}}</text>
+					<block v-for="(gift_pack_item, gift_pack_index) in item_level.gift_pack_list" :key="gift_pack_item.gift_pack_id">
+						<view class="dui-vip-giftpackage-list">
+							<view class="dui-vip-giftpackage-item">
+								<view class="dui-vip-giftpackage" v-if="gift_pack_item.status == 0"><text class="iconfont icon-suoding"></text></view>
+								<view class="dui-vip-giftpackage unlock" v-if="gift_pack_item.status == 1"><text class="iconfont icon-youhuijuan"></text></view>
+								<text>{{ gift_pack_item.gift_pack_title }}</text>
+							</view>
 						</view>
-					</view>
-				</view>
-				<view class="dui-vip-equity">
-					<view class="dui-vip-equity-title">优惠礼包</view>
-					<view class="dui-vip-Receive-item" v-for="(item, index) in levellist.gift_pack_list" :key="item.gift_pack_id">
-						<view class="dui-vip-Receive-body">
-							<view>【{{ item.gift_pack_title }}】:</view>
-							<view>3元优惠券+5元余额券+20元优惠券(9米6)</view>
+						<view class="dui-vip-equity">
+							<view class="dui-vip-equity-title">优惠礼包</view>
+							<view class="dui-vip-Receive-item" v-for="(gift_item, gift_index) in gift_pack_item.gift_list" :key="gift_item.gift_id">
+								<view class="dui-vip-Receive-body">
+									<view>【{{ gift_pack_item.gift_pack_title }}】:</view>
+									<view>
+										<block v-for="(coupon_item, coupon_index) in gift_item.coupon_list" :key="coupon_item.coupon_type_id">
+											{{ coupon_item.coupon_title }} {{ coupon_item.coupon_price }}元
+										</block>
+									</view>
+								</view>
+							</view>
 						</view>
-					</view>
+					</block>
 				</view>
 			</view>
 		</scroll-view>
@@ -54,7 +60,6 @@ export default {
 		if (!that.$drmking.isEmpty(user_level_list)) {
 			that.levellist = user_level_list;
 		}
-		console.log(that.levellist);
 		this.getData();
 	},
 	onLoad() {},
