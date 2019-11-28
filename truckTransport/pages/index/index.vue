@@ -198,7 +198,6 @@ export default {
 				that.location_city = location_city;
 			})
 			.catch(e => {
-				//TODO handle the exception
 				console.log(e);
 			});
 		this.$fire.on('changeCity', function(data) {

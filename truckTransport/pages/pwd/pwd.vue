@@ -19,7 +19,7 @@
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-suoding"></text>
-				<view class="dui-input"><m-input type="password" displayable v-model="confirmpassword" placeholder="请再次输入密码"></m-input></view>
+				<m-input type="password" displayable v-model="confirmpassword" placeholder="请再次输入密码"></m-input>
 			</view>
 		</view>
 		<view class="btn-row"><button class="primary" type="primary" @tap="findPassword(reseturl)">重 置 密 码</button></view>
@@ -103,10 +103,8 @@ export default {
 			}, 1000);
 		},
 		findPassword(reseturl) {
-			/**
-			 *
-			 */
-			if (!this.$drmking.isPhone(this.phone)) {
+			let that = this;
+			if (!that.$drmking.isPhone(that.phone)) {
 				uni.showToast({
 					icon: 'none',
 					title: '手机号码格式不正确！',
@@ -114,21 +112,21 @@ export default {
 				});
 				return false;
 			}
-			if (this.vercode.length != 6) {
+			if (that.vercode.length != 6) {
 				uni.showToast({
 					icon: 'none',
 					title: '验证码不正确'
 				});
 				return;
 			}
-			if (this.pwd.length < 6) {
+			if (that.pwd.length < 6) {
 				uni.showToast({
 					icon: 'none',
 					title: '密码最短为 6 个字符'
 				});
 				return;
 			}
-			if (this.confirmpassword != this.password) {
+			if (that.confirmpassword != that.pwd) {
 				uni.showToast({
 					icon: 'none',
 					title: '两次密码不一致'
@@ -136,12 +134,11 @@ export default {
 				return;
 			}
 			const data = {
-				phone: this.phone,
-				pwd: this.pwd,
-				vercode: this.vercode,
-				usertype: 0
+				phone: that.phone,
+				pwd: that.pwd,
+				vercode: that.vercode
 			};
-			this.$uniFly
+			that.$uniFly
 				.post({
 					url: reseturl,
 					params: data
@@ -154,6 +151,7 @@ export default {
 							mask: true,
 							duration: 3000
 						});
+						that.$store.commit('login', {});
 						uni.navigateTo({
 							url: '/pages/index/index'
 						});
@@ -180,14 +178,14 @@ export default {
 	background-color: #fff;
 }
 
-	.dui-varcode-btn {
-		background-color: transparent !important;
-		color: #FF5723;
-		font-size: 28upx;
-		display: flex;
-		align-items: center;
-		text-decoration: underline;
-	}
+.dui-varcode-btn {
+	background-color: transparent !important;
+	color: #ff5723 !important;
+	font-size: 28upx;
+	display: flex;
+	align-items: center;
+	text-decoration: underline;
+}
 
 .dui-varcode-btn:after {
 	border: none;

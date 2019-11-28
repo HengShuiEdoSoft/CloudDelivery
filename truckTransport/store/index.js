@@ -218,9 +218,15 @@ const store = new Vuex.Store({
 			state.isCompany = isCompany
 		},
 		login(state, user) {
-			state.hasLogin = true;
-			state.user = user;
-			drmking.cacheData('USER', user, 2592000);
+			if (drmking.isEmpty(user)) {
+				state.forcedLogin = false;
+				state.hasLogin = false;
+				state.isCompany = false;
+			} else {
+				state.hasLogin = true;
+				state.user = user;
+				drmking.cacheData('USER', user, 2592000);
+			}
 		},
 		logout(state) {
 			state.hasLogin = false;
