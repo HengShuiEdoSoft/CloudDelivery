@@ -1,43 +1,92 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import drmking from '@/common/drmking.js';
+import uniFly from 'unifly';
+// 设置基础url
+uniFly.baseUrl = 'https://hll.hda365.com';
+// 设置请求超时
+uniFly.timeOut = 20000
+// 错误自动尝试次数
+uniFly['retry_number'] = 3;
+//uniFly.headers={'Access-Control-Allow-Origin':'*'};
+//自定义请求拦截
+uniFly.requestInterceptors.success = function(request) {
+	let userinfo = drmking.cacheData('USER');
+	if (userinfo) {
+		request.body['phone'] = userinfo.phone;
+		request.body['token'] = userinfo.token;
+	}
+	request.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+	if (request.params.retry_number) {
+		request.body['retry_number'] = request.params.retry_number;
+	} else {
+		if (request.body.retry_number) {
+			request.params['retry_number'] = request.body.retry_number;
+		} else {
+			request.body['retry_number'] = request.params['retry_number'] = 1;
+		}
+	}
+	return request
+}
+// 自定义响应成功拦截
+uniFly.responseInterceptors.success = function(response) {
+	if (drmking.isJsonString(response.data)) {
+		response.data = JSON.parse(response.data);
+	}
+	return Promise.resolve(response.data)
+}
+// 自定义响应失败拦截
+uniFly.responseInterceptors.error = function(response) {
+	let method = response.request.method.toLowerCase();
+	let url = response.request.url;
+	let body = response.request.body;
+	let params = response.request.params;
+	params = body = Object.assign(params, body);
+	if (params.retry_number) {
 
+	} else {
+		params['retry_number'] = 1;
+	}
+	params.retry_number++;
+	if (params.retry_number > uniFly.retry_number) {
+		return response;
+	} else {
+		return uniFly[method]({
+			url: url,
+			params: params
+		});
+	}
+}
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-    state: {
-        /**
-         * 是否需要强制登录
-         */
-        forcedLogin: false,
-        hasLogin: true,
-        phone: "",
-		userState:"",
-		token:"",
-		usertype:"0"
-		
-    },
-    mutations: {
-        login(state, user) {
-            state.phone = user.phone || '新用户';
-			state.status=user.status||'';
-			state.token = user.token||'';
-            state.hasLogin = true;
-			state.usertype = user.user_type||'0'
-			uni.setStorage({
-				key:'userLogin',
-				data:user
-			})
-        },
-        logout(state) {
-            state.phone = '新用户';
-            state.status='';
-            state.token ='';
-            state.hasLogin = false;
-			uni.removeStorage({
-				key:'userLogin'
-			})
-        }
-    }
+	state: {
+		/**
+		 * 是否需要强制登录
+		 */
+		forcedLogin: false,
+		hasLogin: false,
+		// phone: "",
+		// token: "",
+		// userid: "",
+		user: {
+
+		},
+		sysconfig: {
+
+		}	
+	},
+	mutations: {	
+		login(state, user) {
+			state.hasLogin = true;
+			state.user = user;
+			drmking.cacheData('USER', user, 2592000);
+		},
+		logout(state) {
+			state.hasLogin = false;
+			drmking.cacheData('USER', {}, 0);
+		},
+	}
 })
 
 export default store

@@ -3,26 +3,27 @@
 		<scroll-view scroll-y="true">
 			<view class="dui-user-bj"></view>
 			<view class="dui-wrapper">
-				<navigator url="/pages/setup/setup">
+				<view @tap="navTo('/pages/setup/setup')">
 					<view class="dui-user-information">
 						<image src="../../static/img/HeadImg.jpg" mode=""></image>
-						<text class="dui-user-name">尼古拉斯·赵四</text>
-						<text class="dui-user-phone">18888888888</text>
+						<text class="dui-user-name">{{username}}</text>
 					</view>
-				</navigator>
+				</view>
 				<view class="dui-user-assets">
-					<navigator url="/pages/user/details">
+					<view @tap="navTo('/pages/user/details')">
 						<view class="dui-user-detail">提现明细</view>
-					</navigator>
+					</view>
 					<view class="dui-user-total">
 						<view class="dui-user-total-item">
+							<text v-if="!hasLogin">0</text>
 							<text>{{list.order_total}}</text>
 							<text>总接单</text>
 						</view>
 						<view class="dui-user-total-item">
+							<text v-if="!hasLogin">0</text>
 							<text>{{list.order_total_price}}</text>
 							<text>总收入</text>
-							<navigator url="/pages/user/pickup" class="dui-user-pickup">提现</navigator>
+							<view @tap="navTo('/pages/user/pickup')" class="dui-user-pickup">提现</view>
 						</view>
 					</view>
 					<view class="dui-user-income-detail">
@@ -30,6 +31,7 @@
 							<text>今日</text>
 							<view class="dui-user-income-box">
 								<text>接单量/收入</text>
+								<text v-if="!hasLogin">0/0</text>
 								<text>{{list.day_order_total}}/{{list.day_order_total_price}}</text>
 							</view>
 						</view>
@@ -37,14 +39,16 @@
 							<text>本周</text>
 							<view class="dui-user-income-box">
 								<text>接单量/收入</text>
-								<text>{list.week_order_total}}/{{list.week_order_total_price}}</text>
+								<text v-if="!hasLogin">0/0</text>
+								<text>{{list.week_order_total}}/{{list.week_order_total_price}}</text>
 							</view>
 						</view>
 						<view class="dui-user-income-item">
 							<text>本月</text>
 							<view class="dui-user-income-box">
 								<text>接单量/收入</text>
-								<text>{list.month_order_total}}/{{list.month_order_total_price}}</text>
+								<text v-if="!hasLogin">0/0</text>
+								<text>{{list.month_order_total}}/{{list.month_order_total_price}}</text>
 							</view>
 						</view>
 						<view class="dui-user-income-item">
@@ -54,30 +58,31 @@
 					</view>
 				</view>
 				<view class="dui-user-routine">
-					<navigator url="/pages/mycar/mycar">
+					<view @tap="navTo('/pages/mycar/mycar')">
 						<view class="dui-user-routine-item">
 							<text class="iconfont icon-huoche"></text>
 							<text>我的车辆</text>
 						</view>
-					</navigator>
-					<navigator url="/pages/servicecenter/servicecenter">
+					</view>
+					<view @tap="navTo('/pages/servicecenter/servicecenter')">
 						<view class="dui-user-routine-item">
 							<text class="iconfont icon--kefu"></text>
 							<text>客服中心</text>
 						</view>
-					</navigator>
-					<navigator url="/pages/user/about">
+					</view>
+					<view @tap="navTo('/pages/user/about')">
 						<view class="dui-user-routine-item">
 							<text class="iconfont icon-xinxi-yuankuang"></text>
 							<text>关于我们</text>
 						</view>
-					</navigator>
+					</view>
 				</view>
 			</view>
 		</scroll-view>
 	</view>
 </template>
 <script>
+	import { mapState } from 'vuex';
 	export default {
 		onNavigationBarButtonTap: function(e) {
 			var index = e.index;
@@ -89,10 +94,45 @@
 		},
 		data() {
 			return {
+				username:"",
 				list:{}
 			}
 		},
+		onLoad() {
+			this.getUserphone();
+			this.getUsername()
+		},
+		computed: mapState(['forcedLogin','hasLogin','user']),
 		methods: {
+			getUsername() {
+				if(this.user.phone){
+					this.username = this.user.phone.replace(this.user.phone.substring(3, 7), '****');
+				}
+				else{
+					this.username='未登录';
+				}
+			},
+			navTo: function(url) {
+				if (!this.hasLogin) {
+					uni.showModal({
+						title: '未登录',
+						content: '您未登录，需要登录后才能继续',
+						showCancel: true,
+						success: res => {
+							if (res.confirm) {
+								uni.navigateTo({
+									url: '../login/login'
+								});
+							}
+						}
+					});
+					return false;
+				} else {
+					uni.navigateTo({
+						url: url
+					});
+				}
+			},
 			getData:function(){
 				let that=this
 				this.$uniFly

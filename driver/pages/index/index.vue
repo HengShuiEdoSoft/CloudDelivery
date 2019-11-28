@@ -1,6 +1,6 @@
 <template>
     <view class="content">
-		<uni-drawer :visible="visible" mode="right" @close="visible=false">
+		<!--<uni-drawer :visible="visible" mode="right" @close="visible=false">
 			<view class="ui-drawer-container">
 				<view class="ui-options-title">筛选</view>
 				<view class="ui-options-item">
@@ -49,12 +49,12 @@
 					<view class="ui-options-sure" @tap="optionsYes">确定</view>
 				</view>
 			</view>
-		</uni-drawer>
+		</uni-drawer>-->
 		<view class="ui-top-nav">
 			<view class="ui-top-isworing"><switch checked color="#FF5723" @change="switchChange" />工作状态</view>
 			<view>
-				<text class="iconfont icon-shaixuan" @tap="showDrawer"></text>
-				<navigator class="iconfont icon-xiaoxi-xianxing" url="/pages/msgcenter/msgcenter"></navigator>
+				<!--<text class="iconfont icon-shaixuan" @tap="showDrawer"></text>-->
+				<view class="iconfont icon-xiaoxi-xianxing" @tap="navTo('/pages/msgcenter/msgcenter')"></view>
 			</view>
 		</view>
 		<view>
@@ -77,7 +77,7 @@
 								</view>
 							</view>
 						</view>
-						<view class="ui-order-accept">接单</view>
+						<view class="ui-order-accept" @tap="scrambleorder(item.order_id)">接单</view>
 					</view>
 					<view class="ui-order-price">￥20.8</view>
 				</view>
@@ -99,7 +99,7 @@
 								</view>
 							</view>
 						</view>
-						<view class="ui-order-accept">接单</view>
+						<view class="ui-order-accept" @tap="scrambleorder(item.order_id)">接单</view>
 					</view>
 					<view class="ui-order-price">￥20.8</view>
 				</view>
@@ -145,40 +145,15 @@
 		},
         computed: mapState(['forcedLogin', 'hasLogin', 'user']),
         onLoad() {
-            if (!this.hasLogin) {
-                uni.showModal({
-                    title: '未登录',
-                    content: '您未登录，需要登录后才能继续',
-                    /**
-                     * 如果需要强制登录，不显示取消按钮
-                     */
-                    showCancel: !this.forcedLogin,
-                    success: (res) => {
-                        if (res.confirm) {
-							/**
-							 * 如果需要强制登录，使用reLaunch方式
-							 */
-                            if (this.forcedLogin) {
-                                uni.reLaunch({
-                                    url: '../login/login'
-                                });
-                            } else {
-                                uni.navigateTo({
-                                    url: '../login/login'
-                                });
-                            }
-                        }
-                    }
-                });
-            }
+            
         },
 		methods:{
 			switchChange: function (e) {
 			    console.log('switch1 发生 change 事件，携带值为', e.target.value)
 			},
-			showDrawer:function(){
+			/*showDrawer:function(){
 				this.visible=!this.visible
-			},
+			},*/
 			radioChange: function(evt) {
 			    for (let i = 0; i < this.items.length; i++) {
 			        if (this.items[i].value === evt.target.value) {
@@ -187,63 +162,60 @@
 			        }
 			    }
 			},
-			optionsReset:function(){
-				this.visible=!this.visible
-				//重渲染
-			},
-			optionsYes:function(){
-				this.visible=!this.visible
-				//请求数据
-			},
-			getList:function(){
-				let _self=this;
-					if (_self.has_next) {
-						uni.showNavigationBarLoading();
-						_self.loadingText='加载中...';
-						const data = {
-							page: this.page
-						};
-						this.$uniFly
-						.post({
-							url: '/api/address/getaddresslist',
-							params: data
-						})
-						.then(function(res) {
-							uni.hideNavigationBarLoading();
-							if (res.code === 0 ) {
-								if(res.data.list.length > 0){
-									let list = res.data.list;
-									_self.empty=false;
-									// let list=_self.parseOrderList(res.data);
-									_self.lists = _self.reload ? list : _self.lists.concat(list);
-									_self.page++;
-									_self.reload=false;
-									_self.has_next=res.data.has_next;
-									if(res.data.has_next){
-										_self.loadingText='加载更多';
-									}
-									else{
-										_self.loadingText='已加载全部';
-									}
-								}else{
-									_self.empty=true;
-									_self.loadingText='';
-								}							
-							} else {
-								uni.showToast({
-									content: res.msg,
-									showCancel: false
+			navTo: function(url) {
+				if (!this.hasLogin) {
+					uni.showModal({
+						title: '未登录',
+						content: '您未登录，需要登录后才能继续',
+						showCancel: true,
+						success: res => {
+							if (res.confirm) {
+								uni.navigateTo({
+									url: '../login/login'
 								});
 							}
-						})
-						.catch(function(error) {
-							uni.hideNavigationBarLoading();
+						}
+					});
+					return false;
+				} else {
+					uni.navigateTo({
+						url: url
+					});
+				}
+			},
+			//抢单
+			scrambleorder:function(id){
+				let that=this;
+				const data={
+					order_id:id
+				}
+					this.$uniFly
+					.post({
+						url: '/api/order/scrambleorder',
+						params:data
+					})
+					.then(function(res) {
+						if (res.code === 0 ) {
 							uni.showToast({
-								content: error,
+								title: '抢单成功',
+								icon: 'success',
+								mask: true,
+								duration: 3000
+							});
+							//进入订单跟踪页面				
+						} else {
+							uni.showToast({
+								content: res.msg,
 								showCancel: false
 							});
+						}
+					})
+					.catch(function(error) {
+						uni.showToast({
+							content: error,
+							showCancel: false
 						});
-					}
+					});
 				}
 		}
     }

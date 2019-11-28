@@ -41,6 +41,14 @@
 	    methods: {
 			...mapMutations(['login']),  
 			numberst(e){
+				if(!this.$drmking.isPhone(this.new_phone)){
+					uni.showToast({
+						'icon':'none',
+						title: '手机号码格式不正确！',
+						showCancel: false
+					});
+					return false;
+				}
 						const data={
 							new_phone:this.new_phone
 						}
@@ -87,6 +95,14 @@
 	        changenum() {   
 				let userData=this.$drmking.cacheData('USER');
 				let that=this;
+				if(!this.$drmking.isPhone(this.new_phone)){
+					uni.showToast({
+						'icon':'none',
+						title: '手机号码格式不正确！',
+						showCancel: false
+					});
+					return false;
+				}
 				const data = {
 				    new_phone: this.new_phone,
 				    vercode: this.vercode,

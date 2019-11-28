@@ -40,6 +40,14 @@
 		},
 	    methods: {
 			numberst(e){
+				if(!this.$drmking.isPhone(this.phone)){
+					uni.showToast({
+						'icon':'none',
+						title: '手机号码格式不正确！',
+						showCancel: false
+					});
+					return false;
+				}
 						const data={
 							phone:this.phone
 						}
@@ -85,6 +93,14 @@
 					},	
 	        vertifynum() { 
 				var that=this;
+				if(!this.$drmking.isPhone(this.phone)){
+					uni.showToast({
+						'icon':'none',
+						title: '手机号码格式不正确！',
+						showCancel: false
+					});
+					return false;
+				}
 				const data = {
 				    cphone: this.phone,
 				    vercode: this.vercode

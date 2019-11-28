@@ -3,9 +3,8 @@
 		<view class="ui-info-list">
 			<view class="ui-info-list-item">
 				<view class="ui-info-list-left">头像</view>
-				<view class="ui-info-list-center">
-					<image :src="imgurl[0]" @click="clk(0)"></image>
-				</view>
+				<view class="ui-info-list-center" v-if="items.avatar"><image :src="items.avatar" @click="clk(0)"></image></view>
+				<view class="ui-info-list-center" v-if="!items.avatar"><image :src="imgurl[0]" @click="clk(0)"></image></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</view>
 			<view class="ui-divide-line"></view>
@@ -17,13 +16,15 @@
 			<view class="ui-divide-line"></view>
 			<view class="ui-info-list-item" @tap="togglePopup('center', 'sexchose')">
 				<view class="ui-info-list-left">性别</view>
-				<view class="ui-info-list-center"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999"></view>
+				<view class="ui-info-list-center" v-if="items.sex===0"><input placeholder="去设置" value="男" disabled="true" placeholder-style="color:#999"></view>
+				<view class="ui-info-list-center" v-if="items.sex===1"><input placeholder="去设置" value="女" disabled="true" placeholder-style="color:#999"></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</view>
 			<view class="ui-divide-line"></view>
-			<navigator class="ui-info-list-item" url="/pages/setup/phonenum?num=136****9999">
+			<navigator class="ui-info-list-item" :url="'/pages/userinfo/phonenum?num='+items.phone">
 				<view class="ui-info-list-left">手机号</view>
-				<view class="ui-info-list-center"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999"></view>
+				<view class="ui-info-list-center" v-if="!items.phone"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999"></view>
+				<view class="ui-info-list-center" v-if="items.phone"><input placeholder="去设置" :value="items.phone" disabled="true" placeholder-style="color:#999"></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</navigator>
 			<view class="ui-divide-line"></view>
@@ -53,6 +54,7 @@
 </template>
 
 <script>
+	import service from '../../service.js';
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	import avatar from "@/components/yq-avatar/yq-avatar.vue";
 	export default {
@@ -81,16 +83,21 @@
 
 		},
 		methods: {
-			setData() {
-				console.log("重新请求，渲染页面")
+			setData(){
+				let userinfo=service.getUsers();
+				this.items=userinfo[0];	
+				if(this.items.avatar){
+					this.imgurl[0]=this.items.avatar	
+				}								
 			},
 			radioChange: function(e) {
-				for (let i = 0; i < this.sex.length; i++) {
-					if (this.sex[i].value === e.target.value) {
-						this.current = i;
-						break;
-					}
-				}
+			    for (let i = 0; i < this.sexList.length; i++) {
+			        if (this.sexList[i].value === e.target.value) {
+			            this.current = i;
+						this.sex=parseInt(this.sexList[i].value);
+			            break;
+			        }
+			    }
 			},
 			togglePopup(type, open) {
 				this.type = type;
@@ -116,25 +123,51 @@
 				this.$set(this.imgurl, rsp.index, rsp.path);
 				return;
 				uni.uploadFile({
-					url: '', //仅为示例，非真实的接口地址
+					url: 'https://hll.hda365.com/api/file/upload', //仅为示例，非真实的接口地址
 					filePath: rsp.path,
 					name: 'avatar',
 					formData: {
 						'avatar': rsp.path
 					},
-					success: (uploadFileRes) => {
-						console.log(uploadFileRes.data);
+					success: (res) => {
+						if(res.code===0){
+							that.$set(that.items,'avatar',res.data);
+							service.addUser(that.items);
+						}
 					},
 					complete(res) {
 						console.log(res)
 					}
 				});
 			},
-			sexchange(type) {
-				this.cancel(type);
-				//向后台发送数据
-				this.setData();
-
+			sexchange(){
+				this.cancel("sexchose");
+				let that=this;
+				let change=setTimeout(function(){
+					const data = {sex:that.sex};
+				that.$uniFly
+				  .post({
+				    url: "/api/user/edituserinfo",
+				    params: data
+				  })
+				  .then(function(res) {
+				    if(res.code===0){
+				    	uni.showToast({
+				    	    title: '变更成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+				    	});
+						that.$set(that.items,'sex',that.sex);
+						service.addUser(that.items);
+					}
+				  }).catch(function(error) {
+				    uni.showToast({
+				    	content: error,
+				    	showCancel: false
+				    });
+				  });
+				},100)		  
 			}
 		}
 	}

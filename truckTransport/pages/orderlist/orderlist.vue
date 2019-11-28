@@ -64,7 +64,8 @@
 						:url="'/pages/orderdetail/orderdetail?id=' + item.order_id"
 						:key="item.order_id" @longtap="deleteOrder(item.ocode)"
 					>
-						<view class="ui-wancheng">已完成</view>
+						<view class="ui-wancheng" v-if="item.status===4">已完成</view>
+						<view class="ui-wancheng" v-if="item.status===5">已完成</view>
 						<view class="ui-order-list-item-top">
 							<text class="ui-order-list-cartype">{{ item.car }}</text>
 							<text>{{ item.sure_time }}</text>
