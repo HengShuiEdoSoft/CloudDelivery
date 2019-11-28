@@ -1,7 +1,7 @@
 import permision from "@/common/permission.js"
 let md5 = require('js-md5');
 let drmking = {
-	md5(obj){
+	md5(obj) {
 		return md5(obj);
 	},
 	isJsonString: function(str) {
@@ -30,7 +30,7 @@ let drmking = {
 	},
 	// 判断是否为空
 	isEmpty: function(str) {
-		if (typeof str == "undefined" || str == null || str == "") {
+		if (typeof str == "undefined" || str == null || str == "" || str == 'undefined') {
 			return true;
 		} else {
 			return false;
@@ -88,6 +88,7 @@ let drmking = {
 			return true;
 		}
 	},
+	// 获取里程价格
 	distancePrice: function(price_json = [], distance = 0) {
 		distance = parseInt(distance);
 		if (price_json.length == 0 || distance == 0) {
@@ -204,6 +205,29 @@ let drmking = {
 			return data;
 		} else {
 			return system_config;
+		}
+	},
+	// 获取用户等级列表
+	getUserLevelList: async function(vue) {
+		let that = this;
+		let cache_key = 'user_level_list';
+		let user_level_list = this.cacheData(cache_key);
+		if (that.isEmpty(user_level_list)) {
+			let data = await vue.$uniFly.get({
+				url: '/api/user_level/getuserlevellist',
+			}).then(function(res) {
+				if (res.code == 0) {
+					that.cacheData(cache_key, res.data, 3600);
+					return res.data;
+				} else {
+					return null;
+				}
+			}).catch(function(error) {
+				return null;
+			});
+			return data;
+		} else {
+			return user_level_list;
 		}
 	},
 	// 获取车型数据

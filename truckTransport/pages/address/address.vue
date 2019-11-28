@@ -56,11 +56,12 @@
 		onShow:function(){
 			this.getList();
 		},
-		onPullDownRefresh:function(){
+		onPullDownRefresh:function(){			
 			this.has_next=true;
 			this.reload=true;
 			this.page=1;
 			this.getList();
+			uni.stopPullDownRefresh();
 		},
 		onReachBottom:function(){
 			let _self=this;

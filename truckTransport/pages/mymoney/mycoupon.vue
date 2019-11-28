@@ -59,7 +59,7 @@ export default {
 	onPullDownRefresh: function() {
 		this.has_next = true;
 		this.reload = true;
-		this.getList();		
+		this.getList();
 		uni.stopPullDownRefresh();
 	},
 	onReachBottom: function() {
@@ -84,9 +84,14 @@ export default {
 					})
 					.then(function(res) {
 						uni.hideNavigationBarLoading();
-						if (res.code === 0) {
+						if (res.code == 0) {
 							if (res.data.list.length > 0) {
 								let list = res.data.list;
+								for (let i = 0; i < list.length; i++) {
+									if (list[i].car_id == 0) {
+										list[i].car_title = '通用';
+									}
+								}
 								_self.list = _self.list ? list : _self.list.concat(list);
 								_self.page = _self.page++;
 								_self.reload = false;

@@ -1,15 +1,15 @@
 
-.ui-tip{
-	padding:30rpx;
-	width:480rpx;
-	font-size:14px;
+.ui-tip {
+	padding: 30rpx;
+	width: 480rpx;
+	font-size: 14px;
 	background: #fff;
 }
-.ui-tip-title{
-	font-size:16px;
+.ui-tip-title {
+	font-size: 16px;
 	line-height: 92rpx;
 }
-.ui-list-cell{
+.ui-list-cell {
 	line-height: 92rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -20,12 +20,12 @@
 	    -ms-flex-align: center;
 	        align-items: center;
 }
-radio{
-	-webkit-transform:scale(0.7);
-	    -ms-transform:scale(0.7);
-	        transform:scale(0.7)
+radio {
+	-webkit-transform: scale(0.7);
+	    -ms-transform: scale(0.7);
+	        transform: scale(0.7);
 }
-.ui-portrait-cropper{
+.ui-portrait-cropper {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;

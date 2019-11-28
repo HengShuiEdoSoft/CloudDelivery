@@ -6,9 +6,9 @@
 	margin-left: 60rpx;
 	margin-right: 60rpx;
 }
-.dui-varcode-btn{
+.dui-varcode-btn {
 	background-color: transparent !important;
-	color:#FF5723 ;
+	color: #ff5723 !important;
 	font-size: 28rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -20,10 +20,10 @@
 	        align-items: center;
 	text-decoration: underline;
 }
-.dui-varcode-btn:after{
+.dui-varcode-btn:after {
 	border: none;
 }
-.dui-varcode-btn[disabled][type=primary] {
-    background-color: transparent;
+.dui-varcode-btn[disabled][type='primary'] {
+	background-color: transparent;
 }
 

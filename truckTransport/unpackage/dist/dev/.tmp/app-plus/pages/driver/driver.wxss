@@ -12,30 +12,30 @@
 	height: 85rpx;
 	line-height: 85rpx;
 	background-color: #fff2de;
-	color: #FF5723;
+	color: #ff5723;
 	text-align: center;
 	border-radius: 10rpx;
 }
-.dui-collection-wrapper{
+.dui-collection-wrapper {
 	width: 570rpx;
-	height:560rpx;
+	height: 560rpx;
 	padding: 50rpx;
 	background-color: #fff;
 	border-radius: 10rpx;
 }
-.ui-list-title{
-	font-size:14px;
-	color:#212121;
+.ui-list-title {
+	font-size: 14px;
+	color: #212121;
 }
-.ui-list-subtext{
-	color:#9E9E9E;
-	font-size:12px;
+.ui-list-subtext {
+	color: #9e9e9e;
+	font-size: 12px;
 }
-.ui-list-item{
-	padding:20rpx 30rpx;
+.ui-list-item {
+	padding: 20rpx 30rpx;
 	background: #fff;
 }
-.input-row input{
-	padding:12px 0;
+.input-row input {
+	padding: 12px 0;
 }
 
