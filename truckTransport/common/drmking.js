@@ -30,7 +30,7 @@ let drmking = {
 	},
 	// 判断是否为空
 	isEmpty: function(str) {
-		if (typeof str == "undefined" || str == null || str == "" || str == 'undefined') {
+		if (typeof str == "undefined" || str == null || str == "" || str == 'undefined' || JSON.stringify(str) == '{}') {
 			return true;
 		} else {
 			return false;

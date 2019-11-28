@@ -478,6 +478,18 @@
 			}
 		},
 		{
+			"path": "pages/msgcenter/msgcenter",
+			"style": {
+				"navigationBarTitleText": "消息中心"
+			}
+		},
+		{
+			"path": "pages/msgcenter/msgdetails",
+			"style": {
+				"navigationBarTitleText": "消息详情"
+			}
+		},
+		{
 			"path": "pages/viplevel/corporate-vip",
 			"style": {
 				"navigationBarTitleText": "升级为企业会员"

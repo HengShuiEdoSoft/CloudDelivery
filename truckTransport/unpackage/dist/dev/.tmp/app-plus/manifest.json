@@ -10,7 +10,7 @@
     "name": "1.0.0",
     "code": "100"
   },
-  "description": "登录模板",
+  "description": "拉活儿网用户端",
   "launch_path": "__uniappview.html",
   "developer": {
     "name": "",
@@ -112,7 +112,10 @@
           "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
         ]
       },
-      "apple": {},
+      "apple": {
+        "UIBackgroundModes": "audio,location",
+        "idfa": false
+      },
       "plugins": {
         "maps": {
           "amap": {
@@ -132,13 +135,10 @@
     },
     "allowsInlineMediaPlayback": true,
     "uni-app": {
-      "compilerVersion": "2.4.2",
+      "compilerVersion": "2.3.7",
       "control": "v8",
-      "nvueCompiler": "uni-app",
-      "renderer": "auto",
-      "nvue": {
-        "flex-direction": "column"
-      }
+      "nvueCompiler": "weex",
+      "renderer": "auto"
     }
   }
 }

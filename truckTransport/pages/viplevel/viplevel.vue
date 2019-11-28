@@ -6,7 +6,7 @@
 				<view class="dui-vip-card">
 					<view class="dui-vip-type">
 						<text>{{ user.user_level_id > 0 ? levellist[user.user_level_id].level_title : '新用户' }}</text>
-						<navigator url="corporate-vip" v-if="user.user_type !== 0">升级为企业会员</navigator>
+						<navigator url="corporate-vip" v-if="user.user_type == 0">升级为企业会员</navigator>
 						<view v-if="user.user_type == 1">企业会员</view>
 					</view>
 					<view class="dui-vip-phone">{{ user.phone ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</view>
