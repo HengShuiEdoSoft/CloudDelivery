@@ -180,14 +180,14 @@ export default {
 	background-color: #fff;
 }
 
-.dui-varcode-btn {
-	background-color: transparent;
-	color: #ff5723;
-	font-size: 28upx;
-	display: flex;
-	align-items: center;
-	text-decoration: underline;
-}
+	.dui-varcode-btn {
+		background-color: transparent !important;
+		color: #FF5723;
+		font-size: 28upx;
+		display: flex;
+		align-items: center;
+		text-decoration: underline;
+	}
 
 .dui-varcode-btn:after {
 	border: none;

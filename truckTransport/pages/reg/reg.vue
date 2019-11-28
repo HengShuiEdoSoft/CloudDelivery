@@ -159,6 +159,7 @@ export default {
 </script>
 
 <style>
+
 .content {
 	background-color: #fff;
 }

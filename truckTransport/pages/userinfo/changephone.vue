@@ -143,6 +143,7 @@ export default {
 </script>
 
 <style>
+
 .content {
 	background-color: #fff;
 }
@@ -167,4 +168,5 @@ export default {
 .ui-tip {
 	padding: 20upx 40upx;
 }
+
 </style>
