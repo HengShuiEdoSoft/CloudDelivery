@@ -69,7 +69,7 @@
 				    	});
 					}
 				  }).catch(function(error) {
-				    uni.showToast({
+				    uni.showModal({
 				    	content: error,
 				    	showCancel: false
 				    });

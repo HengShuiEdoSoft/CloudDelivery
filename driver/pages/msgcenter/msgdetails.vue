@@ -46,7 +46,7 @@
 				 	if(res.code===0){
 				 		that.list=res.data;
 				 	}else{
-				 		uni.showToast({
+				 		uni.showModal({
 				 		    content: res.msg,
 				 		    showCancel: false
 				 		});
@@ -54,7 +54,7 @@
 				 	}
 				 })
 				 .catch(function(error) {
-				     uni.showToast({
+				     uni.showModal({
 				   	    content: error,
 				   	    showCancel: false
 				     });

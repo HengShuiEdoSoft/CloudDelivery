@@ -125,14 +125,14 @@
 						service.addUser(res.data);
 						that.toMain(res.data);
 					}else if(res.code===1){
-							uni.showToast({
+							uni.showModal({
 								content: res.msg,
 								showCancel: false
 							});
 					}
 				})
 				.catch(function(error) {
-					    uni.showToast({
+					    uni.showModal({
 					    	content: error,
 					    	showCancel: false
 					    });
@@ -163,7 +163,7 @@
 									if (res.code === 0 ) {
 																
 									} else {
-										uni.showToast({
+										uni.showModal({
 											content: res.msg,
 											showCancel: false
 										});
@@ -171,7 +171,7 @@
 								})
 								.catch(function(error) {
 									uni.hideNavigationBarLoading();
-									uni.showToast({
+									uni.showModal({
 										content: error,
 										showCancel: false
 									});

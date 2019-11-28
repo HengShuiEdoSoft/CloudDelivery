@@ -115,7 +115,7 @@
 								_self.loadingText='';
 							}							
 						} else {
-							uni.showToast({
+							uni.showModal({
 								content: res.msg,
 								showCancel: false
 							});
@@ -123,7 +123,7 @@
 					})
 					.catch(function(error) {
 						uni.hideNavigationBarLoading();
-						uni.showToast({
+						uni.showModal({
 							content: error,
 							showCancel: false
 						});

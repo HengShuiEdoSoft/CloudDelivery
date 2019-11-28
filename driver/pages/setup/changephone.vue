@@ -68,7 +68,7 @@
 							}
 						  })
 						  .catch(function(error) {
-						    uni.showToast({
+						    uni.showModal({
 						    	content: error,
 						    	showCancel: false
 						    });
@@ -127,7 +127,7 @@
 				    	});
 					}
 				  }).catch(function(error) {
-				    uni.showToast({
+				    uni.showModal({
 				    	content: error,
 				    	showCancel: false
 				    });
