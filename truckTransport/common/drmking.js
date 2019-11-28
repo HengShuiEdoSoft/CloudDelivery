@@ -217,9 +217,6 @@ let drmking = {
 				url: '/api/user_level/getuserlevellist',
 			}).then(function(res) {
 				if (res.code == 0) {
-					// for (let key in res.data) {
-					// 	res.data[key]['car_images'] = res.data[key]['car_images'].split(',');
-					// }
 					that.cacheData(cache_key, res.data, 3600);
 					return res.data;
 				} else {
