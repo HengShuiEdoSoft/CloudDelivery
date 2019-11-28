@@ -29,12 +29,13 @@ export default {
 	},
 	methods: {
 		submitRealInfo() {
+			let that=this;
 			const data = {
-				realname: this.realname,
-				idcard_number: this.idcard_number,
-				idcard_photos: this.idcard_photos
+				realname: that.realname,
+				idcard_number: that.idcard_number,
+				idcard_photos: that.idcard_photos
 			};
-			this.$uniFly
+			that.$uniFly
 				.post({
 					url: '/api/user/edituserinfo',
 					params: data
@@ -45,12 +46,8 @@ export default {
 							icon: 'none',
 							title: '成功保存'
 						});
-						let userinfo = service.getUsers()[0];
-						userinfo.realname = that.realname;
-						userinfo.idcard_number = that.idcard_number;
-						userinfo.idcard_photos = that.idcard_photos;
-						service.addUser(userinfo);
-						that.$store.commit('login',data);
+						service.addUser(res.data);
+						that.$store.commit('login', res.data);
 					} else {
 						uni.showToast({
 							icon: 'none',

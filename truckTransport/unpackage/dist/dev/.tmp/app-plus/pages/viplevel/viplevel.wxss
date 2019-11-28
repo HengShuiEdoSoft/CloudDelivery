@@ -52,7 +52,8 @@ scroll-view {
 	font-size: 40rpx;
 	color: #424456;
 }
-.dui-vip-type navigator,.dui-vip-type view {
+.dui-vip-type navigator,
+.dui-vip-type view {
 	padding: 5rpx 15rpx;
 	font-size: 28rpx;
 	border: 1px solid #424456;
@@ -83,8 +84,8 @@ scroll-view {
 	        box-sizing: border-box;
 	background-color: #ffe5b0;
 	border-radius: 0 0 20rpx 20rpx;
-	-webkit-box-shadow: 0 2rpx 8rpx #A8A8A8;
-	        box-shadow: 0 2rpx 8rpx #A8A8A8;
+	-webkit-box-shadow: 0 2rpx 8rpx #a8a8a8;
+	        box-shadow: 0 2rpx 8rpx #a8a8a8;
 }
 .dui-vip-growth {
 	font-size: 28rpx;
@@ -143,13 +144,13 @@ scroll-view {
 	background-color: #f2f2f4;
 	border-radius: 50%;
 }
-.active .dui-vip-giftpackage{
-	border:2px solid rgba(255,255,255,.6);
+.active .dui-vip-giftpackage {
+	border: 2px solid rgba(255, 255, 255, 0.6);
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
 }
 .dui-vip-giftpackage.unlock {
-	background-color: #FF5723;
+	background-color: #ff5723;
 }
 .dui-vip-giftpackage .icon-suoding {
 	font-size: 50rpx;
@@ -185,8 +186,8 @@ scroll-view {
 .dui-vip-Receive-btn {
 	padding: 5rpx 20rpx;
 	font-size: 28rpx;
-	color: #FF5723;
-	border: 1px solid #FF5723;
+	color: #ff5723;
+	border: 1px solid #ff5723;
 	border-radius: 40rpx;
 	text-align: center;
 }
@@ -194,7 +195,6 @@ scroll-view {
 	margin-top: 30rpx;
 	width: 100%;
 	font-size: 30rpx;
-	color:#424456 ;
+	color: #424456;
 }
-
 

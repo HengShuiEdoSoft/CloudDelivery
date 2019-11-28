@@ -88,6 +88,7 @@ let drmking = {
 			return true;
 		}
 	},
+	// 获取里程价格
 	distancePrice: function(price_json = [], distance = 0) {
 		distance = parseInt(distance);
 		if (price_json.length == 0 || distance == 0) {
@@ -204,6 +205,32 @@ let drmking = {
 			return data;
 		} else {
 			return system_config;
+		}
+	},
+	// 获取用户等级列表
+	getUserLevelList: async function(vue) {
+		let that = this;
+		let cache_key = 'user_level_list';
+		let user_level_list = this.cacheData(cache_key);
+		if (that.isEmpty(user_level_list)) {
+			let data = await vue.$uniFly.get({
+				url: '/api/user_level/getuserlevellist',
+			}).then(function(res) {
+				if (res.code == 0) {
+					// for (let key in res.data) {
+					// 	res.data[key]['car_images'] = res.data[key]['car_images'].split(',');
+					// }
+					that.cacheData(cache_key, res.data, 3600);
+					return res.data;
+				} else {
+					return null;
+				}
+			}).catch(function(error) {
+				return null;
+			});
+			return data;
+		} else {
+			return user_level_list;
 		}
 	},
 	// 获取车型数据
