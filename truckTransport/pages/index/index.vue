@@ -45,10 +45,13 @@
 				</view>
 			</uni-drawer>
 		</view>
-		<navigator class="ui-top-city-select" :url="'/pages/cityselect/cityselect?city=' + location_city.city.city_title + '&status=1&channel=changeCity'">
-			当前城市：{{ location_city.city.city_title }}
-			<text>切换</text>
-		</navigator>
+		<view class="ui-top-nav">
+			<navigator class="ui-top-city-select" :url="'/pages/cityselect/cityselect?city=' + location_city.city.city_title + '&status=1&channel=changeCity'">
+				当前城市：{{ location_city.city.city_title }}
+				<text>切换</text>
+			</navigator>
+			<view class="iconfont icon-liaotianduihua" @tap="navTo('/pages/msgcenter/msgcenter')"></view>
+		</view>
 		<view class="ui-car-select">
 			<view class="ui-car-name-list">
 				<view class="ui-car-name-item" v-for="(item, index) in location_city.cars_list" :key="item.car_id" :class="{ active: current === index }" @click="tabChange(index)">
@@ -442,6 +445,9 @@ export default {
 </script>
 
 <style>
+.content{
+	font-size: 14px;
+}	
 .hello {
 	display: flex;
 	flex: 1;
@@ -598,4 +604,17 @@ export default {
 	border-top: 1px solid #eee;
 	justify-content: flex-end;
 }
+.ui-top-nav{
+		display:flex;
+		padding:0 30upx;
+		line-height: 88upx;
+		color:#fff;
+		background: #424456;
+	}
+.ui-top-nav .iconfont{
+		display:inline-block;
+		width:88upx;
+		font-size:24px;
+		text-align: right;
+	}
 </style>

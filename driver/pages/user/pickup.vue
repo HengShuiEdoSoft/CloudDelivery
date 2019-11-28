@@ -10,7 +10,7 @@
 			<text>金额</text>
 		</view>
 		<view class="dui-flex-row">
-			<view class="dui-pickup-write-money">￥<input type="text" focus="true" placeholder="请填写金额" /></view>
+			<view class="dui-pickup-write-money">￥<input type="text" focus="true" v-model="price" placeholder="请填写金额" /></view>
 			<view class="dui-pickup-all">全部提现</view>
 		</view>
 		<view class="dui-flex-row">
@@ -23,6 +23,48 @@
 	</view>
 </template>
 <script>
+	export default{
+		data(){
+			return {
+				price:0
+			}
+		},
+		methods:{
+			submitPick:function(){
+				let that=this
+				const data={
+					price:this.price
+				}
+				this.$uniFly
+				.post({
+					url: '/api/withdraw/addwithdraw',
+					params:data
+				})
+				.then(function(res) {
+					if (res.code === 0 ) {
+						uni.showToast({
+							title: '已成功申请',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+						});
+										
+					} else {
+						uni.showModal({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showModal({
+						content: error,
+						showCancel: false
+					});
+				});
+			}
+		}
+	}
 </script>
 <style>
 	.content {
