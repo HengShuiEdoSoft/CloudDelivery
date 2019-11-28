@@ -28,8 +28,9 @@ class Amap {
 	/**
 	 * 获取地理描述数据
 	 */
-	static getRegeo() {
+	static getRegeo(location = '') {
 		return new Promise((resolve, reject) => myAmapFun.getRegeo({
+			location: location,
 			success: resolve,
 			fail: reject
 		}));
@@ -50,12 +51,12 @@ class Amap {
 	 * @param {string} keywords 
 	 * @param {string} location 
 	 */
-	static getInputtips(city,  keywords = '',location = '',citylimit=true) {
+	static getInputtips(city, keywords = '', location = '', citylimit = true) {
 		return new Promise((resolve, reject) => myAmapFun.getInputtips({
 			keywords: keywords,
 			location: location,
 			city: city,
-			citylimit:citylimit,
+			citylimit: citylimit,
 			success: resolve,
 			fail: reject
 		}));
@@ -84,7 +85,7 @@ class Amap {
 			origin: origin,
 			waypoints: waypoints.join(';'),
 			destination: destination,
-			strategy:strategy,
+			strategy: strategy,
 			success: resolve,
 			fail: reject
 		}));

@@ -1,20 +1,20 @@
 
-.ui-od-info-left{
-	width:64px;
+.ui-od-info-left {
+	width: 64px;
 }
-.ui-tips{
-	padding:20rpx 0;
-	font-size:12px;
-	color:#999;
+.ui-tips {
+	padding: 20rpx 0;
+	font-size: 12px;
+	color: #999;
 }
-.ui-tips navigator{
-	display:inline;
+.ui-tips navigator {
+	display: inline;
 }
-.ui-od-price-list{
-	display:-webkit-box;
-	display:-webkit-flex;
-	display:-ms-flexbox;
-	display:flex;
+.ui-od-price-list {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
 	line-height: 64rpx;
 }
 

@@ -86,7 +86,7 @@
 			<view class="uni-timeline">
 				<view class="uni-timeline-item uni-timeline-first-item">
 					<view class="uni-timeline-item-divider">发</view>
-					<view class="uni-timeline-item-content" @tap="navTo('/pages/amap/amap_choice/amap_choice')">
+					<view class="uni-timeline-item-content" @tap="amap_choice('departure')">
 						<block v-if="order.trip.departure.localtion == ''"><view class="ui-address">请输入发货地址</view></block>
 						<block v-else>
 							<view class="ui-address">{{ order.trip.departure.localtion }}</view>
@@ -97,7 +97,7 @@
 				</view>
 				<view v-for="(item, index) in order.trip.transfer" :key="index" class="uni-timeline-item">
 					<view class="uni-timeline-item-divider"></view>
-					<view class="uni-timeline-item-content" @tap="navTo('/pages/amap/amap_choice/amap_choice')">
+					<view class="uni-timeline-item-content" @tap="amap_choice('transfer', index)">
 						<block v-if="item.localtion == ''"><view class="ui-address">请输入收货地址</view></block>
 						<block v-else>
 							<view class="ui-address">{{ item.localtion }}</view>
@@ -109,7 +109,7 @@
 				</view>
 				<view class="uni-timeline-item uni-timeline-last-item">
 					<view class="uni-timeline-item-divider">收</view>
-					<view class="uni-timeline-item-content" @tap="navTo('/pages/amap/amap_choice/amap_choice')">
+					<view class="uni-timeline-item-content" @tap="amap_choice('destination')">
 						<block v-if="order.trip.destination.localtion == ''"><view class="ui-address">请输入收货地址</view></block>
 						<block v-else>
 							<view class="ui-address">{{ order.trip.destination.localtion }}</view>
@@ -177,9 +177,9 @@ export default {
 				cars_list: []
 			},
 			address_tpl: {
-				lat: '39.907761',
-				lon: '116.405467',
-				localtion: '北京',
+				lat: '',
+				lon: '',
+				localtion: '',
 				address: '',
 				contact: '',
 				phone: ''
@@ -206,8 +206,10 @@ export default {
 				console.log(e);
 			});
 		this.$fire.on('changeCity', function(data) {
-			console.log(data);
 			that.$drmking.setLocationCity(that, data);
+		});
+		this.$fire.on('setTrip', function(data) {
+			that.setTrip(data);
 		});
 	},
 	methods: {
@@ -223,11 +225,10 @@ export default {
 			this.$store.commit('set_order_car', car);
 		},
 		getUsername() {
-			if(this.user.phone){
+			if (this.user.phone) {
 				this.username = this.user.phone.replace(this.user.phone.substring(3, 7), '****');
-			}
-			else{
-				this.username='未登录';
+			} else {
+				this.username = '未登录';
 			}
 		},
 		cheackTrip() {
@@ -254,6 +255,7 @@ export default {
 					flag = true;
 				}
 			}
+			console.log(that.order.trip);
 			if (flag) {
 				if (destination == '') {
 					destination = waypoints.slice(waypoints.length - 1, 1)[0];
@@ -275,7 +277,27 @@ export default {
 							}
 						});
 					});
+			}else{
+				console.log('cheackTrip false');
 			}
+		},
+		setTrip(item) {
+			let address = {
+				lat: item.address.latitude,
+				lon: item.address.longitude,
+				localtion: item.address.city + item.address.localtion,
+				address: item.address.address,
+				contact: item.address.contact,
+				phone: item.address.phone
+			};
+			if (item.type == 'departure') {
+				this.order.trip.departure = address;
+			} else if (item.type == 'transfer') {
+				this.order.trip.transfer[item.index] = address;
+			} else {
+				this.order.trip.destination = address;
+			}
+			this.cheackTrip();
 		},
 		addAddress() {
 			let max_address_num = parseInt(this.sysconfig.max_address_num);
@@ -308,7 +330,36 @@ export default {
 				}
 			}
 		},
-		navTo: function(url) {
+		amap_choice(type, transfer_index = 0) {
+			if (!this.hasLogin) {
+				uni.showModal({
+					title: '未登录',
+					content: '您未登录，需要登录后才能继续',
+					showCancel: true,
+					success: res => {
+						if (res.confirm) {
+							uni.navigateTo({
+								url: '../login/login'
+							});
+						}
+					}
+				});
+				return false;
+			} else {
+				let url = '/pages/amap/amap_choice/amap_choice?';
+				if (type == 'departure') {
+					url += 'status=1';
+				} else if (type == 'transfer') {
+					url += 'status=0&transfer_index=' + transfer_index;
+				} else {
+					url += 'status=0&is_destination=true';
+				}
+				uni.navigateTo({
+					url: url
+				});
+			}
+		},
+		navTo(url) {
 			if (!this.hasLogin) {
 				uni.showModal({
 					title: '未登录',
@@ -545,18 +596,17 @@ export default {
 	flex-grow: 1;
 	background: #ff9801;
 }
-.delete_address{
-	padding:8upx 20upx;
-	font-size:14px;
-	border-radius:2px;
-	border:1px solid #eee;
+.delete_address {
+	padding: 8upx 20upx;
+	font-size: 14px;
+	border-radius: 2px;
+	border: 1px solid #eee;
 }
-.add_address_box{
-	display:flex;
-	padding-top:20upx;
+.add_address_box {
+	display: flex;
+	padding-top: 20upx;
 	padding-bottom: 0;
-	border-top:1px solid #eee;
+	border-top: 1px solid #eee;
 	justify-content: flex-end;
 }
-
 </style>

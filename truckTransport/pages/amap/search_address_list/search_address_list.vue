@@ -25,8 +25,8 @@ export default {
 		};
 	},
 	onLoad(options) {
-		this.city = options.city;
 		let that = this;
+		that.city = options.city;
 		that.map = uni.createMapContext('amap', that);
 	},
 	methods: {
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style>
-view{
+view {
 	font-size: 28upx;
 }
 .search_input {
@@ -98,7 +98,7 @@ view{
 	width: 100%;
 }
 .search_tips {
-	padding:0 30upx;
+	padding: 0 30upx;
 	width: 100%;
 	display: flex;
 	flex-direction: column;

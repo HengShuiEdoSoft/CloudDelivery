@@ -1,5 +1,9 @@
 import permision from "@/common/permission.js"
+let md5 = require('js-md5');
 let drmking = {
+	md5(obj){
+		return md5(obj);
+	},
 	isJsonString: function(str) {
 		if (typeof str == 'string') {
 			try {
