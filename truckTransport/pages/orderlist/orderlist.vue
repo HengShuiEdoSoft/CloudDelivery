@@ -322,7 +322,7 @@ export default {
 								_self.$set(_self.loadingText, current, '');
 							}
 						} else {
-							uni.showToast({
+							uni.showModal({
 								content: res.msg,
 								showCancel: false
 							});
@@ -330,7 +330,7 @@ export default {
 					})
 					.catch(function(error) {
 						uni.hideNavigationBarLoading();
-						uni.showToast({
+						uni.showModal({
 							content: error,
 							showCancel: false
 						});

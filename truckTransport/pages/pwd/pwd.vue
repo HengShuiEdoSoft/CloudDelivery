@@ -148,7 +148,7 @@ export default {
 				})
 				.then(function(res) {
 					if (res.code == 0) {
-						uni.showToast({
+						uni.showModal({
 							title: '重置密码成功',
 							icon: 'success',
 							mask: true,

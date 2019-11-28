@@ -85,14 +85,14 @@
 						_self.loadingText = '加载更多';
 						uni.hideNavigationBarLoading();
 					}else{
-						uni.showToast({
+						uni.showModal({
 						    content: res.msg,
 						    showCancel: false
 						});
 					}
 				})
 				.catch(function(error) {
-				    uni.showToast({
+				    uni.showModal({
 				  	    content: error,
 				  	    showCancel: false
 				    });
@@ -127,14 +127,14 @@
 						uni.stopPullDownRefresh();
 						_self.loadingText = '加载更多';
 					}else{
-						uni.showToast({
+						uni.showModal({
 						    content: res.msg,
 						    showCancel: false
 						});
 					}
 			    })
 				.catch(function(error) {
-				    uni.showToast({
+				    uni.showModal({
 				  	    content: error,
 				  	    showCancel: false
 				    });
