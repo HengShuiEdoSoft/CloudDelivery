@@ -112,7 +112,10 @@
           "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
         ]
       },
-      "apple": {},
+      "apple": {
+        "UIBackgroundModes": "audiolocation",
+        "idfa": false
+      },
       "plugins": {
         "maps": {
           "amap": {
