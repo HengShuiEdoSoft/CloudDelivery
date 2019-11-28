@@ -75,9 +75,11 @@ export default {
 						});
 						that.becompany(true);
 						that.$store.commit('login', res.data);
-						uni.navigateBack({
-							delta: 1
-						});
+						setTimeout(function(){
+							uni.navigateBack({
+								delta: 1
+							});
+						},3000);
 					} else {
 						uni.showModal({
 							content: res.msg,
