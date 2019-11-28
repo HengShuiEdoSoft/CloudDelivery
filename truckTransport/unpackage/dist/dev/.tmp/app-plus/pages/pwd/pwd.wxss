@@ -4,7 +4,7 @@
 }
 .dui-varcode-btn {
 	background-color: transparent;
-	color: #FF5723;
+	color: #ff5723;
 	font-size: 28rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -19,7 +19,7 @@
 .dui-varcode-btn:after {
 	border: none;
 }
-.dui-varcode-btn[disabled][type=primary] {
+.dui-varcode-btn[disabled][type='primary'] {
 	background-color: transparent;
 }
 

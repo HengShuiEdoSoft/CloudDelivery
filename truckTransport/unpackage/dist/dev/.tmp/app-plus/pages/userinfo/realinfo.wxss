@@ -1,9 +1,9 @@
 
-.content{
+.content {
 	background: #fff;
 }
-.input-row .title{
-	width:24%;
-	font-size:16px;
+.input-row .title {
+	width: 24%;
+	font-size: 16px;
 }
 

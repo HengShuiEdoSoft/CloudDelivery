@@ -1,7 +1,7 @@
 import permision from "@/common/permission.js"
 let md5 = require('js-md5');
 let drmking = {
-	md5(obj){
+	md5(obj) {
 		return md5(obj);
 	},
 	isJsonString: function(str) {
@@ -30,7 +30,7 @@ let drmking = {
 	},
 	// 判断是否为空
 	isEmpty: function(str) {
-		if (typeof str == "undefined" || str == null || str == "") {
+		if (typeof str == "undefined" || str == null || str == "" || str == 'undefined') {
 			return true;
 		} else {
 			return false;
