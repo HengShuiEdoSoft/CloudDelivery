@@ -102,26 +102,26 @@ export default {
 				new_phone: that.new_phone,
 				vercode: that.vercode
 			};
-			this.$uniFly
+			that.$uniFly
 				.post({
 					url: '/api/user/edituserphone',
 					params: data
 				})
 				.then(function(res) {
 					if (res.code == 0) {
-						this.login(res.data);
+						that.login(res.data);
 						uni.showToast({
 							title: '变更成功',
 							icon: 'none',
 							mask: true,
 							duration: 3000
 						});
-						let userinfo = service.getUsers()[0];
-						userinfo.phone = that.new_phone;
-						service.addUser(userinfo);
-						uni.navigateBack({
-							delta: 3
-						});
+						service.addUser(res.data);
+						setTimeout(function() {
+							uni.navigateBack({
+								delta: 3
+							});
+						}, 3000);
 					} else {
 						uni.showToast({
 							title: res.msg,
