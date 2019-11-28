@@ -184,7 +184,7 @@
 	}
 
 	.dui-varcode-btn {
-		background-color: transparent;
+		background-color: transparent !important;
 		color: #FF5723;
 		font-size: 28upx;
 		display: flex;
