@@ -5,7 +5,7 @@
 				<view class="dui-basic-list-item__container" @tap="amap_choice">
 					<view class="dui-basic-list-item__icon"><text class="iconfont icon-weizhi"></text></view>
 					<view class="dui-basic-list-item__content">
-						<view class="dui-basic-list-item__content-title"><input type="text" :value="address" :disabled="true" placeholder="请输入地址(必填)" /></view>
+						<view class="dui-basic-list-item__content-title"><input type="text" @input="setAddress" :value="address" :disabled="true" placeholder="请输入地址" /></view>
 					</view>
 					<view class="dui-basic-list-item__extra"><text class="iconfont icon-gengduo-shuxiang"></text></view>
 				</view>
@@ -14,7 +14,7 @@
 				<view class="dui-basic-list-item__container">
 					<view class="dui-basic-list-item__icon"><text class="iconfont icon-weizhi"></text></view>
 					<view class="dui-basic-list-item__content">
-						<view class="dui-basic-list-item__content-title"><input type="text" :value="house" maxlength="20" placeholder="楼层及门牌号(选填)" /></view>
+						<view class="dui-basic-list-item__content-title"><input type="text" @input="setHouse" :value="house" maxlength="20" placeholder="楼层及门牌号" /></view>
 					</view>
 				</view>
 			</view>
@@ -23,13 +23,13 @@
 					<view class="dui-basic-list-item__container">
 						<view class="dui-basic-list-item__icon"><text class="iconfont  icon--kefu"></text></view>
 						<view class="dui-basic-list-item__content">
-							<view class="dui-basic-list-item__content-title"><input type="text" :value="name" maxlength="10" placeholder="联系人(选填)" /></view>
+							<view class="dui-basic-list-item__content-title"><input type="text" @input="setName" :value="name" maxlength="10" placeholder="联系人" /></view>
 						</view>
 					</view>
 					<view class="dui-basic-list-item__container">
 						<view class="dui-basic-list-item__icon"><text class="iconfont icon-dianhua"></text></view>
 						<view class="dui-basic-list-item__content">
-							<view class="dui-basic-list-item__content-title"><input type="text" :value="address_phone" maxlength="11" placeholder="联系电话(选填)" /></view>
+							<view class="dui-basic-list-item__content-title"><input type="text" @input="setPhone" :value="address_phone" maxlength="11" placeholder="手机号" /></view>
 						</view>
 					</view>
 				</view>
@@ -45,15 +45,15 @@ export default {
 			address: '',
 			house: '',
 			name: '',
-			lon:'',
-			lat:'',
+			lon: '',
+			lat: '',
 			address_phone: ''
 		};
 	},
 	onLoad() {
 		let that = this;
 		this.$fire.on('setAddress', function(data) {
-			that.address = data.city + data.city + data.city + data.localtion;
+			that.address = data.city + data.localtion;
 			that.house = data.address;
 			that.lon = data.longitude;
 			that.lat = data.latitude;
@@ -68,6 +68,18 @@ export default {
 				url: url
 			});
 		},
+		setName(e) {
+			this.name = e.detail.value;
+		},
+		setAddress(e) {
+			this.address = e.detail.value;
+		},
+		setHouse(e) {
+			this.house = e.detail.value;
+		},
+		setPhone(e) {
+			this.address_phone = e.detail.value;
+		},
 		addAddress() {
 			const data = {
 				name: this.name,
@@ -75,8 +87,29 @@ export default {
 				address: this.address,
 				house: this.house,
 				lon: this.lon,
-				lat: this.lat,
+				lat: this.lat
 			};
+			if (this.$drmking.isEmpty(data.house)) {
+				uni.showToast({
+					icon: 'none',
+					title: '门牌楼层号不能为空！'
+				});
+				return;
+			}
+			if (this.$drmking.isEmpty(data.name)) {
+				uni.showToast({
+					icon: 'none',
+					title: '收货人不能为空！'
+				});
+				return;
+			}			
+			if (!this.$drmking.isPhone(data.address_phone)) {
+				uni.showToast({
+					icon: 'none',
+					title: '手机号不能为空！'
+				});
+				return;
+			}
 			this.$uniFly
 				.post({
 					url: '/api/address/addAddress',
@@ -84,7 +117,7 @@ export default {
 				})
 				.then(function(res) {
 					uni.hideNavigationBarLoading();
-					if (res.code === 0) {
+					if (res.code == 0) {
 						uni.showToast({
 							title: '添加成功',
 							icon: 'success',
