@@ -250,7 +250,6 @@ export default {
 					flag = true;
 				}
 			}
-			console.log(that.order.trip);
 			if (flag) {
 				if (destination == '') {
 					destination = waypoints.slice(waypoints.length - 1, 1)[0];

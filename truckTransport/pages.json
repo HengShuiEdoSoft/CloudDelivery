@@ -45,11 +45,6 @@
 				"navigationBarTitleText": "小面包车详情页"
 			}
 		}, {
-			"path": "pages/map/map",
-			"style": {
-				"navigationBarTitleText": "地图"
-			}
-		}, {
 			"path": "pages/orderlist/orderlist",
 			"style": {
 				"navigationBarTitleText": "订单列表",
@@ -395,7 +390,7 @@
 			"style": {
 				"navigationBarTitleText": "客服中心",
 				"navigationBarBackgroundColor": "#434456",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "#fff"
 			}
 		},
 		{
@@ -543,6 +538,7 @@
 				"titleNView": false
 			}
 		}, {
+<<<<<<< HEAD
 			"path": "pages/placeorder/sending_driver",
 			"style": {
 				"navigationBarTitleText": "发送给附近司机",
@@ -558,12 +554,20 @@
 					}
 				}
 			}
+=======
+			"path": "pages/login/wxminlogin",
+			"style": {}
+>>>>>>> 8d0ab634e5aad878337a51bb38ee3ea683f676b4
 		}
-	],
+	    ,{
+            "path" : "pages/userinfo/bindphone",
+            "style" : {}
+        }
+    ],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarBackgroundColor": "white",
+		"navigationBarBackgroundColor": "#fff",
 		"backgroundColor": "#f3f4f5"
 	}
 }

@@ -222,10 +222,11 @@ const store = new Vuex.Store({
 				state.forcedLogin = false;
 				state.hasLogin = false;
 				state.isCompany = false;
-			} else {
+			} else {				
 				state.hasLogin = true;
 				state.user = user;
 				drmking.cacheData('USER', user, 2592000);
+				drmking.bindphone(user);
 			}
 		},
 		logout(state) {
