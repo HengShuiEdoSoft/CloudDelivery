@@ -552,24 +552,25 @@
 						}]
 					}
 				}
-			},
-			{
-				"path": "pages/login/wxminlogin",
-				"style": {
-					"navigationBarTitleText": "微信授权登录",
-				}
-			},
-			{
-				"path": "pages/userinfo/bindphone",
-				"style": {
-					"navigationBarTitleText": "绑定手机号设置密码",
-				}
 			}
-		],
-
-		"globalStyle": {
-			"navigationBarTextStyle": "black",
-			"navigationBarBackgroundColor": "#fff",
-			"backgroundColor": "#f3f4f5"
+		},
+		{
+			"path": "pages/login/wxminlogin",
+			"style": {
+				"navigationBarTitleText": "微信授权登录"
+			}
+		},
+		{
+			"path": "pages/userinfo/bindphone",
+			"style": {
+				"navigationBarTitleText": "绑定手机号设置密码"
+			}
 		}
+	],
+
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#fff",
+		"backgroundColor": "#f3f4f5"
 	}
+}
