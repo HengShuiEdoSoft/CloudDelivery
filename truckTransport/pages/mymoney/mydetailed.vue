@@ -112,6 +112,7 @@
 		   this.$set(this.reload, this.current, true);
 		   this.$set(this.page, this.current, 1);
 		   this.getList();
+		   uni.stopPullDownRefresh();
 		},
 		onReachBottom:function(){
 			this.getList();
