@@ -57,7 +57,8 @@
     "pages/viplevel/up-strategy",
     "pages/viplevel/get-value",
     "pages/amap/amap_choice/amap_choice",
-    "pages/amap/search_address_list/search_address_list"
+    "pages/amap/search_address_list/search_address_list",
+    "pages/placeorder/sending_driver"
   ],
   "window": {
     "navigationBarTextStyle": "black",
