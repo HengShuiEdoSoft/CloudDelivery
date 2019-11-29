@@ -390,7 +390,7 @@
 			"style": {
 				"navigationBarTitleText": "客服中心",
 				"navigationBarBackgroundColor": "#434456",
-				"navigationBarTextStyle": "#fff"
+				"navigationBarTextStyle":"white"
 			}
 		},
 		{
