@@ -538,7 +538,6 @@
 				"titleNView": false
 			}
 		}, {
-<<<<<<< HEAD
 			"path": "pages/placeorder/sending_driver",
 			"style": {
 				"navigationBarTitleText": "发送给附近司机",
@@ -553,21 +552,24 @@
 						}]
 					}
 				}
+			},
+			{
+				"path": "pages/login/wxminlogin",
+				"style": {
+					"navigationBarTitleText": "微信授权登录",
+				}
+			},
+			{
+				"path": "pages/userinfo/bindphone",
+				"style": {
+					"navigationBarTitleText": "绑定手机号设置密码",
+				}
 			}
-=======
-			"path": "pages/login/wxminlogin",
-			"style": {}
->>>>>>> 8d0ab634e5aad878337a51bb38ee3ea683f676b4
-		}
-	    ,{
-            "path" : "pages/userinfo/bindphone",
-            "style" : {}
-        }
-    ],
+		],
 
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarBackgroundColor": "#fff",
-		"backgroundColor": "#f3f4f5"
+		"globalStyle": {
+			"navigationBarTextStyle": "black",
+			"navigationBarBackgroundColor": "#fff",
+			"backgroundColor": "#f3f4f5"
+		}
 	}
-}
