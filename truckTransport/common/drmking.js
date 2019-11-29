@@ -89,6 +89,24 @@ let drmking = {
 			return true;
 		}
 	},
+	// 绑定手机号
+	bindphone(user) {
+		if (this.isEmpty(user)) {
+			uni.reLaunch({
+				url: '/pages/index/index.vue'
+			});
+		} else {
+			if (this.isEmpty(user.phone)) {
+				uni.navigateTo({
+					url: '/pages/userinfo/bindphone.vue'
+				});
+			} else {
+				uni.reLaunch({
+					url: '/pages/index/index.vue'
+				});
+			}
+		}
+	},
 	// 获取里程价格
 	distancePrice: function(price_json = [], distance = 0) {
 		distance = parseInt(distance);
@@ -302,12 +320,12 @@ let drmking = {
 	},
 
 	// 获取微信小程序openid
-	getWxOpenId() {
+	getWxOpenId(vue, iv, encryptedData) {
 		return new Promise((resolve, reject) => {
 			uni.login({
 				success: res => {
 					if (res.code) {
-						that.$uniFly
+						vue.$uniFly
 							.post({
 								url: '/api/user/getopenid',
 								params: {
@@ -316,7 +334,26 @@ let drmking = {
 							})
 							.then(res => {
 								if (res.code == 0) {
-									resolve(res.data);
+									let openid = res.data;
+									vue.$uniFly
+										.post({
+											url: '/api/user/getunionid',
+											params: {
+												openid: openid,
+												iv: iv,
+												encryptedData: encryptedData
+											}
+										})
+										.then(res => {
+											if (res.code == 0) {
+												resolve(res.data);
+											} else {
+												reject(res.msg);
+											}
+										})
+										.catch(err => {
+											reject('用户授权失败');
+										});
 								} else {
 									reject(res.msg);
 								}
@@ -324,6 +361,8 @@ let drmking = {
 							.catch(err => {
 								reject('服务器请求出错');
 							});
+					} else {
+						reject('授权登录失败');
 					}
 				},
 				fail: e => {

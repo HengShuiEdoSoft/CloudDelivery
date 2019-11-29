@@ -541,7 +541,11 @@
 			"path": "pages/login/wxminlogin",
 			"style": {}
 		}
-	],
+	    ,{
+            "path" : "pages/userinfo/bindphone",
+            "style" : {}
+        }
+    ],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
