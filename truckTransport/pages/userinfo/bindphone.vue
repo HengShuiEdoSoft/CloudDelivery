@@ -14,7 +14,7 @@
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-dianhua"></text>
-				<m-input type="password" focus clearable v-model="pwd" placeholder="请设置登录密码"></m-input>
+				<m-input type="password" clearable v-model="pwd" placeholder="请设置登录密码"></m-input>
 			</view>
 		</view>
 		<view class="btn-row"><button class="primary" type="primary" @tap="bindphone()">确认</button></view>
@@ -30,7 +30,7 @@ export default {
 		mInput
 	},
 	onLoad() {
-		console.log(this.user);
+
 	},
 	data() {
 		return {

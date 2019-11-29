@@ -92,8 +92,8 @@ let drmking = {
 	// 绑定手机号
 	bindphone(user) {
 		if (this.isEmpty(user)) {
-			uni.reLaunch({
-				url: '/pages/index/index'
+			uni.navigateTo({
+				url: '/pages/login/login'
 			});
 		} else {
 			if (this.isEmpty(user.phone)) {
@@ -106,7 +106,7 @@ let drmking = {
 				});
 			} else {
 				uni.reLaunch({
-					url: '/pages/login/login'
+					url: '/pages/index/index'
 				});
 			}
 		}

@@ -163,7 +163,6 @@ export default {
 									if (res.code == 0) {
 										service.addUser(res.data);
 										that.toMain(res.data);
-										// console.log(123);
 									} else {
 										uni.showModal({
 											content: res.msg,
@@ -175,7 +174,7 @@ export default {
 									console.error(JSON.stringify(error));
 									uni.hideNavigationBarLoading();
 									uni.showModal({
-										content: error,
+										content: JSON.stringify(error),
 										showCancel: false
 									});
 								});
@@ -203,7 +202,7 @@ export default {
 			// }
 		}
 	},
-	onReady() {
+	onLoad() {
 		this.initPosition();
 		this.initProvider();
 	}
