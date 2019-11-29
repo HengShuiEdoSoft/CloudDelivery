@@ -3,7 +3,7 @@
 		<view class="input-group dui-input-group-mg">
 			<view class="input-row border">
 				<text class="title iconfont icon-dianhua"></text>
-				<m-input type="text" focus clearable v-model="phone" placeholder="请输入要绑定的手机号码"></m-input>
+				<m-input type="text" focus clearable v-model="bind_phone" placeholder="请输入要绑定的手机号码"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-Raidobox-xuanzhong"></text>
@@ -11,6 +11,10 @@
 				<button class="dui-varcode-btn" type="primary" @tap="numberst" :disabled="countdown < 60 && countdown >= 1">
 					{{ countdown < 60 && countdown >= 1 ? `${countdown}秒` : '获取验证码' }}
 				</button>
+			</view>
+			<view class="input-row border">
+				<text class="title iconfont icon-dianhua"></text>
+				<m-input type="password" focus clearable v-model="pwd" placeholder="请设置登录密码"></m-input>
 			</view>
 		</view>
 		<view class="btn-row"><button class="primary" type="primary" @tap="bindphone()">确认</button></view>
@@ -25,18 +29,22 @@ export default {
 	components: {
 		mInput
 	},
+	onLoad() {
+		console.log(this.user);
+	},
 	data() {
 		return {
-			phone: '',
+			bind_phone: '',
+			pwd: '',
 			vercode: '',
 			countdown: 60
 		};
 	},
+	computed: mapState(['user']),
 	methods: {
 		...mapMutations(['login']),
-		computed: mapState(['user']),
 		numberst(e) {
-			if (!this.$drmking.isPhone(this.phone)) {
+			if (!this.$drmking.isPhone(this.bind_phone)) {
 				uni.showToast({
 					icon: 'none',
 					title: '手机号码格式不正确！',
@@ -45,9 +53,8 @@ export default {
 				return false;
 			}
 			const data = {
-				phone: this.phone
+				phone: this.bind_phone
 			};
-
 			this.$uniFly
 				.post({
 					url: '/api/common/sendcode',
@@ -90,7 +97,7 @@ export default {
 		},
 		bindphone() {
 			let that = this;
-			if (!this.$drmking.isPhone(that.phone)) {
+			if (!this.$drmking.isPhone(that.bind_phone)) {
 				uni.showToast({
 					icon: 'none',
 					title: '手机号码格式不正确！',
@@ -98,11 +105,20 @@ export default {
 				});
 				return false;
 			}
+			if (this.$drmking.isEmpty(that.pwd)) {
+				uni.showToast({
+					icon: 'none',
+					title: '请设置登录密码！',
+					showCancel: false
+				});
+				return false;
+			}
 			const data = {
-				phone: that.phone,
+				bind_phone: that.bind_phone,
+				pwd: that.pwd,
 				vercode: that.vercode,
 				user_id: that.user.user_id,
-				unionId: that.user.unionId
+				unionId: that.user.wxapp_id
 			};
 			that.$uniFly
 				.post({
@@ -117,14 +133,8 @@ export default {
 							mask: true,
 							duration: 3000
 						});
-
 						that.login(res.data);
 						service.addUser(res.data);
-						setTimeout(function() {
-							uni.navigateBack({
-								delta: 3
-							});
-						}, 3000);
 					} else {
 						uni.showToast({
 							title: res.msg,

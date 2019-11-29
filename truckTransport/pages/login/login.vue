@@ -163,6 +163,7 @@ export default {
 									if (res.code == 0) {
 										service.addUser(res.data);
 										that.toMain(res.data);
+										// console.log(123);
 									} else {
 										uni.showModal({
 											content: res.msg,
@@ -191,15 +192,15 @@ export default {
 		},
 		toMain(userInfo) {
 			this.login(userInfo);
-			if (this.forcedLogin) {
-				uni.reLaunch({
-					url: '../index/index'
-				});
-			} else {
-				uni.navigateTo({
-					url: '../index/index'
-				});
-			}
+			// if (this.forcedLogin) {
+			// 	uni.reLaunch({
+			// 		url: '../index/index'
+			// 	});
+			// } else {
+			// 	uni.navigateTo({
+			// 		url: '../index/index'
+			// 	});
+			// }
 		}
 	},
 	onReady() {

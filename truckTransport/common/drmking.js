@@ -93,16 +93,20 @@ let drmking = {
 	bindphone(user) {
 		if (this.isEmpty(user)) {
 			uni.reLaunch({
-				url: '/pages/index/index.vue'
+				url: '/pages/index/index'
 			});
 		} else {
 			if (this.isEmpty(user.phone)) {
 				uni.navigateTo({
-					url: '/pages/userinfo/bindphone.vue'
+					url: '/pages/userinfo/bindphone'
+				});
+			} else if (this.isEmpty(user.token)) {
+				uni.navigateTo({
+					url: '/pages/userinfo/bindphone'
 				});
 			} else {
 				uni.reLaunch({
-					url: '/pages/index/index.vue'
+					url: '/pages/login/login'
 				});
 			}
 		}
