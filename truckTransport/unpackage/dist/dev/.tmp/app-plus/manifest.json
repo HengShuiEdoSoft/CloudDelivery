@@ -4,8 +4,8 @@
     "iPhone",
     "iPad"
   ],
-  "id": "__UNI__ED95F99",
-  "name": "truckTransport",
+  "id": "__UNI__6BB9535",
+  "name": "hd.lahuoerwang",
   "version": {
     "name": "1.0.0",
     "code": "100"
@@ -21,8 +21,8 @@
     "Maps": {
       "coordType": "gcj02"
     },
-    "OAuth": {},
     "Payment": {},
+    "OAuth": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -48,7 +48,7 @@
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "dark",
-      "background": "white"
+      "background": "#fff"
     },
     "usingComponents": true,
     "distribute": {
@@ -126,6 +126,13 @@
         "payment": {
           "alipay": {}
         },
+        "oauth": {
+          "weixin": {
+            "appid": "wx5083fd76d8138b05",
+            "appsecret": "98f9d4116806db4d487ee3b229591cda",
+            "UniversalLinks": ""
+          }
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
@@ -135,10 +142,13 @@
     },
     "allowsInlineMediaPlayback": true,
     "uni-app": {
-      "compilerVersion": "2.3.7",
+      "compilerVersion": "2.4.2",
       "control": "v8",
-      "nvueCompiler": "weex",
-      "renderer": "auto"
+      "nvueCompiler": "uni-app",
+      "renderer": "auto",
+      "nvue": {
+        "flex-direction": "column"
+      }
     }
   }
 }

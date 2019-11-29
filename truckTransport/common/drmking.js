@@ -56,6 +56,7 @@ let drmking = {
 	S4: function() {
 		return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 	},
+	// guid生成
 	guid: function() {
 		var that = this;
 		return (that.S4() + that.S4() + that.S4() + that.S4() + that.S4() + that.S4() + that.S4() + that.S4());
@@ -298,6 +299,38 @@ let drmking = {
 	getDefaultCity: function() {
 		let default_city_key = 'default_city';
 		return this.cacheData(default_city_key);
+	},
+
+	// 获取微信小程序openid
+	getWxOpenId() {
+		return new Promise((resolve, reject) => {
+			uni.login({
+				success: res => {
+					if (res.code) {
+						that.$uniFly
+							.post({
+								url: '/api/user/getopenid',
+								params: {
+									code: res.code
+								}
+							})
+							.then(res => {
+								if (res.code == 0) {
+									resolve(res.data);
+								} else {
+									reject(res.msg);
+								}
+							})
+							.catch(err => {
+								reject('服务器请求出错');
+							});
+					}
+				},
+				fail: e => {
+					reject('授权失败');
+				}
+			});
+		});
 	},
 
 	// 经纬度转城市
