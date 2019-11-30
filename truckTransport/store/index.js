@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import drmking from '@/common/drmking.js';
 import uniFly from 'unifly';
 // 设置基础url
-uniFly.baseUrl = 'https://hll.hda365.com';
+uniFly.baseUrl = 'https://www.lh5256.com';
 // 设置请求超时
 uniFly.timeOut = 20000
 // 错误自动尝试次数
