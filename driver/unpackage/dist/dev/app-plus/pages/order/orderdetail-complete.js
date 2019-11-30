@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"icon-dianhua { margin-right: ",[0,10],"; }\n.",[1],"ui-tips { padding: ",[0,20]," 0; font-size: 12px; color: #999; }\n.",[1],"ui-tips wx-navigator { display: inline; }\n.",[1],"dui-orderdetail-confirm-btn1 { background-color: #DD524D; border-radius: 0; }\n.",[1],"dui-orderdetail-confirm-btn1 wx-text { display: block; font-size: ",[0,24],"; }\n",],undefined,{path:"./pages/order/orderdetail-complete.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/order/orderdetail-complete.wxml') } }));

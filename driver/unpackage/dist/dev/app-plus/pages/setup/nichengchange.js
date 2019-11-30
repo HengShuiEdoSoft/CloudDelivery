@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"dui-coupon-input { margin-top:",[0,20],"; background-color: #fff; padding: ",[0,35],"; }\n",],undefined,{path:"./pages/setup/nichengchange.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/setup/nichengchange.wxml') } }));

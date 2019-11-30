@@ -1,1 +1,0 @@
-<view class="content"><view class="dui-msgdetail-title">{{''+list.title+''}}</view><view class="dui-msgdetail-date">2019年10月10日 10:00</view><view class="ui-divide-line"></view><view class="dui-msgdetail-body">{{''+list.msg+''}}</view></view>

@@ -1,2 +1,0 @@
-setCssToHead(["wx-scroll-view { height: 100%; padding-bottom: ",[0,40],"; }\n",],undefined,{path:"./pages/user/user.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/user/user.wxml') } }));

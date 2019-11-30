@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "抢单大厅",
-  "usingComponents": {
-    "uni-drawer": "/components/drawer/drawer"
-  }
-}

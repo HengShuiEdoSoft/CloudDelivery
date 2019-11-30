@@ -1,8 +1,0 @@
-
-scroll-view {
-	height: 100%;
-}
-.dui-maincolor {
-	color: #FF5723;
-}
-

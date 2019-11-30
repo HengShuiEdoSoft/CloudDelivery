@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"scroll-container { height: 100%; padding-bottom: 20%; }\n.",[1],"dui-basic-list-item__container { padding: ",[0,32]," ",[0,30],"; }\n.",[1],"dui-reduce { padding-top: ",[0,16],"; padding-bottom: ",[0,16],"; }\n.",[1],"dui-basic-list-item__content-note { font-size: ",[0,24],"; margin-top: 0; }\n.",[1],"dui-basic-list-item__extra { width: auto; }\n",],undefined,{path:"./pages/setup/moresetup.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/setup/moresetup.wxml') } }));
