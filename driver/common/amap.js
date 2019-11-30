@@ -28,8 +28,9 @@ class Amap {
 	/**
 	 * 获取地理描述数据
 	 */
-	static getRegeo() {
+	static getRegeo(location = '') {
 		return new Promise((resolve, reject) => myAmapFun.getRegeo({
+			location: location,
 			success: resolve,
 			fail: reject
 		}));

@@ -95,6 +95,106 @@ import socket from 'plus-websocket'
 Object.assign(uni, socket);
 // #endif
 
+//避免ws重复连接
+let ws_lock_reconnect = false;
+let ws_url = 'wss://www.lh5256.com:9501/';
+// 创建连接
+function createWs() {
+	let url = ws_url;
+	let userinfo = drmking.cacheData('USER');
+	if (!drmking.isEmpty(userinfo)) {
+		url += '?user_id=' + userinfo.user_id + '&token=' + userinfo.token;
+		uni.connectSocket({
+			url: url,
+			success: function() {
+				console.log('webscoket 创建成功!');
+				initEventHandle(url);
+			},
+			fail: function(err) {
+				console.log(err);
+				reconnectWs(url);
+			}
+		});
+	} else {
+		setTimeout(function(){
+			console.log('用户未登录!');
+			createWs();
+		},2000);
+	}
+}
+// 断线重连
+function reconnectWs(url) {
+	if (ws_lock_reconnect) {
+		return;
+	}
+	ws_lock_reconnect = true;
+	setTimeout(function() {
+		//没连接上会一直重连，设置延迟避免请求过多
+		createWs(url);
+		ws_lock_reconnect = false;
+	}, 2000);
+}
+//心跳检测
+let heartCheck = {
+	timeout: 59000, //59秒钟发一次心跳
+	timeoutObj: null,
+	serverTimeoutObj: null,
+	reset: function() {
+		clearTimeout(this.timeoutObj);
+		clearTimeout(this.serverTimeoutObj);
+		return this;
+	},
+	start: function() {
+		let self = this;
+		this.timeoutObj = setTimeout(function() {
+			//这里发送一个心跳，后端收到后，返回一个心跳消息，
+			//onmessage拿到返回的心跳就说明连接正常
+			uni.sendSocketMessage({
+				data: 'ping'
+			});
+			self.serverTimeoutObj = setTimeout(function() {
+				//如果超过一定时间还没重置，说明后端主动断开了
+				//如果onclose会执行reconnect，我们执行ws.close()就行了.如果直接执行reconnect 会触发onclose导致重连两次
+				uni.closeSocket();
+			}, self.timeout);
+		}, this.timeout)
+	}
+}
+
+
+// 初始化操作
+function initEventHandle(url) {
+	// 监听WebSocket连接打开事件
+	uni.onSocketOpen(function(res) {
+		//心跳检测重置
+		heartCheck.reset().start();
+		console.log(res, 'ws连接成功!' + new Date().toUTCString());
+	});
+	// 监听WebSocket错误
+	uni.onSocketError(function(res) {
+		reconnectWs(url);
+		console.log(res, 'ws连接错误!' + new Date().toUTCString());
+	});
+	// 监听WebSocket关闭
+	uni.onSocketClose(function(res) {
+		console.log(res, 'ws已关闭！');
+		reconnectWs(url);
+	});
+	// 监听WebSocket接受到服务器的消息事件
+	uni.onSocketMessage(function(res) {
+		console.log('ws收到消息啦：' + res.data);
+		//如果获取到消息，心跳检测重置
+		heartCheck.reset().start();
+		//拿到任何消息都说明当前连接是正常的
+		parseData(JSON.parse(res.data));
+	});
+}
+// 解析服务器返回数据
+function parseData(data) {
+	console.log(data);
+}
+createWs();
+
 App.mpType = 'app'
 new Vue({
 	store,
