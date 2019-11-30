@@ -2,20 +2,32 @@
 	<view class="content">
 		<view class="input-group">
 			<view class="input-row border">
-				<text class="title">车牌号</text>
-				<m-input type="text" focus clearable v-model="business_title" placeholder="请输入企业名称"></m-input>
+				<text class="title">车型</text>
+				<m-input type="text" focus clearable v-model="business_title" placeholder="请选择车型"></m-input>
 			</view>
 			<view class="input-row border">
-				<text class="title">车辆照片</text>
+				<text class="title">银行卡号</text>
+				<m-input type="text" focus clearable v-model="business_title" placeholder="请输入银行卡号"></m-input>
+			</view>
+			<view class="input-row border">
+				<text class="title">银行卡照片</text>
 				<view class="dui-bosiness-photos"><image :src="photos[0]" @click="clk(0)"></image></view>
 			</view>
 			<view class="input-row border">
-				<text class="title">身份证照片</text>
+				<text class="title">车牌号</text>
+				<m-input type="text" focus clearable v-model="business_title" placeholder="请输入车牌号"></m-input>
+			</view>
+			<view class="input-row border">
+				<text class="title">车辆照片</text>
 				<view class="dui-bosiness-photos"><image :src="photos[1]" @click="clk(1)"></image></view>
 			</view>
 			<view class="input-row border">
-				<text class="title">驾驶证照片</text>
+				<text class="title">身份证照片</text>
 				<view class="dui-bosiness-photos"><image :src="photos[2]" @click="clk(2)"></image></view>
+			</view>
+			<view class="input-row border">
+				<text class="title">驾驶证照片</text>
+				<view class="dui-bosiness-photos"><image :src="photos[3]" @click="clk(3)"></image></view>
 			</view>
 		</view>
 		<view class="btn-row"><button class="primary" type="primary" @tap="submitRealInfo()">保存</button></view>
@@ -34,11 +46,15 @@ export default {
 	},
 	data() {
 		return {
-			business_title: '',
-			business_number: '',
+			car_id: '',
+			bank_card_num: '',
+			car_number:'',
 			countdown: 60,
-			business_photos: '',
-			photos: ['../../static/img/addimg.png']
+			bank_card_photo: '',
+			car_photos:'',
+			driver_photos:'',
+			driving_photos:'',
+			photos: ['../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png']
 		};
 	},
 	methods: {
@@ -46,14 +62,53 @@ export default {
 		submitRealInfo() {
 			let that = this;
 			const data = {
-				business_title: that.business_title,
-				business_photos: that.business_photos,
-				business_number: that.business_number
+				car_id: that.car_id,
+				bank_card_num: that.bank_card_num,
+				bank_card_photo: that.business_number,
+				car_number:this.car_number,
+				car_photos:this.car_photos,
+				driver_photos:this.driver_photos,
+				driving_photos:this.driving_photos
 			};
-			if (that.$drmking.isEmpty(data.business_title)) {
+			if (that.$drmking.isEmpty(data.bank_card_num)) {
+				uni.showToast({
+					icon: 'none',
+					title: '银行卡号不能为空!'
+				});
+				return;
+			}
+			if (that.$drmking.isEmpty(data.bank_card_photo)) {
+				uni.showToast({
+					icon: 'none',
+					title: '银行卡图片不能为空!'
+				});
+				return;
+			}
+			if (that.$drmking.isEmpty(data.car_number)) {
 				uni.showToast({
 					icon: 'none',
 					title: '车牌号不能为空!'
+				});
+				return;
+			}
+			if (that.$drmking.isEmpty(data.car_photos)) {
+				uni.showToast({
+					icon: 'none',
+					title: '车辆图片不能为空!'
+				});
+				return;
+			}
+			if (that.$drmking.isEmpty(data.driver_photos)) {
+				uni.showToast({
+					icon: 'none',
+					title: '驾驶证图片不能为空!'
+				});
+				return;
+			}
+			if (that.$drmking.isEmpty(data.driving_photos)) {
+				uni.showToast({
+					icon: 'none',
+					title: '行驶证图片不能为空!'
 				});
 				return;
 			}
@@ -112,7 +167,10 @@ export default {
 					if (res.statusCode == 200) {
 						let data = JSON.parse(res.data);
 						if (data.code == 0) {
-							that.business_photos = data.data;
+							that.business_number=data.data[0];
+							that.car_photos=data.data[1];
+							that.driver_photos=data.data[2];
+							that.driving_photos=data.data[3];
 						} else {
 							uni.showToast({
 								icon: 'none',
