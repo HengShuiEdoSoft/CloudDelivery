@@ -825,6 +825,96 @@ textarea {
   text-align: center;
   border-radius: 10rpx;
 }
+/*消息中心*/
+.dui-msgcenter-list {
+  background-color: #fff;
+}
+.dui-msgcenter-item {
+  width: 100%;
+  padding: 20rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 50rpx;
+}
+.dui-msgcenter-item-box:after {
+  content: '';
+  display: block;
+  height: 1px;
+  background-color: #e2e2e2;
+  border: none;
+  -webkit-transform: scaleY(0.5);
+      -ms-transform: scaleY(0.5);
+          transform: scaleY(0.5);
+}
+.dui-msgcenter-logo {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+}
+.dui-msgcenter-logo > image {
+  width: 100%;
+  height: 100%;
+}
+.dui-msgcenter-flex-column {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.dui-msgcenter-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 28rpx;
+}
+.dui-msgcenter-date {
+  color: #797979;
+}
+.dui-msgcenter-content {
+  width: 250px;
+  font-size: 13px;
+  color: #797979;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  white-space: nowrap;
+}
 @font-face {
   font-family: 'iconfont';  /* project id 1436070 */
   src: url('https://at.alicdn.com/t/font_1436070_bp6qkt2uxc.eot');

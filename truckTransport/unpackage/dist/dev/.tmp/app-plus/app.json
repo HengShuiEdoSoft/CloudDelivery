@@ -58,6 +58,7 @@
     "pages/amap/amap_choice/amap_choice",
     "pages/amap/search_address_list/search_address_list",
     "pages/placeorder/sending_driver",
+    "pages/placeorder/loaded",
     "pages/login/wxminlogin",
     "pages/userinfo/bindphone"
   ],

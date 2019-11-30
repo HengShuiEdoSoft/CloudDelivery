@@ -41,7 +41,7 @@
 							<text class="iconfont icon-shezhi"></text>
 							<text>更多设置</text>
 						</view>
-						<view hover-class="ui-list-item-hover" @tap="navTo('/pages/placeorder/sending_driver')">
+						<view hover-class="ui-list-item-hover" @tap="navTo('/pages/placeorder/loaded')">
 							<text class="iconfont icon-shezhi"></text>
 							<text>shit</text>
 						</view>

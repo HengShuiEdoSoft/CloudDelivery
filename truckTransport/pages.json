@@ -390,7 +390,7 @@
 			"style": {
 				"navigationBarTitleText": "客服中心",
 				"navigationBarBackgroundColor": "#434456",
-				"navigationBarTextStyle":"white"
+				"navigationBarTextStyle": "white"
 			}
 		},
 		{
@@ -547,6 +547,24 @@
 						"buttons": [{
 							"text": "取消订单  ",
 							"fontSize": "14",
+							"float": "right",
+							"color": "#424456"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/placeorder/loaded",
+			"style": {
+				"navigationBarTitleText": "待装货",
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue8c4",
+							"fontSrc": "/static/font/iconfont.ttf",
+							"fontSize": "27",
 							"float": "right",
 							"color": "#424456"
 						}]
