@@ -92,6 +92,12 @@
 			}
 		},
 		{
+			"path": "pages/order/order",
+			"style": {
+				"navigationBarTitleText": "车辆信息"
+			}
+		},
+		{
 			"path": "pages/servicecenter/servicecenter",
 			"style": {
 				"navigationBarTitleText": "客服中心"

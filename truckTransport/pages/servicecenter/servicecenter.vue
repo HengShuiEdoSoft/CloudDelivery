@@ -91,7 +91,7 @@ export default {
 	methods: {
 		call: function(e) {
 			uni.makePhoneCall({
-				phoneNumber: '010-8888' //仅为示例
+				phoneNumber: this.tel //仅为示例
 			});
 		},
 		getList: function() {
