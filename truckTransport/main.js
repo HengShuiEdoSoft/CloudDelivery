@@ -14,7 +14,7 @@ uniFly['retry_number'] = 3;
 //自定义请求拦截
 uniFly.requestInterceptors.success = function(request) {
 	let userinfo = drmking.cacheData('USER');
-	if (userinfo) {
+	if (!drmking.isEmpty(userinfo)) {
 		request.body['phone'] = userinfo.phone;
 		request.body['token'] = userinfo.token;
 	}

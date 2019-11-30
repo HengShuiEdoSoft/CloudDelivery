@@ -6,7 +6,7 @@
 				<view class="dui-gap"></view>
 				<view class="dui-basic-list">
 					<block v-for="(item,index) in lists" :key="index">
-						<navigator :url="'servicecenter-detail?id=' + item.scode">
+						<navigator :url="'servicecenter-detail?scode=' + item.scode">
 							<view class="dui-basic-list-item">
 								<view class="dui-basic-list-item__container">
 									<view class="dui-basic-list-item__content">
@@ -26,14 +26,16 @@
 			</view>
 		</scroll-view>
 		<view class="dui-online-service">
-			<image src="../../static/img/call.jpg" mode=""></image>
+			<image src="../../static/img/call.jpg" @tap="call"></image>
 		</view>
 	</view>
 </template>
 <script>
-	export default {
+import { mapState } from 'vuex';
+export default {
+	computed: mapState(['sysconfig']),
 		onNavigationBarButtonTap: function(e) {
-			var index = e.index;
+			let index = e.index;
 			if (index === 0) {
 				uni.reLaunch({
 					url: "/pages/index/index"
@@ -45,29 +47,25 @@
 				loadingText:'',
 				empty:false,
 				page:1,
-				sname:0,
+				sname:'',
 				reload:true,
 				has_next:true,
-				lists: [{
-					"name": "哪里可以下单叫车"
-				}, {
-					"name": "如何下单用车?"
-				}, {
-					"name": "如何叫例如尾板,开顶等特殊规格的车辆?"
-				}, {
-					"name": "..."
-				}]
+				lists: []
 			}
 		},
 		onLoad(options) {
-			this.sname=options.id;
+			this.sname=options.sname;
 			this.getList();
+			uni.setNavigationBarTitle({
+				title:options.title
+			});
 		},
 		onPullDownRefresh:function(){
 			this.has_next=true;
 			this.reload=true;
 			this.page=1;
 			this.getList();
+			uni.stopPullDownRefresh();
 		},
 		onReachBottom:function(){
 			let _self=this;
@@ -80,13 +78,18 @@
 			}, 1000);
 		},
 		methods: {
+			call: function(e) {
+				uni.makePhoneCall({
+					phoneNumber: this.sysconfig.service_tel
+				});
+			},
 			getList : function(){
 				let _self=this;
 				if (_self.has_next) {
 					uni.showNavigationBarLoading();
 					_self.loadingText='加载中...';
 					const data = {
-						smame: this.sanme
+						sname: this.sname
 					};
 					this.$uniFly
 					.post({
@@ -95,7 +98,7 @@
 					})
 					.then(function(res) {
 						uni.hideNavigationBarLoading();
-						if (res.code === 0 ) {
+						if (res.code == 0 ) {
 							if(res.data.list.length > 0){
 								let list = res.data.list;
 								_self.empty=false;

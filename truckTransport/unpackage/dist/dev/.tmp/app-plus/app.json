@@ -6,7 +6,6 @@
     "pages/pwd/pwd",
     "pages/user/user",
     "pages/cardetail/cardetail",
-    "pages/map/map",
     "pages/orderlist/orderlist",
     "pages/orderdetail/orderdetail",
     "pages/mymoney/mymoney",
@@ -57,11 +56,14 @@
     "pages/viplevel/up-strategy",
     "pages/viplevel/get-value",
     "pages/amap/amap_choice/amap_choice",
-    "pages/amap/search_address_list/search_address_list"
+    "pages/amap/search_address_list/search_address_list",
+    "pages/placeorder/sending_driver",
+    "pages/login/wxminlogin",
+    "pages/userinfo/bindphone"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "white",
+    "navigationBarBackgroundColor": "#fff",
     "backgroundColor": "#f3f4f5"
   },
   "nvueCompiler": "weex",
@@ -70,7 +72,7 @@
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
-  "appname": "truckTransport",
+  "appname": "hd.lahuoerwang",
   "compilerVersion": "2.3.7",
   "usingComponents": {}
 }

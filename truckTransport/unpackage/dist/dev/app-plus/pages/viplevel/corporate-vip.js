@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"input-row .",[1],"title { width: 30%; font-size: 16px; }\n.",[1],"dui-bosiness-photos { width: ",[0,250],"; height: ",[0,250],"; padding: ",[0,24]," 0; }\n.",[1],"dui-bosiness-photos wx-image { width: 100%; height: 100%; }\n",],undefined,{path:"./pages/viplevel/corporate-vip.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/viplevel/corporate-vip.wxml') } }));

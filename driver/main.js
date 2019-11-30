@@ -72,6 +72,11 @@ Vue.prototype.$drmking = drmking
 Vue.prototype.$uniFly = uniFly
 
 
+import socket from 'plus-websocket'
+// #ifdef APP-PLUS
+Object.assign(uni, socket);
+// #endif
+
 App.mpType = 'app'
 
 const app = new Vue({

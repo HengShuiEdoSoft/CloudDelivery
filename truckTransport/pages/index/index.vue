@@ -41,6 +41,10 @@
 							<text class="iconfont icon-shezhi"></text>
 							<text>更多设置</text>
 						</view>
+						<view hover-class="ui-list-item-hover" @tap="navTo('/pages/placeorder/sending_driver')">
+							<text class="iconfont icon-shezhi"></text>
+							<text>shit</text>
+						</view>
 					</view>
 				</view>
 			</uni-drawer>
@@ -246,7 +250,6 @@ export default {
 					flag = true;
 				}
 			}
-			console.log(that.order.trip);
 			if (flag) {
 				if (destination == '') {
 					destination = waypoints.slice(waypoints.length - 1, 1)[0];

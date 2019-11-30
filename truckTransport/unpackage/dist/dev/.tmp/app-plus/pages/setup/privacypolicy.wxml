@@ -1,1 +1,0 @@
-<view class="content"><view class="ui-divide-line"></view><scroll-view class="scroll-container" scroll-y>此处应为 rich-text ...<view class="dui-privacy-tips"><block wx:for="{{tips}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view>{{item.tip}}</view></block></view></scroll-view></view>

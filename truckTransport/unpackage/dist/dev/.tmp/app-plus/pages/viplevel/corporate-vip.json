@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "升级为企业会员",
-  "usingComponents": {
-    "m-input": "/components/m-input",
-    "photos": "/components/yq-avatar/yq-avatar"
-  }
-}

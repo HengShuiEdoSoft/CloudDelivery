@@ -56,6 +56,7 @@ let drmking = {
 	S4: function() {
 		return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 	},
+	// guid生成
 	guid: function() {
 		var that = this;
 		return (that.S4() + that.S4() + that.S4() + that.S4() + that.S4() + that.S4() + that.S4() + that.S4());
@@ -86,6 +87,28 @@ let drmking = {
 			};
 			uni.setStorageSync(key, _data);
 			return true;
+		}
+	},
+	// 绑定手机号
+	bindphone(user) {
+		if (this.isEmpty(user)) {
+			uni.navigateTo({
+				url: '/pages/login/login'
+			});
+		} else {
+			if (this.isEmpty(user.phone)) {
+				uni.navigateTo({
+					url: '/pages/userinfo/bindphone'
+				});
+			} else if (this.isEmpty(user.token)) {
+				uni.navigateTo({
+					url: '/pages/userinfo/bindphone'
+				});
+			} else {
+				uni.reLaunch({
+					url: '/pages/index/index'
+				});
+			}
 		}
 	},
 	// 获取里程价格
@@ -298,6 +321,59 @@ let drmking = {
 	getDefaultCity: function() {
 		let default_city_key = 'default_city';
 		return this.cacheData(default_city_key);
+	},
+
+	// 获取微信小程序openid
+	getWxOpenId(vue, iv, encryptedData) {
+		return new Promise((resolve, reject) => {
+			uni.login({
+				success: res => {
+					if (res.code) {
+						vue.$uniFly
+							.post({
+								url: '/api/user/getopenid',
+								params: {
+									code: res.code
+								}
+							})
+							.then(res => {
+								if (res.code == 0) {
+									let openid = res.data;
+									vue.$uniFly
+										.post({
+											url: '/api/user/getunionid',
+											params: {
+												openid: openid,
+												iv: iv,
+												encryptedData: encryptedData
+											}
+										})
+										.then(res => {
+											if (res.code == 0) {
+												resolve(res.data);
+											} else {
+												reject(res.msg);
+											}
+										})
+										.catch(err => {
+											reject('用户授权失败');
+										});
+								} else {
+									reject(res.msg);
+								}
+							})
+							.catch(err => {
+								reject('服务器请求出错');
+							});
+					} else {
+						reject('授权登录失败');
+					}
+				},
+				fail: e => {
+					reject('授权失败');
+				}
+			});
+		});
 	},
 
 	// 经纬度转城市

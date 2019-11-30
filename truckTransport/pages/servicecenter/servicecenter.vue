@@ -16,7 +16,7 @@
 				<view class="dui-scrvice-custom-wrapper" style="background-color: #fff;"><text>常见问题</text></view>
 				<view class="dui-basic-list">
 					<block v-for="(item, index) in lists" :key="item.article_category_id">
-						<navigator :url="'servicecenter-list?id=' + item.sname">
+						<navigator :url="'servicecenter-list?sname=' + item.name+'&title='+item.title">
 							<view class="dui-basic-list-item">
 								<view class="dui-basic-list-item__container">
 									<view class="dui-basic-list-item__content">
@@ -40,17 +40,19 @@
 				</navigator>-->
 				<view class="dui-scrvice-tel" @tap="call">
 					<text class="iconfont icon-dianhua"></text>
-					<text>客服热线 {{ tel }}</text>
+					<text>客服热线 {{ sysconfig.service_tel }}</text>
 				</view>
 			</view>
 		</scroll-view>
-		<view class="dui-online-service"><image src="../../static/img/call.jpg" mode=""></image></view>
+		<view class="dui-online-service"><image src="../../static/img/call.jpg" @tap="call"></image></view>
 	</view>
 </template>
 <script>
+import { mapState } from 'vuex';
 export default {
+	computed: mapState(['sysconfig']),
 	onNavigationBarButtonTap: function(e) {
-		var index = e.index;
+		let index = e.index;
 		if (index === 0) {
 			uni.navigateTo({
 				url: '/pages/mymoney/mydetailed'
@@ -59,63 +61,43 @@ export default {
 	},
 	data() {
 		return {
-			tel: '010-8888',
 			lists: []
 		};
 	},
 	onLoad() {
-		let that = this;
-		this.$uniFly
-			.get({
-				url: '/api/article_category/getarticlecategorylist',
-				params: {}
-			})
-			.then(function(res) {
-				if (res.code === 0) {
-					console.log(res.data);
-					that.lists = res.data;
-				} else {
-					uni.showModal({
-						content: res.msg,
-						showCancel: false
-					});
-				}
-			})
-			.catch(function(error) {
-				uni.showModal({
-					content: error,
-					showCancel: false
-				});
-			});
+		this.getList();
+	},
+	onPullDownRefresh() {
+		this.getList();
+		uni.stopPullDownRefresh();
 	},
 	methods: {
 		call: function(e) {
 			uni.makePhoneCall({
-				phoneNumber: this.tel //仅为示例
+				phoneNumber: this.sysconfig.service_tel
 			});
 		},
 		getList: function() {
 			let that = this;
-			this.$uniFly
+			that.$uniFly
 				.get({
 					url: '/api/article_category/getarticlecategorylist',
-					param: {}
+					params: {}
 				})
-				.then(function(res) {
-					if (res.code === 0) {
-						console.log(res.data);
+				.then(res => {
+					if (res.code == 0) {
 						that.lists = res.data;
 					} else {
 						uni.showToast({
-							content: res.msg,
-							showCancel: false
+							icon: 'none',
+							title: res.msg
 						});
 					}
 				})
-				.catch(function(error) {
+				.catch(err => {
 					uni.showToast({
-						content: error,
-						showCancel: false
+						icon: 'none',
+						title: '获取失败请重试！'
 					});
 				});
 		}
