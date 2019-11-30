@@ -61,7 +61,7 @@
 			<view class="ui-divide-line"></view>
 			<view>
 				<swiper class="ui-carinfos" @change="swiperChange" :current="current">
-					<swiper-item class="ui-carinfo-item" v-for="(item, index) in location_city.cars_list" :key="item.car_id">
+					<swiper-item class="ui-carinfo-item" v-for="(item, index) in location_city.cars_list" :key="index">
 						<view class="ui-carinfo-body">
 							<navigator :url="'/pages/cardetail/cardetail?id=' + item.car_id" hover-class="none">
 								<image :src="item.car_icon" class="ui-carinfo-image"></image>
