@@ -10,7 +10,7 @@ uniFly.baseUrl = 'https://www.lh5256.com';
 uniFly.timeOut = 20000
 // 错误自动尝试次数
 uniFly['retry_number'] = 3;
-//uniFly.headers={'Access-Control-Allow-Origin':'*'};
+
 //自定义请求拦截
 uniFly.requestInterceptors.success = function(request) {
 	let userinfo = drmking.cacheData('USER');
