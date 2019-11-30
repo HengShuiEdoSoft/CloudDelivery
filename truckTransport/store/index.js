@@ -168,7 +168,7 @@ const store = new Vuex.Store({
 		// 切换线路,更新价格
 		set_order_trip: function(state, trip_distance) {
 			Vue.set(state.order, 'trip', trip_distance.trip);
-			trip_distance.distance = parseInt(parseInt(trip_distance.distance) / 1000);
+			trip_distance.distance = Math.ceil(parseInt(trip_distance.distance) / 1000);
 			Vue.set(state.order, 'distance', trip_distance.distance);
 			let distance_price = drmking.distancePrice(state.order.car_base_price_json, trip_distance.distance);
 			Vue.set(state.order, 'distance_price', distance_price);
