@@ -1,0 +1,90 @@
+
+#amap {
+	width: 100%;
+	height: 350rpx;
+}
+.icon-dianhua {
+	margin-right: 10rpx;
+}
+.ui-tips {
+	padding: 20rpx 0;
+	font-size: 12px;
+	color: #999;
+}
+.ui-tips navigator {
+	display: inline;
+}
+.dui-orderdetail-confirm-btn {
+	background-color: #FF9801;
+	border-radius: 0;
+}
+.dui-orderdetail-info {
+	float: left;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+.dui-orderdetail-info image {
+	width: 100rpx;
+	height: 100rpx;
+	margin-right: 20rpx;
+}
+.dui-orderdetail-info text {
+	font-size: 32rpx;
+}
+.dui-orderdetail-call {
+	float: right;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	width: 100rpx;
+	height: 100rpx;
+	background-color: #3BD1AB;
+	border-radius: 50%;
+	color: #fff;
+}
+.dui-orderdetail-call text {
+	position: relative;
+	left: 5rpx;
+	top: 5rpx;
+	font-size: 46rpx;
+}
+.dui-orderdetail-demand {
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	margin: 10rpx 0 20rpx;
+	padding: 20rpx 30rpx;
+	border-radius: 36rpx;
+	font-size: 26rpx;
+	color: #555;
+	background-color: #f1f1f1;
+}
+.dui-orderdetail-date {
+	margin-top: 30rpx;
+	font-size: 28rpx;
+	color: #999;
+}
+.dui-orderdetail-state {
+	margin-top: 10rpx;
+	font-size: 30rpx;
+}
+.dui-orderdetail-distance {
+	color:#797979 ;
+	float: right;
+}
+

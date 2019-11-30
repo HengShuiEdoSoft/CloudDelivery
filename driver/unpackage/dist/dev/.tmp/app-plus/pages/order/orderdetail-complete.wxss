@@ -10,10 +10,6 @@
 .ui-tips navigator {
 	display: inline;
 }
-.dui-orderdetail-confirm-btn {
-	background-color: #FF9801;
-	border-radius: 0;
-}
 .dui-orderdetail-confirm-btn1 {
 	background-color: #DD524D;
 	border-radius: 0;

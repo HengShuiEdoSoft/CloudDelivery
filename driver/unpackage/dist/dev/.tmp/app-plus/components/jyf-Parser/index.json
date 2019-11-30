@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "uni-icons": "/components/uni-icons/uni-icons"
+    "trees": "/components/jyf-Parser/trees"
   },
   "component": true
 }
