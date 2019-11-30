@@ -11,8 +11,8 @@
 				<block v-for="(item, index) in lists" :key="item.notice_id">
 					<view class="dui-msgcenter-item-box">
 						<view class="dui-msgcenter-item">
-							<view v-if="item.msg_type === 0" class="dui-msgcenter-logo"><image src="../../static/img/setup.png"></image></view>
-							<view v-if="item.msg_type === 1" class="dui-msgcenter-logo"><image src="../../static/img/file.png"></image></view>
+							<view v-if="item.msg_type === 0" class="dui-msgcenter-logo"><image src="/static/img/setup.png"></image></view>
+							<view v-if="item.msg_type === 1" class="dui-msgcenter-logo"><image src="/static/img/file.png"></image></view>
 							<view class="dui-msgcenter-flex-column">
 								<view class="dui-msgcenter-title">
 									<text v-if="item.msg_type === 0">系统通知</text>
@@ -117,4 +117,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+	.dui-msgcenter-content{
+		white-space: pre-wrap;
+	}
+</style>

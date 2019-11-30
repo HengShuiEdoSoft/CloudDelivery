@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="ui-car-name-list">
-			<view class="ui-car-name-item" v-for="(item, index) in tab" :class="{ active: current == index }" :key="index" :data-current="index" @tap="tabChange">
+			<view class="ui-car-name-item" v-for="(item, item_index) in tab" :class="{ active: current == item_index }" :key="item_index" :data-current="item_index" @tap="tabChange">
 				{{ item.name }}
 			</view>
 		</view>
@@ -10,7 +10,7 @@
 				<scroll-view class="scroll-container">
 					<view v-if="empty[0]">
 						<view class="dui-notyet-wrapper">
-							<image src="../../static/img/NoOrder.jpg" mode=""></image>
+							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
@@ -18,7 +18,7 @@
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[0]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
-						:key="item.order_id"
+						:key="index"
 						@longtap="deleteOrder(item.order_id)"
 					>
 						<view class="ui-daizhifu" v-if="item.status === 0">待支付</view>
@@ -40,8 +40,8 @@
 								</view>
 								<view
 									class="uni-timeline-item"
-									v-for="(passbyitem, index) in item.order_details_json.transfer"
-									:key="index"
+									v-for="(passbyitem, passbyitem_index) in item.order_details_json.transfer"
+									:key="passbyitem_index"
 									v-if="item.order_details_json.transfer.length != 0"
 								>
 									<view class="uni-timeline-item-divider"></view>
@@ -69,7 +69,7 @@
 				<scroll-view class="scroll-container">
 					<view v-if="empty[1]">
 						<view class="dui-notyet-wrapper">
-							<image src="../../static/img/NoOrder.jpg" mode=""></image>
+							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
@@ -77,7 +77,7 @@
 						class="ui-order-list-item ui-daizhifu"
 						v-for="(item, index) in newsList[1]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
-						:key="item.order_id"
+						:key="index"
 						@longtap="deleteOrder(item.order_id)"
 					>
 						<view class="ui-wancheng" v-if="item.status===4">已完成</view>
@@ -97,8 +97,8 @@
 								</view>
 								<view
 									class="uni-timeline-item"
-									v-for="(passbyitem, index) in item.order_details_json.transfer"
-									:key="index"
+									v-for="(passbyitem, passbyitem_index) in item.order_details_json.transfer"
+									:key="passbyitem_index"
 									v-if="item.order_details_json.transfer.length != 0"
 								>
 									<view class="uni-timeline-item-divider"></view>
@@ -126,7 +126,7 @@
 				<scroll-view class="scroll-container">
 					<view v-if="empty[2]">
 						<view class="dui-notyet-wrapper">
-							<image src="../../static/img/NoOrder.jpg" mode=""></image>
+							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
@@ -134,7 +134,7 @@
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[2]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
-						:key="item.order_id"
+						:key="index"
 						@longtap="deleteOrder(item.order_id)"
 					>
 						<view class="ui-quxiao" v-if="item.status === 11">取消订单</view>
@@ -155,8 +155,8 @@
 								</view>
 								<view
 									class="uni-timeline-item"
-									v-for="(passbyitem, index) in item.order_details_json.transfer"
-									:key="index"
+									v-for="(passbyitem, passbyitem_index) in item.order_details_json.transfer"
+									:key="passbyitem_index"
 									v-if="item.order_details_json.transfer.length != 0"
 								>
 									<view class="uni-timeline-item-divider"></view>
@@ -232,7 +232,7 @@ export default {
 	},
 	methods: {
 		tabChange: function(e) {
-			var index = e.target.dataset.current || e.currentTarget.dataset.current;
+			let index = e.target.dataset.current || e.currentTarget.dataset.current;
 			this.current = index;
 			this.$set(this.has_next, this.current, true);
 			this.$set(this.reload, this.current, true);
@@ -240,7 +240,7 @@ export default {
 			this.getnewsList();
 		},
 		swiperChange: function(e) {
-			var index = e.target.current || e.detail.current;
+			let index = e.target.current || e.detail.current;
 			this.current = index;
 		},
 		deleteOrder: function(ocode) {
