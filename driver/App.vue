@@ -6,7 +6,7 @@ export default {
 	},
 	onLaunch: function() {
 		let user = this.$drmking.cacheData('USER');
-		if (this.drmking.isEmpty(user)) {
+		if (this.$drmking.isEmpty(user)) {
 			uni.navigateTo({
 				url:'/pages/login/login'
 			});

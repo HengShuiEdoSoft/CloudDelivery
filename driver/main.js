@@ -108,7 +108,7 @@ function createWs() {
 			url: url,
 			success: function() {
 				console.log('webscoket 创建成功!');
-				initEventHandle(url);
+				initEventHandle(url, userinfo.user_id);
 			},
 			fail: function(err) {
 				console.log(err);
@@ -116,10 +116,10 @@ function createWs() {
 			}
 		});
 	} else {
-		setTimeout(function(){
+		setTimeout(function() {
 			console.log('用户未登录!');
 			createWs();
-		},2000);
+		}, 2000);
 	}
 }
 // 断线重连
@@ -160,14 +160,53 @@ let heartCheck = {
 		}, this.timeout)
 	}
 }
-
-
+let amap = require('@/common/amap.js');
+//心跳检测
+let sendDriveLocation = {
+	timeout: 180000, //180秒钟发一次心跳
+	timeoutObj: null,
+	reset: function() {
+		clearTimeout(this.timeoutObj);
+		return this;
+	},
+	start: function(user_id) {
+		let self = this;
+		this.timeoutObj = setTimeout(function() {
+			// 发送司机位置
+			amap.getRegeo().then(res => {
+					let info = res[0];
+					let msg = JSON.stringify({
+						task_type: 'redis',
+						task_data: {
+							event_type: 'addDriverLoction',
+							user_id: user_id,
+							lon: info.longitude,
+							lat: info.latitude,
+						}
+					});
+					uni.sendSocketMessage({
+						data: msg
+					});
+					setTimeout(function() {
+						self.start(user_id);
+					}, self.timeout);
+				})
+				.catch(err => {
+					setTimeout(function() {
+						self.start(user_id);
+					}, self.timeout);
+				});
+		}, this.timeout)
+	}
+}
 // 初始化操作
-function initEventHandle(url) {
+function initEventHandle(url, user_id) {
 	// 监听WebSocket连接打开事件
 	uni.onSocketOpen(function(res) {
 		//心跳检测重置
 		heartCheck.reset().start();
+		// 发送司机位置
+		sendDriveLocation.reset().start(user_id);
 		console.log(res, 'ws连接成功!' + new Date().toUTCString());
 	});
 	// 监听WebSocket错误
@@ -186,7 +225,7 @@ function initEventHandle(url) {
 		//如果获取到消息，心跳检测重置
 		heartCheck.reset().start();
 		//拿到任何消息都说明当前连接是正常的
-		parseData(JSON.parse(res.data));
+		parseData(res.data);
 	});
 }
 // 解析服务器返回数据
