@@ -3,13 +3,13 @@
 		<view class="ui-divide-line"></view>
 		<scroll-view class="scroll-container" scroll-y>
 			<view class="dui-about-icon">
-				<image src="../../static/img/logo.png"></image>
+				<image src="/static/img/logo.png"></image>
 				<text>{{ sysconfig.site_name }}</text>
 			</view>
 
 			<view class="dui-about-wrapper">
 				<view class="dui-about-text">
-					<parser :html="data.content"></parser>
+					<parser :html="data?data.content:''"></parser>
 				</view>
 				<view class="ui-divide-line"></view>
 				<view class="dui-about-text">

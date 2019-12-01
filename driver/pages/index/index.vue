@@ -138,6 +138,26 @@ export default {
 	},
 	onLoad() {
 		let that = this;
+		that.$drmking
+			.init(that)
+			.then(async () => {
+				let location_city = await that.$drmking.getLocationCity();
+				if (that.$drmking.isEmpty(location_city)) {
+					that.$drmking.getDefaultCity();
+					await that.$drmking.changeLocationCity(that);
+					location_city = that.$drmking.getLocationCity();
+				}
+				that.location_city = location_city;
+			})
+			.catch(e => {
+				console.log(e);
+			});
+		this.$fire.on('changeCity', function(data) {
+			that.$drmking.setLocationCity(that, data);
+		});
+		this.$fire.on('setTrip', function(data) {
+			that.setTrip(data);
+		});
 		that.$fire.on('pushToDriverOrderNotice', function(data) {
 			console.log(data);
 			let order = {
@@ -147,7 +167,7 @@ export default {
 				lat: data.lat,
 				uphone: data.order.uphone,
 				uname: data.order.uname,
-				order_details: data.order.order_details,
+				order_details: data.order.order_details
 			};
 			that.$store.commit('addPushToDriverOrderNotice', order);
 		});
