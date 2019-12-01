@@ -1,5 +1,6 @@
 import permision from "@/common/permission.js"
 let md5 = require('js-md5');
+let amap = require('@/common/amap.js');
 let drmking = {
 	md5(obj) {
 		return md5(obj);
@@ -541,44 +542,40 @@ let drmking = {
 		// #endif
 		if (flag) {
 			let city = await new Promise((resolve, reject) => {
-				uni.getLocation({
-					type: 'gcj02',
-					success: function(res) {
-						let response = that.getCityBylonlat(vue, res.longitude, res.latitude);
-						if (response == null) {
-							if (that.isEmpty(that.getDefaultCity())) {
-								that.getCityList(vue);
-							}
-							let default_city = that.getDefaultCity();
-							resolve(default_city);
-						} else {
-							resolve(response);
-						}
-					},
-					fail: (err) => {
-						console.log(err);
-						// #ifdef MP-BAIDU
-						if (err.errCode === 202 || err.errCode === 10003) { // 202模拟器 10003真机 user deny
-							this.showConfirm();
-						}
-						// #endif
-						// #ifndef MP-BAIDU
-						if (err.errMsg.indexOf("auth deny") >= 0) {
-							uni.showToast({
-								title: "访问位置被拒绝"
-							})
-						} else {
-							uni.showToast({
-								title: err.errMsg
-							})
-						}
-						// #endif
+				amap.getRegeo().then(res => {
+					let response = that.getCityBylonlat(vue, res.longitude, res.latitude);
+					if (response == null) {
 						if (that.isEmpty(that.getDefaultCity())) {
 							that.getCityList(vue);
 						}
 						let default_city = that.getDefaultCity();
 						resolve(default_city);
+					} else {
+						resolve(response);
 					}
+				}).catch(err => {
+					console.log(err);
+					// #ifdef MP-BAIDU
+					if (err.errCode === 202 || err.errCode === 10003) { // 202模拟器 10003真机 user deny
+						this.showConfirm();
+					}
+					// #endif
+					// #ifndef MP-BAIDU
+					if (err.errMsg.indexOf("auth deny") >= 0) {
+						uni.showToast({
+							title: "访问位置被拒绝"
+						})
+					} else {
+						uni.showToast({
+							title: err.errMsg
+						})
+					}
+					// #endif
+					if (that.isEmpty(that.getDefaultCity())) {
+						that.getCityList(vue);
+					}
+					let default_city = that.getDefaultCity();
+					resolve(default_city);
 				});
 			});
 			await that.setLocationCity(vue, city);

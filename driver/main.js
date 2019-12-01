@@ -240,8 +240,19 @@ function parseData(data) {
 	} else {
 		if (drmking.isJsonString(data)) {
 			data = JSON.parse(data);
-			
-			app.$fire.fire('scrambleOrder', data);
+			switch (data.type) {
+				case 'event':
+					{
+						app.$fire.fire(data.event_name, data.data);
+						break;
+					}
+				case 'msg':
+					{
+						app.$fire.fire(data.event_name, data.data);
+						break;
+					}
+			}
+
 		}
 	}
 }

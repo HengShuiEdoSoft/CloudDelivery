@@ -1,15 +1,9 @@
 let amapFile = require('@/common/amap-wx.js');
-let key;
-// 高德开发者key
-// #ifdef H5
-key = '3ec9a0ac95f2a5fedb5128e0b70c0e02';
-// #endif
-// #ifdef APP-PLUS
-key = 'dda21b01a2a7cb53b46c90c718d2bafb';
-// #endif
-key = 'dda21b01a2a7cb53b46c90c718d2bafb';
+// 高德开发者key小程序
+let key = 'dda21b01a2a7cb53b46c90c718d2bafb';
+
 let myAmapFun = new amapFile.AMapWX({
-	key
+	key: key
 });
 
 class Amap {

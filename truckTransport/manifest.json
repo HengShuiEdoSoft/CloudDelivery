@@ -103,29 +103,7 @@
                 }
             }
         },
-        "nativePlugins" : {
-            "HG-GaoDeNav" : {
-                "apikey" : "a0f7bad52227617e4b08c0dd8f7c74ef",
-                "__plugin_info__" : {
-                    "name" : "高德一键导航",
-                    "description" : "无",
-                    "platforms" : "Android",
-                    "url" : "https://ext.dcloud.net.cn/plugin?id=571",
-                    "android_package_name" : "hd.lahuoerwang",
-                    "ios_bundle_id" : "",
-                    "isCloud" : true,
-                    "bought" : 1,
-                    "pid" : "571",
-                    "parameters" : {
-                        "apikey" : {
-                            "des" : "高德导航AppKey",
-                            "key" : "com.amap.api.v2.apikey",
-                            "value" : ""
-                        }
-                    }
-                }
-            }
-        }
+        "nativePlugins" : {}
     },
     /* 快应用特有相关 */
     "quickapp" : {},
