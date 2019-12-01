@@ -19,7 +19,7 @@
 						v-for="(item, index) in newsList[0]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
 						:key="index"
-						@longtap="deleteOrder(item.order_id)"
+						@longtap="deleteOrder(item.ocode)"
 					>
 						<view class="ui-daizhifu" v-if="item.status === 0">待支付</view>
 						<view class="ui-hujiao" v-if="item.status === 1">呼叫中...</view>
@@ -78,7 +78,7 @@
 						v-for="(item, index) in newsList[1]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
 						:key="index"
-						@longtap="deleteOrder(item.order_id)"
+						@longtap="deleteOrder(item.ocode)"
 					>
 						<view class="ui-wancheng" v-if="item.status===4">已完成</view>
 						<view class="ui-wancheng" v-if="item.status===5">已完成</view>
@@ -135,7 +135,7 @@
 						v-for="(item, index) in newsList[2]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
 						:key="index"
-						@longtap="deleteOrder(item.order_id)"
+						@longtap="deleteOrder(item.ocode)"
 					>
 						<view class="ui-quxiao" v-if="item.status === 11">取消订单</view>
 						<view class="ui-quxiao" v-if="item.status === 12">支付超时</view>

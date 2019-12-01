@@ -34,9 +34,7 @@
 		<photos @upload="doUpload" @avtinit="doBefore" quality="0.8" ref="photos"></photos>
 	</view>
 </template>
-
 <script>
-import { mapMutations } from 'vuex';
 import mInput from '@/components/m-input.vue';
 import photos from '@/components/yq-avatar/yq-avatar.vue';
 export default {
@@ -54,11 +52,10 @@ export default {
 			car_photos:'',
 			driver_photos:'',
 			driving_photos:'',
-			photos: ['../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png']
+			driverphotos: ['../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png']
 		};
 	},
 	methods: {
-		...mapMutations(['becompany']),
 		submitRealInfo() {
 			let that = this;
 			const data = {
@@ -125,7 +122,6 @@ export default {
 							mask: true,
 							duration: 3000
 						});
-						that.becompany(true);
 						that.$store.commit('login', res.data);
 						setTimeout(function(){
 							uni.navigateBack({
@@ -158,7 +154,7 @@ export default {
 		doBefore() {},
 		doUpload(rsp) {
 			let that = this;
-			that.$set(that.photos, rsp.index, rsp.path);
+			that.$set(that.driverphotos, rsp.index, rsp.path);
 			uni.uploadFile({
 				url: that.$uniFly.baseUrl + '/api/file/upload',
 				filePath: rsp.path,
