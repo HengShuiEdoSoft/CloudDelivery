@@ -1,6 +1,6 @@
 {
     "name" : "hd.lahuoerwang.driver",
-    "appid" : "__UNI__9920EEF",
+    "appid" : "__UNI__81E623C",
     "description" : "拉活儿网司机端",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -50,8 +50,8 @@
             "sdkConfigs" : {
                 "maps" : {
                     "amap" : {
-                        "appkey_ios" : "3074894fc7b1c500d5f09b39fb9e231c",
-                        "appkey_android" : "a0f7bad52227617e4b08c0dd8f7c74ef"
+                        "appkey_ios" : "281fa2435ad2a0c057e4fd5ff5a33522",
+                        "appkey_android" : "7a853b80cf5f4c69455cb6b05df35e49"
                     }
                 }
             },

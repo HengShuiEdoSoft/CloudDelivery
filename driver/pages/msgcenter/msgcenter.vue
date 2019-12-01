@@ -7,7 +7,7 @@
 					<text>信息空空如也！</text>
 				</view>
 			</view>
-			<view  v-if="!empty" class="dui-msgcenter-list">
+			<view v-if="!empty" class="dui-msgcenter-list">
 				<block v-for="(item, index) in lists" :key="item.notice_id">
 					<view class="dui-msgcenter-item-box">
 						<view class="dui-msgcenter-item">
@@ -42,6 +42,20 @@ export default {
 			has_next: true,
 			lists: []
 		};
+	},
+	onLoad() {
+		let that = this;
+		that.$fire.on('pushNotice', function(data) {
+			let notice = {
+				notice_id: data.notice_id,
+				user_id: data.user_id,
+				msg_type: data.msg_type,
+				msg: data.msg,
+				status: data.status,
+				create_time: data.create_time
+			};
+			that.lists.unshift(notice);
+		});
 	},
 	onShow: function() {
 		this.getList();
@@ -118,7 +132,7 @@ export default {
 </script>
 
 <style>
-	.dui-msgcenter-content{
-		white-space: pre-wrap;
-	}
+.dui-msgcenter-content {
+	white-space: pre-wrap;
+}
 </style>

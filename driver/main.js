@@ -243,16 +243,16 @@ function parseData(data) {
 			switch (data.type) {
 				case 'event':
 					{
+						console.log(data);
 						app.$fire.fire(data.event_name, data.data);
 						break;
 					}
 				case 'msg':
 					{
-						app.$fire.fire(data.event_name, data.data);
+						console.log(data.msg);
 						break;
 					}
 			}
-
 		}
 	}
 }
