@@ -76,7 +76,7 @@ const store = new Vuex.Store({
 		sysconfig: {
 
 		},
-		orderlist: [],
+		scramble_orders: [],
 		order: {
 			city_id: 0,
 			city_title: '',
@@ -120,6 +120,10 @@ const store = new Vuex.Store({
 		}
 	},
 	mutations: {
+		// 添加新订单
+		add_scramble_order:function(state,item){
+			console.log(item);
+		},
 		set_sysconfig: function(state, sysconfig) {
 			Vue.set(state, 'sysconfig', sysconfig);
 		},

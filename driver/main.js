@@ -89,6 +89,11 @@ Vue.prototype.$store = store
 Vue.prototype.$drmking = drmking
 Vue.prototype.$uniFly = uniFly
 Vue.prototype.$fire = new OnFire();
+App.mpType = 'app'
+let app = new Vue({
+	store,
+	...App
+}).$mount();
 
 import socket from 'plus-websocket'
 // #ifdef APP-PLUS
@@ -136,7 +141,7 @@ function reconnectWs(url) {
 }
 //心跳检测
 let heartCheck = {
-	timeout: 59000, //59秒钟发一次心跳
+	timeout: 1000, //59秒钟发一次心跳
 	timeoutObj: null,
 	serverTimeoutObj: null,
 	reset: function() {
@@ -230,12 +235,14 @@ function initEventHandle(url, user_id) {
 }
 // 解析服务器返回数据
 function parseData(data) {
-	console.log(data);
+	if (data == 'pong') {
+
+	} else {
+		if (drmking.isJsonString(data)) {
+			data = JSON.parse(data);
+			
+			app.$fire.fire('scrambleOrder', data);
+		}
+	}
 }
 createWs();
-
-App.mpType = 'app'
-new Vue({
-	store,
-	...App
-}).$mount();
