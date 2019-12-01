@@ -44,7 +44,7 @@
 				</view>
 			</view>
 		</scroll-view>
-		<view class="dui-online-service"><image src="../../static/img/call.jpg" @tap="call"></image></view>
+		<view class="dui-online-service"><image src="/static/img/call.jpg" @tap="call"></image></view>
 	</view>
 </template>
 <script>

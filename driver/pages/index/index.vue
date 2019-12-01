@@ -65,7 +65,7 @@
 				<view class="ui-order-list-item" v-for="(item, index) in scramble_orders" :key="index">
 					<view class="ui-order-list-item-top">
 						<text class="ui-order-list-cartype">整车</text>
-						<text>09月20日 10:22{{ item.order.order_details.car_time }}</text>
+						<text>09月20日 10:22{{ item.order_details.car_time }}</text>
 						<text class="ui-order-first">急</text>
 					</view>
 					<view class="ui-divide-line"></view>
@@ -74,41 +74,19 @@
 							<view class="uni-timeline-item uni-timeline-first-item">
 								<view class="uni-timeline-item-divider"></view>
 								<view class="uni-timeline-item-content">
-									<text class="ui-address">{{ item.order.order_details.trip.departure.localtion }}{{ item.order.order_details.trip.departure.address }}</text>
+									<text class="ui-address">{{ item.order_details.trip.departure.localtion }}{{ item.order_details.trip.departure.address }}</text>
 								</view>
 							</view>
 							<view class="uni-timeline-item uni-timeline-last-item">
 								<view class="uni-timeline-item-divider"></view>
 								<view class="uni-timeline-item-content">
-									<text class="ui-address">{{ item.order.order_details.trip.destination.localtion }}{{ item.order.order_details.trip.destination.address }}</text>
+									<text class="ui-address">{{ item.order_details.trip.destination.localtion }}{{ item.order_details.trip.destination.address }}</text>
 								</view>
 							</view>
 						</view>
 						<view class="ui-order-accept" @tap="scrambleorder(item.order_id)">接单</view>
 					</view>
-					<view class="ui-order-price">￥{{ item.order.order_details.order_price }}</view>
-				</view>
-				<view class="ui-order-list-item">
-					<view class="ui-order-list-item-top">
-						<text class="ui-order-list-cartype">整车</text>
-						<text>09月20日 10:22</text>
-						<text class="ui-order-first">急</text>
-					</view>
-					<view class="ui-divide-line"></view>
-					<view class="ui-order-timeline-container">
-						<view class="ui-order-timeline uni-timeline">
-							<view class="uni-timeline-item uni-timeline-first-item">
-								<view class="uni-timeline-item-divider"></view>
-								<view class="uni-timeline-item-content"><text class="ui-address">衡水人民政府</text></view>
-							</view>
-							<view class="uni-timeline-item uni-timeline-last-item">
-								<view class="uni-timeline-item-divider"></view>
-								<view class="uni-timeline-item-content"><text class="ui-address">怡然城</text></view>
-							</view>
-						</view>
-						<view class="ui-order-accept" @tap="scrambleorder(item.order_id)">接单</view>
-					</view>
-					<view class="ui-order-price">￥20.8</view>
+					<view class="ui-order-price">￥{{ item.order_details.order_price }}</view>
 				</view>
 			</scroll-view>
 		</view>
@@ -160,9 +138,38 @@ export default {
 	},
 	onLoad() {
 		let that = this;
-		that.$fire.on('scrambleOrder', function(data) {
+		that.$drmking
+			.init(that)
+			.then(async () => {
+				let location_city = await that.$drmking.getLocationCity();
+				if (that.$drmking.isEmpty(location_city)) {
+					that.$drmking.getDefaultCity();
+					await that.$drmking.changeLocationCity(that);
+					location_city = that.$drmking.getLocationCity();
+				}
+				that.location_city = location_city;
+			})
+			.catch(e => {
+				console.log(e);
+			});
+		this.$fire.on('changeCity', function(data) {
+			that.$drmking.setLocationCity(that, data);
+		});
+		this.$fire.on('setTrip', function(data) {
+			that.setTrip(data);
+		});
+		that.$fire.on('pushToDriverOrderNotice', function(data) {
 			console.log(data);
-			that.$store.commit('add_scramble_order', data);
+			let order = {
+				order_id: data.order_id,
+				user_id: data.user_id,
+				lon: data.lon,
+				lat: data.lat,
+				uphone: data.order.uphone,
+				uname: data.order.uname,
+				order_details: data.order.order_details
+			};
+			that.$store.commit('addPushToDriverOrderNotice', order);
 		});
 	},
 	methods: {

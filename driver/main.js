@@ -141,7 +141,7 @@ function reconnectWs(url) {
 }
 //心跳检测
 let heartCheck = {
-	timeout: 1000, //59秒钟发一次心跳
+	timeout: 59000, //59秒钟发一次心跳
 	timeoutObj: null,
 	serverTimeoutObj: null,
 	reset: function() {
@@ -243,16 +243,16 @@ function parseData(data) {
 			switch (data.type) {
 				case 'event':
 					{
+						console.log(data);
 						app.$fire.fire(data.event_name, data.data);
 						break;
 					}
 				case 'msg':
 					{
-						app.$fire.fire(data.event_name, data.data);
+						console.log(data.msg);
 						break;
 					}
 			}
-
 		}
 	}
 }
