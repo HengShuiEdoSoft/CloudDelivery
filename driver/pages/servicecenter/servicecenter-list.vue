@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<scroll-view class="scroll-container" scroll-y>
+		<scroll-view class="scroll-container" scroll-y :style="height">
 			<view class="dui-service-wrapper">
 				<view class="dui-gap"></view>
 				<view class="dui-gap"></view>
@@ -50,10 +50,12 @@ export default {
 				sname:'',
 				reload:true,
 				has_next:true,
-				lists: []
+				lists: [],
+				height:''
 			}
 		},
 		onLoad(options) {
+			this.height=uni.getSystemInfoSync().windowHeight+'px';
 			this.sname=options.sname;
 			this.getList();
 			uni.setNavigationBarTitle({

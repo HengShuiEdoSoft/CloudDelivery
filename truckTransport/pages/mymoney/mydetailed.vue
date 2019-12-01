@@ -7,7 +7,7 @@
 		<view class="ui-divide-line"></view>
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y>
+				<scroll-view class="scroll-container" scroll-y :style="height">
 					<view v-if="empty[0]">
 						<view class="dui-notyet-wrapper">
 							<image src="../../static/img/NoOrder.jpg" mode=""></image>
@@ -44,7 +44,7 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y>
+				<scroll-view class="scroll-container" scroll-y :style="height">
 					<view v-if="empty[1]">
 						<view class="dui-notyet-wrapper">
 							<image src="../../static/img/NoOrder.jpg" mode=""></image>
@@ -100,8 +100,12 @@
 					name: "充值明细",
 				}],
 				source_type:['0,1,2','0'],
-				lists: [[],[]]
+				lists: [[],[]],
+				height:''
 			}
+		},
+		onLoad() {
+			this.height=uni.getSystemInfoSync().windowHeight+'px';
 		},
 		onShow:function(){
 			this.getList();

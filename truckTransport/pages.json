@@ -48,18 +48,7 @@
 			"path": "pages/orderlist/orderlist",
 			"style": {
 				"navigationBarTitleText": "订单列表",
-				"enablePullDownRefresh": true,
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "行程单",
-							"fontSize": "12",
-							"float": "right",
-							"color": "#424456"
-						}]
-					}
-				}
+				"enablePullDownRefresh": true
 			}
 		}, {
 			"path": "pages/orderdetail/orderdetail",
@@ -95,37 +84,13 @@
 		}, {
 			"path": "pages/mymoney/myinvoicing-trip",
 			"style": {
-				"navigationBarTitleText": "开发票",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "\ue8e7",
-							"fontSrc": "/static/font/iconfont.ttf",
-							"fontSize": "27",
-							"float": "left",
-							"color": "#424456"
-						}]
-					}
-				}
+				"navigationBarTitleText": "开发票"
 			}
 		}, {
 			"path": "pages/mymoney/myinvoicing-history",
 			"style": {
 				"navigationBarTitleText": "开票历史",
-				"enablePullDownRefresh": true,
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "\ue8e7",
-							"fontSrc": "/static/font/iconfont.ttf",
-							"fontSize": "27",
-							"float": "left",
-							"color": "#424456"
-						}]
-					}
-				}
+				"enablePullDownRefresh": true
 			}
 		}, {
 			"path": "pages/mymoney/mycoupon",
@@ -156,19 +121,7 @@
 		{
 			"path": "pages/mymoney/myinvoicing-rule",
 			"style": {
-				"navigationBarTitleText": "开票规则",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "\ue8e7",
-							"fontSrc": "/static/font/iconfont.ttf",
-							"fontSize": "27",
-							"float": "left",
-							"color": "#424456"
-						}]
-					}
-				}
+				"navigationBarTitleText": "开票规则"
 			}
 		},
 		{

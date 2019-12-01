@@ -1,7 +1,7 @@
 <template>
-	<view class="content">
+	<view class="content" v-if="order!==null">
 		<cover-view class="dui-cv-one" v-show="show">更换司机 </cover-view>
-		<cover-view class="dui-cv-two" v-show="show">取消订单 </cover-view>
+		<cover-view class="dui-cv-two" v-show="show" @tap="quitOrder(order.ocode)">取消订单 </cover-view>
 		<cover-view class="dui-cv-three" v-show="show">分享订单 </cover-view>
 		<cover-view class="dui-cv-four" v-show="show">投诉 </cover-view>
 		<view class="dui-driver-information">
@@ -80,11 +80,14 @@
 				}],
 				polyline: [],
 				map: null,
-				show: false
+				show: false,
+				list:{}
 			};
 		},
 		onLoad(options) {
 			let that = this;
+			this.ocode = options.ocode;
+			this.getDetail();
 			that.map = uni.createMapContext('amap', that);
 			if (options.channel) {
 				that.channel = options.channel;
@@ -126,6 +129,34 @@
 				uni.makePhoneCall({
 					phoneNumber: '18888888888'
 				});
+			},
+			getDetail: function() {
+				let that = this;
+				const data = {
+					ocode: that.ocode
+				};
+				that.$uniFly
+					.post({
+						url: '/api/order/getorder',
+						params: data
+					})
+					.then(function(res) {
+						if (res.code == 0) {
+							res.data.order_details_json = JSON.parse(res.data.order_details_json);
+							that.order = res.data;
+						} else {
+							uni.showModal({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+					})
+					.catch(function(error) {
+						uni.showModal({
+							content: error,
+							showCancel: false
+						});
+					});
 			},
 			// 设置地图标记点和搜索框标题
 			setMarker(index, lon, lat, title) {
@@ -179,7 +210,43 @@
 						console.log(err);
 					}
 				});
+			},
+			quitOrder(ocode){
+				let that=this;
+				const data = {
+					ocode: that.ocode
+				};
+				that.$uniFly
+					.post({
+						url: '/api/order/cancelorder',
+						params: data
+					})
+					.then(function(res) {
+						if (res.code == 0) {
+							uni.showToast({
+								title: '订单已取消',
+								icon: 'success',
+								mask: true,
+								duration: 3000
+							});
+							uni.navigateTo({
+								url:'/pages/index/index'
+							})
+						} else {
+							uni.showModal({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+					})
+					.catch(function(error) {
+						uni.showModal({
+							content: error,
+							showCancel: false
+						});
+					});
 			}
+			
 		}
 	};
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<view class="content ">
 		<view class="ui-divide-line"></view>
-		<scroll-view class="scroll-container" scroll-y>
+		<scroll-view class="scroll-container" scroll-y :style="height">
 			<view v-if="empty">
 				<view class="dui-notyet-wrapper">
 					<image src="../../static/img/NoOrder.jpg" mode=""></image>
@@ -50,8 +50,12 @@
 				id:0,
 				reload:true,
 				has_next:true,
-				lists: []
+				lists: [],
+				height:''
 			}
+		},
+		onLoad() {
+			this.height=uni.getSystemInfoSync().windowHeight+'px';
 		},
 		onShow:function(){
 			this.getList();

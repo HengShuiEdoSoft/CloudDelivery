@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<scroll-view class="scroll-container" scroll-y>
+		<scroll-view class="scroll-container" scroll-y :style="height">
 		<view v-if="empty">
 			<view class="dui-notyet-wrapper">
 				<image src="../../static/img/NoOrder.jpg" mode=""></image>
@@ -44,8 +44,12 @@
 				has_next:true,
 				lists: [],
 				values:'',
-				price:0
+				price:0,
+				height:''
 			}
+		},
+		onLoad() {
+			this.height=uni.getSystemInfoSync().windowHeight+'px';
 		},
 		onNavigationBarButtonTap: function(e) {
 			var index=e.index
@@ -177,6 +181,9 @@
 	}
 </script>
 <style>
+	.scroll-container {
+		height: 100%;
+	}
 	.ui-order-price {
 		line-height: 80upx;
 		font-weight: 600;

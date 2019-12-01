@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="ui-divide-line"></view>
-		<scroll-view>
+		<scroll-view class="scroll-container" scroll-y>
 			<view v-if="list.length === 0">
 				<view class="dui-notyet-wrapper">
 					<image src="../../static/img/NoCoupon.jpg" mode=""></image>
@@ -105,6 +105,9 @@ export default {
 </script>
 
 <style>
+	.scroll-container {
+		height: 100%;
+	}
 .dui-coupon-input {
 	background-color: #fff;
 	padding: 35upx;

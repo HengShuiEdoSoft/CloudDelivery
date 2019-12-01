@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+		<scroll-view class="scroll-container" scroll-y :style="height">
 		<view class="dui-notyet-wrapper" v-if="empty">
 			<image src="../../static/img/NoDriver.jpg" mode=""></image>
 			<text>收藏好司机直接发单给他们</text>
@@ -13,6 +14,7 @@
 			<view class="dui-fixed-bottom-btn"><button class="primary" type="primary" @tap="togglePopup('center', 'collection')">去收藏司机</button></view>
 			<view class="loading">{{ loadingText }}</view>
 		</view>
+		</scroll-view>
 		<uni-popup ref="collection" :type="type" :custom="true" :mask-click="true">
 			<view class="dui-collection-wrapper">
 				<view class="input-group">
@@ -50,8 +52,12 @@ export default {
 			reload: true,
 			has_next: true,
 			lists: [],
-			driver_phone: ''
+			driver_phone: '',
+			height:''
 		};
+	},
+	onLoad() {
+		this.height=uni.getSystemInfoSync().windowHeight+'px';
 	},
 	onShow: function() {
 		this.getList();

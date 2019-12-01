@@ -78,6 +78,9 @@ m-input {
 	margin-top: 40upx;
 	position: relative;
 }
+.scroll-container {
+	height: 100%;
+}
 
 /* 	.input-group::before {
 		position: absolute;

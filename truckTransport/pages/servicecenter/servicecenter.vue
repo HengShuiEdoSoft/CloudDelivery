@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<scroll-view class="scroll-container" scroll-y>
+		<scroll-view class="scroll-container" scroll-y :style="height">
 			<view class="dui-service-wrapper">
 				<view class="dui-service-bj"></view>
 				<!--<view class="dui-scrvice-custom-wrapper" style="color: #fff;">
@@ -61,10 +61,14 @@ export default {
 	},
 	data() {
 		return {
-			lists: []
+			lists: [],
+			height:''
 		};
 	},
 	onLoad() {
+		this.height=uni.getSystemInfoSync().windowHeight+'px';
+	},
+	onShow() {
 		this.getList();
 	},
 	onPullDownRefresh() {

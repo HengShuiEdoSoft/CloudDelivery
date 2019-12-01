@@ -14,7 +14,7 @@
 		</view>
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y="true">
+				<scroll-view class="scroll-container" scroll-y="true" :style="height">
 					<view v-if="empty[0]">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg"></image>
@@ -23,7 +23,6 @@
 					</view>
 					<navigator v-for="(item, index) in newsList[0]" :url="'/pages/orderdetail/orderdetail1?ocode=' + item.ocode" :key="index">
 						<view class="ui-order-list-item">
-							<view class="ui-hujiao" v-if="item.status == 1">待抢单</view>
 							<view class="ui-hujiao" v-if="item.status == 2">等待运送</view>
 							<view class="ui-hujiao" v-if="item.status == 3">运送中</view>
 							<view class="dui-gap"></view>
@@ -74,7 +73,7 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y="true">
+				<scroll-view class="scroll-container" scroll-y="true" :style="height">
 					<view v-if="empty[1]">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg"></image>
@@ -132,7 +131,7 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y="true">
+				<scroll-view class="scroll-container" scroll-y="true" :style="height">
 					<view v-if="empty[2]">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg"></image>
@@ -210,8 +209,12 @@ export default {
 					name: '已取消'
 				}
 			],
-			status: ['1,2,3', '4,5', '11,12,13']
+			status: ['2,3', '4,5', '11,12,13'],
+			height:''
 		};
+	},
+	onLoad() {
+		this.height=uni.getSystemInfoSync().windowHeight+'px';
 	},
 	onShow() {
 		this.getnewsList();

@@ -75,6 +75,12 @@
 			}
 		},
 		{
+			"path": "pages/login/wxminlogin",
+			"style": {
+				"navigationBarTitleText": "微信授权登录"
+			}
+		},
+		{
 			"path": "pages/user/pickup",
 			"style": {
 				"navigationBarTitleText": "提现",
@@ -124,19 +130,7 @@
 		{
 			"path": "pages/servicecenter/servicecenter-detail",
 			"style": {
-				"navigationBarTitleText": "常见问题反馈",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "\ue8e7",
-							"fontSrc": "/static/font/iconfont.ttf",
-							"fontSize": "27",
-							"float": "left",
-							"color": "#424456"
-						}]
-					}
-				}
+				"navigationBarTitleText": "常见问题反馈"
 			}
 		},
 		{

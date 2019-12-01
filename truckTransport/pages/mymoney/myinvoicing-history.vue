@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<scroll-view class="scroll-container" scroll-y>
+		<scroll-view class="scroll-container" scroll-y :style="height">
 			<view v-if="empty">
 				<view class="dui-notyet-wrapper">
 					<image src="../../static/img/NoOrder.jpg" mode=""></image>
@@ -39,8 +39,12 @@
 					status:0,
 					create_time:"2019-10-24",
 					price:"50.00"
-				}]
+				}],
+				height:''
 			}
+		},
+		onLoad() {
+			this.height=uni.getSystemInfoSync().windowHeight+'px';
 		},
 		onNavigationBarButtonTap: function(e) {
 			var index = e.index;
@@ -124,6 +128,9 @@
 	}
 </script>
 <style>
+	.scroll-container {
+		height: 100%;
+	}
 	.ui-invioce-list{
 		background: #fff;
 	}

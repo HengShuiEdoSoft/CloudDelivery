@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="ui-divide-line"></view>
-		<scroll-view>
+		<scroll-view class="scroll-container" scroll-y :style="height">
 			<!-- <view class="dui-coupon-input"><input type="text" value="" focus="true" placeholder="按此输入兑换码" /></view> -->
 			<view v-if="list.length === 0">
 				<view class="dui-notyet-wrapper">
@@ -50,10 +50,14 @@ export default {
 			reload: true,
 			has_next: true,
 			page: 1,
-			list: []
+			list: [],
+			height:''
 		};
 	},
 	onLoad() {
+		this.height=uni.getSystemInfoSync().windowHeight+'px';
+	},
+	onShow() {
 		this.getList();
 	},
 	onPullDownRefresh: function() {
@@ -118,6 +122,9 @@ export default {
 </script>
 
 <style>
+	.scroll-container {
+		height: 100%;
+	}
 .dui-coupon-input {
 	background-color: #fff;
 	padding: 35upx;
