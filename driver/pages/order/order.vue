@@ -14,7 +14,7 @@
 		</view>
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
-				<scroll-view class="scroll-container">
+				<scroll-view class="scroll-container" scroll-y="true">
 					<view v-if="empty[0]">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg"></image>
@@ -74,7 +74,7 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view class="scroll-container">
+				<scroll-view class="scroll-container" scroll-y="true">
 					<view v-if="empty[1]">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg"></image>
@@ -132,7 +132,7 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view>
+				<scroll-view class="scroll-container" scroll-y="true">
 					<view v-if="empty[2]">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg"></image>
@@ -303,6 +303,7 @@ export default {
 
 <style>
 .scroll-container {
-	height: 100%;
+	height: 100vh;
+	
 }
 </style>
