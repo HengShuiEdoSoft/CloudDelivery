@@ -1,73 +1,67 @@
 <template>
-	<view class="content">
+	<view class="content" v-if="order!==null">
 		<scroll-view class="scroll-container">
 			<view class="ui-order-list-item">
-				<map id="amap" :show-location="true" :longitude="address_info.longitude" :latitude="address_info.latitude" scale="18"
+				<map id="amap" :show-location="true" :longitude="order.order_details_json.trip.departure.lon" :latitude="order.order_details_json.trip.departure.lat" scale="18"
 				 :markers="markers" :polyline="polyline" @regionchange="regionchange"></map>
 				<view class="dui-orderdetail-date">
-					2019年11月30日 10:00
+					{{ order.create_time}}
 				</view>
 				<view class="dui-orderdetail-state">
 					您已接单
 				</view>
 			</view>
 			<view class="ui-order-list-item">
-				<view class="ui-order-list-item-top"><text class="ui-orderno-color">20191010101012341456</text></view>
+				<view class="ui-order-list-item-top"><text class="ui-orderno-color">{{ order.ocode }}</text></view>
 				<view class="ui-order-list-item-top">
-					<text class="ui-cartype-color">09月20日 10:22</text>
+					<text class="ui-cartype-color">{{ order.create_time }}</text>
 					<text class="dui-orderdetail-distance">行程大约100公里</text>
 				</view>
 				<view class="ui-divide-line"></view>
 				<view class="ui-order-timeline-container">
 					<view class="ui-order-timeline uni-timeline">
-						<view class="uni-timeline-item uni-timeline-first-item">
-							<view class="uni-timeline-item-divider"></view>
-							<view class="uni-timeline-item-content">
-								<text class="ui-address">衡水人民政府</text>
-								<text class="ui-subtext">河北省衡水市和平路</text>
+							<view class="uni-timeline-item uni-timeline-first-item">
+								<view class="uni-timeline-item-divider"></view>
+								<view class="uni-timeline-item-content">
+									<text class="ui-address">{{ order.order_details_json.trip.departure.localtion }}{{ order.order_details_json.trip.departure.address }}</text>
+								</view>
+							</view>
+							<view class="uni-timeline-item" v-for="(passbyitem, index) in order.order_details_json.trip.transfer" :key="index">
+								<view class="uni-timeline-item-divider"></view>
+								<view class="uni-timeline-item-content">
+									<text class="ui-address">{{ passbyitem.localtion }}{{ passbyitem.address }}</text>
+								</view>
+							</view>
+							<view class="uni-timeline-item uni-timeline-last-item">
+								<view class="uni-timeline-item-divider"></view>
+								<view class="uni-timeline-item-content">
+									<text class="ui-address">{{ order.order_details_json.trip.destination.localtion }}{{ order.order_details_json.trip.destination.address }}</text>
+								</view>
 							</view>
 						</view>
-						<view class="uni-timeline-item uni-timeline-last-item">
-							<view class="uni-timeline-item-divider"></view>
-							<view class="uni-timeline-item-content">
-								<text class="ui-address">怡然城</text>
-								<text class="ui-subtext">河北省衡水市和平路</text>
-							</view>
-						</view>
-					</view>
 				</view>
 			</view>
 			<view class="ui-orderdetail-cont">
 				<view class="ui-od-info-item">
-					<view class="ui-od-info-left">货物类型</view>
-					<view class="ui-od-info-right">家电</view>
+					<view class="ui-od-info-left">订单车型</view>
+					<view class="ui-od-info-right">{{ order.car }}</view>
 				</view>
-				<view class="ui-od-info-item">
-					<view class="ui-od-info-left">重量</view>
-					<view class="ui-od-info-right">1.00KG</view>
-				</view>
-				<view class="ui-od-info-item">
-					<view class="ui-od-info-left">规格</view>
-					<view class="ui-od-info-right">1.00米*1.00米*1.00米</view>
-				</view>
-				<view class="ui-od-info-item">
+				<view class="ui-od-info-item" v-for="(item, index) in order.attach" :key="item.attach_id">
 					<view class="ui-od-info-left">额外需求</view>
+					<view class="ui-od-info-right">{{ item.attach_title }}</view>
 				</view>
-				<view class="dui-orderdetail-demand">
-					无额外需求
+				<view class="ui-od-info-item">
+					<view class="ui-od-info-left">备注</view>
+					<view class="ui-od-info-right">{{ order.order_details_json.remark }}</view>
 				</view>
 				<view class="dui-orderdetail-demand" @tap="navTo">
 					拍照回单(免费)
-				</view>
-				<view class="ui-od-info-item">
-					<view class="ui-od-info-left">保险</view>
-					<view class="ui-od-info-right">10倍保额</view>
 				</view>
 			</view>
 			<view class="ui-orderdetail-cont" style="overflow: hidden;">
 				<view class="dui-orderdetail-info">
 					<image src="../../static/img/HeadImg.jpg" mode=""></image>
-					<text>黄先生</text>
+					<text>{{order.order_details_json.contact}}</text>
 				</view>
 				<view class="dui-orderdetail-call" @tap="call">
 					<text class="iconfont icon-dianhua"></text>
@@ -75,20 +69,16 @@
 			</view>
 			<view class="ui-orderdetail-cont">
 				<view class="ui-od-price-list">
-					<view class="ui-od-price-type">向客户收取</view>
-					<view class="ui-od-price-pay">￥100.00</view>
-				</view>
-				<view class="ui-od-price-list">
-					<view class="ui-od-price-type">总里程费</view>
-					<view class="ui-od-price-pay">￥90.00</view>
-				</view>
-				<view class="ui-od-price-list">
-					<view class="ui-od-price-type">保险费</view>
-					<view class="ui-od-price-pay">￥10.00</view>
+					<view class="ui-od-price-type">实付金额</view>
+					<view class="ui-od-price-pay">￥{{ order.pay_order_price }}</view>
 				</view>
 				<view class="ui-od-price-list-b">
-					<view class="ui-od-price-type">总计100.00元</view>
-					<view class="ui-od-price-right">价格明细</view>
+					<view class="ui-od-price-type">订单价格</view>
+					<view class="ui-od-price-right">￥{{ order.order_price }}</view>
+				</view>
+				<view class="ui-od-price-list-b">
+					<view class="ui-od-price-type">优惠券</view>
+					<view class="ui-od-price-right">-￥{{ order.coupon_price }}</view>
 				</view>
 				<view class="ui-divide-line"></view>
 				<view class="ui-tips">说明: 若产生高速费、停车费、搬运费，需用户按实际支付。若涉及逾时等候费请按<navigator>标准费用</navigator>结算。</view>
@@ -135,10 +125,13 @@
 					}
 				}],
 				polyline: [],
-				map: null
+				map: null,
+				order: null
 			};
 		},
 		onLoad(options) {
+			this.ocode = options.ocode;
+			this.getDetail();
 			let that = this;
 			that.map = uni.createMapContext('amap', that);
 			if (options.channel) {
@@ -234,6 +227,34 @@
 						console.log(err);
 					}
 				});
+			},
+			getDetail: function() {
+				let that = this;
+				const data = {
+					ocode: that.ocode
+				};
+				that.$uniFly
+					.post({
+						url: '/api/order/getorder',
+						params: data
+					})
+					.then(function(res) {
+						if (res.code == 0) {
+							res.data.order_details_json = JSON.parse(res.data.order_details_json);
+							that.order = res.data;
+						} else {
+							uni.showModal({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+					})
+					.catch(function(error) {
+						uni.showModal({
+							content: error,
+							showCancel: false
+						});
+					});
 			}
 
 		}

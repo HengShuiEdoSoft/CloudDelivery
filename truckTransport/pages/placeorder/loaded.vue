@@ -9,9 +9,9 @@
 				<image src="../../static/img/HeadImg.jpg" mode=""></image>
 			</view>
 			<view class="dui-driver-info">
-				<view class="">李师傅</view>
+				<view class="">{{ order.dname }}</view>
 				<view class="">京A88888</view>
-				<view class="">面包车</view>
+				<view class="">{{ order.car }}</view>
 			</view>
 		</view>
 		<view class="dui-driver-contact">
@@ -28,7 +28,7 @@
 		 :markers="markers" :polyline="polyline" @regionchange="regionchange"></map>
 		<view class="dui-price-info">
 			<view class="dui-price">
-				<text>￥</text><text>3591</text>
+				<text>￥</text><text>{{ order.pay_order_price }}</text>
 			</view>
 			<view class="dui-price-details">
 				<text>订单详情 <text class="iconfont icon-shangyiyehoutuifanhui"></text></text>
@@ -81,7 +81,7 @@
 				polyline: [],
 				map: null,
 				show: false,
-				list:{}
+				order:{}
 			};
 		},
 		onLoad(options) {

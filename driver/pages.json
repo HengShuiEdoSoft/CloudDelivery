@@ -19,6 +19,12 @@
 			}
 		},
 		{
+			"path": "pages/orderdetail/orderdetail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
 			"path": "pages/order/orderdetail-complete",
 			"style": {
 				"navigationBarTitleText": "订单详情"
