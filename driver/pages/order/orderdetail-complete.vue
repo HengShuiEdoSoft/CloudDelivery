@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view class="content" v-if="order!==null">
 		<scroll-view class="scroll-container">
 			<view class="ui-order-list-item">
 				<map id="amap" :show-location="true" :longitude="address_info.longitude" :latitude="address_info.latitude" scale="18"
@@ -128,10 +128,13 @@
 					}
 				}],
 				polyline: [],
-				map: null
+				map: null,
+				order:null
 			};
 		},
 		onLoad(options) {
+			this.ocode = options.ocode;
+			this.getDetail();
 			let that = this;
 			that.map = uni.createMapContext('amap', that);
 			if (options.channel) {
@@ -179,6 +182,34 @@
 				uni.makePhoneCall({
 					phoneNumber: '18888888888'
 				});
+			},
+			getDetail: function() {
+				let that = this;
+				const data = {
+					ocode: that.ocode
+				};
+				that.$uniFly
+					.post({
+						url: '/api/order/getorder',
+						params: data
+					})
+					.then(function(res) {
+						if (res.code == 0) {
+							res.data.order_details_json = JSON.parse(res.data.order_details_json);
+							that.order = res.data;
+						} else {
+							uni.showModal({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+					})
+					.catch(function(error) {
+						uni.showModal({
+							content: error,
+							showCancel: false
+						});
+					});
 			},
 			// 设置地图标记点和搜索框标题
 			setMarker(index, lon, lat, title) {
