@@ -332,6 +332,10 @@ export default {
 		swiperChange: function(e) {
 			let index = e.target.current || e.detail.current;
 			this.current = index;
+			this.$set(this.has_next, this.current, true);
+			this.$set(this.reload, this.current, true);
+			this.$set(this.page, this.current, 1);
+			this.getnewsList();
 		},
 		deleteOrder: function(ocode) {
 			uni.showModal({
