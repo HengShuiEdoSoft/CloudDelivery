@@ -8,7 +8,7 @@
 				</view>
 			</view>
 			<view v-if="!empty" class="dui-msgcenter-list">
-				<block v-for="(item, index) in lists" :key="item.notice_id">
+				<block v-for="(item, index) in lists" :key="index">
 					<view class="dui-msgcenter-item-box">
 						<view class="dui-msgcenter-item">
 							<view v-if="item.msg_type === 0" class="dui-msgcenter-logo"><image src="/static/img/setup.png"></image></view>

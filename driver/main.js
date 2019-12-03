@@ -243,8 +243,11 @@ function parseData(data) {
 			switch (data.type) {
 				case 'event':
 					{
-						console.log(data);
-						app.$fire.fire(data.event_name, data.data);
+						if (data.event_name == 'pushNotice') {
+							drmking.creatPushMessage(parseInt(data.data.msg_type) == 0 ? '系统通知' : '订单通知', data.data.msg, 'msgcenter');
+						} else {
+							app.$fire.fire(data.event_name, data.data);
+						}
 						break;
 					}
 				case 'msg':
@@ -257,3 +260,15 @@ function parseData(data) {
 	}
 }
 createWs();
+// #ifdef APP-PLUS  
+plus.push.addEventListener('click', function(msg) {
+	if (msg.payload == 'msgcenter') {
+		uni.navigateTo({
+			url: '/pages/msgcenter/msgcenter'
+		});
+	}
+});
+plus.push.addEventListener('receive', function(e) {
+	// console.log(e);
+});
+// #endif

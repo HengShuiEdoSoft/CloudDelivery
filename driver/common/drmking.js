@@ -2,6 +2,18 @@ import permision from "@/common/permission.js"
 let md5 = require('js-md5');
 let amap = require('@/common/amap.js');
 let drmking = {
+	creatPushMessage(title, content, payload) {
+		// #ifdef APP-PLUS
+		let option = {
+			cover: false,
+			delay: 5,
+			icon: ''
+		};
+		option['title'] = title;
+		plus.push.createMessage(content, payload, option);
+		// #endif
+
+	},
 	md5(obj) {
 		return md5(obj);
 	},

@@ -65,7 +65,7 @@
 				<view class="ui-order-list-item" v-for="(item, index) in scramble_orders" :key="index">
 					<view class="ui-order-list-item-top">
 						<text class="ui-order-list-cartype">整车</text>
-						<text>09月20日 10:22{{ item.order_details.car_time }}</text>
+						<text>{{ item.order_details.car_time }}</text>
 						<text class="ui-order-first">急</text>
 					</view>
 					<view class="ui-divide-line"></view>
