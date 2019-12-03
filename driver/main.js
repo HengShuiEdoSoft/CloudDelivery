@@ -272,7 +272,4 @@ plus.push.addEventListener('click', function(msg) {
 plus.push.addEventListener('receive', function(e) {
 	// console.log(e);
 });
-drmking.tts('小白兔 小白兔,穿皮袄,耳朵长,尾巴小.三瓣嘴,胡子翘,一动一动总在笑.');
-drmking.tts('小剪刀，咔嚓嚓，奶奶在家剪窗花。剪朵梅花五个瓣，剪只喜鹊叫喳喳。剪出雪花漫天撒，剪个福字头朝下。再剪一个胖娃娃，抱着鲤鱼笑哈哈');
-drmking.tts('云对雨，雪对风。花对树，鸟对虫。山清对水秀，柳绿对桃红。');
 // #endif

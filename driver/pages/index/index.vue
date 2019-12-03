@@ -159,7 +159,7 @@ export default {
 			that.setTrip(data);
 		});
 		that.$fire.on('pushToDriverOrderNotice', function(data) {
-			console.log(data);
+			that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
 			let order = {
 				order_id: data.order_id,
 				user_id: data.user_id,
