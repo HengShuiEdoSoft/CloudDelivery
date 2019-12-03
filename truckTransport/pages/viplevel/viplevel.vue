@@ -31,10 +31,8 @@
 							<view class="dui-vip-Receive-item" v-for="(gift_item, gift_index) in gift_pack_item.gift_list" :key="gift_item.gift_id">
 								<view class="dui-vip-Receive-body">
 									<view>【{{ gift_pack_item.gift_pack_title }}】:</view>
-									<view v-for="(coupon_item, coupon_index) in gift_item.coupon_list" :key="coupon_item.coupon_type_id">
-										<!-- <block v-for="(coupon_item, coupon_index) in gift_item.coupon_list" :key="coupon_item.coupon_type_id"> -->
-											{{ coupon_item.coupon_title }} {{ coupon_item.coupon_price }}元
-										<!-- </block> -->
+									<view v-for="(coupon_item, coupon_index) in gift_item.coupon_list" :key="coupon_index">
+										{{ coupon_item.coupon_title }} {{ coupon_item.coupon_price }}元
 									</view>
 								</view>
 							</view>

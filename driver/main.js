@@ -260,6 +260,7 @@ function parseData(data) {
 	}
 }
 createWs();
+
 // #ifdef APP-PLUS  
 plus.push.addEventListener('click', function(msg) {
 	if (msg.payload == 'msgcenter') {
