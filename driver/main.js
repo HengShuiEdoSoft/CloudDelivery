@@ -212,7 +212,7 @@ function initEventHandle(url, user_id) {
 		heartCheck.reset().start();
 		// 发送司机位置
 		sendDriveLocation.reset().start(user_id);
-		console.log(res, 'ws连接成功!' + new Date().toUTCString());
+		console.log( 'ws连接成功!' + new Date().toUTCString());
 	});
 	// 监听WebSocket错误
 	uni.onSocketError(function(res) {
@@ -226,7 +226,7 @@ function initEventHandle(url, user_id) {
 	});
 	// 监听WebSocket接受到服务器的消息事件
 	uni.onSocketMessage(function(res) {
-		console.log('ws收到消息啦：' + res.data);
+		// console.log('ws收到消息啦：' + res.data);
 		//如果获取到消息，心跳检测重置
 		heartCheck.reset().start();
 		//拿到任何消息都说明当前连接是正常的
@@ -272,4 +272,7 @@ plus.push.addEventListener('click', function(msg) {
 plus.push.addEventListener('receive', function(e) {
 	// console.log(e);
 });
+drmking.tts('小白兔 小白兔,穿皮袄,耳朵长,尾巴小.三瓣嘴,胡子翘,一动一动总在笑.');
+drmking.tts('小剪刀，咔嚓嚓，奶奶在家剪窗花。剪朵梅花五个瓣，剪只喜鹊叫喳喳。剪出雪花漫天撒，剪个福字头朝下。再剪一个胖娃娃，抱着鲤鱼笑哈哈');
+drmking.tts('云对雨，雪对风。花对树，鸟对虫。山清对水秀，柳绿对桃红。');
 // #endif
