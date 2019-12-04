@@ -17,7 +17,6 @@ export default {
 	data() {
 		return {
 			imageList: [],
-			FilesList: [],
 			sourceType: 'camera',
 			countIndex: 6,
 			max_num: parseInt(this.$store.state.sysconfig.sure_order_photo_num)
@@ -29,53 +28,60 @@ export default {
 			let res_images = [];
 			await that.uploadimg(that.imageList, res_images);
 			console.log(res_images);
-		},
-		uploadimg: function(images, res_images, image_index = 0, request_index = 0) {
-			console.log(image_index,request_index);
-			let that = this;
-			uni.uploadFile({
-				url: that.$uniFly.baseUrl + '/api/file/upload',
-				filePath: that.imageList[image_index],
-				fileType: 'image',
-				name: 'uploadimage',
-			})
-				.then(res => {
-					if (res.statusCode == 200) {
-						let res_data = JSON.parse(res.data);
-						if (res_data.code == 0) {
-							res_images[image_index] = res.data;
-							console.log(image_index++);
-							// that.uploadimg(images, res_images, image_index++, 0);
-						} else {
-							if (request_index < 3) {
-								// that.uploadimg(images, res_images, image_index, request_index++);
-							} else {
-								res_images[image_index] = false;
-								// that.uploadimg(images, res_images, image_index++, 0);
-							}
-						}
-					} else {
-						if (request_index < 3) {
-							// that.uploadimg(images, res_images, image_index, request_index++);
-						} else {
-							res_images[image_index] = false;
-							// that.uploadimg(images, res_images, image_index++, 0);
-						}
-					}
-				})
-				.catch(err => {
-					if (request_index < 3) {
-						// that.uploadimg(images, res_images, image_index, request_index++);
-					} else {
-						res_images[image_index] = false;
-						// that.uploadimg(images, res_images, image_index++, 0);
-					}
-				});
-		},
+		},		
 		removeImg: function(e) {
 			let that = this;
 			that.imageList.splice(e.currentTarget.dataset.index, 1);
 			that.$set(that, 'imageList', that.imageList);
+		},
+		uploadimg: async function(images, res_images, image_index = 0, request_index = 0) {
+			if (image_index < images.length) {
+				let that = this;
+				let upload_result = await new Promise((resolve, reject) => {
+					uni.uploadFile({
+						url: that.$uniFly.baseUrl + '/api/file/upload',
+						filePath: that.imageList[image_index],
+						fileType: 'image',
+						name: 'uploadimage',
+						complete(res) {
+							if (res.statusCode == 200) {
+								let res_data = JSON.parse(res.data);
+								if (res_data.code == 0) {
+									resolve(res_data.data);
+								} else {
+									resolve(false);
+								}
+							} else {
+								resolve(false);
+							}
+						}
+					});
+				});
+				if (upload_result !== false) {
+					res_images[image_index] = upload_result;
+					image_index = image_index + 1;
+					if (image_index < images.length) {
+						return that.uploadimg(images, res_images, image_index, 0);
+					} else {
+						return;
+					}
+				} else {
+					request_index = request_index + 1;
+					if (request_index < 3) {
+						return that.uploadimg(images, res_images, image_index, request_index);
+					} else {
+						res_images[image_index] = upload_result;
+						image_index = image_index + 1;
+						if (image_index < images.length) {
+							return that.uploadimg(images, res_images, image_index, 0);
+						} else {
+							return;
+						}
+					}
+				}
+			} else {
+				return;
+			}
 		},
 		chooseImageSource() {
 			let that = this;
