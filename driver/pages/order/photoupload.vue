@@ -17,133 +17,71 @@ export default {
 	data() {
 		return {
 			imageList: [],
-			FilesList: [],
-			sure_images:[],
 			sourceType: 'camera',
 			countIndex: 6,
 			max_num: parseInt(this.$store.state.sysconfig.sure_order_photo_num)
 		};
 	},
-	onBackPress(e) {
-		this.$fire.fire('SUREIMAGES', this.sure_images);
-	},
 	methods: {
 		async save() {
 			let that = this;
 			let res_images = [];
-			await that.uploadimg(images, res_images);
+			await that.uploadimg(that.imageList, res_images);
 			console.log(res_images);
-			this.sure_images=res_images;
-		},
-		chooseImage: async function() {
-			// #ifdef APP-PLUS
-			// TODO 选择相机或相册时 需要弹出actionsheet，目前无法获得是相机还是相册，在失败回调中处理
-			if (this.sourceTypeIndex !== 2) {
-				let status = await this.checkPermission();
-				if (status !== 1) {
-					return;
-				}
-			}
-			// #endif
-		
-			if (this.imageList.length === 6){
-				let isContinue = await this.isFullImg();
-				console.log("是否继续?", isContinue);
-				if (!isContinue){
-					return;
-				}
-			}
-			uni.chooseImage({
-				sourceType: sourceType[this.sourceTypeIndex],
-				sizeType: ['original', 'compressed'], 
-				count: this.imageList.length + this.count[this.countIndex] > 9 ? 9 - this.imageList.length : this.count[this.countIndex],			
-				success: (res) => {
-					that.imageList = that.imageList.concat(res.tempFilePaths);
-					//this.$set();这里不会写
-					
-				},
-				fail: (err) => {
-					// #ifdef APP-PLUS
-					if (err['code'] && err.code !== 0 && this.sourceTypeIndex === 2) {
-						this.checkPermission(err.code);
-					}
-					// #endif
-					// #ifdef MP
-					uni.getSetting({
-						success: (res) => {
-							let authStatus = false;
-							switch (this.sourceTypeIndex) {
-								case 0:
-									authStatus = res.authSetting['scope.camera'];
-									break;
-								case 1:
-									authStatus = res.authSetting['scope.album'];
-									break;
-								default:
-									break;
-							}
-							if (!authStatus) {
-								uni.showModal({
-									title: '授权失败',
-									content: 'Hello uni-app需要从您的相机或相册获取图片，请在设置界面打开相关权限',
-									success: (res) => {
-										if (res.confirm) {
-											uni.openSetting()
-										}
-									}
-								})
-							}
-						}
-					})
-					// #endif
-				}
-			})
-		},
-		uploadimg: function(images, res_images, image_index = 0, request_index = 0) {
-			let that = this;
-			uni.uploadFile({
-				url: that.$uniFly.baseUrl + '/api/file/upload',
-				files: files,
-				filePath: that.imageList[file_index],
-				fileType: 'image',
-				name: 'uploadimage'
-			})
-				.then(res => {
-					if (res.statusCode == 200) {
-						let res_data = JSON.parse(res.data);
-						if (res_data.code == 0) {
-							res_images[image_index] = res.data;
-							that.uploadimg(images, res_images, image_index++, 0);
-						} else {
-							if (request_index < 3) {
-								that.uploadimg(images, res_images, image_index, request_index++);
-							} else {
-								res_images[image_index] = false;
-								that.uploadimg(images, res_images, image_index++, 0);
-							}
-						}
-					} else {
-						if (request_index < 3) {
-							that.uploadimg(images, res_images, image_index, request_index++);
-						} else {
-							res_images[image_index] = false;
-							that.uploadimg(images, res_images, image_index++, 0);
-						}
-					}
-				})
-				.catch(err => {
-					if (request_index < 3) {
-						that.uploadimg(images, res_images, image_index, request_index++);
-					} else {
-						res_images[image_index] = false;
-						that.uploadimg(images, res_images, image_index++, 0);
-					}
-				});
-		},
+		},		
 		removeImg: function(e) {
 			let that = this;
 			that.imageList.splice(e.currentTarget.dataset.index, 1);
 			that.$set(that, 'imageList', that.imageList);
+		},
+		uploadimg: async function(images, res_images, image_index = 0, request_index = 0) {
+			if (image_index < images.length) {
+				let that = this;
+				let upload_result = await new Promise((resolve, reject) => {
+					uni.uploadFile({
+						url: that.$uniFly.baseUrl + '/api/file/upload',
+						filePath: that.imageList[image_index],
+						fileType: 'image',
+						name: 'uploadimage',
+						complete(res) {
+							if (res.statusCode == 200) {
+								let res_data = JSON.parse(res.data);
+								if (res_data.code == 0) {
+									resolve(res_data.data);
+								} else {
+									resolve(false);
+								}
+							} else {
+								resolve(false);
+							}
+						}
+					});
+				});
+				if (upload_result !== false) {
+					res_images[image_index] = upload_result;
+					image_index = image_index + 1;
+					if (image_index < images.length) {
+						return that.uploadimg(images, res_images, image_index, 0);
+					} else {
+						return;
+					}
+				} else {
+					request_index = request_index + 1;
+					if (request_index < 3) {
+						return that.uploadimg(images, res_images, image_index, request_index);
+					} else {
+						res_images[image_index] = upload_result;
+						image_index = image_index + 1;
+						if (image_index < images.length) {
+							return that.uploadimg(images, res_images, image_index, 0);
+						} else {
+							return;
+						}
+					}
+				}
+			} else {
+				return;
+			}
 		},
 		chooseImageSource() {
 			let that = this;
@@ -159,6 +97,69 @@ export default {
 						console.log('cancel');
 					}
 					that.chooseImage();
+				}
+			});
+		},
+		chooseImage: async function() {
+			let that = this;
+			// #ifdef APP-PLUS
+			let status = await that.checkPermission();
+			if (status !== 1) {
+				return;
+			}
+			// #endif
+			console.log(that.sourceType);
+			if (that.imageList.length == that.max_num) {
+				let isContinue = await that.isFullImg();
+				console.log('是否继续?', isContinue);
+				if (!isContinue) {
+					return;
+				}
+			}
+
+			uni.chooseImage({
+				sourceType: [that.sourceType],
+				sizeType: ['original', 'compressed'],
+				count: that.max_num - that.imageList.length,
+				success: res => {
+					that.imageList = res.tempFilePaths;
+				},
+				fail: err => {
+					console.log(err);
+					// #ifdef APP-PLUS
+					that.checkPermission();
+					// #endif
+					// #ifdef MP-WEIXIN
+					uni.getSetting({
+						success: res => {
+							let authStatus = false;
+							switch (that.sourceType) {
+								case 'camera': {
+									authStatus = res.authSetting['scope.camera'];
+									break;
+								}
+								case 'album': {
+									authStatus = res.authSetting['scope.album'];
+									break;
+								}
+								default: {
+									break;
+								}
+							}
+							if (!authStatus) {
+								uni.showModal({
+									title: '授权失败',
+									content: '需要从您的相机或相册获取图片，请在设置界面打开相关权限',
+									success: res => {
+										if (res.confirm) {
+											uni.openSetting();
+										}
+									}
+								});
+							}
+						}
+					});
+					// #endif
 				}
 			});
 		},
