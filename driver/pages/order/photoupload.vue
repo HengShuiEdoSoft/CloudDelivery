@@ -17,8 +17,8 @@ export default {
 	data() {
 		return {
 			imageList: [],
-			sure_images:[],
 			FilesList: [],
+			sure_images:[],
 			sourceType: 'camera',
 			countIndex: 6,
 			max_num: parseInt(this.$store.state.sysconfig.sure_order_photo_num)
@@ -33,6 +33,7 @@ export default {
 			let res_images = [];
 			await that.uploadimg(images, res_images);
 			console.log(res_images);
+			this.sure_images=res_images;
 		},
 		chooseImage: async function() {
 			// #ifdef APP-PLUS
