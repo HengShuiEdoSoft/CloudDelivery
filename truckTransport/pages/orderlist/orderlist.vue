@@ -14,11 +14,9 @@
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
+					<block class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index">
 					<navigator
-						class="ui-order-list-item"
-						v-for="(item, index) in newsList[0]"
-						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
-						:key="index"
+						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"	
 						@longtap="deleteOrder(item.ocode)"
 					>
 						<view class="ui-daizhifu" v-if="item.status === 0">待支付</view>
@@ -60,10 +58,7 @@
 						<view class="ui-order-price">{{ '￥' + item.order_price }}</view>
 					</navigator>
 					<navigator v-if="item.status === 1"
-						class="ui-order-list-item"
-						v-for="(item, index) in newsList[0]"
 						:url="'/pages/placeorder/sending_driver?ocode=' + item.ocode"
-						:key="index"
 					>
 						<view class="ui-hujiao" v-if="item.status === 1">呼叫中...</view>
 						<view class="ui-order-list-item-top">
@@ -104,10 +99,7 @@
 						<view class="ui-order-price">{{ '￥' + item.order_price }}</view>
 					</navigator>
 					<navigator v-if="item.status === 2||item.status === 3"
-						class="ui-order-list-item"
-						v-for="(item, index) in newsList[0]"
 						:url="'/pages/placeorder/loaded?ocode=' + item.ocode"
-						:key="index"
 					>
 						<view class="ui-hujiao" v-if="item.status === 2">等待运送</view>
 						<view class="ui-hujiao" v-if="item.status === 3">运送中</view>
@@ -148,6 +140,7 @@
 						</view>
 						<view class="ui-order-price">{{ '￥' + item.order_price }}</view>
 					</navigator>
+					</block>
 					<view class="loading">{{ loadingText[0] }}</view>
 				</scroll-view>
 			</swiper-item>
