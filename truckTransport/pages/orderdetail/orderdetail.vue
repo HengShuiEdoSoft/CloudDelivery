@@ -4,6 +4,10 @@
 			<image src="../../static/img/HeadImg.jpg" class="ui-od-portrait"></image>
 			<view>{{ order.dname }}</view>
 		</view>
+		<view>
+			<view>取消订单</view>
+			<view>去支付</view>
+		</view>
 		<view class="ui-orderdetail-cont">
 			<view class="ui-orderdetail-date">
 				<view class="ui-od-date">{{ order.sure_time }}</view>

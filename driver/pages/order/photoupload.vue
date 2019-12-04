@@ -10,7 +10,7 @@
 				</view>
 			</view>
 			<view class="dui-confirm-btn-box">
-				<button type="primary" class="dui-photoupload-btn">确认提交</button>
+				<button type="primary" class="dui-photoupload-btn" @tap="upload">确认提交</button>
 			</view>
 		</scroll-view>
 	</view>
@@ -51,30 +51,9 @@
 					sizeType: ['original', 'compressed'], 
 					count: this.imageList.length + this.count[this.countIndex] > 9 ? 9 - this.imageList.length : this.count[this.countIndex],			
 					success: (res) => {
-						let imageList = this.imageList.concat(res.tempFilePaths);
+						that.imageList = that.imageList.concat(res.tempFilePaths);
 						//this.$set();这里不会写
-						uni.uploadFile({
-							url: that.$uniFly.baseUrl + '/api/file/upload',
-							filePath: imageList,
-							fileType: 'image',
-							name: 'uploadimage',
-							success: (res) => {
-								console.log('uploadImage success, res is:', res)
-								uni.showToast({
-									title: '上传成功',
-									icon: 'success',
-									duration: 1000
-								})
-								this.imageList = imageList
-							},
-							fail: (err) => {
-								console.log('uploadImage fail', err);
-								uni.showModal({
-									content: err.errMsg,
-									showCancel: false
-								});
-							}
-						});
+						
 					},
 					fail: (err) => {
 						// #ifdef APP-PLUS
@@ -137,6 +116,30 @@
 					current: current,
 					urls: this.imageList
 				})
+			},
+			upload:function(){
+				let that=this;
+				uni.uploadFile({
+					url: that.$uniFly.baseUrl + '/api/file/upload',
+					filePath: that.imageList,
+					fileType: 'image',
+					name: 'uploadimage',
+					success: (res) => {
+						console.log('uploadImage success, res is:', res)
+						uni.showToast({
+							title: '上传成功',
+							icon: 'success',
+							duration: 1000
+						})
+					},
+					fail: (err) => {
+						console.log('uploadImage fail', err);
+						uni.showModal({
+							content: err.errMsg,
+							showCancel: false
+						});
+					}
+				});
 			},
 			async checkPermission(code) {
 				let type = code ? code - 1 : this.sourceTypeIndex;
