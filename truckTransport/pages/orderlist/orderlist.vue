@@ -14,9 +14,8 @@
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<block v-for="(item, index) in newsList[0]" :key="index">
+					<block class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index">
 					<navigator
-						class="ui-order-list-item"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"	
 						@longtap="deleteOrder(item.ocode)"
 					>
@@ -59,7 +58,6 @@
 						<view class="ui-order-price">{{ '￥' + item.order_price }}</view>
 					</navigator>
 					<navigator v-if="item.status === 1"
-						class="ui-order-list-item"
 						:url="'/pages/placeorder/sending_driver?ocode=' + item.ocode"
 					>
 						<view class="ui-hujiao" v-if="item.status === 1">呼叫中...</view>
@@ -101,7 +99,6 @@
 						<view class="ui-order-price">{{ '￥' + item.order_price }}</view>
 					</navigator>
 					<navigator v-if="item.status === 2||item.status === 3"
-						class="ui-order-list-item"
 						:url="'/pages/placeorder/loaded?ocode=' + item.ocode"
 					>
 						<view class="ui-hujiao" v-if="item.status === 2">等待运送</view>
