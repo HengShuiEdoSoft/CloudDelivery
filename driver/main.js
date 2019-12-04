@@ -212,7 +212,7 @@ function initEventHandle(url, user_id) {
 		heartCheck.reset().start();
 		// 发送司机位置
 		sendDriveLocation.reset().start(user_id);
-		console.log(res, 'ws连接成功!' + new Date().toUTCString());
+		console.log( 'ws连接成功!' + new Date().toUTCString());
 	});
 	// 监听WebSocket错误
 	uni.onSocketError(function(res) {
@@ -226,7 +226,7 @@ function initEventHandle(url, user_id) {
 	});
 	// 监听WebSocket接受到服务器的消息事件
 	uni.onSocketMessage(function(res) {
-		console.log('ws收到消息啦：' + res.data);
+		// console.log('ws收到消息啦：' + res.data);
 		//如果获取到消息，心跳检测重置
 		heartCheck.reset().start();
 		//拿到任何消息都说明当前连接是正常的
@@ -243,8 +243,11 @@ function parseData(data) {
 			switch (data.type) {
 				case 'event':
 					{
-						console.log(data);
-						app.$fire.fire(data.event_name, data.data);
+						if (data.event_name == 'pushNotice') {
+							drmking.creatPushMessage(parseInt(data.data.msg_type) == 0 ? '系统通知' : '订单通知', data.data.msg, 'msgcenter');
+						} else {
+							app.$fire.fire(data.event_name, data.data);
+						}
 						break;
 					}
 				case 'msg':
@@ -257,3 +260,16 @@ function parseData(data) {
 	}
 }
 createWs();
+
+// #ifdef APP-PLUS  
+plus.push.addEventListener('click', function(msg) {
+	if (msg.payload == 'msgcenter') {
+		uni.navigateTo({
+			url: '/pages/msgcenter/msgcenter'
+		});
+	}
+});
+plus.push.addEventListener('receive', function(e) {
+	// console.log(e);
+});
+// #endif

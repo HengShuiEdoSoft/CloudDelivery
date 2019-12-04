@@ -15,7 +15,7 @@
 				<text class="iconfont icon-liwu"></text>
 			</view>
 			<view class="dui-recharge-firstcharge-body" v-if="list.length > 0">
-				<view v-for="(item, index) in list[cur].coupon_list">赠送 {{ item.coupon_title }} x {{ item.coupon_num }}张</view>
+				<view v-for="(item, index) in list[cur].coupon_list" :key="index">赠送 {{ item.coupon_title }} x {{ item.coupon_num }}张</view>
 			</view>
 			<view class="dui-recharge-paymode">
 				<view class="dui-recharge-paymode-title">支付方式</view>

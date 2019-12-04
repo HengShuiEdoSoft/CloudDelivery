@@ -2,6 +2,91 @@ import permision from "@/common/permission.js"
 let md5 = require('js-md5');
 let amap = require('@/common/amap.js');
 let drmking = {
+	// 文字转语音
+	tts(text) {
+		// #ifdef APP-PLUS
+		switch (plus.os.name) {
+			case 'Android':
+				{
+					let textToSpeech = null;
+					let Locale = plus.android.importClass('java.util.Locale');
+					let TextToSpeech = plus.android.importClass('android.speech.tts.TextToSpeech');
+					let listener = plus.android.implements('android.speech.tts.TextToSpeech$OnInitListener', {
+						'onInit': function(status) {
+							if (status == TextToSpeech.SUCCESS) {
+								let en = textToSpeech.getDefaultEngine();
+								let result = textToSpeech.setLanguage(Locale.CHINA);
+								textToSpeech.setPitch(1.2); // 设置音调，,1.0是常规
+								textToSpeech.setSpeechRate(1.0); //设定语速，1.0正常语速
+								if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+									uni.showToast({
+										icon:'none',
+										title:'语音包丢失或语音不支持'
+									});
+								} else {
+									textToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null);
+									if (textToSpeech != null) {
+										let timmer = setInterval(function() {
+											if (textToSpeech.isSpeaking()) {
+											} else {
+												clearInterval(timmer);
+												//释放资源
+												textToSpeech.stop();
+												textToSpeech.shutdown();
+											}
+										}, 100);
+									}
+								}
+							}
+						}
+					});
+					textToSpeech = new TextToSpeech(plus.android.runtimeMainActivity(), listener);
+					break;
+				}
+			case 'iOS':
+				{
+					let AVAudioSession = plus.ios.importClass('AVAudioSession');
+					let AVSpeechSynthesizer = plus.ios.importClass('AVSpeechSynthesizer');
+					let AVSpeechUtterance = plus.ios.importClass('AVSpeechUtterance');
+					let AVSpeechSynthesisVoice = plus.ios.import('AVSpeechSynthesisVoice');
+					AVAudioSession.sharedInstance().setCategoryerror('AVAudioSessionCategoryPlayback', null);
+					let sppech = new AVSpeechSynthesizer();
+					let utterance = AVSpeechUtterance.speechUtteranceWithString(text);
+					utterance.plusSetAttribute('rate', 0.3);
+					sppech.speakUtterance(utterance);
+					//停止  
+					sppech.stopSpeakingAtBoundary(0)
+					//暂停  
+					sppech.pauseSpeakingAtBoundary(0);
+					//继续  
+					sppech.continueSpeaking(0);
+					plus.ios.deleteObject(voice);
+					plus.ios.deleteObject(utterance);
+					plus.ios.deleteObject(sppech);
+					plus.ios.deleteObject(AVAudioSession);
+					break;
+				}
+			default:
+				{
+					break;
+				}
+		}
+		// #endif
+
+	},
+	// 创建本地通知
+	creatPushMessage(title, content, payload) {
+		// #ifdef APP-PLUS
+		let option = {
+			cover: false,
+			delay: 5,
+			icon: ''
+		};
+		option['title'] = title;
+		plus.push.createMessage(content, payload, option);
+		// #endif
+
+	},
 	md5(obj) {
 		return md5(obj);
 	},

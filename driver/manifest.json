@@ -11,7 +11,8 @@
         /* 模块配置 */
         "modules" : {
             "Maps" : {},
-            "OAuth" : {}
+            "OAuth" : {},
+            "Push" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -53,7 +54,8 @@
                         "appkey_ios" : "281fa2435ad2a0c057e4fd5ff5a33522",
                         "appkey_android" : "7a853b80cf5f4c69455cb6b05df35e49"
                     }
-                }
+                },
+                "push" : {}
             },
             "icons" : {
                 "android" : {
