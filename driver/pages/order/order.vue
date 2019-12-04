@@ -21,7 +21,7 @@
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator v-for="(item, index) in newsList[0]" :url="'/pages/orderdetail/orderdetail1?ocode=' + item.ocode" :key="index">
+					<navigator v-for="(item, index) in newsList[0]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
 						<view class="ui-order-list-item">
 							<view class="ui-hujiao" v-if="item.status == 2">等待运送</view>
 							<view class="ui-hujiao" v-if="item.status == 3">运送中</view>
