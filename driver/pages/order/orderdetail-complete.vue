@@ -137,46 +137,17 @@
 			this.getDetail();
 			let that = this;
 			that.map = uni.createMapContext('amap', that);
-			if (options.channel) {
-				that.channel = options.channel;
-			}
-			if (options.status) {
-				that.status = parseInt(options.status);
-			}
-			if (options.is_destination) {
-				that.is_destination = Boolean(options.is_destination);
-			}
-			if (options.transfer_index) {
-				that.transfer_index = parseInt(options.transfer_index);
-			}
-			if (options.address_info) {
-				that.address_info = options.address_info;
-			} else {
-				amap.getRegeo()
-					.then(res => {
-						let info = res[0];
-						that.setMapLocation(info.longitude, info.latitude);
-					})
-					.catch(err => {
-						console.log(err);
-					});
-			}
-			that.$fire.on('setAmapLocation', function(item) {
-				let location = item.location.split(',');
-				let lon = location[0];
-				let lat = location[1];
-				that.setMapLocation(lon, lat);
-			});
-			that.$fire.on('amapSelectCity', function(city) {
-				that.setMapCity(city.city_title);
-				that.$set(that.address_info, 'localtion', '');
-			});
+			
 		},
 		methods: {
-			navTo: function() {
+			photoUpLoad: function() {
+				this.$fire.on('SUREIMAGES',function(data){
+					
+				});
 				uni.navigateTo({
 					url: '/pages/order/photoupload'
 				});
+				
 			},
 			call: function(e) {
 				uni.makePhoneCall({
