@@ -1,4 +1,12 @@
-
+.dui-notyet-wrapper {
+			margin-top: 300upx;
+			margin-left: auto;
+			margin-right: auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size: 30upx;
+}
 	.dui-gap{
 		height: 16upx;
 	}
@@ -6,6 +14,25 @@
 		margin-top: 66upx;
 		margin-left: 84upx;
 		margin-right: 100upx;
+	}
+	.dui-notyet-wrapper image {
+		width: 170upx;
+		height: 200upx;
+	}
+	
+	.dui-notyet-wrapper text {
+		margin: 86upx 0 70upx 0;
+		color: #8d8d8d;
+	}
+	
+	.dui-notyet-btn {
+		width: 290upx;
+		height: 85upx;
+		line-height: 85upx;
+		background-color: #fff2de;
+		color: #FF5723;
+		text-align: center;
+		border-radius: 10upx;
 	}
 .dui-input{
     display: flex;
