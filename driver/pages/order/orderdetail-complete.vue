@@ -93,8 +93,10 @@
 	</view>
 </template>
 <script>
+	import { mapState } from 'vuex';
 	let amap = require('@/common/amap.js');
 	export default {
+		computed: mapState(['sysconfig']),
 		data() {
 			return {
 				channel: 'setTrip',
@@ -151,7 +153,7 @@
 			},
 			call: function(e) {
 				uni.makePhoneCall({
-					phoneNumber: '18888888888'
+					phoneNumber: sysconfig.service_tel
 				});
 			},
 			getDetail: function() {
