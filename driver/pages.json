@@ -110,9 +110,9 @@
 			}
 		},
 		{
-			"path": "pages/order/order",
+			"path": "pages/mycar/carinfo",
 			"style": {
-				"navigationBarTitleText": "车辆信息"
+				"navigationBarTitleText": "我的车辆"
 			}
 		},
 		{

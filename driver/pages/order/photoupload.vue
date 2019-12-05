@@ -17,10 +17,14 @@ export default {
 	data() {
 		return {
 			imageList: [],
+			sure_images:null,
 			sourceType: 'camera',
 			countIndex: 6,
 			max_num: parseInt(this.$store.state.sysconfig.sure_order_photo_num)
 		};
+	},
+	onBackPress(e) {
+		this.$fire.fire('SUREIMAGES', this.sure_images);
 	},
 	methods: {
 		async save() {
@@ -28,6 +32,7 @@ export default {
 			let res_images = [];
 			await that.uploadimg(that.imageList, res_images);
 			console.log(res_images);
+			this.sure_images=res_images;
 		},		
 		removeImg: function(e) {
 			let that = this;

@@ -54,9 +54,9 @@
 					<view class="ui-od-info-left">备注</view>
 					<view class="ui-od-info-right">{{ order.order_details_json.remark }}</view>
 				</view>
-				<view class="dui-orderdetail-demand" @tap="navTo">
+				<!--<view class="dui-orderdetail-demand" @tap="navTo">
 					拍照回单(免费)
-				</view>
+				</view>-->
 			</view>
 			<view class="ui-orderdetail-cont" style="overflow: hidden;">
 				<view class="dui-orderdetail-info">
@@ -84,7 +84,7 @@
 				<view class="ui-tips">说明: 若产生高速费、停车费、搬运费，需用户按实际支付。若涉及逾时等候费请按<navigator>标准费用</navigator>结算。</view>
 			</view>
 			<view class="dui-confirm-btn-box">
-				<button type="primary" class="dui-orderdetail-confirm-btn">确认到达发货地</button>
+				<button type="primary" class="dui-orderdetail-confirm-btn" @tap="arriveSure">确认到达发货地</button>
 			</view>
 		</scroll-view>
 	</view>
@@ -139,15 +139,49 @@
 			
 		},
 		methods: {
-			navTo: function() {
-				uni.navigateTo({
-					url: '/pages/order/photoupload'
-				});
-			},
 			call: function(e) {
 				uni.makePhoneCall({
 					phoneNumber: this.sysconfig.service_tel
 				});
+			},
+			arriveSure:function(){
+				let that = this;
+				const data = {
+					order_id:order.order_id
+				};
+				uni.showModal({
+						title: '确认到达',
+						content: '是否确认已到达',
+						showCancel: true,
+						success: res => {
+							if (res.confirm) {
+								that.$uniFly
+									.post({
+										url: '/api/order/sureorder',
+										params: data
+									})
+									.then(function(res) {
+										if (res.code == 0) {
+											uni.navigateTo({
+												url:"/pages/index/index"
+											})
+										} else {
+											uni.showModal({
+												content: res.msg,
+												showCancel: false
+											});
+										}
+									})
+									.catch(function(error) {
+										uni.showModal({
+											content: error,
+											showCancel: false
+										});
+									});
+							}
+						}
+					});
+					return false;			
 			},
 			// 设置地图标记点和搜索框标题
 			setMarker(index, lon, lat, title) {
@@ -161,41 +195,6 @@
 			setMapLocation(lon, lat) {
 				this.$set(this.address_info, 'longitude', lon);
 				this.$set(this.address_info, 'latitude', lat);
-			},
-			// 设置地图城市信息
-			setMapCity(city) {
-				this.$set(this.address_info, 'city', city);
-			},
-			// 地图移动确定地图中心点
-			regionchange(e) {
-				let that = this;
-				that.map.getCenterLocation({
-					success(res) {
-						if (that.init_flag == false) {
-							that.init_flag = true;
-						} else {
-							amap.getRegeo(res.longitude + ',' + res.latitude)
-								.then(res => {
-									let info = res[0];
-									let addressComponent = info.regeocodeData.addressComponent;
-									that.setMapCity(addressComponent.city, addressComponent.citycode);
-									that.setMapLocation(info.longitude, info.latitude);
-									if (info.regeocodeData.aois.length > 0) {
-										that.setMarker(0, info.longitude, info.latitude, addressComponent.district + info.regeocodeData.aois[0].name);
-									} else {
-										that.setMarker(0, info.longitude, info.latitude, addressComponent.district + info.regeocodeData.addressComponent
-											.township);
-									}
-								})
-								.catch(err => {
-									console.log(err);
-								});
-						}
-					},
-					fail(err) {
-						console.log(err);
-					}
-				});
 			},
 			getDetail: function() {
 				let that = this;

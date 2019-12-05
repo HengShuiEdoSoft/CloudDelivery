@@ -47,7 +47,7 @@
 					</view>
 				</view>
 				<view class="dui-user-routine">
-					<view @tap="navTo('/pages/mycar/mycar')">
+					<view @tap="navToInfo">
 						<view class="dui-user-routine-item">
 							<text class="iconfont icon-huoche"></text>
 							<text>我的车辆</text>
@@ -73,7 +73,7 @@
 <script>
 import { mapState } from 'vuex';
 export default {
-	computed: mapState(['forcedLogin', 'hasLogin', 'user']),
+	computed: mapState(['forcedLogin', 'hasLogin','isConfirm', 'user']),
 	onNavigationBarButtonTap: function(e) {
 		let index = e.index;
 		if (index === 0) {
@@ -105,6 +105,33 @@ export default {
 				this.username = this.user.phone.replace(this.user.phone.substring(3, 7), '****');
 			} else {
 				this.username = '未登录';
+			}
+		},
+		navToInfo:function(){
+			if (!this.hasLogin) {
+				uni.showModal({
+					title: '未登录',
+					content: '您未登录，需要登录后才能继续',
+					showCancel: true,
+					success: res => {
+						if (res.confirm) {
+							uni.navigateTo({
+								url: '../login/login'
+							});
+						}
+					}
+				});
+				return false;
+			} else{ 
+				if(this.isConfirm){
+					uni.navigateTo({
+						url: '/pages/mycar/mycar'
+					});
+				}else{
+					uni.navigateTo({
+						url: '/pages/mycar/carinfo'
+					});
+				}	
 			}
 		},
 		navTo: function(url) {

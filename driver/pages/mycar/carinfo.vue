@@ -3,11 +3,11 @@
 		<view class="input-group">
 			<view class="input-row border">
 				<text class="title">车型</text>
-				<m-input type="text" focus clearable v-model="business_title" placeholder="请选择车型"></m-input>
+				<m-input type="text" focus clearable v-model="car_id" placeholder="请选择车型"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title">银行卡号</text>
-				<m-input type="text" focus clearable v-model="business_title" placeholder="请输入银行卡号"></m-input>
+				<m-input type="text" focus clearable v-model="bank_card_num" placeholder="请输入银行卡号"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title">银行卡照片</text>
@@ -15,7 +15,7 @@
 			</view>
 			<view class="input-row border">
 				<text class="title">车牌号</text>
-				<m-input type="text" focus clearable v-model="business_title" placeholder="请输入车牌号"></m-input>
+				<m-input type="text" focus clearable v-model="car_number" placeholder="请输入车牌号"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title">车辆照片</text>
@@ -35,6 +35,7 @@
 	</view>
 </template>
 <script>
+import { mapMutations } from 'vuex';
 import mInput from '@/components/m-input.vue';
 import photos from '@/components/yq-avatar/yq-avatar.vue';
 export default {
@@ -52,12 +53,18 @@ export default {
 			car_photos:'',
 			driver_photos:'',
 			driving_photos:'',
-			driverphotos: ['../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png']
+			imgurl:['','','',''],
+			photos: ['../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png']
 		};
 	},
 	methods: {
+		...mapMutations(['beconfirm']),
 		submitRealInfo() {
 			let that = this;
+			that.business_number=imgurl[0];
+			that.car_photos=imgurl[1];
+			that.driver_photos=imgurl[2];
+			that.driving_photos=imgurl[3];
 			const data = {
 				car_id: that.car_id,
 				bank_card_num: that.bank_card_num,
@@ -122,6 +129,7 @@ export default {
 							mask: true,
 							duration: 3000
 						});
+						that.beconfirm(true);
 						that.$store.commit('login', res.data);
 						setTimeout(function(){
 							uni.navigateBack({
@@ -154,7 +162,7 @@ export default {
 		doBefore() {},
 		doUpload(rsp) {
 			let that = this;
-			that.$set(that.driverphotos, rsp.index, rsp.path);
+			that.$set(that.photos, rsp.index, rsp.path);
 			uni.uploadFile({
 				url: that.$uniFly.baseUrl + '/api/file/upload',
 				filePath: rsp.path,
@@ -163,10 +171,7 @@ export default {
 					if (res.statusCode == 200) {
 						let data = JSON.parse(res.data);
 						if (data.code == 0) {
-							that.business_number=data.data[0];
-							that.car_photos=data.data[1];
-							that.driver_photos=data.data[2];
-							that.driving_photos=data.data[3];
+							that.$set(that.imgurl,rsp.index,data.data);
 						} else {
 							uni.showToast({
 								icon: 'none',

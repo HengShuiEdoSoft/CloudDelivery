@@ -54,7 +54,7 @@
 					<view class="ui-od-info-left">备注</view>
 					<view class="ui-od-info-right">{{ order.order_details_json.remark }}</view>
 				</view>
-				<view class="dui-orderdetail-demand" @tap="navTo">
+				<view class="dui-orderdetail-demand" @tap="photoUpLoad">
 					拍照回单(免费)
 				</view>
 			</view>
@@ -84,7 +84,7 @@
 				<view class="ui-tips">说明: 若产生高速费、停车费、搬运费，需用户按实际支付。若涉及逾时等候费请按<navigator>标准费用</navigator>结算。</view>
 			</view>
 			<view class="dui-confirm-btn-box">
-				<button type="primary" class="dui-orderdetail-confirm-btn1">
+				<button type="primary" class="dui-orderdetail-confirm-btn1" @tap="completeSure">
 					确认完成
 					<text>*请确认完成,结束本单服务</text>
 				</button>
@@ -104,15 +104,6 @@
 				is_destination: false,
 				transfer_index: 0,
 				init_flag: false,
-				address_info: {
-					city: '',
-					latitude: '',
-					longitude: '',
-					localtion: '',
-					address: '',
-					contact: '',
-					phone: ''
-				},
 				markers: [{
 					iconPath: '/static/amap/marker.png',
 					id: 0,
@@ -131,7 +122,8 @@
 				}],
 				polyline: [],
 				map: null,
-				order:null
+				order:null,
+				sure_images:null
 			};
 		},
 		onLoad(options) {
@@ -144,7 +136,7 @@
 		methods: {
 			photoUpLoad: function() {
 				this.$fire.on('SUREIMAGES',function(data){
-					
+					this.sure_images=data;
 				});
 				uni.navigateTo({
 					url: '/pages/order/photoupload'
@@ -184,6 +176,43 @@
 						});
 					});
 			},
+			completeSure:function(){
+				let that = this;
+				const data = {
+					order_id:order.order_id,
+					sure_images: this.sure_images
+				};
+				if (that.$drmking.isEmpty(data.sure_images)) {
+					uni.showToast({
+						icon: 'none',
+						title: '请上传回执后再确认完成!'
+					});
+					return;
+				}
+				that.$uniFly
+					.post({
+						url: '/api/order/sureorder',
+						params: data
+					})
+					.then(function(res) {
+						if (res.code == 0) {
+							uni.navigateTo({
+								url:"/pages/index/index"
+							})
+						} else {
+							uni.showModal({
+								content: res.msg,
+								showCancel: false
+							});
+						}
+					})
+					.catch(function(error) {
+						uni.showModal({
+							content: error,
+							showCancel: false
+						});
+					});
+			},
 			// 设置地图标记点和搜索框标题
 			setMarker(index, lon, lat, title) {
 				this.$set(this.markers[index], 'longitude', lon);
@@ -200,40 +229,8 @@
 			// 设置地图城市信息
 			setMapCity(city) {
 				this.$set(this.address_info, 'city', city);
-			},
-			// 地图移动确定地图中心点
-			regionchange(e) {
-				let that = this;
-				that.map.getCenterLocation({
-					success(res) {
-						if (that.init_flag == false) {
-							that.init_flag = true;
-						} else {
-							amap.getRegeo(res.longitude + ',' + res.latitude)
-								.then(res => {
-									let info = res[0];
-									let addressComponent = info.regeocodeData.addressComponent;
-									that.setMapCity(addressComponent.city, addressComponent.citycode);
-									that.setMapLocation(info.longitude, info.latitude);
-									if (info.regeocodeData.aois.length > 0) {
-										that.setMarker(0, info.longitude, info.latitude, addressComponent.district + info.regeocodeData.aois[0].name);
-									} else {
-										that.setMarker(0, info.longitude, info.latitude, addressComponent.district + info.regeocodeData.addressComponent
-											.township);
-									}
-								})
-								.catch(err => {
-									console.log(err);
-								});
-						}
-					},
-					fail(err) {
-						console.log(err);
-					}
-				});
 			}
-
-		}
+		}	
 	};
 </script>
 <style>

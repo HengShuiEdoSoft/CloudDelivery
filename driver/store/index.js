@@ -66,7 +66,7 @@ const store = new Vuex.Store({
 		 */
 		forcedLogin: false,
 		hasLogin: false,
-		isCompany: false,
+		isComfirm: false,
 		// phone: "",
 		// token: "",
 		// userid: "",
@@ -221,8 +221,8 @@ const store = new Vuex.Store({
 				this.dispatch('set_order_coupon');
 			}
 		},
-		becompany(isCompany) {
-			state.isCompany = isCompany
+		beconfirm(isConfirm) {
+			state.isConfirm = isConfirm
 		},
 		login(state, user) {
 			if (drmking.isEmpty(user)) {
