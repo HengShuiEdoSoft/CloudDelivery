@@ -4,9 +4,9 @@
 			<image src="../../static/img/HeadImg.jpg" class="ui-od-portrait"></image>
 			<view>{{ order.dname }}</view>
 		</view>
-		<view>
-			<view>取消订单</view>
-			<view>去支付</view>
+		<view v-if="order.status===0" class="ui-orderdetail-cont">
+			<view @tap="quitOrder(order.ocode)" class="ui-order-pay-btn">取消订单</view>
+			<view @tap="togglePopup" class="ui-order-pay-btn-b">去支付</view>
 		</view>
 		<view class="ui-orderdetail-cont">
 			<view class="ui-orderdetail-date">
@@ -75,22 +75,99 @@
 				结算。
 			</view>
 		</view>
+		<uni-popup ref="pay" type="bottom" :custom="true" :mask-click="true">
+			<view class="ui-pop-container">
+				<view class="ui-cost-price">
+					<text>￥</text>
+					<text class="ui-price-now">{{ order.pay_order_price }}</text>
+					<text class="ui-origin-price">￥{{ order.order_price }}</text>
+				</view>
+				<view>
+					<view class="ui-tip1">选择支付方式</view>
+					<view class="ui-list">
+						<radio-group @change="radioChange">
+							<label class="ui-list-item">
+								<view class="ui-li-title">
+									<view class="iconfont icon-zhanghuyue"></view>
+									<view class="ui-paytype-name">
+										<view>余额支付</view>
+										<view class="ui-subtext">可用余额{{ user.wallet }}元</view>
+									</view>
+								</view>
+								<view><radio value="syspay" color="#FF5723" /></view>
+							</label>
+							<label class="ui-list-item" v-for="item in items" :key="item.value">
+								<view class="ui-li-title">
+									<view :class="item.icon"></view>
+									<view class="ui-paytype-name">
+										<view>{{ item.name }}</view>
+									</view>
+								</view>
+								<view><radio :value="item.value" color="#FF5723" /></view>
+							</label>
+						</radio-group>
+					</view>
+				</view>
+				<view class="ui-home-btns"><view class="ui-use-now" @tap="gotopay">去支付</view></view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import uniPopup from '@/components/uni-popup/uni-popup.vue';
 export default {
+	computed: mapState(['user']),
+	components: {
+		uniPopup
+	},
 	data() {
 		return {
 			ocode: '',
-			order: null
+			order: null,
+			type: '',
+			cur: 0,
+			current: 0,
+			items: [
+				{
+					name: '支付宝',
+					value: 'alipay',
+					icon: 'iconfont icon-z-alipay'
+				},
+				{
+					name: '微信',
+					value: 'wxpay',
+					icon: 'iconfont icon-weixin'
+				}
+			],
+			pay_money: 0,
+			pay_type: 0,
+			pay_cate_id: 0,
+			pay_platform: '',
+			provider: 'alipay'
 		};
 	},
 	onLoad(options) {
 		this.ocode = options.ocode;
 		this.getDetail();
+		let that = this;
+		// #ifdef MP-WEIXIN
+		that.pay_platform = 'miniapp';
+		// #endif
+		
+		// #ifdef APP-PLUS
+		that.pay_platform = 'app';
+		// #endif
+		
+		// #ifdef H5
+		that.pay_platform = 'web';
+		// #endif
 	},
 	methods: {
+		radioChange: function(e) {
+			this.provider = e.detail.value;
+		},
 		getDetail: function() {
 			let that = this;
 			const data = {
@@ -118,6 +195,257 @@ export default {
 						showCancel: false
 					});
 				});
+		},
+		quitOrder(ocode){
+			let that=this;
+			const data = {
+				ocode: that.ocode
+			};
+			that.$uniFly
+				.post({
+					url: '/api/order/cancelorder',
+					params: data
+				})
+				.then(function(res) {
+					if (res.code == 0) {
+						uni.showToast({
+							title: '订单已取消',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+						});
+						uni.navigateTo({
+							url:'/pages/index/index'
+						})
+					} else {
+						uni.showModal({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showModal({
+						content: error,
+						showCancel: false
+					});
+				});
+		},
+		async togglePopup() {
+			this.$refs['pay'].open();
+		},
+		gotopay: function() {
+			this.addpaylog();
+		},
+		addpaylog() {
+			let that = this;
+			if (that.order.order_id > 0 && that.order.pay_order_price > 0) {
+				uni.showLoading({
+					title: '订单下单中...'
+				});
+				that.$uniFly
+					.post({
+						url: '/api/pay_log/addpaylog',
+						params: {
+							order_id: that.order.order_id,
+							pay_type: that.pay_type,
+							pay_money: that.order.pay_order_price
+						}
+					})
+					.then(res => {
+						uni.hideLoading();
+						if (res.code == 0) {
+							that.pay_log_id = res.data;
+							that.pay();
+						} else {
+							uni.showModal({
+								title: '订单下单失败，重新尝试？',
+								content: res.msg,
+								success: function(res) {
+									if (res.confirm) {
+										that.addpaylog();
+									} else if (res.cancel) {
+										that.$refs['pay'].close();
+										return;
+									}
+								}
+							});
+						}
+					})
+					.catch(err => {
+						uni.showModal({
+							title: '订单下单失败，重新尝试？',
+							content: res.msg,
+							success: function(res) {
+								if (res.confirm) {
+									that.addpaylog();
+								} else if (res.cancel) {
+									that.$refs['pay'].close();
+									return;
+								}
+							}
+						});
+					});
+			} else {
+				uni.showToast({
+					icon: 'none',
+					title: '订单不存在!'
+				});
+				that.$refs['pay'].close();
+				return;
+			}
+		},
+		pay() {
+			let that = this;
+			if (that.pay_log_id > 0) {
+				uni.showLoading({
+					title: '订单支付中...'
+				});
+				console.log({
+							pay_log_id: that.pay_log_id,
+							pay_platform: that.pay_platform,
+							provider: that.provider,
+							openid: that.user.minwxapp_id
+						});
+				that.$uniFly
+					.post({
+						url: '/api/pay_log/pay',
+						params: {
+							pay_log_id: that.pay_log_id,
+							pay_platform: that.pay_platform,
+							provider: that.provider,
+							openid: that.user.minwxapp_id
+						}
+					})
+					.then(res => {
+						uni.hideLoading();
+						if (res.code == 0) {
+							// 余额支付成功直接返回首页
+							if (that.provider == 'syspay') {
+								that.$store.commit('login', res.data.data);
+								uni.showToast({
+									icon: 'none',
+									title: '订单支付完成！'
+								});
+								setTimeout(function() {
+									uni.navigateTo({
+										url: '/pages/index/index'
+									});
+								}, 1500);
+							} else {
+								// 微信或支付宝支付,调用uni.requestPayment,拉起第三方支付
+								// 微信小程序支付
+								// #ifdef MP-WEIXIN
+								uni.requestPayment({
+									provider: that.provider,
+									orderInfo: res.data.data, //微信、支付宝订单数据
+									timeStamp: res.data.data.timeStamp,
+									nonceStr: res.data.data.nonceStr,
+									package: res.data.data.package,
+									signType: res.data.data.signType,
+									paySign: res.data.data.paySign,
+									success: function(res) {
+										console.log('success:' + JSON.stringify(res));
+										uni.showToast({
+											icon: 'none',
+											title: '订单支付完成！'
+										});
+										setTimeout(function() {
+											uni.navigateTo({
+												url: '/pages/index/index'
+											});
+										}, 1500);
+									},
+									fail: function(err) {
+										console.log('fail:' + JSON.stringify(err));
+										uni.showModal({
+											title: '订单支付失败，重新尝试？',
+											content: res.msg,
+											success: function(res) {
+												if (res.confirm) {
+													that.pay();
+												} else if (res.cancel) {
+													that.$refs['pay'].close();
+													return;
+												}
+											}
+										});
+									}
+								});
+								// #endif
+								// app支付
+								// #ifdef APP-PLUS
+								console.log(res.data);
+								uni.requestPayment({
+									provider: that.provider,
+									orderInfo: res.data, //微信、支付宝订单数据
+									success: function(res) {
+										console.log('success:' + JSON.stringify(res));
+										uni.showToast({
+											icon: 'none',
+											title: '订单支付完成！'
+										});
+										setTimeout(function() {
+											uni.navigateTo({
+												url: '/pages/index/index'
+											});
+										}, 1500);
+									},
+									fail: function(err) {
+										console.log('fail:' + JSON.stringify(err));
+										uni.showModal({
+											title: '订单支付失败，重新尝试？',
+											content: res.msg,
+											success: function(res) {
+												if (res.confirm) {
+													that.pay();
+												} else if (res.cancel) {
+													that.$refs['pay'].close();
+													return;
+												}
+											}
+										});
+									}
+								});
+								// #endif
+							}
+						} else {
+							uni.showModal({
+								title: '订单支付失败，重新尝试？',
+								content: res.msg,
+								success: function(res) {
+									if (res.confirm) {
+										that.pay();
+									} else if (res.cancel) {
+										that.$refs['pay'].close();
+										return;
+									}
+								}
+							});
+						}
+					})
+					.catch(err => {
+						uni.showModal({
+							title: '订单支付失败，重新尝试？',
+							content: res.msg,
+							success: function(res) {
+								if (res.confirm) {
+									that.pay();
+								} else if (res.cancel) {
+									that.$refs['pay'].close();
+									return;
+								}
+							}
+						});
+					});
+			} else {
+				uni.showToast({
+					icon: 'none',
+					title: '订单不存在!'
+				});
+				that.$refs['pay'].close();
+				return;
+			}
 		}
 	}
 };
@@ -138,5 +466,103 @@ export default {
 .ui-od-price-list {
 	display: flex;
 	line-height: 64upx;
+}
+.ui-order-pay-btn{
+	display:inline-block;
+	padding:0 40upx;
+	margin-right:20upx;
+	line-height: 88upx;
+	border:1upx solid #FF5723;
+	color:#FF5723;
+}
+.ui-order-pay-btn-b{
+	display:inline-block;
+	padding:0 40upx;
+	line-height: 88upx;
+	border:1upx solid #FF5723;
+	color:#fff;
+	background: #FF5723;
+}
+.ui-home-btns {
+	display: flex;
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+}
+.ui-use-now {
+	flex: 1;
+	padding: 20upx 0;
+	font-size: 20px;
+	background: #ff5723;
+}
+.ui-order-container {
+	margin: 16upx;
+	padding: 0 20upx;
+	font-size: 14px;
+	line-height: 92upx;
+	background: #fff;
+}
+.ui-pop-container {
+	margin: 16upx;
+	padding-top: 30upx;
+	background: #fff;
+	border-radius: 4px;
+}
+.ui-list {
+	padding: 0 30upx 30upx;
+	font-size: 14px;
+	line-height: 84upx;
+}
+.ui-pop-container .ui-list .ui-list-item {
+	height: 96upx;
+}
+.ui-list .iconfont {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 32px;
+}
+.icon-zhanghuyue {
+	color: #ff5723;
+}
+.icon-z-alipay {
+	color: #45b1ff;
+}
+.icon-weixin {
+	color: #59f04c;
+}
+.ui-paytype-name {
+	display: inline-block;
+}
+.ui-paytype-name > view {
+	line-height: 42upx;
+}
+.ui-paytype-name .ui-subtext {
+	color: #999;
+	font-size: 12px;
+}
+radio {
+	transform: scale(0.7);
+}
+.ui-pop-container .ui-tip1 {
+	padding-bottom: 30upx;
+}
+.ui-li-youhui {
+	display: flex;
+	padding: 20upx 30upx;
+	font-size: 14px;
+}
+.ui-li-youhui .ui-li-title {
+	color: #999;
+}
+.ui-remark-item {
+	margin: 8upx;
+	line-height: 48upx;
+	padding: 8upx 24upx;
+	background: #eee;
+	border-radius: 36px;
+}
+.ui-remark-item.active {
+	color: #ff9801;
+	background: #faf6db;
 }
 </style>

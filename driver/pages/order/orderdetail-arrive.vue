@@ -3,7 +3,7 @@
 		<scroll-view class="scroll-container">
 			<view class="ui-order-list-item">
 				<map id="amap" :show-location="true" :longitude="order.order_details_json.trip.departure.lon" :latitude="order.order_details_json.trip.departure.lat" scale="18"
-				 :markers="markers" :polyline="polyline" @regionchange="regionchange"></map>
+				 :markers="markers" :polyline="polyline" ></map>
 				<view class="dui-orderdetail-date">
 					{{ order.create_time}}
 				</view>
@@ -191,10 +191,9 @@
 				this.$set(this.markers[index].callout, 'content', title);
 				this.$set(this.address_info, 'localtion', title);
 			},
-			// 设置地图中心位置
 			setMapLocation(lon, lat) {
-				this.$set(this.address_info, 'longitude', lon);
-				this.$set(this.address_info, 'latitude', lat);
+				this.$set(this.order.order_details_json.trip.departure.lon, 'longitude', lon);
+				this.$set(this.order.order_details_json.trip.departure.lat, 'latitude', lat);
 			},
 			getDetail: function() {
 				let that = this;

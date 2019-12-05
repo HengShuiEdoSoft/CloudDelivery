@@ -2,8 +2,8 @@
 	<view class="content" v-if="order!==null">
 		<scroll-view class="scroll-container">
 			<view class="ui-order-list-item">
-				<map id="amap" :show-location="true" :longitude="address_info.longitude" :latitude="address_info.latitude" scale="18"
-				 :markers="markers" :polyline="polyline" @regionchange="regionchange"></map>
+				<map id="amap" :show-location="true" :longitude="order.order_details_json.trip.destination.lon" :latitude="order.order_details_json.trip.destination.lon" scale="18"
+				 :markers="markers" :polyline="polyline"></map>
 				<view class="dui-orderdetail-date">
 					{{ order.create_time}}
 				</view>
@@ -221,14 +221,9 @@
 				this.$set(this.markers[index].callout, 'content', title);
 				this.$set(this.address_info, 'localtion', title);
 			},
-			// 设置地图中心位置
 			setMapLocation(lon, lat) {
-				this.$set(this.address_info, 'longitude', lon);
-				this.$set(this.address_info, 'latitude', lat);
-			},
-			// 设置地图城市信息
-			setMapCity(city) {
-				this.$set(this.address_info, 'city', city);
+				this.$set(this.order.order_details_json.trip.departure.lon, 'longitude', lon);
+				this.$set(this.order.order_details_json.trip.departure.lat, 'latitude', lat);
 			}
 		}	
 	};
