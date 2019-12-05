@@ -141,13 +141,13 @@
 		methods: {
 			call: function(e) {
 				uni.makePhoneCall({
-					phoneNumber: this.sysconfig.service_tel
+					phoneNumber: this.order.order_details_json.contact
 				});
 			},
 			arriveSure:function(){
 				let that = this;
 				const data = {
-					order_id:order.order_id
+					order_id:this.order.order_id
 				};
 				uni.showModal({
 						title: '确认到达',

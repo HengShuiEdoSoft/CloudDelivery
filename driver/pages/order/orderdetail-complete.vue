@@ -145,7 +145,7 @@
 			},
 			call: function(e) {
 				uni.makePhoneCall({
-					phoneNumber: sysconfig.service_tel
+					phoneNumber: this.order.order_details_json.contact
 				});
 			},
 			getDetail: function() {
@@ -179,7 +179,7 @@
 			completeSure:function(){
 				let that = this;
 				const data = {
-					order_id:order.order_id,
+					order_id:this.order.order_id,
 					sure_images: this.sure_images
 				};
 				if (that.$drmking.isEmpty(data.sure_images)) {

@@ -127,7 +127,7 @@
 		methods: {
 			call: function(e) {
 				uni.makePhoneCall({
-					phoneNumber: '18888888888'
+					phoneNumber: this.order.contact
 				});
 			},
 			getDetail: function() {
