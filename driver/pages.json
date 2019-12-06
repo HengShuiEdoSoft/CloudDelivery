@@ -89,18 +89,7 @@
 		{
 			"path": "pages/user/pickup",
 			"style": {
-				"navigationBarTitleText": "提现",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "管理银行卡  ",
-							"fontSize": "12",
-							"float": "right",
-							"color": "#424456"
-						}]
-					}
-				}
+				"navigationBarTitleText": "提现"
 			}
 		},
 		{
