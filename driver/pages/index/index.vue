@@ -52,7 +52,7 @@
 		</uni-drawer>-->
 		<view class="ui-top-nav">
 			<view class="ui-top-isworing">
-				<switch checked color="#FF5723" @change="switchChange" />
+				<switch checked color="#FF5723" @change="switchChange" :checked="is_work"/>
 				工作状态
 			</view>
 			<view>
@@ -97,7 +97,7 @@ import { mapState } from 'vuex';
 import uniDrawer from '@/components/drawer/drawer.vue';
 export default {
 	components: { uniDrawer },
-	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'scramble_orders']),
+	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'scramble_orders','is_work']),
 	data() {
 		return {
 			visible: false,
@@ -161,27 +161,29 @@ export default {
 		this.$fire.on('setTrip', function(data) {
 			that.setTrip(data);
 		});
-		that.$fire.on('pushToDriverOrderNotice', function(data) {			
-			try{
-				let order = {
-					order_id: data.order_id,
-					user_id: data.user_id,
-					lon: data.lon,
-					lat: data.lat,
-					uphone: data.order.uphone,
-					uname: data.order.uname,
-					order_details: data.order.order_details
-				};
-				that.$store.commit('addPushToDriverOrderNotice', order);
-				// that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
-			}catch(e){
+		that.$fire.on('pushToDriverOrderNotice', function(data) {
+			try {
+				if (that.$store.state.is_work) {
+					let order = {
+						order_id: data.order_id,
+						user_id: data.user_id,
+						lon: data.lon,
+						lat: data.lat,
+						uphone: data.order.uphone,
+						uname: data.order.uname,
+						order_details: data.order.order_details
+					};
+					that.$store.commit('addPushToDriverOrderNotice', order);
+					// that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
+				}
+			} catch (e) {
 				console.log(e);
 			}
 		});
 	},
 	methods: {
 		switchChange: function(e) {
-			console.log('switch1 发生 change 事件，携带值为', e.target.value);
+			this.$store.commit('workStatus', e.target.value);
 		},
 		/*showDrawer:function(){
 				this.visible=!this.visible
