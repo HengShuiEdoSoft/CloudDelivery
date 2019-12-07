@@ -13,7 +13,7 @@
 					<view class="dui-vip-steps">当前等级成长值 : {{ user.user_level_id > 0 ? levellist[user.user_level_id].level_rule : 0 }}</view>
 				</view>
 				<view class="dui-vip-strategy">
-					<navigator url="get-value" class="dui-vip-growth">距离下一等级还差{{ score }}成长值 ></navigator>
+					<view class="dui-vip-growth">距离下一等级还差{{ score }}成长值 ></view>
 					<navigator url="up-strategy" class="dui-vip-strategy-btn">升级攻略</navigator>
 				</view>
 				<view class="dui-vip-equity" v-for="(item_level, item_level_key) in levellist" :key="item_level.user_level_id">

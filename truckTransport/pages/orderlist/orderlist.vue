@@ -15,7 +15,7 @@
 						</view>
 					</view>
 					<block class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index">
-					<navigator
+					<navigator v-if="item.status===0"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"	
 						@longtap="deleteOrder(item.ocode)"
 					>

@@ -193,19 +193,7 @@
 		{
 			"path": "pages/address/editaddress",
 			"style": {
-				"navigationBarTitleText": "编辑常用地址",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "删除",
-							"fontSize": "12",
-							"float": "right",
-							"color": "#424456"
-
-						}]
-					}
-				}
+				"navigationBarTitleText": "编辑常用地址"
 			}
 		},
 		{
@@ -235,19 +223,7 @@
 			"path": "pages/driver/driver",
 			"style": {
 				"navigationBarTitleText": "我的司机",
-				"enablePullDownRefresh": true,
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "\ue8e9",
-							"fontSrc": "/static/font/iconfont.ttf",
-							"fontSize": "20",
-							"float": "right",
-							"color": "#424456"
-						}]
-					}
-				}
+				"enablePullDownRefresh": true
 			}
 		},
 		{
