@@ -48,7 +48,15 @@
             /* ios打包配置 */
             "ios" : {
                 "UIBackgroundModes" : "audio,location",
-                "idfa" : false
+                "idfa" : false,
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "用户头像上传照片",
+                    "NSPhotoLibraryAddUsageDescription" : "用户头像上传照片",
+                    "NSCameraUsageDescription" : "用户头像上传照片",
+                    "NSLocationWhenInUseUsageDescription" : "实时定位，获取用户订单位置",
+                    "NSLocationAlwaysUsageDescription" : "",
+                    "NSLocationAlwaysAndWhenInUseUsageDescription" : "实时定位，获取用户订单位置"
+                }
             },
             /* SDK配置 */
             "sdkConfigs" : {
@@ -63,8 +71,8 @@
                 },
                 "oauth" : {
                     "weixin" : {
-                        "appid" : "wx5083fd76d8138b05",
-                        "appsecret" : "98f9d4116806db4d487ee3b229591cda",
+                        "appid" : "wxbd3a6e32af5e0dfb",
+                        "appsecret" : "ddfbfef549521cdb8ed9e736ebb7bdbc",
                         "UniversalLinks" : ""
                     }
                 },
