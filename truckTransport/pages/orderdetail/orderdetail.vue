@@ -5,7 +5,7 @@
 			<view>{{ order.dname }}</view>
 		</view>
 		<view v-if="order.status===0" class="ui-orderdetail-cont">
-			<view @tap="quitOrder(order.ocode)" class="ui-order-pay-btn">取消订单</view>
+			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
 			<view @tap="togglePopup" class="ui-order-pay-btn-b">去支付</view>
 		</view>
 		<view class="ui-orderdetail-cont">
@@ -196,10 +196,10 @@ export default {
 					});
 				});
 		},
-		quitOrder(ocode){
+		quitOrder(order_id){
 			let that=this;
 			const data = {
-				ocode: that.ocode
+				order_id: order_id
 			};
 			that.$uniFly
 				.post({
