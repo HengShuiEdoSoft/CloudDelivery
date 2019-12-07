@@ -13,13 +13,13 @@
 			<view class="dui-pickup-write-money">￥<input type="text" focus="true" v-model="price" placeholder="请填写金额" /></view>
 			<view class="dui-pickup-all">全部提现</view>
 		</view>
-		<view class="dui-flex-row">
+		<!--<view class="dui-flex-row">
 			<text>提现到</text>
 			<view class="dui-pickup-cardno">
 				<text>54652154512456465</text>
 				<text class="iconfont icon-gengduo-shuxiang"></text>
 			</view>
-		</view>
+		</view>-->
 	</view>
 </template>
 <script>

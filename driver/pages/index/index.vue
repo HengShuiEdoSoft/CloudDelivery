@@ -148,9 +148,7 @@ export default {
 					location_city = that.$drmking.getLocationCity();
 				}
 				that.location_city = location_city;
-				// uni.navigateTo({
-				// 	url:'/pages/order/photoupload'
-				// });
+
 			})
 			.catch(e => {
 				console.log(e);

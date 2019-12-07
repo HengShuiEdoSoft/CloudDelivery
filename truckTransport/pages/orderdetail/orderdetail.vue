@@ -5,7 +5,7 @@
 			<view>{{ order.dname }}</view>
 		</view>
 		<view v-if="order.status===0" class="ui-orderdetail-cont">
-			<view @tap="quitOrder(order.ocode)" class="ui-order-pay-btn">取消订单</view>
+			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
 			<view @tap="togglePopup" class="ui-order-pay-btn-b">去支付</view>
 		</view>
 		<view class="ui-orderdetail-cont">
@@ -196,10 +196,10 @@ export default {
 					});
 				});
 		},
-		quitOrder(ocode){
+		quitOrder(order_id){
 			let that=this;
 			const data = {
-				ocode: that.ocode
+				order_id: order_id
 			};
 			that.$uniFly
 				.post({
@@ -474,6 +474,7 @@ export default {
 	line-height: 88upx;
 	border:1upx solid #FF5723;
 	color:#FF5723;
+	border-radius: 4px;
 }
 .ui-order-pay-btn-b{
 	display:inline-block;
@@ -482,6 +483,7 @@ export default {
 	border:1upx solid #FF5723;
 	color:#fff;
 	background: #FF5723;
+	border-radius: 4px;
 }
 .ui-home-btns {
 	display: flex;
@@ -564,5 +566,26 @@ radio {
 .ui-remark-item.active {
 	color: #ff9801;
 	background: #faf6db;
+}
+.ui-tip1 {
+	padding: 16upx 30upx 0;
+	color: #999;
+	font-size: 14px;
+}
+.ui-li-title {
+	flex: 1;
+	color: #333;
+}
+.ui-li-right {
+	color: #999;
+}
+.ui-list-item {
+	display: flex;
+}
+.ui-pop-container .ui-tip1 {
+	padding-bottom: 30upx;
+}
+ .iconfont {
+	padding-right: 28upx;
 }
 </style>

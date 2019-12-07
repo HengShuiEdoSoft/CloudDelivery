@@ -16,6 +16,7 @@
 			<view class="ui-divide-line"></view>
 			<view class="ui-info-list-item" @tap="togglePopup('center', 'sexchose')">
 				<view class="ui-info-list-left">性别</view>
+				<view class="ui-info-list-center" v-if="!items.sex"><input placeholder="去设置" disabled="true" placeholder-style="color:#999"></view>
 				<view class="ui-info-list-center" v-if="items.sex===0"><input placeholder="去设置" value="男" disabled="true" placeholder-style="color:#999"></view>
 				<view class="ui-info-list-center" v-if="items.sex===1"><input placeholder="去设置" value="女" disabled="true" placeholder-style="color:#999"></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
