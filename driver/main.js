@@ -137,7 +137,7 @@ function reconnectWs(url) {
 		//没连接上会一直重连，设置延迟避免请求过多
 		createWs(url);
 		ws_lock_reconnect = false;
-	}, 2000);
+	}, 10000);
 }
 //心跳检测
 let heartCheck = {
@@ -216,6 +216,7 @@ function initEventHandle(url, user_id) {
 	});
 	// 监听WebSocket错误
 	uni.onSocketError(function(res) {
+		uni.closeSocket();
 		reconnectWs(url);
 		console.log(res, 'ws连接错误!' + new Date().toUTCString());
 	});
@@ -226,7 +227,6 @@ function initEventHandle(url, user_id) {
 	});
 	// 监听WebSocket接受到服务器的消息事件
 	uni.onSocketMessage(function(res) {
-		// console.log('ws收到消息啦：' + res.data);
 		//如果获取到消息，心跳检测重置
 		heartCheck.reset().start();
 		//拿到任何消息都说明当前连接是正常的
@@ -239,7 +239,7 @@ function parseData(data) {
 
 	} else {
 		if (drmking.isJsonString(data)) {
-			data = JSON.parse(data);
+			data = JSON.parse(data);			
 			switch (data.type) {
 				case 'event':
 					{
@@ -255,6 +255,9 @@ function parseData(data) {
 						console.log(data.msg);
 						break;
 					}
+				default:{
+					
+				}
 			}
 		}
 	}

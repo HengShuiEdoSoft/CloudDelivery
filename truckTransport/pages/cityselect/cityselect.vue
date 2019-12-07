@@ -28,7 +28,14 @@ export default {
 		that.citydata = await that.$drmking.getCityList(that);
 		let list = [];
 		for (let i in that.citydata) {
-			if (parseInt(that.citydata[i].status) == that.status || parseInt(that.citydata[i].status) == 0) {
+			if (that.status == 1) {
+				if (parseInt(that.citydata[i].status) == 1) {
+					list.push({
+						name: that.citydata[i].city_title,
+						value: that.citydata[i].city_id
+					});
+				}
+			} else {
 				list.push({
 					name: that.citydata[i].city_title,
 					value: that.citydata[i].city_id

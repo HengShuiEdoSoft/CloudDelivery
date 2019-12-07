@@ -46,7 +46,16 @@
                 ]
             },
             /* ios打包配置 */
-            "ios" : {},
+            "ios" : {
+                "privacyDescription" : {
+                    "NSLocationWhenInUseUsageDescription" : "实时定位，确定司机位置，推送订单",
+                    "NSLocationAlwaysUsageDescription" : "实时定位，确定司机位置，推送订单",
+                    "NSLocationAlwaysAndWhenInUseUsageDescription" : "实时定位，确定司机位置，推送订单",
+                    "NSPhotoLibraryUsageDescription" : "完成订单上传照片",
+                    "NSPhotoLibraryAddUsageDescription" : "完成订单上传照片",
+                    "NSCameraUsageDescription" : "完成订单上传照片"
+                }
+            },
             /* SDK配置 */
             "sdkConfigs" : {
                 "maps" : {

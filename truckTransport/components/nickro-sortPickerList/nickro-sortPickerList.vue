@@ -482,7 +482,7 @@ export default {
 			var uni = ch.charCodeAt(0);
 			//如果不在汉字处理范围之内,返回原字符,也可以调用自己的处理函数
 			if (uni > 40869 || uni < 19968){
-				console.log(ch);
+				// console.log(ch);
 				 return ch;
 			}
 			// else{
@@ -583,7 +583,7 @@ export default {
 					var firstChar = text.name.substr(0, 1);
 					firstChar = firstChar.toUpperCase();
 					var reg = that.query(firstChar)[0];
-					console.log(reg);
+					// console.log(reg);
 					var temIndex = temABC.indexOf(reg);
 					if (temIndex == -1) {
 						temIndex = 26;

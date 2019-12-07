@@ -3,7 +3,7 @@
 		<view>
 			<uni-drawer :visible="visible" mode="left" @close="visible = false">
 				<view class="ui-drawer-top">
-					<image src="../../static/img/HeadImg.jpg" class="ui-portrait" @tap="navTo('/pages/userinfo/userinfo')"></image>
+					<image :src="user.avatar ? user.avatar : '/static/img/HeadImg.jpg'" class="ui-portrait" @tap="navTo('/pages/userinfo/userinfo')"></image>
 					<view class="ui-drawer-top-body">
 						<view class="ui-username">
 							<text>{{ user.phone ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</text>
@@ -443,9 +443,9 @@ export default {
 </script>
 
 <style>
-.content{
+.content {
 	font-size: 14px;
-}	
+}
 .hello {
 	display: flex;
 	flex: 1;
@@ -602,17 +602,17 @@ export default {
 	border-top: 1px solid #eee;
 	justify-content: flex-end;
 }
-.ui-top-nav{
-		display:flex;
-		padding:0 30upx;
-		line-height: 88upx;
-		color:#fff;
-		background: #424456;
-	}
-.ui-top-nav .iconfont{
-		display:inline-block;
-		width:88upx;
-		font-size:24px;
-		text-align: right;
-	}
+.ui-top-nav {
+	display: flex;
+	padding: 0 30upx;
+	line-height: 88upx;
+	color: #fff;
+	background: #424456;
+}
+.ui-top-nav .iconfont {
+	display: inline-block;
+	width: 88upx;
+	font-size: 24px;
+	text-align: right;
+}
 </style>

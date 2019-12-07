@@ -1,9 +1,10 @@
 <template>
 	<view class="content" v-if="order!==null">
-		<cover-view class="dui-cv-one" v-show="show">更换司机 </cover-view>
-		<cover-view class="dui-cv-two" v-show="show" @tap="quitOrder(order.ocode)">取消订单 </cover-view>
-		<cover-view class="dui-cv-three" v-show="show">分享订单 </cover-view>
-		<cover-view class="dui-cv-four" v-show="show">投诉 </cover-view>
+		<cover-view class="dui-cv-one" v-show="show" @tap="quitOrder(order.ocode)">取消订单  </cover-view>
+		<cover-view class="dui-cv-two" v-show="show">分享订单 </cover-view>
+		<cover-view class="dui-cv-three" v-show="show">投诉 </cover-view>
+		<!-- <cover-view class="dui-cv-four" v-show="show">更换司机 </cover-view> -->
+		
 		<view class="dui-driver-information">
 			<view class="dui-driver-headimg">
 				<image src="../../static/img/HeadImg.jpg" mode=""></image>
@@ -17,12 +18,12 @@
 		<view class="dui-driver-contact">
 			<view @tap="call">
 				<text class="iconfont icon-dianhua"></text>
-				打电话
+				呼叫司机
 			</view>
-			<view class="">
+<!-- 			<view class="">
 				<text class="iconfont icon-liaotianduihua"></text>
 				聊天
-			</view>
+			</view> -->
 		</view>
 		<map id="amap" :show-location="true" :longitude="address_info.longitude" :latitude="address_info.latitude" scale="18"
 		 :markers="markers" :polyline="polyline" @regionchange="regionchange"></map>
