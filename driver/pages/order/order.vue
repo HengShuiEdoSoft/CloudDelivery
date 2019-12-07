@@ -21,10 +21,10 @@
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator v-for="(item, index) in newsList[0]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
+					<view v-for="(item, index) in newsList[0]" :key="index">
+					<navigator :url="'/pages/order/orderdetail-arrive?ocode=' + item.ocode" v-if="item.status === 2">
 						<view class="ui-order-list-item">
-							<view class="ui-hujiao" v-if="item.status == 2">等待运送</view>
-							<view class="ui-hujiao" v-if="item.status == 3">运送中</view>
+							<view class="ui-hujiao" v-if="item.status === 2">等待运送</view>
 							<view class="dui-gap"></view>
 							<view class="dui-gap"></view>
 							<view class="ui-order-list-item-top">
@@ -69,6 +69,54 @@
 							</view>
 						</view>
 					</navigator>
+					<navigator :url="'/pages/order/orderdetail-arrive?ocode=' + item.ocode" v-if="item.status === 3">
+						<view class="ui-order-list-item">
+							<view class="ui-hujiao" v-if="item.status === 3">运送中</view>
+							<view class="dui-gap"></view>
+							<view class="dui-gap"></view>
+							<view class="ui-order-list-item-top">
+								<text class="ui-orderno-color">{{ item.ocode }}</text>
+							</view>
+							<view class="ui-order-list-item-top">
+								<text class="ui-cartype-color">{{ item.driver_time }}</text>
+							</view>
+							<view class="ui-divide-line"></view>
+							<view class="ui-order-timeline-container">
+								<view class="ui-order-timeline uni-timeline">
+									<view class="uni-timeline-item uni-timeline-first-item">
+										<view class="uni-timeline-item-divider"></view>
+										<view class="uni-timeline-item-content">
+											<text class="ui-address">
+												{{ item.order_details_json.trip.departure.localtion }}{{ item.order_details_json.trip.departure.address }}
+											</text>
+										</view>
+									</view>
+									<view class="uni-timeline-item uni-timeline-last-item">
+										<view class="uni-timeline-item-divider"></view>
+										<view class="uni-timeline-item-content">
+											<text class="ui-address">
+												{{ item.order_details_json.trip.destination.localtion }}{{ item.order_details_json.trip.destination.address }}
+											</text>
+										</view>
+									</view>
+								</view>
+								<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
+							</view>
+							<view class="ui-divide-line"></view>
+							<view class="dui-gap"></view>
+							<!--<view class="ui-od-price-list">
+								<view class="ui-od-price-type">需要加急?</view>
+								<view>否</view>
+							</view>-->
+						</view>
+						<view class="ui-orderdetail-cont">
+							<view class="ui-od-price-list">
+								<view class="ui-od-price-type">客户已支付</view>
+								<view class="ui-od-price-pay">￥{{ item.order_price }}</view>
+							</view>
+						</view>
+					</navigator>
+					</view>
 					<view class="loading">{{ loadingText[0] }}</view>
 				</scroll-view>
 			</swiper-item>
