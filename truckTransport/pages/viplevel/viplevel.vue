@@ -238,7 +238,8 @@ scroll-view {
 }
 
 .dui-vip-Receive-body view {
-	font-size: 24upx;
+	font-size: 14px;
+	line-height: 1.5;
 }
 
 .dui-vip-Receive-btn {
