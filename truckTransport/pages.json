@@ -469,18 +469,7 @@
 		}, {
 			"path": "pages/placeorder/sending_driver",
 			"style": {
-				"navigationBarTitleText": "发送给附近司机",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "取消订单  ",
-							"fontSize": "14",
-							"float": "right",
-							"color": "#424456"
-						}]
-					}
-				}
+				"navigationBarTitleText": "发送给附近司机"
 			}
 		},
 		{

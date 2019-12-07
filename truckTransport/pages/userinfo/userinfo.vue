@@ -16,6 +16,7 @@
 			<view class="ui-divide-line"></view>
 			<view class="ui-info-list-item" @tap="togglePopup('center', 'sexchose')">
 				<view class="ui-info-list-left">性别</view>
+				<view class="ui-info-list-center" v-if="!items.sex"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999" /></view>				
 				<view class="ui-info-list-center" v-if="items.sex === 0"><input placeholder="去设置" value="男" disabled="true" placeholder-style="color:#999" /></view>
 				<view class="ui-info-list-center" v-if="items.sex === 1"><input placeholder="去设置" value="女" disabled="true" placeholder-style="color:#999" /></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
@@ -64,6 +65,7 @@
 
 <script>
 import service from '../../service.js';
+import { mapState,mapMutations } from 'vuex';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import avatar from '@/components/yq-avatar/yq-avatar.vue';
 export default {
@@ -94,10 +96,12 @@ export default {
 	onShow() {
 		this.setData();
 	},
+	computed: mapState(['user']),
 	methods: {
+		...mapMutations(['login']),
 		setData() {
-			let userinfo = service.getUsers();
-			this.items = userinfo[0];
+			let userinfo = this.user;
+			this.items = userinfo;
 			if (this.items.avatar) {
 				this.imgurl[0] = this.items.avatar;
 			}
@@ -156,7 +160,7 @@ export default {
 										});
 										that.$set(that.items, 'avatar', data.data);
 										that.$store.commit('login', res.data);
-										service.addUser(res.data);
+										//service.addUser(res.data);
 									}
 								})
 								.catch(function(error) {
