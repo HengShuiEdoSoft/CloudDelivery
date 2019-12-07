@@ -45,7 +45,12 @@ textarea {
 
 .hide {
   display: none; }
-
+.loading{
+	padding:40upx 0;
+	font-size:12px;
+	text-align: center;
+	color:#999;
+}
 .ui-ellipse {
   overflow: hidden;
   white-space: nowrap;
