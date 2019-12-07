@@ -14,7 +14,7 @@
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<block class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index">
+					<view class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index">
 					<navigator v-if="item.status===0"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"	
 						@longtap="deleteOrder(item.ocode)"
@@ -140,7 +140,7 @@
 						</view>
 						<view class="ui-order-price">{{ '￥' + item.order_price }}</view>
 					</navigator>
-					</block>
+					</view>
 					<view class="loading">{{ loadingText[0] }}</view>
 				</scroll-view>
 			</swiper-item>
