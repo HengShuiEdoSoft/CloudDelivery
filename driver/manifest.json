@@ -64,7 +64,14 @@
                         "appkey_android" : "7a853b80cf5f4c69455cb6b05df35e49"
                     }
                 },
-                "push" : {}
+                "push" : {},
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "wxed777714f441b31b",
+                        "appsecret" : "c7ad1fc276f4fe672365d44b735b4415",
+                        "UniversalLinks" : ""
+                    }
+                }
             },
             "icons" : {
                 "android" : {
