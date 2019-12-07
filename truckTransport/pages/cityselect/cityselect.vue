@@ -18,7 +18,7 @@ export default {
 			status: 1,
 			channel: '',
 			citydata: {}
-		}
+		};
 	},
 	async onLoad(options) {
 		let that = this;
@@ -28,7 +28,7 @@ export default {
 		that.citydata = await that.$drmking.getCityList(that);
 		let list = [];
 		for (let i in that.citydata) {
-			if (parseInt(that.citydata[i].status) == that.status) {
+			if (parseInt(that.citydata[i].status) == that.status || parseInt(that.citydata[i].status) == 0) {
 				list.push({
 					name: that.citydata[i].city_title,
 					value: that.citydata[i].city_id
@@ -44,7 +44,7 @@ export default {
 				this.$fire.fire(this.channel, this.citydata[data.value]);
 			}
 			uni.navigateBack({
-				delta:1
+				delta: 1
 			});
 		}
 	}
@@ -62,7 +62,7 @@ export default {
 	padding: 0 30upx;
 	height: 16vh;
 }
-.ui-city-list{
+.ui-city-list {
 	height: 83vh;
 	overflow: hidden;
 }
