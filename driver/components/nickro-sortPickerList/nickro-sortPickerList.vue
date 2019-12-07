@@ -583,7 +583,6 @@ export default {
 					var firstChar = text.name.substr(0, 1);
 					firstChar = firstChar.toUpperCase();
 					var reg = that.query(firstChar)[0];
-					console.log(reg);
 					var temIndex = temABC.indexOf(reg);
 					if (temIndex == -1) {
 						temIndex = 26;

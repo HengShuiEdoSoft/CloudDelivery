@@ -76,6 +76,7 @@ const store = new Vuex.Store({
 		sysconfig: {
 
 		},
+		is_work:true,
 		scramble_orders: [],
 		order: {
 			city_id: 0,
@@ -120,6 +121,10 @@ const store = new Vuex.Store({
 		}
 	},
 	mutations: {
+		// 切换工作状态
+		workStatus:function (state, status) {
+			state.is_work=status;
+		},
 		// 添加新订单
 		addPushToDriverOrderNotice: function(state, item) {
 			state.scramble_orders.unshift(item)
