@@ -580,4 +580,10 @@ radio {
 .ui-list-item {
 	display: flex;
 }
+.ui-pop-container .ui-tip1 {
+	padding-bottom: 30upx;
+}
+ .iconfont {
+	padding-right: 28upx;
+}
 </style>
