@@ -122,7 +122,6 @@ const store = new Vuex.Store({
 	mutations: {
 		// 添加新订单
 		addPushToDriverOrderNotice: function(state, item) {
-			console.log(item);
 			state.scramble_orders.unshift(item)
 			Vue.set(state, 'scramble_orders', state.scramble_orders);
 		},

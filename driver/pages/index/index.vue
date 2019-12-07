@@ -161,19 +161,22 @@ export default {
 		this.$fire.on('setTrip', function(data) {
 			that.setTrip(data);
 		});
-		that.$fire.on('pushToDriverOrderNotice', function(data) {
-			// that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
-			let order = {
-				order_id: data.order_id,
-				user_id: data.user_id,
-				lon: data.lon,
-				lat: data.lat,
-				uphone: data.order.uphone,
-				uname: data.order.uname,
-				order_details: data.order.order_details
-			};
-			console.log(data,order);
-			that.$store.commit('addPushToDriverOrderNotice', order);
+		that.$fire.on('pushToDriverOrderNotice', function(data) {			
+			try{
+				let order = {
+					order_id: data.order_id,
+					user_id: data.user_id,
+					lon: data.lon,
+					lat: data.lat,
+					uphone: data.order.uphone,
+					uname: data.order.uname,
+					order_details: data.order.order_details
+				};
+				that.$store.commit('addPushToDriverOrderNotice', order);
+				// that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
+			}catch(e){
+				console.log(e);
+			}
 		});
 	},
 	methods: {
