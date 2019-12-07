@@ -577,4 +577,7 @@ radio {
 .ui-li-right {
 	color: #999;
 }
+.ui-list-item {
+	display: flex;
+}
 </style>
