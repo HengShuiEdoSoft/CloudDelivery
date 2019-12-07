@@ -474,6 +474,7 @@ export default {
 	line-height: 88upx;
 	border:1upx solid #FF5723;
 	color:#FF5723;
+	border-radius: 4px;
 }
 .ui-order-pay-btn-b{
 	display:inline-block;
@@ -482,6 +483,7 @@ export default {
 	border:1upx solid #FF5723;
 	color:#fff;
 	background: #FF5723;
+	border-radius: 4px;
 }
 .ui-home-btns {
 	display: flex;
