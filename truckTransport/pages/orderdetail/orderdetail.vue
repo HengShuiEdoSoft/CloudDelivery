@@ -1,12 +1,24 @@
 <template>
 	<view class="content" v-if="order!==null">
-		<view class="ui-orderdetail-cont ui-orderdetail-top">
+		<view class="ui-orderdetail-cont ui-orderdetail-top" v-if="order.status===1">
+			<image src="../../static/img/HeadImg.jpg" class="ui-od-portrait"></image>
+			<view>正在通知附近的司机...</view>
+		</view>
+		<view class="ui-orderdetail-cont ui-orderdetail-top" v-if="order.status===2||order.status===3">
 			<image src="../../static/img/HeadImg.jpg" class="ui-od-portrait"></image>
 			<view>{{ order.dname }}</view>
 		</view>
 		<view v-if="order.status===0" class="ui-orderdetail-cont">
 			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
 			<view @tap="togglePopup" class="ui-order-pay-btn-b">去支付</view>
+		</view>
+		<view v-if="order.status===1" class="ui-orderdetail-cont">
+			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
+		</view>
+		<view v-if="order.status===2||order.status==3" class="ui-orderdetail-cont">
+			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
+			<view @tap="call" class="ui-order-pay-btn-b">呼叫司机</view>
+			<view @tap="makecall" class="ui-order-pay-btn-b">投诉</view>
 		</view>
 		<view class="ui-orderdetail-cont">
 			<view class="ui-orderdetail-date">
@@ -118,7 +130,7 @@
 import { mapState } from 'vuex';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 export default {
-	computed: mapState(['user']),
+	computed: mapState(['user','sysconfig']),
 	components: {
 		uniPopup
 	},
@@ -167,6 +179,16 @@ export default {
 	methods: {
 		radioChange: function(e) {
 			this.provider = e.detail.value;
+		},
+		call: function(e) {
+			uni.makePhoneCall({
+				phoneNumber: this.order.contact
+			});
+		},
+		makecall:function(e) {
+			uni.makePhoneCall({
+				phoneNumber: this.sysconfig.service_tel
+			});
 		},
 		getDetail: function() {
 			let that = this;
@@ -479,6 +501,7 @@ export default {
 .ui-order-pay-btn-b{
 	display:inline-block;
 	padding:0 40upx;
+	margin-right:20upx;
 	line-height: 88upx;
 	border:1upx solid #FF5723;
 	color:#fff;
@@ -588,4 +611,41 @@ radio {
  .iconfont {
 	padding-right: 28upx;
 }
+	.dui-notice-driver {
+		width: 100%;
+		box-sizing: border-box;
+		padding:20upx 30upx;
+		border-top:1upx solid #e2e2e2;
+		background-color: #fff;
+		color: #999;
+	}
+
+	.dui-notice-body {
+		font-size: 30upx;
+		line-height: 50upx;
+	}
+
+	.dui-notice-body text {
+		margin-right: 35upx;
+	}
+
+	.dui-notice-body text text {
+		color: #FF9801;
+		font-weight: 800;
+	}
+
+	.dui-btn-bottom {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 12vh;
+		padding: 0 20upx;
+		box-sizing: border-box;
+		background-color: #fff;
+	}
+
+	.dui-btn-bottom button {
+		width: 100%;
+		background-color: #FF5723;
+	}
 </style>
