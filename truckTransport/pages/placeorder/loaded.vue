@@ -1,7 +1,7 @@
 <template>
 	<view class="content" v-if="order!==null">
 		<cover-view class="dui-cv-one" v-show="show" @tap="quitOrder(order.order_id)">取消订单  </cover-view>
-		<cover-view class="dui-cv-three" v-show="show">投诉 </cover-view>
+		<cover-view class="dui-cv-three" v-show="show" @tap="call">投诉 </cover-view>
 		<!-- <cover-view class="dui-cv-four" v-show="show">更换司机 </cover-view> -->
 		
 		<view class="dui-driver-information">
@@ -81,7 +81,8 @@
 				polyline: [],
 				map: null,
 				show: false,
-				order:{}
+				order:{},
+				ocode:''
 			};
 		},
 		onLoad(options) {
