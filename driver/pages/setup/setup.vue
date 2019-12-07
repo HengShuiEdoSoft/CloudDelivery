@@ -55,123 +55,162 @@
 </template>
 
 <script>
-	import service from '../../service.js';
-	import uniPopup from '@/components/uni-popup/uni-popup.vue'
-	import avatar from "@/components/yq-avatar/yq-avatar.vue";
-	export default {
-		components: {
-			uniPopup,
-			avatar
-		},
-		data() {
-			return {
-				current: 0,
-				imgurl: ["../../static/img/HeadImg.jpg"],
-				show: false,
-				type: "",
-				sex: [{
-					value: "1",
-					name: "男"
-				}, {
-					value: "2",
-					name: "女"
-				}],
-				items: []
+import service from '../../service.js';
+import { mapState,mapMutations } from 'vuex';
+import uniPopup from '@/components/uni-popup/uni-popup.vue';
+import avatar from '@/components/yq-avatar/yq-avatar.vue';
+export default {
+	components: {
+		uniPopup,
+		avatar
+	},
+	data() {
+		return {
+			current: 0,
+			imgurl: ['../../static/img/HeadImg.jpg'],
+			show: false,
+			type: '',
+			sexList: [
+				{
+					value: '0',
+					name: '男'
+				},
+				{
+					value: '1',
+					name: '女'
+				}
+			],
+			sex: 0,
+			items: {}
+		};
+	},
+	onShow() {
+		this.setData();
+	},
+	computed: mapState(['user']),
+	methods: {
+		...mapMutations(['login']),
+		setData() {
+			let userinfo = this.user;
+			this.items = userinfo;
+			if (this.items.avatar) {
+				this.imgurl[0] = this.items.avatar;
 			}
 		},
-		onShow() {
-			//data，每次返回会刷新
-
+		radioChange: function(e) {
+			for (let i = 0; i < this.sexList.length; i++) {
+				if (this.sexList[i].value === e.target.value) {
+					this.current = i;
+					this.sex = parseInt(this.sexList[i].value);
+					break;
+				}
+			}
 		},
-		methods: {
-			setData(){
-				let userinfo=service.getUsers();
-				this.items=userinfo[0];	
-				if(this.items.avatar){
-					this.imgurl[0]=this.items.avatar	
-				}								
-			},
-			radioChange: function(e) {
-			    for (let i = 0; i < this.sexList.length; i++) {
-			        if (this.sexList[i].value === e.target.value) {
-			            this.current = i;
-						this.sex=parseInt(this.sexList[i].value);
-			            break;
-			        }
-			    }
-			},
-			togglePopup(type, open) {
-				this.type = type;
-				this.$refs[open].open();
-			},
-			cancel(type) {
-				this.$refs[type].close()
-			},
-			doBefore() {
-				console.log('doBefore');
-			},
-			clk(index) {
-				this.$refs.avatar.fChooseImg(index, {
-					selWidth: '360upx',
-					selHeight: '360upx',
-					expWidth: '280upx',
-					expHeight: '280upx',
-					inner: index ? 'true' : 'false'
-				});
-			},
-			doUpload(rsp) {
-				console.log(rsp);
-				this.$set(this.imgurl, rsp.index, rsp.path);
-				return;
-				uni.uploadFile({
-					url: 'https://hll.hda365.com/api/file/upload', //仅为示例，非真实的接口地址
-					filePath: rsp.path,
-					name: 'avatar',
-					formData: {
-						'avatar': rsp.path
-					},
-					success: (res) => {
-						if(res.code===0){
-							that.$set(that.items,'avatar',res.data);
-							service.addUser(that.items);
+		togglePopup(type, open) {
+			this.type = type;
+			this.$refs[open].open();
+		},
+		cancel(type) {
+			this.$refs[type].close();
+		},
+		doBefore() {
+			console.log('doBefore');
+		},
+		clk(index) {
+			this.$refs.avatar.fChooseImg(index, {
+				selWidth: '360upx',
+				selHeight: '360upx',
+				expWidth: '280upx',
+				expHeight: '280upx',
+				inner: index ? 'true' : 'false'
+			});
+		},
+		doUpload(rsp) {
+			this.$set(this.imgurl, rsp.index, rsp.path);
+			let that = this;
+			uni.uploadFile({
+				url: that.$uniFly.baseUrl + '/api/file/upload',
+				filePath: rsp.path,
+				name: 'uploadimage',
+				success: res => {
+					if (res.statusCode == 200) {
+						let data = JSON.parse(res.data);
+						if (data.code == 0) {
+							that.$uniFly
+								.post({
+									url: '/api/user/edituserinfo',
+									params: { avatar: data.data }
+								})
+								.then(function(res) {
+									if (res.code == 0) {
+										uni.showToast({
+											title: '变更成功',
+											icon: 'success',
+											mask: true,
+											duration: 3000
+										});
+										that.$set(that.items, 'avatar', data.data);
+										that.$store.commit('login', res.data);
+										service.addUser(res.data);
+									}
+								})
+								.catch(function(error) {
+									uni.showToast({
+										content: error,
+										showCancel: false
+									});
+								});
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.msg
+							});
 						}
-					},
-					complete(res) {
-						console.log(res)
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.errMsg
+						});
 					}
-				});
-			},
-			sexchange(){
-				this.cancel("sexchose");
-				let that=this;
-				let change=setTimeout(function(){
-					const data = {sex:that.sex};
+				},
+				complete(res) {
+					console.log(res);
+				}
+			});
+		},
+		sexchange() {
+			this.cancel('sexchose');
+			let that = this;
+			let change = setTimeout(function() {
+				const data = { sex: that.sex };
 				that.$uniFly
-				  .post({
-				    url: "/api/user/edituserinfo",
-				    params: data
-				  })
-				  .then(function(res) {
-				    if(res.code===0){
-				    	uni.showToast({
-				    	    title: '变更成功',
-							icon: 'success',
-							mask: true,
-							duration: 3000
-				    	});
-						that.$set(that.items,'sex',that.sex);
-						service.addUser(that.items);
-					}
-				  }).catch(function(error) {
-				    uni.showToast({
-				    	content: error,
-				    	showCancel: false
-				    });
-				  });
-				},100)		  
-			}
+					.post({
+						url: '/api/user/edituserinfo',
+						params: data
+					})
+					.then(function(res) {
+						if (res.code === 0) {
+							uni.showToast({
+								title: '变更成功',
+								icon: 'success',
+								mask: true,
+								duration: 3000
+							});
+							that.$set(that.items, 'sex', that.sex);
+							//service.addUser(res.data);
+							that.$store.commit('login', res.data);
+						}
+					})
+					.catch(function(error) {
+						uni.showToast({
+							content: error,
+							showCancel: false
+						});
+					});
+			}, 100);
 		}
 	}
+};
 </script>
 
 <style>
