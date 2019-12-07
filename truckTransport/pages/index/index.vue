@@ -357,6 +357,7 @@ export default {
 					showCancel: true,
 					success: res => {
 						if (res.confirm) {
+							this.visible=false;
 							uni.navigateTo({
 								url: '../login/login'
 							});
@@ -365,6 +366,7 @@ export default {
 				});
 				return false;
 			} else {
+				this.visible=false;
 				uni.navigateTo({
 					url: url
 				});

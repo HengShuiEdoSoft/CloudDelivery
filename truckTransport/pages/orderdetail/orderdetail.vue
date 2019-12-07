@@ -565,4 +565,16 @@ radio {
 	color: #ff9801;
 	background: #faf6db;
 }
+.ui-tip1 {
+	padding: 16upx 30upx 0;
+	color: #999;
+	font-size: 14px;
+}
+.ui-li-title {
+	flex: 1;
+	color: #333;
+}
+.ui-li-right {
+	color: #999;
+}
 </style>
