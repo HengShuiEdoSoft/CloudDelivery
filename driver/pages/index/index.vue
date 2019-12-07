@@ -148,9 +148,9 @@ export default {
 					location_city = that.$drmking.getLocationCity();
 				}
 				that.location_city = location_city;
-				uni.navigateTo({
-					url:'/pages/order/photoupload'
-				});
+				// uni.navigateTo({
+				// 	url:'/pages/order/photoupload'
+				// });
 			})
 			.catch(e => {
 				console.log(e);
@@ -162,7 +162,7 @@ export default {
 			that.setTrip(data);
 		});
 		that.$fire.on('pushToDriverOrderNotice', function(data) {
-			that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
+			// that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
 			let order = {
 				order_id: data.order_id,
 				user_id: data.user_id,
@@ -172,6 +172,7 @@ export default {
 				uname: data.order.uname,
 				order_details: data.order.order_details
 			};
+			console.log(data,order);
 			that.$store.commit('addPushToDriverOrderNotice', order);
 		});
 	},
