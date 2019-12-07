@@ -12,7 +12,7 @@
 		<map id="amap" :show-location="true" :longitude="order.order_details_json.trip.departure.lon" :latitude="order.order_details_json.trip.departure.lat" scale="18"
 		 :markers="markers"></map>
 		<view class="dui-btn-bottom">
-			<button type="primary" @tap="quitOrder(order.ocode)">取消</button>
+			<button type="primary" @tap="quitOrder(order.order_id)">取消</button>
 		</view>
 	</view>
 </template>
@@ -80,10 +80,10 @@
 						});
 					});
 			},
-			quitOrder(ocode){
+			quitOrder(order_id){
 				let that=this;
 				const data = {
-					ocode: that.ocode
+					order_id: order_id
 				};
 				that.$uniFly
 					.post({

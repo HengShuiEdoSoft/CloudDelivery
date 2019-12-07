@@ -1,7 +1,6 @@
 <template>
 	<view class="content" v-if="order!==null">
-		<cover-view class="dui-cv-one" v-show="show" @tap="quitOrder(order.ocode)">取消订单  </cover-view>
-		<cover-view class="dui-cv-two" v-show="show">分享订单 </cover-view>
+		<cover-view class="dui-cv-one" v-show="show" @tap="quitOrder(order.order_id)">取消订单  </cover-view>
 		<cover-view class="dui-cv-three" v-show="show">投诉 </cover-view>
 		<!-- <cover-view class="dui-cv-four" v-show="show">更换司机 </cover-view> -->
 		
@@ -212,10 +211,10 @@
 					}
 				});
 			},
-			quitOrder(ocode){
+			quitOrder(order_id){
 				let that=this;
 				const data = {
-					ocode: that.ocode
+					order_id: order_id
 				};
 				that.$uniFly
 					.post({
