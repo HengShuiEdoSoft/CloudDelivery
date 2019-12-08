@@ -1,7 +1,7 @@
 <template>
 	<view class="content" v-if="order!==null">
 		<cover-view class="dui-cv-one" v-show="show" @tap="quitOrder(order.order_id)">取消订单  </cover-view>
-		<cover-view class="dui-cv-three" v-show="show">投诉 </cover-view>
+		<cover-view class="dui-cv-three" v-show="show" @tap="call">投诉 </cover-view>
 		<!-- <cover-view class="dui-cv-four" v-show="show">更换司机 </cover-view> -->
 		
 		<view class="dui-driver-information">
@@ -81,7 +81,8 @@
 				polyline: [],
 				map: null,
 				show: false,
-				order:{}
+				order:{},
+				ocode:''
 			};
 		},
 		onLoad(options) {
@@ -89,40 +90,6 @@
 			this.ocode = options.ocode;
 			this.getDetail();
 			that.map = uni.createMapContext('amap', that);
-			if (options.channel) {
-				that.channel = options.channel;
-			}
-			if (options.status) {
-				that.status = parseInt(options.status);
-			}
-			if (options.is_destination) {
-				that.is_destination = Boolean(options.is_destination);
-			}
-			if (options.transfer_index) {
-				that.transfer_index = parseInt(options.transfer_index);
-			}
-			if (options.address_info) {
-				that.address_info = options.address_info;
-			} else {
-				amap.getRegeo()
-					.then(res => {
-						let info = res[0];
-						that.setMapLocation(info.longitude, info.latitude);
-					})
-					.catch(err => {
-						console.log(err);
-					});
-			}
-			that.$fire.on('setAmapLocation', function(item) {
-				let location = item.location.split(',');
-				let lon = location[0];
-				let lat = location[1];
-				that.setMapLocation(lon, lat);
-			});
-			that.$fire.on('amapSelectCity', function(city) {
-				that.setMapCity(city.city_title);
-				that.$set(that.address_info, 'localtion', '');
-			});
 		},
 		methods: {
 			call: function(e) {
@@ -180,37 +147,7 @@
 					delta: 1
 				});
 			},
-			// 地图移动确定地图中心点
-			regionchange(e) {
-				let that = this;
-				that.map.getCenterLocation({
-					success(res) {
-						if (that.init_flag == false) {
-							that.init_flag = true;
-						} else {
-							amap.getRegeo(res.longitude + ',' + res.latitude)
-								.then(res => {
-									let info = res[0];
-									let addressComponent = info.regeocodeData.addressComponent;
-									that.setMapCity(addressComponent.city, addressComponent.citycode);
-									that.setMapLocation(info.longitude, info.latitude);
-									if (info.regeocodeData.aois.length > 0) {
-										that.setMarker(0, info.longitude, info.latitude, addressComponent.district + info.regeocodeData.aois[0].name);
-									} else {
-										that.setMarker(0, info.longitude, info.latitude, addressComponent.district + info.regeocodeData.addressComponent
-											.township);
-									}
-								})
-								.catch(err => {
-									console.log(err);
-								});
-						}
-					},
-					fail(err) {
-						console.log(err);
-					}
-				});
-			},
+			
 			quitOrder(order_id){
 				let that=this;
 				const data = {

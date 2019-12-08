@@ -3,7 +3,7 @@
 		<view class="ui-divide-line"></view>
 		<view class="dui-flex-row">
 			<text>当前可提现</text>
-			<text class="dui-maincolor">0.00</text>
+			<text class="dui-maincolor">{{user.wallet}}</text>
 		</view>
 		<view class="ui-divide-line"></view>
 		<view class="dui-flex-row">
@@ -11,8 +11,9 @@
 		</view>
 		<view class="dui-flex-row">
 			<view class="dui-pickup-write-money">￥<input type="text" focus="true" v-model="price" placeholder="请填写金额" /></view>
-			<view class="dui-pickup-all">全部提现</view>
+			<view class="dui-pickup-all" @tap="pickall">全部提现</view>
 		</view>
+		<view class="btn-row"><button class="primary" type="primary" @tap="submitPick">确认提现</button></view>
 		<!--<view class="dui-flex-row">
 			<text>提现到</text>
 			<view class="dui-pickup-cardno">
@@ -23,17 +24,36 @@
 	</view>
 </template>
 <script>
+	import {mapState} from 'vuex';
 	export default{
 		data(){
 			return {
 				price:0
 			}
 		},
+		computed: mapState(['user']),
 		methods:{
+			pickall:function(){
+				this.price=this.user.wallet;
+			},
 			submitPick:function(){
 				let that=this
 				const data={
 					price:this.price
+				}
+				if(this.price===0){
+					uni.showToast({
+						icon: 'none',
+						title: '提现金额不能为0'
+					});
+					return;
+				}
+				if(this.price>=this.user.wallet){
+					uni.showToast({
+						icon: 'none',
+						title: '最多提现'+this.user.wallet+'元'
+					});
+					return;
 				}
 				this.$uniFly
 				.post({

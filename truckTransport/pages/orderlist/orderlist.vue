@@ -14,92 +14,11 @@
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<view class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index">
-					<navigator v-if="item.status===0"
+					<navigator class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
 					>
 						<view class="ui-daizhifu" v-if="item.status === 0">待支付</view>
-						<view class="ui-order-list-item-top">
-							<text class="ui-order-list-cartype">{{ item.car }}</text>
-							<text>{{ item.create_time }}</text>
-						</view>
-						<view class="ui-divide-line"></view>
-						<view class="ui-order-timeline-container">
-							<view class="ui-order-timeline uni-timeline">
-								<view class="uni-timeline-item uni-timeline-first-item">
-									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content">
-										<text class="ui-address">{{ item.order_details_json.trip.departure.localtion }}{{ item.order_details_json.trip.departure.address }}</text>
-									</view>
-								</view>
-								<view
-									class="uni-timeline-item"
-									v-for="(passbyitem, passbyitem_index) in item.order_details_json.transfer"
-									:key="passbyitem_index"
-									v-if="item.order_details_json.transfer.length != 0"
-								>
-									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content">
-										<text class="ui-address">{{ passbyitem.localtion }}{{ passbyitem.address }}</text>
-									</view>
-								</view>
-								<view class="uni-timeline-item uni-timeline-last-item">
-									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content">
-										<text class="ui-address">
-											{{ item.order_details_json.trip.destination.localtion }}{{ item.order_details_json.trip.destination.address }}
-										</text>
-									</view>
-								</view>
-							</view>
-							<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
-						</view>
-						<view class="ui-order-price">{{ '￥' + item.order_price }}</view>
-					</navigator>
-					<navigator v-if="item.status === 1"
-						:url="'/pages/placeorder/sending_driver?ocode=' + item.ocode"
-					>
 						<view class="ui-hujiao" v-if="item.status === 1">呼叫中...</view>
-						<view class="ui-order-list-item-top">
-							<text class="ui-order-list-cartype">{{ item.car }}</text>
-							<text>{{ item.create_time }}</text>
-						</view>
-						<view class="ui-divide-line"></view>
-						<view class="ui-order-timeline-container">
-							<view class="ui-order-timeline uni-timeline">
-								<view class="uni-timeline-item uni-timeline-first-item">
-									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content">
-										<text class="ui-address">{{ item.order_details_json.trip.departure.localtion }}{{ item.order_details_json.trip.departure.address }}</text>
-									</view>
-								</view>
-								<view
-									class="uni-timeline-item"
-									v-for="(passbyitem, passbyitem_index) in item.order_details_json.transfer"
-									:key="passbyitem_index"
-									v-if="item.order_details_json.transfer.length != 0"
-								>
-									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content">
-										<text class="ui-address">{{ passbyitem.localtion }}{{ passbyitem.address }}</text>
-									</view>
-								</view>
-								<view class="uni-timeline-item uni-timeline-last-item">
-									<view class="uni-timeline-item-divider"></view>
-									<view class="uni-timeline-item-content">
-										<text class="ui-address">
-											{{ item.order_details_json.trip.destination.localtion }}{{ item.order_details_json.trip.destination.address }}
-										</text>
-									</view>
-								</view>
-							</view>
-							<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
-						</view>
-						<view class="ui-order-price">{{ '￥' + item.order_price }}</view>
-					</navigator>
-					<navigator v-if="item.status === 2||item.status === 3"
-						:url="'/pages/placeorder/loaded?ocode=' + item.ocode"
-					>
 						<view class="ui-hujiao" v-if="item.status === 2">等待运送</view>
 						<view class="ui-hujiao" v-if="item.status === 3">运送中</view>
 						<view class="ui-order-list-item-top">
@@ -139,7 +58,6 @@
 						</view>
 						<view class="ui-order-price">{{ '￥' + item.order_price }}</view>
 					</navigator>
-					</view>
 					<view class="loading">{{ loadingText[0] }}</view>
 				</scroll-view>
 			</swiper-item>
