@@ -385,11 +385,11 @@ export default {
 					title: '订单支付中...'
 				});
 				console.log({
-							pay_log_id: that.pay_log_id,
-							pay_platform: that.pay_platform,
-							provider: that.provider,
-							openid: that.user.minwxapp_id
-						});
+					pay_log_id: that.pay_log_id,
+					pay_platform: that.pay_platform,
+					provider: that.provider,
+					openid: that.user.minwxapp_id
+				});
 				that.$uniFly
 					.post({
 						url: '/api/pay_log/pay',

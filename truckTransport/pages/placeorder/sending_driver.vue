@@ -22,6 +22,8 @@
 	export default {
 		data() {
 			return {
+				ocode: '',
+				order: null,
 				markers: [{
 					iconPath: '/static/amap/marker.png',
 					id: 0,
@@ -43,6 +45,13 @@
 		},
 		onLoad(options) {
 			let that = this;
+			if(options.ocode){
+				that.ocode=options.ocode;
+			}else{
+				uni.navigateBack({
+					delta:1
+				});
+			}
 			that.map = uni.createMapContext('amap', that);
 			this.getDetail();
 		},

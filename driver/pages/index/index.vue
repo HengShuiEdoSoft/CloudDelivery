@@ -172,7 +172,7 @@ export default {
 						order_details: data.order.order_details
 					};
 					that.$store.commit('addPushToDriverOrderNotice', order);
-					that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
+					// that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
 				}
 			} catch (e) {
 				console.log(e);
