@@ -21,7 +21,7 @@
 			</view>
 			<view class="dui-gap"></view>
 			<view class="dui-basic-list">
-				<navigator url="resetpwd">
+				<navigator url="/pages/pwd/pwd">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container dui-reduce">
 							<view class="dui-basic-list-item__content">
