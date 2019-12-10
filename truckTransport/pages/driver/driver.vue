@@ -103,13 +103,13 @@ export default {
 								uni.hideNavigationBarLoading();
 								if (res.code === 0) {
 									uni.showToast({
-										title: '删除',
+										title: '已删除',
 										icon: 'success',
 										mask: true,
 										duration: 3000
 									});
 								} else {
-									uni.showToast({
+									uni.showModal({
 										content: res.msg,
 										showCancel: false
 									});
