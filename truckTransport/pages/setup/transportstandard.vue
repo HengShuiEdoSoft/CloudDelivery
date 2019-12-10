@@ -162,4 +162,5 @@ swiper {
 .ui-ts-list-item > view {
 	width: 50%;
 }
+.ui-top-city-select{text-align: center;}
 </style>
