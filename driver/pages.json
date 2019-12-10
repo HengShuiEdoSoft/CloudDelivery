@@ -105,6 +105,12 @@
 			}
 		},
 		{
+			"path": "pages/mycar/cartype",
+			"style": {
+				"navigationBarTitleText": "选择车型"
+			}
+		},
+		{
 			"path": "pages/servicecenter/servicecenter",
 			"style": {
 				"navigationBarTitleText": "客服中心"

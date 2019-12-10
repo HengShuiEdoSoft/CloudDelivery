@@ -1,10 +1,10 @@
 <template>
 	<view class="content">
 		<view class="input-group">
-			<view class="input-row border">
+			<navigator class="input-row border" url="cartype">
 				<text class="title">车型</text>
-				<m-input type="text" focus clearable v-model="car_id" placeholder="请选择车型"></m-input>
-			</view>
+				<m-input type="text" focus clearable v-model="carinfo.car_title" placeholder="请选择车型"></m-input>
+			</navigator>
 			<view class="input-row border">
 				<text class="title">银行卡号</text>
 				<m-input type="text" focus clearable v-model="bank_card_num" placeholder="请输入银行卡号"></m-input>
@@ -45,6 +45,7 @@ export default {
 	},
 	data() {
 		return {
+			carinfo:{car_id:0,car_title:""},
 			car_id: '',
 			bank_card_num: '',
 			car_number:'',
@@ -56,6 +57,13 @@ export default {
 			imgurl:['','','',''],
 			photos: ['../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png']
 		};
+	},
+	onLoad(){
+		let that=this;
+		this.$fire.on('CARTYPE',function(data){
+			that.carinfo=data;
+			that.car_id=data.car_id;
+		});
 	},
 	methods: {
 		...mapMutations(['beconfirm']),
