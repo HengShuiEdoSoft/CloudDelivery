@@ -24,7 +24,7 @@
 					<view v-for="(item, index) in newsList[0]" :key="index">
 					<navigator :url="'/pages/order/orderdetail-arrive?ocode=' + item.ocode" v-if="item.status === 2">
 						<view class="ui-order-list-item">
-							<view class="ui-hujiao" v-if="item.status === 2">等待运送</view>
+							<view class="ui-hujiao">等待运送</view>
 							<view class="dui-gap"></view>
 							<view class="dui-gap"></view>
 							<view class="ui-order-list-item-top">
@@ -69,9 +69,9 @@
 							</view>
 						</view>
 					</navigator>
-					<navigator :url="'/pages/order/orderdetail-arrive?ocode=' + item.ocode" v-if="item.status === 3">
+					<navigator :url="'/pages/order/orderdetail-complete?ocode=' + item.ocode" v-if="item.status === 3">
 						<view class="ui-order-list-item">
-							<view class="ui-hujiao" v-if="item.status === 3">运送中</view>
+							<view class="ui-hujiao">运送中</view>
 							<view class="dui-gap"></view>
 							<view class="dui-gap"></view>
 							<view class="ui-order-list-item-top">

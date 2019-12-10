@@ -255,6 +255,8 @@ export default {
 					}
 				}
 			}
+			let remark = that.order.remark + (that.isOne > 0 ? ';' + String(that.isOne) + '人跟车' : '');
+			remark = remark.replace(/^(\s|;)+|(\s|;)+$/g, '');
 			let order_details_json = {
 				city_id: that.order.city_id,
 				city_title: that.order.city_title,
@@ -270,7 +272,7 @@ export default {
 				order_price: that.order.order_price,
 				pay_order_price: that.order.pay_order_price,
 				distance: that.order.distance,
-				remark: that.order.remark + (that.isOne > 0 ? ';' + String(that.isOne) + '人跟车' : ''),
+				remark: remark,
 				attach: attach,
 				trip: {
 					departure: that.order.trip.departure,

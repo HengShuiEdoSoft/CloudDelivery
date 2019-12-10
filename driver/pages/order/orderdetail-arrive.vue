@@ -60,7 +60,7 @@
 			</view>
 			<view class="ui-orderdetail-cont" style="overflow: hidden;">
 				<view class="dui-orderdetail-info">
-					<image src="../../static/img/HeadImg.jpg" mode=""></image>
+					<image src="/static/img/HeadImg.jpg"></image>
 					<text>{{order.order_details_json.contact}}</text>
 				</view>
 				<view class="dui-orderdetail-call" @tap="call">
@@ -95,6 +95,7 @@
 	export default {
 		data() {
 			return {
+				options:null,
 				channel: 'setTrip',
 				status: 1,
 				is_destination: false,
@@ -132,11 +133,11 @@
 		},
 		computed: mapState(['sysconfig']),
 		onLoad(options) {
+			this.options=options;
 			this.ocode = options.ocode;
 			this.getDetail();
 			let that = this;
 			that.map = uni.createMapContext('amap', that);
-			
 		},
 		methods: {
 			call: function(e) {
@@ -157,14 +158,12 @@
 							if (res.confirm) {
 								that.$uniFly
 									.post({
-										url: '/api/order/sureorder',
+										url: '/api/order/driverarrives',
 										params: data
 									})
 									.then(function(res) {
 										if (res.code == 0) {
-											uni.navigateTo({
-												url:"/pages/index/index"
-											})
+											that.onLoad(that.options);
 										} else {
 											uni.showModal({
 												content: res.msg,

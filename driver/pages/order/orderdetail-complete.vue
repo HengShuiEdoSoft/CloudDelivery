@@ -131,17 +131,15 @@
 			this.getDetail();
 			let that = this;
 			that.map = uni.createMapContext('amap', that);
-			
+			that.$fire.on('SUREIMAGES',function(data){
+				that.sure_images=data.join(',');
+			});
 		},
 		methods: {
-			photoUpLoad: function() {
-				this.$fire.on('SUREIMAGES',function(data){
-					this.sure_images=data;
-				});
+			photoUpLoad: function() {				
 				uni.navigateTo({
 					url: '/pages/order/photoupload'
 				});
-				
 			},
 			call: function(e) {
 				uni.makePhoneCall({
@@ -179,8 +177,8 @@
 			completeSure:function(){
 				let that = this;
 				const data = {
-					order_id:this.order.order_id,
-					sure_images: this.sure_images
+					order_id:that.order.order_id,
+					sure_images: that.sure_images
 				};
 				if (that.$drmking.isEmpty(data.sure_images)) {
 					uni.showToast({
@@ -196,8 +194,8 @@
 					})
 					.then(function(res) {
 						if (res.code == 0) {
-							uni.navigateTo({
-								url:"/pages/index/index"
+							uni.reLaunch({
+								url:'/pages/index/index'
 							})
 						} else {
 							uni.showModal({

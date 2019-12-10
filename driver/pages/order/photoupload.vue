@@ -17,22 +17,23 @@ export default {
 	data() {
 		return {
 			imageList: [],
-			sure_images:null,
 			sourceType: 'camera',
 			countIndex: 6,
 			max_num: parseInt(this.$store.state.sysconfig.sure_order_photo_num)
 		};
 	},
-	onBackPress(e) {
-		this.$fire.fire('SUREIMAGES', this.sure_images);
-	},
+	// async onBackPress(e) {
+	// 	await this.save();
+	// },
 	methods: {
 		async save() {
 			let that = this;
 			let res_images = [];
 			await that.uploadimg(that.imageList, res_images);
-			console.log(res_images);
-			this.sure_images=res_images;
+			this.$fire.fire('SUREIMAGES', res_images);
+			uni.navigateBack({
+				delta:1
+			});
 		},		
 		removeImg: function(e) {
 			let that = this;
@@ -113,7 +114,6 @@ export default {
 				return;
 			}
 			// #endif
-			console.log(that.sourceType);
 			if (that.imageList.length == that.max_num) {
 				let isContinue = await that.isFullImg();
 				console.log('是否继续?', isContinue);
@@ -121,13 +121,12 @@ export default {
 					return;
 				}
 			}
-
 			uni.chooseImage({
 				sourceType: [that.sourceType],
 				sizeType: ['original', 'compressed'],
 				count: that.max_num - that.imageList.length,
 				success: res => {
-					that.imageList = res.tempFilePaths;
+					that.imageList =that.imageList.concat(res.tempFilePaths);
 				},
 				fail: err => {
 					console.log(err);

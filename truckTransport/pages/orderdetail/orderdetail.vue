@@ -8,14 +8,14 @@
 			<image src="../../static/img/HeadImg.jpg" class="ui-od-portrait"></image>
 			<view>{{ order.dname }}</view>
 		</view>
-		<view v-if="order.status===0" class="ui-orderdetail-cont">
-			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
+		<view v-if="order.status==0" class="ui-orderdetail-cont">
+			<!-- <view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view> -->
 			<view @tap="togglePopup" class="ui-order-pay-btn-b">去支付</view>
 		</view>
-		<view v-if="order.status===1" class="ui-orderdetail-cont">
+		<view v-if="order.status==1" class="ui-orderdetail-cont">
 			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
 		</view>
-		<view v-if="order.status===2||order.status==3" class="ui-orderdetail-cont">
+		<view v-if="order.status==2||order.status==3" class="ui-orderdetail-cont">
 			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
 			<view @tap="call" class="ui-order-pay-btn-b">呼叫司机</view>
 			<view @tap="makecall" class="ui-order-pay-btn-b">投诉</view>

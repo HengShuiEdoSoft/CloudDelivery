@@ -16,22 +16,22 @@
 			<view class="ui-divide-line"></view>
 			<view class="ui-info-list-item" @tap="togglePopup('center', 'sexchose')">
 				<view class="ui-info-list-left">性别</view>
-				<view class="ui-info-list-center" v-if="!items.sex"><input placeholder="去设置" disabled="true" placeholder-style="color:#999"></view>
-				<view class="ui-info-list-center" v-if="items.sex===0"><input placeholder="去设置" value="男" disabled="true" placeholder-style="color:#999"></view>
-				<view class="ui-info-list-center" v-if="items.sex===1"><input placeholder="去设置" value="女" disabled="true" placeholder-style="color:#999"></view>
+				<view class="ui-info-list-center" v-if="!items.sex"><input placeholder="去设置" disabled="true" placeholder-style="color:#999" /></view>
+				<view class="ui-info-list-center" v-if="items.sex === 0"><input placeholder="去设置" value="男" disabled="true" placeholder-style="color:#999" /></view>
+				<view class="ui-info-list-center" v-if="items.sex === 1"><input placeholder="去设置" value="女" disabled="true" placeholder-style="color:#999" /></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</view>
 			<view class="ui-divide-line"></view>
-			<navigator class="ui-info-list-item" :url="'/pages/userinfo/phonenum?num='+items.phone">
+			<navigator class="ui-info-list-item" :url="'/pages/userinfo/phonenum?num=' + items.phone">
 				<view class="ui-info-list-left">手机号</view>
-				<view class="ui-info-list-center" v-if="!items.phone"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999"></view>
-				<view class="ui-info-list-center" v-if="items.phone"><input placeholder="去设置" :value="items.phone" disabled="true" placeholder-style="color:#999"></view>
+				<view class="ui-info-list-center" v-if="!items.phone"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999" /></view>
+				<view class="ui-info-list-center" v-if="items.phone"><input placeholder="去设置" :value="items.phone" disabled="true" placeholder-style="color:#999" /></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</navigator>
 			<view class="ui-divide-line"></view>
 			<navigator class="ui-info-list-item" url="/pages/setup/moresetup">
 				<view class="ui-info-list-left">更多设置</view>
-				<view class="ui-info-list-center"><input  value="" disabled="true" placeholder-style="color:#999"></view>
+				<view class="ui-info-list-center"><input value="" disabled="true" placeholder-style="color:#999" /></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</navigator>
 		</view>
@@ -41,11 +41,9 @@
 				<view class="ui-tip-title">性别</view>
 				<view class="ui-tip-group-button">
 					<radio-group @change="radioChange" @click="sexchange('sexchose')">
-						<label class="ui-list-cell ui-list-cell-pd" v-for="(item, index) in sex" :key="item.value">
-							<view>
-								<radio :value="item.value" :checked="index === current" color="#FF5723" />
-							</view>
-							<view>{{item.name}}</view>
+						<label class="ui-list-cell ui-list-cell-pd" v-for="(item, index) in sexList" :key="index">
+							<view><radio :value="item.value" :checked="index == current" color="#FF5723" /></view>
+							<view>{{ item.name }}</view>
 						</label>
 					</radio-group>
 				</view>
@@ -56,7 +54,7 @@
 
 <script>
 import service from '../../service.js';
-import { mapState,mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import avatar from '@/components/yq-avatar/yq-avatar.vue';
 export default {
@@ -67,7 +65,7 @@ export default {
 	data() {
 		return {
 			current: 0,
-			imgurl: ['../../static/img/HeadImg.jpg'],
+			imgurl: ['/static/img/HeadImg.jpg'],
 			show: false,
 			type: '',
 			sexList: [
@@ -214,32 +212,32 @@ export default {
 </script>
 
 <style>
-	.ui-tip {
-		padding: 30upx;
-		width: 480upx;
-		font-size: 14px;
-		background: #fff;
-	}
+.ui-tip {
+	padding: 30upx;
+	width: 480upx;
+	font-size: 14px;
+	background: #fff;
+}
 
-	.ui-tip-title {
-		font-size: 16px;
-		line-height: 92upx;
-	}
+.ui-tip-title {
+	font-size: 16px;
+	line-height: 92upx;
+}
 
-	.ui-list-cell {
-		line-height: 92upx;
-		display: flex;
-		align-items: center;
-	}
+.ui-list-cell {
+	line-height: 92upx;
+	display: flex;
+	align-items: center;
+}
 
-	radio {
-		transform: scale(0.7)
-	}
+radio {
+	transform: scale(0.7);
+}
 
-	.ui-portrait-cropper {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
+.ui-portrait-cropper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
 </style>
