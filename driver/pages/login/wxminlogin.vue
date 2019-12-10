@@ -49,6 +49,13 @@ export default {
 									.then(function(res) {
 										uni.hideNavigationBarLoading();
 										if (res.code == 0) {
+											if(res.data.user_type==2){
+												uni.showModal({
+													content: '司机端账号不能登录用户端',
+													showCancel: false
+												});
+												return;
+											}
 											service.addUser(res.data);
 											that.$store.commit('login', res.data);
 										} else {

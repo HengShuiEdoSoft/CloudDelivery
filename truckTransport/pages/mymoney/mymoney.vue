@@ -48,8 +48,8 @@
 				</view> -->
 			</view>
 		</view>
-		<view class="dui-money-list-group" @tap="invoice">
-			<navigator url="myinvoicing" v-if="isCompany">
+		<view class="dui-money-list-group" @tap="invoice" v-if="user.user_type == 1">
+			<navigator url="myinvoicing">
 				<view class="dui-money-number" style="padding: 20upx 30upx;">
 					<view>
 						<text class="iconfont icon-fapiaotianchong"></text>
@@ -102,11 +102,12 @@
 		onShow() {
 			//钱包余额
 			this.list.wallet=this.user.wallet;
+			console.log(this.user.user_type)
 		},
-		computed: mapState(['isCompany','user']),
+		computed: mapState(['user']),
 		methods: {
 			invoice:function(){
-				if(!this.isCompany){
+				if(this.user.user_type == 0){
 					uni.showModal({
 						title: '非企业用户',
 						content: '您的账号为非企业账号，是否继续成为企业账号',
