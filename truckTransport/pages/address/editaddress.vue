@@ -37,7 +37,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="dui-fixed-bottom-btn"><button class="primary" type="primary" @tap="addAddress">确定添加</button></view>
+		<view class="dui-fixed-bottom-btn"><button class="primary" type="primary" @tap="addAddress">确定</button></view>
 	</view>
 </template>
 <script>
@@ -133,7 +133,7 @@ export default {
 					uni.hideNavigationBarLoading();
 					if (res.code == 0) {
 						uni.showToast({
-							title: '添加成功',
+							title: '修改成功',
 							icon: 'success',
 							mask: true,
 							duration: 3000
