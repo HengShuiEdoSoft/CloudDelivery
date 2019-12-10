@@ -23,7 +23,9 @@
 		<view class="ui-orderdetail-cont">
 			<view class="ui-orderdetail-date">
 				<view class="ui-od-date">{{ order.sure_time }}</view>
-				<view class="ui-od-ordernumber">订单号:{{ order.ocode }}</view>
+			</view>
+			<view class="ui-orderdetail-date">
+				<view class="ui-od-date">订单号：{{ order.ocode }}</view>
 			</view>
 			<view class="ui-divide-line"></view>
 			<view class="ui-order-timeline-container">

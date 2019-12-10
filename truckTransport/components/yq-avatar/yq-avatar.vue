@@ -233,10 +233,10 @@
 					expHeight = this.exportHeight || height;
 					
 				// #ifdef H5
-				x *= this.pixelRatio;
-				y *= this.pixelRatio;
-				expWidth = width;
-				expHeight = height;
+				//x *= this.pixelRatio;
+				//y *= this.pixelRatio;
+				//expWidth = width;
+				//expHeight = height;
 				// #endif
 					
 				uni.showLoading({ mask: true });
@@ -326,10 +326,10 @@
 					expHeight = this.exportHeight || prvHeight;
 					
 				// #ifdef H5
-				prvX *= this.pixelRatio;
-				prvY *= this.pixelRatio;
-				expWidth = prvWidth;
-				expHeight = prvHeight;
+				//prvX *= this.pixelRatio;
+				//prvY *= this.pixelRatio;
+				//expWidth = prvWidth;
+				//expHeight = prvHeight;
 				// #endif
 					
 				uni.showLoading({ mask: true });
@@ -561,8 +561,8 @@
 					height = parseInt(style.height);
 					
 				// #ifdef H5
-				x *= this.pixelRatio;
-				y *= this.pixelRatio;
+				//x *= this.pixelRatio;
+				//y *= this.pixelRatio;
 				// #endif
 				
 				uni.showLoading({ mask: true });

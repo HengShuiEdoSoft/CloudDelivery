@@ -15,8 +15,7 @@
 			</navigator>-->
 			<view class="ui-divide-line"></view>
 			<view class="ui-info-list-item" @tap="togglePopup('center', 'sexchose')">
-				<view class="ui-info-list-left">性别</view>
-				<view class="ui-info-list-center" v-if="!items.sex"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999" /></view>				
+				<view class="ui-info-list-left">性别</view>				
 				<view class="ui-info-list-center" v-if="items.sex === 0"><input placeholder="去设置" value="男" disabled="true" placeholder-style="color:#999" /></view>
 				<view class="ui-info-list-center" v-if="items.sex === 1"><input placeholder="去设置" value="女" disabled="true" placeholder-style="color:#999" /></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
@@ -46,7 +45,7 @@
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</view>
 		</view>
-		<avatar @upload="doUpload" @avtinit="doBefore" quality="0.8" ref="avatar"></avatar>
+		<avatar @upload="doUpload" @avtinit="doBefore" quality="0.8" ref="avatar" avatarStyle="width: 280upx; height: 280upx; border-radius: 100%;"></avatar>
 		<uni-popup ref="sexchose" :type="type" :custom="true" :mask-click="true">
 			<view class="ui-tip">
 				<view class="ui-tip-title">性别</view>
@@ -129,9 +128,8 @@ export default {
 			this.$refs.avatar.fChooseImg(index, {
 				selWidth: '360upx',
 				selHeight: '360upx',
-				expWidth: '280upx',
-				expHeight: '280upx',
-				inner: index ? 'true' : 'false'
+				expWidth: '360upx',
+				expHeight: '360upx'
 			});
 		},
 		doUpload(rsp) {
@@ -206,7 +204,7 @@ export default {
 								duration: 3000
 							});
 							that.$set(that.items, 'sex', that.sex);
-							service.addUser(res.data);
+							//service.addUser(res.data);
 							that.$store.commit('login', res.data);
 						}
 					})
