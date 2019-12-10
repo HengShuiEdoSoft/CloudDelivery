@@ -70,7 +70,7 @@
 						</view>
 					</view>
 					<navigator
-						class="ui-order-list-item ui-daizhifu"
+						class="ui-order-list-item"
 						v-for="(item, index) in newsList[1]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
 						:key="index"
