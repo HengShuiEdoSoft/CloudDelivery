@@ -156,7 +156,7 @@ export default {
 				}
 			],
 			pay_money: 0,
-			pay_type: 0,
+			pay_type: 1,
 			pay_cate_id: 0,
 			pay_platform: '',
 			provider: 'alipay'

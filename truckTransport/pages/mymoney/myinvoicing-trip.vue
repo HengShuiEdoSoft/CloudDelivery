@@ -83,8 +83,7 @@
 			    var items = this.lists;
 			    this.values = e.detail.value;
 			    for (var i = 0, lenI = items.length; i < lenI; ++i) {
-			        const item = items[i]
-					
+			        const item = items[i]					
 			        if(this.values.includes(item.order_id)){
 			            this.$set(item,'checked',true);
 						this.price+=items[i].order_price;
