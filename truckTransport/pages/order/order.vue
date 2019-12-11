@@ -399,7 +399,7 @@ export default {
 							pay_log_id: that.pay_log_id,
 							pay_platform: that.pay_platform,
 							provider: that.provider,
-							openid: that.user.minwxapp_id
+							// openid: that.user.minwxapp_id
 						}
 					})
 					.then(res => {
@@ -463,7 +463,7 @@ export default {
 								console.log(res.data);
 								uni.requestPayment({
 									provider: that.provider,
-									orderInfo: res.data, //微信、支付宝订单数据
+									orderInfo: res.data.data, //微信、支付宝订单数据
 									success: function(res) {
 										console.log('success:' + JSON.stringify(res));
 										uni.showToast({

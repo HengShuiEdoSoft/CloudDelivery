@@ -342,6 +342,7 @@ export default {
 						}
 					})
 					.then(res => {
+						console.log(res);
 						uni.hideLoading();
 						if (res.code == 0) {
 							// 余额支付成功直接返回首页
@@ -402,7 +403,7 @@ export default {
 								console.log(res.data);
 								uni.requestPayment({
 									provider: that.provider,
-									orderInfo: res.data, //微信、支付宝订单数据
+									orderInfo: res.data.data, //微信、支付宝订单数据
 									success: function(res) {
 										console.log('success:' + JSON.stringify(res));
 										uni.showToast({
