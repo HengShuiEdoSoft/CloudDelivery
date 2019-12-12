@@ -181,7 +181,7 @@ export default {
 					}
 				},
 				complete(res) {
-					console.log(res);
+
 				}
 			});
 		},

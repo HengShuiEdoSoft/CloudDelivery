@@ -74,7 +74,6 @@ export default {
 	computed: mapState(['sysconfig']),
 	onLoad(options) {
 		let that = this;
-		console.log(options);
 		if (options.city_id) {
 			that.city_id = parseInt(options.city_id);
 		}

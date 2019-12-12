@@ -342,7 +342,6 @@ export default {
 						}
 					})
 					.then(res => {
-						console.log(res);
 						uni.hideLoading();
 						if (res.code == 0) {
 							// 余额支付成功直接返回首页

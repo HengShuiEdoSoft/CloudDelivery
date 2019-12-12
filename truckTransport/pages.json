@@ -205,7 +205,7 @@
 					"titleNView": {
 						"buttons": [{
 							"text": "收费标准",
-							"fontSize": "12",
+							"fontSize": "8",
 							"float": "right",
 							"color": "#424456"
 						}]

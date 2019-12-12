@@ -294,7 +294,6 @@ export default {
 					})
 					.then(res => {
 						uni.hideLoading();
-						console.log(res);
 						if (res.code == 0) {
 							that.order_id = res.data.order_id;
 							that.pay_money = res.data.pay_order_price;
