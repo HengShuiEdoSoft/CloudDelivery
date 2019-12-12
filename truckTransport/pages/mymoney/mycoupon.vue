@@ -90,7 +90,10 @@ export default {
 						mask: true,
 						duration: 3000
 					});
-					that.getList();
+					this.has_next = true;
+					this.reload = true;
+					this.getList();
+					uni.stopPullDownRefresh();
 				} else {
 					uni.showModal({
 						content: res.msg,
