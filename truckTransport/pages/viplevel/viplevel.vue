@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<scroll-view scroll-y :style="height">
+		<scroll-view class="scroll-container" scroll-y :style="height">
 			<view class="dui-vip-bj"></view>
 			<view class="dui-service-wrapper">
 				<view class="dui-vip-card">
