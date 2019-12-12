@@ -191,9 +191,9 @@ let drmking = {
 					url: '/pages/userinfo/bindphone'
 				});
 			} else {
-				uni.reLaunch({
-					url: '/pages/index/index'
-				});
+				// uni.reLaunch({
+				// 	url: '/pages/index/index'
+				// });
 			}
 		}
 	},
@@ -672,32 +672,48 @@ let drmking = {
 			await that.setLocationCity(vue, default_city);
 		}
 	},
-	// login: function(vue) {
-	// 	let user = this.cacheData('user');
-	// 	if (user) {
-	// 		if (vue.$store.state.is_user == false) {
-	// 			vue.$store.commit('switch_login');
-	// 		}
-	// 		if (user.status == 1 && user.is_user_ok == true && vue.$store.state.is_user_ok == false) {
-	// 			vue.$store.commit('switch_use');
-	// 		}
-	// 	} else {
-	// 		if (vue.$store.state.is_user == true) {
-	// 			vue.$store.commit('switch_login');
-	// 		}
-	// 		if (vue.$store.state.is_user_ok == true) {
-	// 			vue.$store.commit('switch_use');
-	// 		}
-	// 	}
-	// },
-	// logout: function(vue) {
-	// 	if (vue.$store.state.is_user == true) {
-	// 		vue.$store.commit('switch_login');
-	// 	}
-	// 	if (vue.$store.state.is_user_ok == true) {
-	// 		vue.$store.commit('switch_use');
-	// 	}
-	// 	this.cacheData('user', null, 0);
-	// }
+	//更新用户信息
+	getUserInfo(vue){
+		vue.$uniFly.post({
+			url:'/api/user/getuser'
+		}).then(res=>{
+			if(res.code==0){
+				vue.$store.commit('login',res.data);
+			}
+		}).catch(err=>{
+			console.log(err);
+		})
+	},
+	// 确认支付
+	paySure(vue, pay_log_id, url) {
+		let that = this;
+		vue.$uniFly.post({
+			url: 'api/pay/paysure',
+			params: {
+				pay_log_id: pay_log_id
+			}
+		}).then(res => {
+			uni.showToast({
+				icon: 'none',
+				title: '订单支付完成！'
+			});
+			setTimeout(function() {
+				uni.navigateTo({
+					url: url
+				});
+			}, 1500);
+		}).catch(err => {
+			uni.showModal({
+				title: '订单确认失败，请重试!',
+				content: res.msg,
+				showCancel: false,
+				success: function(res) {
+					if (res.confirm) {
+						that.paySure(vue, pay_log_id, url);
+					}
+				}
+			});
+		});
+	},
 };
 module.exports = drmking

@@ -67,7 +67,11 @@
                     }
                 },
                 "payment" : {
-                    "alipay" : {}
+                    "alipay" : {},
+                    "weixin" : {
+                        "appid" : "wxbd3a6e32af5e0dfb",
+                        "UniversalLinks" : ""
+                    }
                 },
                 "oauth" : {
                     "weixin" : {

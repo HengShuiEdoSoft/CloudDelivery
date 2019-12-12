@@ -360,7 +360,7 @@ export default {
 					.catch(err => {
 						uni.showModal({
 							title: '订单下单失败，重新尝试？',
-							content: res.msg,
+							content: JSON.stringify(err),
 							success: function(res) {
 								if (res.confirm) {
 									that.addpaylog();
@@ -430,22 +430,13 @@ export default {
 									signType: res.data.data.signType,
 									paySign: res.data.data.paySign,
 									success: function(res) {
-										console.log('success:' + JSON.stringify(res));
-										uni.showToast({
-											icon: 'none',
-											title: '订单支付完成！'
-										});
-										setTimeout(function() {
-											uni.navigateTo({
-												url: '/pages/index/index'
-											});
-										}, 1500);
+										that.$drmking.paySure(that,res.data.pay_log_id,'/pages/index/index');
 									},
 									fail: function(err) {
 										console.log('fail:' + JSON.stringify(err));
 										uni.showModal({
 											title: '订单支付失败，重新尝试？',
-											content: res.msg,
+											content: JSON.stringify(err),
 											success: function(res) {
 												if (res.confirm) {
 													that.pay();
@@ -460,27 +451,17 @@ export default {
 								// #endif
 								// app支付
 								// #ifdef APP-PLUS
-								console.log(res.data);
 								uni.requestPayment({
 									provider: that.provider,
 									orderInfo: res.data.data, //微信、支付宝订单数据
-									success: function(res) {
-										console.log('success:' + JSON.stringify(res));
-										uni.showToast({
-											icon: 'none',
-											title: '订单支付完成！'
-										});
-										setTimeout(function() {
-											uni.navigateTo({
-												url: '/pages/index/index'
-											});
-										}, 1500);
+									success: function(res) {										
+										that.$drmking.paySure(that,res.data.pay_log_id,'/pages/index/index');
 									},
 									fail: function(err) {
 										console.log('fail:' + JSON.stringify(err));
 										uni.showModal({
 											title: '订单支付失败，重新尝试？',
-											content: res.msg,
+											content: JSON.stringify(err),
 											success: function(res) {
 												if (res.confirm) {
 													that.pay();
@@ -512,7 +493,7 @@ export default {
 					.catch(err => {
 						uni.showModal({
 							title: '订单支付失败，重新尝试？',
-							content: res.msg,
+							content: JSON.stringify(err),
 							success: function(res) {
 								if (res.confirm) {
 									that.pay();

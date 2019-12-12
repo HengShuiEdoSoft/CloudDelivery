@@ -136,6 +136,9 @@ export default {
 			}
 		};
 	},
+	onShow() {
+		this.$drmking.getUserInfo(this);
+	},
 	onLoad() {
 		let that = this;
 		that.$drmking

@@ -187,6 +187,9 @@ export default {
 		};
 	},
 	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'sysconfig', 'order']),
+	onShow() {
+		this.$drmking.getUserInfo(this);
+	},
 	onLoad() {
 		let that = this;
 		that.$drmking
@@ -357,7 +360,7 @@ export default {
 					showCancel: true,
 					success: res => {
 						if (res.confirm) {
-							this.visible=false;
+							this.visible = false;
 							uni.navigateTo({
 								url: '../login/login'
 							});
@@ -366,7 +369,7 @@ export default {
 				});
 				return false;
 			} else {
-				this.visible=false;
+				this.visible = false;
 				uni.navigateTo({
 					url: url
 				});
