@@ -243,6 +243,7 @@ export default {
 			this.getnewsList();
 		},
 		deleteOrder: function(ocode,index) {
+			let that=this;
 			uni.showModal({
 				title: '温馨提示',
 				content: '您确定要删除该条信息吗',

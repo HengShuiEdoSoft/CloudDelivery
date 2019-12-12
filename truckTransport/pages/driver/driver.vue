@@ -85,6 +85,7 @@ export default {
 			this.$refs[open].open();
 		},
 		deleteDriver: function(id,index) {
+			let that=this;
 			uni.showModal({
 				title: '温馨提示',
 				content: '您确定要删除该条信息吗',

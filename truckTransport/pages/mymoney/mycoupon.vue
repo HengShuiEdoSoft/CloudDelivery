@@ -75,6 +75,7 @@ export default {
 			this.current = index;
 		},
 		receiveCoupon:function(){
+			let that=this;
 			this.$uniFly
 			.post({
 				url: '/api/user_coupon/addusercoupon',
