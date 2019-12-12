@@ -247,7 +247,7 @@ export default {
 			this.$set(this.page, this.current, 1);
 			this.getnewsList();
 		},
-		deleteOrder: function(ocode) {
+		deleteOrder: function(ocode,index) {
 			uni.showModal({
 				title: '温馨提示',
 				content: '您确定要删除该条信息吗',
@@ -271,7 +271,8 @@ export default {
 										mask: true,
 										duration: 3000
 									});
-									that.getnewsList();
+									let list=that.lists[current].splice(index,1);
+									that.$set(that.lists,that.current,list);
 								} else {
 									uni.showToast({
 										content: res.msg,
