@@ -2,13 +2,13 @@
 	<view class="content ">
 		<view class="ui-divide-line"></view>
 		<scroll-view class="scroll-container" scroll-y :style="height">
-			<view v-if="empty">
+			<view v-if="lists.length==0">
 				<view class="dui-notyet-wrapper">
 					<image src="../../static/img/NoOrder.jpg" mode=""></image>
 					<text>您还没有常用地址</text>
 				</view>
 			</view>
-			<view  v-if="!empty" v-for="(item,index) in lists" :key="item.address_id" @longtap="deleteAddress(item.address_id,index)">
+			<view  v-if="!empty" v-for="(item,index) in lists" :key="item.address_id" @longpress="deleteAddress(item.address_id,index)">
 				<view class="dui-basic-list">
 					<navigator :url="'editaddress?data=' + JSON.stringify(item)">
 						<view class="dui-basic-list-item">
@@ -103,8 +103,8 @@
 										mask: true,
 										duration: 3000
 									});
-									let list=that.lists.splice(index,1);
-									that.$set(that,"lists",list)
+									that.lists.splice(index,1);
+									that.$set(that,"lists",that.lists);
 								} else {
 									uni.showModal({
 										content: res.msg,

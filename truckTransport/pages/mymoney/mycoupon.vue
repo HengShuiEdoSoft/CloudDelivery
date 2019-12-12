@@ -27,8 +27,9 @@
 								<text class="iconfont icon-gengduo-hengxiang"></text>
 							</view>
 						</view>
-						<view v-if="item.status === 1"><navigator class="ui-coupon-use" :url="'/pages/index/index' + item.user_coupon_id">立即使用</navigator></view>
-						<view v-if="item.status === 0"><view class="ui-coupon-use-b">不可用</view></view>
+						<view v-if="item.status === 0"><view class="ui-coupon-use-b">领取</view></view>
+						<view v-if="item.status === 1"><navigator class="ui-coupon-use" :url="'/pages/index/index' + item.user_coupon_id">立即使用</navigator></view>						
+						<view v-if="item.status === -1"><view class="ui-coupon-use-b">失效</view></view>
 					</view>
 					<view :class="{ active: index == current }" class="ui-coupon-detail">
 						<view>1.适用车型：{{ item.car_title }}</view>

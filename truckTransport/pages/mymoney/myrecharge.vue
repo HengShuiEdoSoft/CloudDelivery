@@ -218,6 +218,7 @@ export default {
 					.then(res => {
 						uni.hideLoading();
 						if (res.code == 0) {
+							let pay_log_id = res.data.pay_log_id;
 							// 微信或支付宝支付,调用uni.requestPayment,拉起第三方支付
 							// 微信小程序支付
 							// #ifdef MP-WEIXIN
@@ -230,7 +231,7 @@ export default {
 								signType: res.data.data.signType,
 								paySign: res.data.data.paySign,
 								success: function(res) {
-									that.$drmking.paySure(that,res.data.pay_log_id,'/pages/index/index');
+									that.$drmking.paySure(that,pay_log_id,'/pages/index/index');
 								},
 								fail: function(err) {
 									console.log('fail:' + JSON.stringify(err));
@@ -255,7 +256,7 @@ export default {
 								provider: that.provider,
 								orderInfo: res.data.data, //微信、支付宝订单数据
 								success: function(res) {
-									that.$drmking.paySure(that,res.data.pay_log_id,'/pages/index/index');
+									that.$drmking.paySure(that,pay_log_id,'/pages/index/index');
 								},
 								fail: function(err) {
 									console.log('fail:' + JSON.stringify(err));

@@ -20,15 +20,14 @@ let drmking = {
 								textToSpeech.setSpeechRate(1.0); //设定语速，1.0正常语速
 								if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
 									uni.showToast({
-										icon:'none',
-										title:'语音包丢失或语音不支持'
+										icon: 'none',
+										title: '语音包丢失或语音不支持'
 									});
 								} else {
 									textToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null);
 									if (textToSpeech != null) {
 										let timmer = setInterval(function() {
-											if (textToSpeech.isSpeaking()) {
-											} else {
+											if (textToSpeech.isSpeaking()) {} else {
 												clearInterval(timmer);
 												//释放资源
 												textToSpeech.stop();
@@ -673,14 +672,14 @@ let drmking = {
 		}
 	},
 	//更新用户信息
-	getUserInfo(vue){
+	getUserInfo(vue) {
 		vue.$uniFly.post({
-			url:'/api/user/getuser'
-		}).then(res=>{
-			if(res.code==0){
-				vue.$store.commit('login',res.data);
+			url: '/api/user/getuser'
+		}).then(res => {
+			if (res.code == 0) {
+				vue.$store.commit('login', res.data);
 			}
-		}).catch(err=>{
+		}).catch(err => {
 			console.log(err);
 		})
 	},
@@ -688,20 +687,39 @@ let drmking = {
 	paySure(vue, pay_log_id, url) {
 		let that = this;
 		vue.$uniFly.post({
-			url: 'api/pay/paysure',
+			url: '/api/pay_log/paysure',
 			params: {
 				pay_log_id: pay_log_id
 			}
 		}).then(res => {
-			uni.showToast({
-				icon: 'none',
-				title: '订单支付完成！'
-			});
-			setTimeout(function() {
-				uni.navigateTo({
-					url: url
+			if (res.code == 0) {
+				if(vue.$refs['pay']){
+					vue.$refs['pay'].close();
+				}				
+				uni.showModal({
+					title: '订单支付完成!',
+					content: '支付成功,将跳转到首页!',
+					showCancel: false,
+					success: function(res) {
+						if (res.confirm) {
+							uni.navigateTo({
+								url: url
+							});
+						}
+					}
 				});
-			}, 1500);
+			} else {
+				uni.showModal({
+					title: '订单确认失败，请重试!',
+					content: res.msg,
+					showCancel: false,
+					success: function(res) {
+						if (res.confirm) {
+							that.paySure(vue, pay_log_id, url);
+						}
+					}
+				});
+			}
 		}).catch(err => {
 			uni.showModal({
 				title: '订单确认失败，请重试!',
