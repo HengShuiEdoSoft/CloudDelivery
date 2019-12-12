@@ -620,4 +620,11 @@ export default {
 	font-size: 24px;
 	text-align: right;
 }
+.ui-coupon-use {
+	display: inline-block;
+	padding: 8upx 24upx;
+	border-radius: 54upx;
+	color: #ff5723;
+	border: 1px solid #ff5723;
+}
 </style>

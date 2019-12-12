@@ -27,9 +27,9 @@
 								<text class="iconfont icon-gengduo-hengxiang"></text>
 							</view>
 						</view>
-						<view v-if="item.status === 0"><view class="ui-coupon-use-b">领取</view></view>
+						<view v-if="item.status === 0" @tap="receiveCoupon"><view class="ui-coupon-use">领取全部</view></view>
 						<view v-if="item.status === 1"><navigator class="ui-coupon-use" :url="'/pages/index/index' + item.user_coupon_id">立即使用</navigator></view>						
-						<view v-if="item.status === -1"><view class="ui-coupon-use-b">失效</view></view>
+						<view v-if="item.status === -1" ><view class="ui-coupon-use-b">失效</view></view>
 					</view>
 					<view :class="{ active: index == current }" class="ui-coupon-detail">
 						<view>1.适用车型：{{ item.car_title }}</view>
@@ -73,6 +73,86 @@ export default {
 	methods: {
 		seeDetail(index) {
 			this.current = index;
+		},
+		receiveCoupon:function(){
+			let that=this;
+			this.$uniFly
+			.post({
+				url: '/api/user_coupon/addusercoupon',
+				params: {}
+			})
+			.then(function(res) {
+				uni.hideNavigationBarLoading();
+				if (res.code === 0 ) {
+					uni.showToast({
+						title: '领取成功',
+						icon: 'success',
+						mask: true,
+						duration: 3000
+					});
+					this.has_next = true;
+					this.reload = true;
+					this.getList();
+					uni.stopPullDownRefresh();
+				} else {
+					uni.showModal({
+						content: res.msg,
+						showCancel: false
+					});
+				}
+			})
+			.catch(function(error) {
+				uni.hideNavigationBarLoading();
+				uni.showModal({
+					content: error,
+					showCancel: false
+				});
+			});
+		},
+		deleteCoupon:function(id,index){
+			let that=this;
+			uni.showModal({
+				title: '温馨提示',
+				content: '您确定要删除该条信息吗',
+				showCancel: true,
+				success: res => {
+					if (res.confirm) {
+						const data={
+							user_coupon_ids:id
+						}
+						this.$uniFly
+						.post({
+							url: '/api/user_coupon/delusercoupon',
+							params: data
+						})
+						.then(function(res) {
+							uni.hideNavigationBarLoading();
+							if (res.code === 0 ) {
+								uni.showToast({
+									title: '已删除',
+									icon: 'success',
+									mask: true,
+									duration: 3000
+								});
+								that.list.splice(index,1);
+								that.$set(that,"list",that.list);
+							} else {
+								uni.showModal({
+									content: res.msg,
+									showCancel: false
+								});
+							}
+						})
+						.catch(function(error) {
+							uni.hideNavigationBarLoading();
+							uni.showModal({
+								content: error,
+								showCancel: false
+							});
+						});
+					}
+				}
+			});
 		},
 		getList: function() {
 			let _self = this;
