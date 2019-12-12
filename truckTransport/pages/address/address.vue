@@ -8,7 +8,7 @@
 					<text>您还没有常用地址</text>
 				</view>
 			</view>
-			<block  v-if="!empty" v-for="(item,index) in lists" :key="item.address_id" @longtap="deleteAddress(item.address_id)">
+			<view  v-if="!empty" v-for="(item,index) in lists" :key="item.address_id" @longtap="deleteAddress(item.address_id,index)">
 				<view class="dui-basic-list">
 					<navigator :url="'editaddress?data=' + JSON.stringify(item)">
 						<view class="dui-basic-list-item">
@@ -29,7 +29,7 @@
 					</navigator>
 				</view>
 				<view class="dui-gap"></view>
-			</block>
+			</view>
 			<view class="loading">{{loadingText}}</view>
 		</scroll-view>
 		<view class="dui-fixed-bottom-btn">
@@ -78,7 +78,8 @@
 			}, 1000);
 		},
 		methods: {
-			deleteAddress:function(id){
+			deleteAddress:function(id,index){
+				let that=this;
 				uni.showModal({
 					title: '温馨提示',
 					content: '您确定要删除该条信息吗',
@@ -97,11 +98,13 @@
 								uni.hideNavigationBarLoading();
 								if (res.code === 0 ) {
 									uni.showToast({
-										title: '删除',
+										title: '已删除',
 										icon: 'success',
 										mask: true,
 										duration: 3000
-									});							
+									});
+									let list=that.lists.splice(index,1);
+									that.$set(that,"lists",list)
 								} else {
 									uni.showModal({
 										content: res.msg,

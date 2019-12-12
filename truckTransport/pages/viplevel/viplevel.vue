@@ -1,6 +1,5 @@
 <template>
 	<view class="content">
-		<scroll-view scroll-y :style="height">
 			<view class="dui-vip-bj"></view>
 			<view class="dui-service-wrapper">
 				<view class="dui-vip-card">
@@ -40,7 +39,6 @@
 					</block>
 				</view>
 			</view>
-		</scroll-view>
 	</view>
 </template>
 <script>
@@ -60,9 +58,6 @@ export default {
 			that.levellist = user_level_list;
 		}
 		this.getData();
-	},
-	onLoad() {
-		this.height=uni.getSystemInfoSync().windowHeight+'px';
 	},
 	computed: mapState(['user']),
 	methods: {

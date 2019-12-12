@@ -7,7 +7,7 @@
 			<view class="dui-notyet-btn" @tap="togglePopup('center', 'collection')">去收藏司机</view>
 		</view>
 		<view class="ui-list" v-if="!empty">
-			<view class="ui-list-item" v-for="(item, index) in lists" :key="item.user_driver_favorites_id" @longtap="deleteDriver(item.user_driver_favorites_id)">
+			<view class="ui-list-item" v-for="(item, index) in lists" :key="item.user_driver_favorites_id" @longtap="deleteDriver(item.user_driver_favorites_id,index)">
 				<view class="ui-list-title">{{ item.dname }}</view>
 				<view class="ui-list-subtext">{{ item.phone }}</view>
 			</view>
@@ -84,7 +84,7 @@ export default {
 			this.type = type;
 			this.$refs[open].open();
 		},
-		deleteDriver: function(id) {
+		deleteDriver: function(id,index) {
 			uni.showModal({
 				title: '温馨提示',
 				content: '您确定要删除该条信息吗',
@@ -108,6 +108,8 @@ export default {
 										mask: true,
 										duration: 3000
 									});
+									let list=that.lists.splice(index,1);
+									that.$set(that,"lists",list);
 								} else {
 									uni.showModal({
 										content: res.msg,

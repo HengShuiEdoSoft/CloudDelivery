@@ -238,9 +238,9 @@ export default {
 							mask: true,
 							duration: 3000
 						});
-						uni.navigateTo({
-							url:'/pages/index/index'
-						})
+						uni.navigateBack({
+							delta:1
+						});
 					} else {
 						uni.showModal({
 							content: res.msg,

@@ -14,7 +14,7 @@
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index"
+					<navigator v-if="!empty[0]" class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
 					>
 						<view class="ui-daizhifu" v-if="item.status === 0">待支付</view>
@@ -69,7 +69,7 @@
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator
+					<navigator v-if="!empty[1]"
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[1]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
@@ -126,7 +126,7 @@
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator
+					<navigator v-if="!empty[2]" 
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[2]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
@@ -247,7 +247,7 @@ export default {
 			this.$set(this.page, this.current, 1);
 			this.getnewsList();
 		},
-		deleteOrder: function(ocode) {
+		deleteOrder: function(ocode,index) {
 			uni.showModal({
 				title: '温馨提示',
 				content: '您确定要删除该条信息吗',
@@ -266,11 +266,13 @@ export default {
 								uni.hideNavigationBarLoading();
 								if (res.code === 0) {
 									uni.showToast({
-										title: '删除',
+										title: '已删除',
 										icon: 'success',
 										mask: true,
 										duration: 3000
 									});
+									let list=that.lists[current].splice(index,1);
+									that.$set(that.lists,that.current,list);
 								} else {
 									uni.showToast({
 										content: res.msg,
