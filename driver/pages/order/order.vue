@@ -281,10 +281,6 @@ export default {
 		tabChange: function(e) {
 			let index = e.target.dataset.current || e.currentTarget.dataset.current;
 			this.current = index;
-			this.$set(this.has_next, this.current, true);
-			this.$set(this.reload, this.current, true);
-			this.$set(this.page, this.current, 1);
-			this.getnewsList();
 		},
 		swiperChange: function(e) {
 			let index = e.target.current || e.detail.current;
