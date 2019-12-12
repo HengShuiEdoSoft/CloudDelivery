@@ -8,13 +8,13 @@
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y :style="height">
-					<view v-if="empty[0]">
+					<view v-if="lists[0].length===0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator v-if="!empty[0]" class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index"
+					<navigator class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
 					>
 						<view class="ui-daizhifu" v-if="item.status === 0">待支付</view>
@@ -63,18 +63,18 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y :style="height">
-					<view v-if="empty[1]">
+					<view v-if="lists[1].length===0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator v-if="!empty[1]"
+					<navigator
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[1]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
 						:key="index"
-						@longtap="deleteOrder(item.ocode)"
+						@longpress="deleteOrder(item.ocode)"
 					>
 						<view class="ui-wancheng" v-if="item.status===4">已完成</view>
 						<view class="ui-wancheng" v-if="item.status===5">已完成</view>
@@ -120,18 +120,18 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y :style="height">
-					<view v-if="empty[2]">
+					<view v-if="lists[2].length===0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator v-if="!empty[2]" 
+					<navigator 
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[2]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
 						:key="index"
-						@longtap="deleteOrder(item.ocode)"
+						@longpress="deleteOrder(item.ocode)"
 					>
 						<view class="ui-quxiao" v-if="item.status === 11">取消订单</view>
 						<view class="ui-quxiao" v-if="item.status === 12">支付超时</view>
@@ -185,7 +185,6 @@ export default {
 	data() {
 		return {
 			current: 0,
-			empty: [false, false, false],
 			loadingText: ['', '', ''],
 			page: [1, 1, 1],
 			has_next: [true, true, true],
@@ -267,8 +266,8 @@ export default {
 										mask: true,
 										duration: 3000
 									});
-									let list=that.lists[current].splice(index,1);
-									that.$set(that.lists,that.current,list);
+									that.lists[current].splice(index,1);
+									that.$set(that.lists,that.current,that.lists[current]);
 								} else {
 									uni.showToast({
 										content: res.msg,
@@ -308,7 +307,6 @@ export default {
 							if (res.data.list.length > 0) {
 								let list = res.data.list;
 								list = _self.parseOrderList(list);
-								_self.$set(_self.empty, current, false);
 								_self.newsList[current] = _self.reload[current] ? list : _self.newsList[current].concat(list);
 								_self.$set(_self.newsList, current, _self.newsList[current]);
 								_self.$set(_self.page, current, _self.page[current]++);
@@ -320,7 +318,6 @@ export default {
 									_self.$set(_self.loadingText, current, '已加载全部');
 								}
 							} else {
-								_self.$set(_self.empty, current, true);
 								_self.$set(_self.loadingText, current, '');
 							}
 						} else {

@@ -1,13 +1,13 @@
 <template>
 	<view class="content">
 		<scroll-view class="scroll-container" scroll-y :style="height">
-		<view class="dui-notyet-wrapper" v-if="empty">
+		<view class="dui-notyet-wrapper" v-if="lists.length===0">
 			<image src="../../static/img/NoDriver.jpg" mode=""></image>
 			<text>收藏好司机直接发单给他们</text>
 			<view class="dui-notyet-btn" @tap="togglePopup('center', 'collection')">去收藏司机</view>
 		</view>
 		<view class="ui-list" v-if="!empty">
-			<view class="ui-list-item" v-for="(item, index) in lists" :key="item.user_driver_favorites_id" @longtap="deleteDriver(item.user_driver_favorites_id,index)">
+			<view class="ui-list-item" v-for="(item, index) in lists" :key="item.user_driver_favorites_id" @longpress="deleteDriver(item.user_driver_favorites_id,index)">
 				<view class="ui-list-title">{{ item.dname }}</view>
 				<view class="ui-list-subtext">{{ item.phone }}</view>
 			</view>
@@ -108,8 +108,8 @@ export default {
 										mask: true,
 										duration: 3000
 									});
-									let list=that.lists.splice(index,1);
-									that.$set(that,"lists",list);
+									that.lists.splice(index,1);
+									that.$set(that,"lists",that.lists);
 								} else {
 									uni.showModal({
 										content: res.msg,
