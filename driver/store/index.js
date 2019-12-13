@@ -76,6 +76,7 @@ const store = new Vuex.Store({
 		sysconfig: {
 
 		},
+		is_sound:true,
 		is_work:true,
 		scramble_orders: [],
 		order: {
@@ -121,10 +122,14 @@ const store = new Vuex.Store({
 		}
 	},
 	mutations: {
+		// 切换语音播报状态
+		soundStatus:function (state, status) {
+			state.is_sound=status;
+		},
 		// 切换工作状态
 		workStatus:function (state, status) {
 			state.is_work=status;
-		},
+		},		
 		// 添加新订单
 		addPushToDriverOrderNotice: function(state, item) {
 			state.scramble_orders.unshift(item)
