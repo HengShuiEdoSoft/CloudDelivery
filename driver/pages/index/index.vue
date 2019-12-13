@@ -97,7 +97,7 @@ import { mapState } from 'vuex';
 import uniDrawer from '@/components/drawer/drawer.vue';
 export default {
 	components: { uniDrawer },
-	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'scramble_orders','is_work']),
+	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'scramble_orders','is_work','is_sound']),
 	data() {
 		return {
 			visible: false,
@@ -151,7 +151,6 @@ export default {
 					location_city = that.$drmking.getLocationCity();
 				}
 				that.location_city = location_city;
-
 			})
 			.catch(e => {
 				console.log(e);
@@ -175,7 +174,9 @@ export default {
 						order_details: data.order.order_details
 					};
 					that.$store.commit('addPushToDriverOrderNotice', order);
-					// that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
+					if(that.$store.state.is_sound){
+						that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
+					}
 				}
 			} catch (e) {
 				console.log(e);
