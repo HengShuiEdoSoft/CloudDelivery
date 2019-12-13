@@ -49,9 +49,9 @@ export default {
 									.then(function(res) {
 										uni.hideNavigationBarLoading();
 										if (res.code == 0) {
-											if(res.data.user_type==0||res.data.user_type==1){
+											if(res.data.user_type==2){
 												uni.showModal({
-													content: '用户端端账号不能登录司机端',
+													content: '司机端账号不能登录用户端',
 													showCancel: false
 												});
 												return;

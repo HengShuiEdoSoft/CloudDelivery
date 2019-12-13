@@ -21,7 +21,9 @@
 			}
 		},
 		onLoad(options){
-			this.phone=options.num;
+			if(options.num &&!this.$drmking.isEmpty(options.num)){
+				this.phone=options.num;
+			}			
 		},
 		methods:{
 			tochangenum(){	
