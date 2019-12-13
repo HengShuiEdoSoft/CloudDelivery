@@ -122,7 +122,7 @@ export default {
 				phone: this.phone,
 				pwd: this.pwd,
 				vercode: this.vercode,
-				usertype: '0'
+				usertype: '2'
 			};
 			this.$uniFly
 				.post({
