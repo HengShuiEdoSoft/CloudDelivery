@@ -34,7 +34,7 @@ export default {
 			business_number: '',
 			countdown: 60,
 			business_photos: '',
-			photos: ['../../static/img/addimg.png']
+			photos: ['/static/img/addimg.png']
 		};
 	},
 	methods: {
@@ -76,10 +76,10 @@ export default {
 						that.becompany(true);
 						that.$store.commit('login', res.data);
 						setTimeout(function(){
-							uni.navigateBack({
-								delta: 1
+							uni.reLaunch({
+								url:'/pages/index/index'
 							});
-						},3000);
+						},1000);
 					} else {
 						uni.showModal({
 							content: res.msg,
