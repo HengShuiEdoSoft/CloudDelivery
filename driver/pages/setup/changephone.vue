@@ -19,84 +19,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-	import mInput from '../../components/m-input.vue';
-	import {
-	       mapMutations  
-	   } from 'vuex';
-	export default {
-	    components: {
-	        mInput			
-	    },
-	    data() {
-	        return {
-	            new_phone: '',
-	            vercode: '',
-				countdown:60
-	        }
-	    },
-	    methods: {
-			...mapMutations(['login']),  
-			numberst(e){
-				if(!this.$drmking.isPhone(this.new_phone)){
-					uni.showToast({
-						'icon':'none',
-						title: '手机号码格式不正确！',
-						showCancel: false
-					});
-					return false;
-				}
-						const data={
-							codephone:this.new_phone
-						}
-						this.$uniFly
-						  .post({
-						    url:"/api/common/sendcode",
-						    params: data
-						  })
-						  .then(function(res) {
-						    if(res.code===0){
-						    	uni.showToast({
-									title: '成功获取验证码',
-									icon: 'success',
-									mask: true,
-									duration: 3000
-						    	});
-							}
-						  })
-						  .catch(function(error) {
-						    uni.showModal({
-						    	content: error,
-						    	showCancel: false
-						    });
-						  });
-						this.countDown();
-					},
-					// 倒计时
-					countDown(){
-						let self = this;
-						self.countdown = 60;
-						self.countdown -= 1;
-						if(self.clear){
-							clearInterval(self.clear)
-						}
-						self.clear = null;
-						self.clear = setInterval(_ => {
-							if(self.countdown > 0){
-								self.countdown -= 1;
-							}else{
-								clearInterval(self.clear)
-							}
-						},1000)
-					},	
-	        changenum() {   
-				let userData=this.$drmking.cacheData('USER');
-				let that=this;
-				if(!this.$drmking.isPhone(this.new_phone)){
-					uni.showToast({
-						'icon':'none',
-						title: '手机号码格式不正确！',
-=======
 import mInput from '../../components/m-input.vue';
 import service from '../../service.js';
 import { mapMutations } from 'vuex';
@@ -144,7 +66,6 @@ export default {
 				.catch(function(error) {
 					uni.showModal({
 						content: error,
->>>>>>> bc380411ef135940208b272461a967036d408bf6
 						showCancel: false
 					});
 				});
@@ -222,7 +143,6 @@ export default {
 </script>
 
 <style>
-
 .content {
 	background-color: #fff;
 }
@@ -247,5 +167,4 @@ export default {
 .ui-tip {
 	padding: 20upx 40upx;
 }
-
 </style>

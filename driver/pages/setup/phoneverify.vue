@@ -65,62 +65,10 @@ export default {
 							duration: 3000
 						});
 					}
-<<<<<<< HEAD
-						const data={
-							codephone:this.phone
-						}
-						this.$uniFly
-						  .post({
-						    url:"/api/common/sendcode",
-						    params: data
-						  })
-						  .then(function(res) {
-						    if(res.code===0){
-						    	uni.showToast({
-									title: '成功获取验证码',
-									icon: 'success',
-									mask: true,
-									duration: 3000
-						    	});
-							}
-						  })
-						  .catch(function(error) {
-						    uni.showModal({
-						    	content: error,
-						    	showCancel: false
-						    });
-						  });
-						this.countDown();
-					},
-					// 倒计时
-					countDown(){
-						let self = this;
-						self.countdown = 60;
-						self.countdown -= 1;
-						if(self.clear){
-							clearInterval(self.clear)
-						}
-						self.clear = null;
-						self.clear = setInterval(_ => {
-							if(self.countdown > 0){
-								self.countdown -= 1;
-							}else{
-								clearInterval(self.clear)
-							}
-						},1000)
-					},	
-	        vertifynum() { 
-				var that=this;
-				if(!this.$drmking.isPhone(this.phone)){
-					uni.showToast({
-						'icon':'none',
-						title: '手机号码格式不正确！',
-=======
 				})
 				.catch(function(error) {
 					uni.showModal({
 						content: error,
->>>>>>> bc380411ef135940208b272461a967036d408bf6
 						showCancel: false
 					});
 				});
@@ -169,15 +117,9 @@ export default {
 							icon: 'none',
 							mask: true,
 							duration: 3000
-<<<<<<< HEAD
-				    	});
-				    	uni.navigateTo({
-				    	    url:"'/pages/setup/changephone?phone='+that.phone"
-				    	});
-=======
 						});
 						uni.navigateTo({
-							url: '/pages/userinfo/changephone?phone=' + that.phone
+							url: '/pages/setup/changephone?phone=' + that.phone
 						});
 					}else{
 						uni.showToast({
@@ -186,7 +128,6 @@ export default {
 							mask: true,
 							duration: 3000
 						});
->>>>>>> bc380411ef135940208b272461a967036d408bf6
 					}
 				})
 				.catch(function(error) {

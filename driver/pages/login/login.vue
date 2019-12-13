@@ -109,15 +109,6 @@ export default {
 					params: data
 				})
 				.then(function(res) {
-<<<<<<< HEAD
-					if (res.code == 0) {
-						if (res.data.user_type == 0 || res.data.user_type == 1) {
-							uni.showModal({
-								content: '用户端端账号不能登录司机端',
-								showCancel: false
-							});
-							return;
-=======
 					if (res.code == 0) {
 						if(res.data.user_type==2){
 							uni.showModal({
@@ -125,7 +116,6 @@ export default {
 								showCancel: false
 							});
 							return;
->>>>>>> bc380411ef135940208b272461a967036d408bf6
 						}
 						uni.showToast({
 							title: '登录成功',
@@ -177,15 +167,6 @@ export default {
 								})
 								.then(function(res) {
 									uni.hideNavigationBarLoading();
-<<<<<<< HEAD
-									if (res.code == 0) {
-										if (res.data.user_type == 0 || res.data.user_type == 1) {
-											uni.showModal({
-												content: '用户端端账号不能登录司机端',
-												showCancel: false
-											});
-											return;
-=======
 									if (res.code == 0) {
 										if(res.data.user_type==2){
 											uni.showModal({
@@ -193,7 +174,6 @@ export default {
 												showCancel: false
 											});
 											return;
->>>>>>> bc380411ef135940208b272461a967036d408bf6
 										}
 										service.addUser(res.data);
 										that.toMain(res.data);
