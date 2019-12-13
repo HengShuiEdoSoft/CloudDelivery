@@ -10,7 +10,7 @@
 									申请提现：{{item.price}}元
 								</view>
 								<view class="dui-basic-list-item__content-note">
-									<text v-if="item.status===1">打款流水号：{{item.serial_number}}</text> 
+									<text v-if="item.status===0">打款流水号：{{item.serial_number}}</text> 
 								</view>
 							</view>
 							<view class="dui-basic-list-item__content" style="text-align: right;">
@@ -19,7 +19,7 @@
 								</view>
 								<view class="dui-basic-list-item__content-title">
 									<text v-if="item.status===0" style="color:#FF5723;">待处理</text>
-									<text v-if="item.status===1">已完成</text>
+									<text v-if="item.status===1" style="color:#4CD964;">已处理</text>
 								</view>
 							</view>
 						</view>
