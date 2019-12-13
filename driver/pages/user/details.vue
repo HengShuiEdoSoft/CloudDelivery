@@ -9,8 +9,8 @@
 								<view class="dui-basic-list-item__content-title">
 									申请提现：{{item.price}}元
 								</view>
-								<view v-if="item.status===1" class="dui-basic-list-item__content-note">
-									打款流水号：{{item.serial_number}}
+								<view class="dui-basic-list-item__content-note">
+									<text v-if="item.status===1">打款流水号：{{item.serial_number}}</text> 
 								</view>
 							</view>
 							<view class="dui-basic-list-item__content" style="text-align: right;">
@@ -18,7 +18,7 @@
 									{{item.create_time}}
 								</view>
 								<view class="dui-basic-list-item__content-title">
-									<text v-if="item.status===0">待处理</text>
+									<text v-if="item.status===0" style="color:#FF5723;">待处理</text>
 									<text v-if="item.status===1">已完成</text>
 								</view>
 							</view>
@@ -126,4 +126,8 @@
 	.dui-maincolor {
 		color: #FF5723;
 	}
+	.dui-basic-list-item__container{align-items: flex-start;}
+	.dui-basic-list-item__container>view{line-height: 48upx;padding:0;margin:0;}
+	.dui-basic-list-item__content-title{font-size:28upx;line-height: 48upx;}
+	.dui-basic-list-item__content-note{margin:0;}
 </style>
