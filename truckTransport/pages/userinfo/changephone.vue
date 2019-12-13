@@ -65,7 +65,7 @@ export default {
 				})
 				.catch(function(error) {
 					uni.showModal({
-						content: error,
+						content:JSON.stringify(error),
 						showCancel: false
 					});
 				});
@@ -116,12 +116,13 @@ export default {
 							mask: true,
 							duration: 3000
 						});
+						that.$store.commit('login',res.data);
 						service.addUser(res.data);
-						setTimeout(function() {
-							uni.navigateBack({
-								delta: 3
+						setTimeout(function(){
+							uni.reLaunch({
+								url:'/pages/index/index'
 							});
-						}, 3000);
+						},1000);
 					} else {
 						uni.showToast({
 							title: res.msg,
@@ -133,7 +134,7 @@ export default {
 				})
 				.catch(function(error) {
 					uni.showModal({
-						content: error,
+						content: JSON.stringify(error),
 						showCancel: false
 					});
 				});

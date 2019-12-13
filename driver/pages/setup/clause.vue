@@ -1,43 +1,70 @@
 <template>
 	<view class="content">
 		<view class="ui-divide-line"></view>
-		<scroll-view class="scroll-container" scroll-y>
-			此处应为 rich-text ...
+		<scroll-view class="scroll-container" scroll-y>			
 			<view class="dui-privacy-tips">
-				<view v-for="(item,index) in tips" :key="index">{{item.tip}}</view>
+				<parser :html="data?data.content:''"></parser>
 			</view>
 		</scroll-view>
 	</view>
 </template>
 <script>
-	export default {
-		data() {
-			return {
-				tips: [{
-					tip: "更新日期：2019 年 8 月 5日"
-				}, {
-					tip: "生效日期：2019 年 8 月 5日"
-				}, {
-					tip: "本隐私政策将帮助你了解："
-				}, {
-					tip: "..."
-				}]
-			}
+import parser from '@/components/jyf-Parser/index';
+export default {
+	components: {
+		parser
+	},
+	onLoad() {
+		this.getData();
+	},
+	data() {
+		return {
+			data: null
+		};
+	},
+	methods: {
+		getData() {
+			let _self = this;
+			const data = {
+				scode: _self.$drmking.md5('服务条款')
+			};
+			this.$uniFly
+				.get({
+					url: '/api/article/getarticledetail',
+					params: data
+				})
+				.then(function(res) {
+					if (res.code == 0) {
+						_self.data = res.data;
+					} else {
+						uni.showModal({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showModal({
+						content: error,
+						showCancel: false
+					});
+				});
 		}
 	}
+};
 </script>
 <style>
-	.content {
-		background-color: #fff;
-	}
+.content {
+	background-color: #fff;
+}
 
-	.scroll-container {
-		height: 100%;
-	}
+.scroll-container {
+	height: 100%;
+}
 
-	.dui-privacy-tips {
-		padding: 50upx;
-		font-size: 28upx;
-		line-height: 40upx;
-	}
+.dui-privacy-tips {
+	padding: 50upx;
+	font-size: 28upx;
+	line-height: 40upx;
+}
 </style>

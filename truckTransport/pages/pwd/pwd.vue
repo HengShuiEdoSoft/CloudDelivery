@@ -153,9 +153,11 @@ export default {
 							duration: 3000
 						});
 						that.$store.commit('login', {});
-						uni.navigateTo({
-							url: '/pages/index/index'
-						});
+						setTimeout(function(){
+							uni.reLaunch({
+								url:'/pages/index/index'
+							});
+						},1000);
 					} else {
 						uni.showModal({
 							content: res.msg,
