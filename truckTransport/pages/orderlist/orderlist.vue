@@ -279,7 +279,7 @@ export default {
 							.catch(function(error) {
 								uni.hideNavigationBarLoading();
 								uni.showToast({
-									content: error,
+									content: JSON.stringify(error),
 									showCancel: false
 								});
 							});
@@ -331,7 +331,7 @@ export default {
 					.catch(function(error) {
 						uni.hideNavigationBarLoading();
 						uni.showModal({
-							content: error,
+							content: JSON.stringify(error),
 							showCancel: false
 						});
 					});
