@@ -110,9 +110,9 @@ export default {
 				})
 				.then(function(res) {
 					if (res.code == 0) {
-						if(res.data.user_type==2){
+						if(res.data.user_type==0||res.data.user_type==1){
 							uni.showModal({
-								content: '司机端账号不能登录用户端',
+								content: '用户端账号不能登录司机端',
 								showCancel: false
 							});
 							return;
@@ -158,7 +158,7 @@ export default {
 								nickName: infoRes.userInfo.nickName,
 								gender: infoRes.userInfo.gender,
 								avatarUrl: infoRes.userInfo.avatarUrl,
-								usertype: 0
+								usertype: 2
 							};
 							that.$uniFly
 								.post({
@@ -168,9 +168,9 @@ export default {
 								.then(function(res) {
 									uni.hideNavigationBarLoading();
 									if (res.code == 0) {
-										if(res.data.user_type==2){
+										if(res.data.user_type==0||res.data.user_type==1){
 											uni.showModal({
-												content: '司机端账号不能登录用户端',
+												content: '用户端账号不能登录司机端',
 												showCancel: false
 											});
 											return;
