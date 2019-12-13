@@ -16,12 +16,12 @@
 			<view class="ui-divide-line"></view>
 			<view class="ui-info-list-item" @tap="togglePopup('center', 'sexchose')">
 				<view class="ui-info-list-left">性别</view>
-				<view class="ui-info-list-center" v-if="items.sex === 0"><input placeholder="去设置" value="男" disabled="true" placeholder-style="color:#999" /></view>
-				<view class="ui-info-list-center" v-if="items.sex === 1"><input placeholder="去设置" value="女" disabled="true" placeholder-style="color:#999" /></view>
+				<view class="ui-info-list-center" v-if="parseInt(items.sex) === 0"><input placeholder="去设置" value="男" disabled="true" placeholder-style="color:#999" /></view>
+				<view class="ui-info-list-center" v-if="parseInt(items.sex) === 1"><input placeholder="去设置" value="女" disabled="true" placeholder-style="color:#999" /></view>
 				<view class="ui-info-list-right"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 			</view>
 			<view class="ui-divide-line"></view>
-			<navigator class="ui-info-list-item" :url="'/pages/userinfo/phonenum?num=' + items.phone">
+			<navigator class="ui-info-list-item" :url="'/pages/setup/phonenum?num=' + items.phone">
 				<view class="ui-info-list-left">手机号</view>
 				<view class="ui-info-list-center" v-if="!items.phone"><input placeholder="去设置" value="" disabled="true" placeholder-style="color:#999" /></view>
 				<view class="ui-info-list-center" v-if="items.phone"><input placeholder="去设置" :value="items.phone" disabled="true" placeholder-style="color:#999" /></view>

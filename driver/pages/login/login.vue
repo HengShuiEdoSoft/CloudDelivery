@@ -110,7 +110,7 @@ export default {
 				})
 				.then(function(res) {
 					if (res.code == 0) {
-						if(res.data.user_type==0||res.data.user_type==1){
+						if (res.data.user_type == 0 || res.data.user_type == 1) {
 							uni.showModal({
 								content: '用户端端账号不能登录司机端',
 								showCancel: false
@@ -168,7 +168,7 @@ export default {
 								.then(function(res) {
 									uni.hideNavigationBarLoading();
 									if (res.code == 0) {
-										if(res.data.user_type==0||res.data.user_type==1){
+										if (res.data.user_type == 0 || res.data.user_type == 1) {
 											uni.showModal({
 												content: '用户端端账号不能登录司机端',
 												showCancel: false
@@ -205,6 +205,9 @@ export default {
 		},
 		toMain(userInfo) {
 			this.login(userInfo);
+			uni.reLaunch({
+				url: '/pages/index/index'
+			});
 			// if (this.forcedLogin) {
 			// 	uni.reLaunch({
 			// 		url: '../index/index'

@@ -49,7 +49,7 @@
 						return false;
 					}
 						const data={
-							phone:this.phone
+							codephone:this.phone
 						}
 						this.$uniFly
 						  .post({
@@ -119,7 +119,7 @@
 							duration: 3000
 				    	});
 				    	uni.navigateTo({
-				    	    url:"'/pages/userinfo/changephone?phone='+that.phone"
+				    	    url:"'/pages/setup/changephone?phone='+that.phone"
 				    	});
 					}
 				  }).catch(function(error) {

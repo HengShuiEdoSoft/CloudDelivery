@@ -54,7 +54,7 @@
 						}
 						this.countDown();
 						const data={
-							phone:this.phone
+							codephone:this.phone
 						}
 						this.$uniFly
 						  .post({
