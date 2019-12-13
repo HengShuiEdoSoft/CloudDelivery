@@ -163,7 +163,7 @@ export default {
 								})
 								.catch(function(error) {
 									uni.showToast({
-										content: error,
+										content: JSON.stringify(error),
 										showCancel: false
 									});
 								});
@@ -210,7 +210,7 @@ export default {
 					})
 					.catch(function(error) {
 						uni.showToast({
-							content: error,
+							content: JSON.stringify(error),
 							showCancel: false
 						});
 					});

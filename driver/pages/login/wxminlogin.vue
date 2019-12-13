@@ -69,7 +69,7 @@ export default {
 										console.error(JSON.stringify(error));
 										uni.hideNavigationBarLoading();
 										uni.showModal({
-											content: error,
+											content: JSON.stringify(error),
 											showCancel: false
 										});
 									});
