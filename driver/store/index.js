@@ -238,7 +238,7 @@ const store = new Vuex.Store({
 				this.dispatch('set_order_coupon');
 			}
 		},
-		beconfirm(isConfirm) {
+		beconfirm(state,isConfirm) {
 			state.isConfirm = isConfirm
 		},
 		login(state, user) {

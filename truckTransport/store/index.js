@@ -233,8 +233,8 @@ const store = new Vuex.Store({
 				this.dispatch('set_order_coupon');
 			}
 		},
-		becompany(isCompany) {
-			state.isCompany = isCompany
+		becompany(state,isCompany) {
+			state.isCompany = isCompany;
 		},
 		login(state, user) {
 			if (drmking.isEmpty(user)) {

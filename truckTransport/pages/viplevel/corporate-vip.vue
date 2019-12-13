@@ -75,11 +75,11 @@ export default {
 						});
 						that.becompany(true);
 						that.$store.commit('login', res.data);
-						setTimeout(function(){
+						setTimeout(function() {
 							uni.reLaunch({
-								url:'/pages/index/index'
+								url: '/pages/index/index'
 							});
-						},1000);
+						}, 1000);
 					} else {
 						uni.showModal({
 							content: res.msg,
@@ -88,6 +88,7 @@ export default {
 					}
 				})
 				.catch(function(error) {
+					console.log(error);
 					uni.showModal({
 						content: JSON.stringify(error),
 						showCancel: false
@@ -129,9 +130,7 @@ export default {
 						});
 					}
 				},
-				complete(res) {
-
-				}
+				complete(res) {}
 			});
 		}
 	}
