@@ -123,7 +123,7 @@ export default {
 				});
 				return false;
 			} else{ 
-				if(this.isConfirm){
+				if(this.user.car_number){
 					uni.navigateTo({
 						url: '/pages/mycar/mycar'
 					});
