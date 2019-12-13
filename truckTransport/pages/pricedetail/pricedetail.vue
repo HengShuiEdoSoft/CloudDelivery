@@ -5,7 +5,7 @@
 			<text class="ui-total-price">{{ order.pay_order_price }}</text>
 			<text>（总共{{ order.distance }}公里）</text>
 		</view>
-
+		
 		<view class="ui-tip">若产生高速费、停车费、搬运费，需用户按实际支付。若涉及逾时等候费请按标准费用结算。</view>
 		<view class="ui-divide-line"></view>
 		<view>

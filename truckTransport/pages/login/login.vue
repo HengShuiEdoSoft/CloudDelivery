@@ -205,6 +205,9 @@ export default {
 		},
 		toMain(userInfo) {
 			this.login(userInfo);
+			uni.reLaunch({
+				url: '/pages/index/index'
+			});
 			// if (this.forcedLogin) {
 			// 	uni.reLaunch({
 			// 		url: '../index/index'

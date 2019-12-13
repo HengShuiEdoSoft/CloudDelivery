@@ -49,7 +49,7 @@ export default {
 				return false;
 			}
 			const data = {
-				phone: this.phone
+				codephone: this.phone
 			};
 			this.$uniFly
 				.post({

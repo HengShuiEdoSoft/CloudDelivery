@@ -8,7 +8,7 @@
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y :style="height">
-					<view v-if="lists[0].length===0">
+					<view v-if="newsList[0].length===0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
@@ -63,7 +63,7 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y :style="height">
-					<view v-if="lists[1].length===0">
+					<view v-if="newsList[1].length===0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
@@ -120,7 +120,7 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y :style="height">
-					<view v-if="lists[2].length===0">
+					<view v-if="newsList[2].length===0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>

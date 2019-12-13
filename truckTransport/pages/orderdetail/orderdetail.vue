@@ -1,11 +1,11 @@
 <template>
 	<view class="content" v-if="order!==null">
 		<view class="ui-orderdetail-cont ui-orderdetail-top" v-if="order.status===1">
-			<image src="../../static/img/HeadImg.jpg" class="ui-od-portrait"></image>
+			<image src="/static/img/HeadImg.jpg" class="ui-od-portrait"></image>
 			<view>正在通知附近的司机...</view>
 		</view>
-		<view class="ui-orderdetail-cont ui-orderdetail-top" v-if="order.status===2||order.status===3">
-			<image src="../../static/img/HeadImg.jpg" class="ui-od-portrait"></image>
+		<view class="ui-orderdetail-cont ui-orderdetail-top" v-if="order.status===2||order.status===3||order.status===4||order.status===5">
+			<image src="/static/img/HeadImg.jpg" class="ui-od-portrait"></image>
 			<view>{{ order.dname }}</view>
 		</view>
 		<view v-if="order.status==0" class="ui-orderdetail-cont">
@@ -21,8 +21,17 @@
 			<view @tap="makecall" class="ui-order-pay-btn-b">投诉</view>
 		</view>
 		<view class="ui-orderdetail-cont">
-			<view class="ui-orderdetail-date">
-				<view class="ui-od-date">{{ order.sure_time }}</view>
+			<view v-if="order.status==0||order.status==1" class="ui-orderdetail-date">
+				<view class="ui-od-date">发布时间：{{ order.create_time }}</view>
+			</view>
+			<view v-if="order.status==2" class="ui-orderdetail-date">				
+				<view class="ui-od-date">接单时间：{{ order.driver_time }}</view>
+			</view>
+			<view v-if="order.status==3" class="ui-orderdetail-date">
+				<view class="ui-od-date">到达时间：{{order.arrives_time }}</view>
+			</view>
+			<view v-if="order.status==4||order.status==5" class="ui-orderdetail-date">
+				<view class="ui-od-date">完成时间：{{ order.sure_time }}</view>
 			</view>
 			<view class="ui-orderdetail-date">
 				<view class="ui-od-date">订单号：{{ order.ocode }}</view>

@@ -217,10 +217,9 @@ export default {
 		tabChange: function(index) {
 			this.current = index;
 			let car = this.location_city.cars_list[this.current];
-			this.$store.commit('set_order_car', car);
 		},
 		swiperChange: function(e) {
-			var index = e.target.current || e.detail.current;
+			let index = e.target.current || e.detail.current;
 			this.current = index;
 			let car = this.location_city.cars_list[this.current];
 			this.$store.commit('set_order_car', car);

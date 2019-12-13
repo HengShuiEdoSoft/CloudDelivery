@@ -53,7 +53,7 @@ export default {
 				return false;
 			}
 			const data = {
-				phone: this.bind_phone
+				codephone: this.bind_phone
 			};
 			this.$uniFly
 				.post({

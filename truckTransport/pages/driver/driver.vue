@@ -20,7 +20,7 @@
 				<view class="input-group">
 					<view class="input-row border">
 						<text class="title iconfont icon-dianhua"></text>
-						<input type="text" focus v-model="driver_phone" value="13123" placeholder="手机号码" class="m-input" />
+						<input type="text" v-model="driver_phone" value="13123" placeholder="手机号码" class="m-input" />
 					</view>
 				</view>
 				<view class="btn-row"><button class="primary" type="primary" @tap="addDriver()">添加收藏</button></view>
@@ -202,8 +202,9 @@ export default {
 					}
 				})
 				.catch(function(error) {
+					console.log(error);
 					uni.showModal({
-						content: error,
+						content: JSON.stringify(error),
 						showCancel: false
 					});
 				});

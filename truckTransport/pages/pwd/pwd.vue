@@ -45,7 +45,8 @@ export default {
 		};
 	},
 	methods: {
-		numberst(requestUrl) {
+		numberst() {
+			let that=this;
 			if (!this.$drmking.isPhone(this.phone)) {
 				uni.showToast({
 					icon: 'none',
@@ -56,11 +57,11 @@ export default {
 			}
 			this.countDown();
 			const data = {
-				phone: this.phone
+				codephone: this.phone
 			};
 			this.$uniFly
 				.post({
-					url: requestUrl,
+					url: that.requestUrl,
 					params: data
 				})
 				.then(function(res) {
@@ -80,7 +81,7 @@ export default {
 				})
 				.catch(function(error) {
 					uni.showModal({
-						content: error,
+						content:JSON.stringify(error),
 						showCancel: false
 					});
 				});
@@ -164,7 +165,7 @@ export default {
 				})
 				.catch(function(error) {
 					uni.showModal({
-						content: error,
+						content:JSON.stringify(error),
 						showCancel: false
 					});
 				});

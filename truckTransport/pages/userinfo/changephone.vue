@@ -45,7 +45,7 @@ export default {
 				return false;
 			}
 			const data = {
-				new_phone: this.new_phone
+				codephone: this.new_phone
 			};
 
 			this.$uniFly

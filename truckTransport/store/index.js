@@ -126,7 +126,8 @@ const store = new Vuex.Store({
 		set_order_car: function(state, car) {
 			Vue.set(state.order, 'car_id', car.car_id);
 			Vue.set(state.order, 'car_title', car.car_title);
-			this.commit('set_order_coupon');
+			Vue.set(state.order, 'car_base_price_json', car.base_price_json);
+			this.commit('set_order_trip');
 		},
 		// 选择附加服务更新价格
 		set_order_attach: function(state, attach) {
@@ -163,11 +164,18 @@ const store = new Vuex.Store({
 				Vue.set(state.order, 'car_title', locattion_city.cars_list[0].car_title);
 				Vue.set(state.order, 'car_base_price_json', locattion_city.cars_list[0].base_price_json);
 			}
-			this.commit('set_order_coupon');
+			this.commit('set_order_trip');
 		},
 		// 切换线路,更新价格
 		set_order_trip: function(state, trip_distance) {
-			Vue.set(state.order, 'trip', trip_distance.trip);
+			if (trip_distance) {
+				Vue.set(state.order, 'trip', trip_distance.trip);
+			} else {
+				trip_distance = {
+					trip: state.order.trip,
+					distance: state.order.distance
+				};
+			}
 			trip_distance.distance = Math.ceil(parseInt(trip_distance.distance) / 1000);
 			Vue.set(state.order, 'distance', trip_distance.distance);
 			let distance_price = drmking.distancePrice(state.order.car_base_price_json, trip_distance.distance);
@@ -222,7 +230,7 @@ const store = new Vuex.Store({
 				state.forcedLogin = false;
 				state.hasLogin = false;
 				state.isCompany = false;
-			} else {				
+			} else {
 				state.hasLogin = true;
 				state.user = user;
 				drmking.cacheData('USER', user, 2592000);
