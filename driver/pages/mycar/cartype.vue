@@ -16,14 +16,13 @@
 	export default{
 		data(){
 			return{
-				current:0,
+				current:-1,
 				carinfo:{},
 				lists:[]
 			}
 		},
 		async onLoad(){
 			let carInfos= await this.$drmking.getCarInfos(this);
-			console.log(carInfos)
 			let that=this;
 			if(!that.$drmking.isEmpty(carInfos)){
 				let lists=[]

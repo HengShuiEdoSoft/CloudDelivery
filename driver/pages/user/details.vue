@@ -7,10 +7,10 @@
 						<view class="dui-basic-list-item__container">
 							<view class="dui-basic-list-item__content">
 								<view class="dui-basic-list-item__content-title">
-									{{item.msg}}
+									申请提现：{{item.price}}元
 								</view>
-								<view class="dui-basic-list-item__content-note">
-									{{item.create_time}}
+								<view v-if="item.status===1" class="dui-basic-list-item__content-note">
+									打款流水号：{{item.serial_number}}
 								</view>
 							</view>
 							<view class="dui-basic-list-item__content" style="text-align: right;">
@@ -18,7 +18,8 @@
 									{{item.create_time}}
 								</view>
 								<view class="dui-basic-list-item__content-title">
-									<text v-if="item.action_type===0">-</text><text v-if="item.action_type===1">+</text>{{item.money}}.00
+									<text v-if="item.status===0">待处理</text>
+									<text v-if="item.status===1">已完成</text>
 								</view>
 							</view>
 						</view>
@@ -73,7 +74,7 @@
 						};
 						this.$uniFly
 						.post({
-							url: '/api/wallet_log/getwalletloglist',
+							url: '/api/withdraw/getwithdrawlist',
 							params: data
 						})
 						.then(function(res) {

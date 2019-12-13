@@ -45,43 +45,53 @@ export default {
 	},
 	data() {
 		return {
-			carinfo:{car_id:0,car_title:""},
+			carinfo: { car_id: 0, car_title: '' },
 			car_id: '',
 			bank_card_num: '',
-			car_number:'',
+			car_number: '',
 			countdown: 60,
 			bank_card_photo: '',
-			car_photos:'',
-			driver_photos:'',
-			driving_photos:'',
-			imgurl:['','','',''],
-			photos: ['../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png','../../static/img/addimg.png']
+			car_photos: '',
+			driver_photos: '',
+			driving_photos: '',
+			imgurl: ['', '', '', ''],
+			photos: ['/static/img/addimg.png', '/static/img/addimg.png', '/static/img/addimg.png', '/static/img/addimg.png']
 		};
 	},
-	onLoad(){
-		let that=this;
-		this.$fire.on('CARTYPE',function(data){
-			that.carinfo=data;
-			that.car_id=data.car_id;
+	onLoad() {
+		let that = this;
+		this.$fire.on('CARTYPE', function(data) {
+			if(data.car_id){
+				that.carinfo = data;
+				that.car_id = data.car_id;
+			}			
 		});
 	},
 	methods: {
 		...mapMutations(['beconfirm']),
 		submitRealInfo() {
 			let that = this;
-			that.business_number=imgurl[0];
-			that.car_photos=imgurl[1];
-			that.driver_photos=imgurl[2];
-			that.driving_photos=imgurl[3];
+			that.business_number = that.imgurl[0];
+			that.car_photos = that.imgurl[1];
+			that.driver_photos = that.imgurl[2];
+			that.driving_photos = that.imgurl[3];
 			const data = {
 				car_id: that.car_id,
 				bank_card_num: that.bank_card_num,
 				bank_card_photo: that.business_number,
-				car_number:this.car_number,
-				car_photos:this.car_photos,
-				driver_photos:this.driver_photos,
-				driving_photos:this.driving_photos
+				car_number: this.car_number,
+				car_photos: this.car_photos,
+				driver_photos: this.driver_photos,
+				driving_photos: this.driving_photos
 			};
+			
+			if (that.$drmking.isEmpty(data.car_id)) {
+				uni.showToast({
+					icon: 'none',
+					title: '请选择车型!'
+				});
+				return;
+			}
 			if (that.$drmking.isEmpty(data.bank_card_num)) {
 				uni.showToast({
 					icon: 'none',
@@ -126,7 +136,7 @@ export default {
 			}
 			that.$uniFly
 				.post({
-					url: '/api/user/addbusinessinfo',
+					url: '/api/user/adddriverinfo',
 					params: data
 				})
 				.then(function(res) {
@@ -140,10 +150,10 @@ export default {
 						that.beconfirm(true);
 						that.$store.commit('login', res.data);
 						setTimeout(function(){
-							uni.navigateBack({
-								delta: 1
-							});
-						},3000);
+							uni.reLaunch({
+								url:'/pages/index/index'
+							})
+						},1000);
 					} else {
 						uni.showModal({
 							content: res.msg,
@@ -179,7 +189,7 @@ export default {
 					if (res.statusCode == 200) {
 						let data = JSON.parse(res.data);
 						if (data.code == 0) {
-							that.$set(that.imgurl,rsp.index,data.data);
+							that.$set(that.imgurl, rsp.index, data.data);
 						} else {
 							uni.showToast({
 								icon: 'none',
@@ -193,8 +203,7 @@ export default {
 						});
 					}
 				},
-				complete(res) {
-				}
+				complete(res) {}
 			});
 		}
 	}
