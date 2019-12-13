@@ -185,7 +185,6 @@ export default {
 									}
 								})
 								.catch(function(error) {
-									console.error(JSON.stringify(error));
 									uni.hideNavigationBarLoading();
 									uni.showModal({
 										content: JSON.stringify(error),
