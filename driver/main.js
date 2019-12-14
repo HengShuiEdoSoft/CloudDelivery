@@ -116,6 +116,7 @@ function createWs() {
 				initEventHandle(url, userinfo.user_id);
 			},
 			fail: function(err) {
+				ws_lock_reconnect = false;
 				uni.closeSocket();
 				console.log('webscoket 创建失败!' + err);
 				reconnectWs(url);
@@ -142,7 +143,7 @@ function reconnectWs(url) {
 }
 //心跳检测
 let heartCheck = {
-	timeout: 59000, //59秒钟发一次心跳
+	timeout: 30000, //30秒钟发一次心跳
 	timeoutObj: null,
 	serverTimeoutObj: null,
 	reset: function() {
@@ -235,7 +236,7 @@ function initEventHandle(url, user_id) {
 		console.log('ws连接成功!' + new Date().toUTCString());
 	});
 	// 监听WebSocket错误
-	uni.onSocketError(function(res) {		
+	uni.onSocketError(function(res) {
 		reconnectWs(url);
 		console.log(res, 'ws连接错误!' + new Date().toUTCString());
 	});
