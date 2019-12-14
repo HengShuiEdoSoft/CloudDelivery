@@ -55,7 +55,7 @@ export default {
 			}
 		},
 		onLoad(options) {
-			this.height=uni.getSystemInfoSync().windowHeight+'px';
+			this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
 			this.sname=options.sname;
 			this.getList();
 			uni.setNavigationBarTitle({

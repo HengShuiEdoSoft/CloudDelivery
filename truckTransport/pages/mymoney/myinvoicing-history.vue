@@ -43,7 +43,7 @@
 			}
 		},
 		onLoad() {
-			this.height=uni.getSystemInfoSync().windowHeight+'px';
+			this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
 		},
 		onNavigationBarButtonTap: function(e) {
 			var index = e.index;

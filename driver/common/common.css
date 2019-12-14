@@ -45,12 +45,7 @@ textarea {
 
 .hide {
   display: none; }
-.loading{
-	padding:40upx 0;
-	font-size:12px;
-	text-align: center;
-	color:#999;
-}
+
 .ui-ellipse {
   overflow: hidden;
   white-space: nowrap;
@@ -670,6 +665,21 @@ textarea {
 
 .ui-od-info-left {
   width: 64px; }
+
+.loading {
+  font-size: 28upx;
+  text-align: center;
+  color: #999; }
+
+.uni-timeline-item-content {
+  display: flex; }
+
+.uni-timeline-item-content .ui-address {
+  flex: 1; }
+
+.ui-daohang {
+  padding: 0 30upx;
+  color: #FF5723; }
 
 .dui-notyet-wrapper {
   margin-top: 300upx;

@@ -45,7 +45,7 @@ export default {
 		};
 	},
 	onLoad() {
-		this.height=uni.getSystemInfoSync().windowHeight+'px';
+		this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
 	},
 	onShow: function() {
 		this.getList();
