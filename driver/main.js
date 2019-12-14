@@ -116,7 +116,8 @@ function createWs() {
 				initEventHandle(url, userinfo.user_id);
 			},
 			fail: function(err) {
-				console.log(err);
+				uni.closeSocket();
+				console.log('webscoket 创建失败!' + err);
 				reconnectWs(url);
 			}
 		});
@@ -154,14 +155,9 @@ let heartCheck = {
 		this.timeoutObj = setTimeout(function() {
 			//这里发送一个心跳，后端收到后，返回一个心跳消息，
 			//onmessage拿到返回的心跳就说明连接正常
-			try {
-				uni.sendSocketMessage({
-					data: 'ping'
-				});
-			} catch (e) {
-				console.log(e);
-				uni.closeSocket();
-			}
+			uni.sendSocketMessage({
+				data: 'ping'
+			});
 			self.serverTimeoutObj = setTimeout(function() {
 				//如果超过一定时间还没重置，说明后端主动断开了
 				//如果onclose会执行reconnect，我们执行ws.close()就行了.如果直接执行reconnect 会触发onclose导致重连两次
@@ -195,14 +191,9 @@ let sendDriveLocation = {
 							lat: info.latitude,
 						}
 					});
-					try {
-						uni.sendSocketMessage({
-							data: msg
-						});
-					} catch (e) {
-						console.log(e);
-						uni.closeSocket();
-					}
+					uni.sendSocketMessage({
+						data: msg
+					});
 					setTimeout(function() {
 						self.start(user_id);
 					}, self.timeout);
@@ -230,19 +221,13 @@ function initEventHandle(url, user_id) {
 						lat: info.latitude,
 					}
 				});
-				try {
-					uni.sendSocketMessage({
-						data: msg
-					});
-				} catch (e) {
-					console.log(e);
-					uni.closeSocket();
-				}
+				uni.sendSocketMessage({
+					data: msg
+				});
 			})
 			.catch(err => {
 
 			});
-
 		//心跳检测重置
 		heartCheck.reset().start();
 		// 发送司机位置
@@ -250,15 +235,13 @@ function initEventHandle(url, user_id) {
 		console.log('ws连接成功!' + new Date().toUTCString());
 	});
 	// 监听WebSocket错误
-	uni.onSocketError(function(res) {
-		uni.closeSocket();
+	uni.onSocketError(function(res) {		
 		reconnectWs(url);
 		console.log(res, 'ws连接错误!' + new Date().toUTCString());
 	});
 	// 监听WebSocket关闭
 	uni.onSocketClose(function(res) {
 		console.log(res, 'ws已关闭！');
-		ws_lock_reconnect = false;
 		reconnectWs(url);
 	});
 	// 监听WebSocket接受到服务器的消息事件

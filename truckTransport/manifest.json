@@ -70,14 +70,14 @@
                     "alipay" : {},
                     "weixin" : {
                         "appid" : "wxbd3a6e32af5e0dfb",
-                        "UniversalLinks" : ""
+                        "UniversalLinks" : "https://www.lh5256.com/ulink/hd_lahuoerwang/"
                     }
                 },
                 "oauth" : {
                     "weixin" : {
                         "appid" : "wxbd3a6e32af5e0dfb",
                         "appsecret" : "ddfbfef549521cdb8ed9e736ebb7bdbc",
-                        "UniversalLinks" : ""
+                        "UniversalLinks" : "https://www.lh5256.com/ulink/hd_lahuoerwang/"
                     }
                 },
                 "speech" : {}
