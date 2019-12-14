@@ -67,6 +67,7 @@ export default {
 		this.reload = true;
 		this.page = 1;
 		this.getList();
+		uni.stopPullDownRefresh();
 	},
 	onReachBottom: function() {
 		let _self = this;

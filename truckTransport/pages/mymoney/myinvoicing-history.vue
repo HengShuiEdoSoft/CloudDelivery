@@ -25,7 +25,6 @@
 </template>
 <script>
 	export default {
-
 		data() {
 			return {
 				loadingText:'',
@@ -62,6 +61,7 @@
 			this.reload=true;
 			this.page=1;
 			this.getList();
+			uni.stopPullDownRefresh();
 		},
 		onReachBottom:function(){
 			let _self=this;
