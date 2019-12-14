@@ -1,6 +1,5 @@
 <template>
 	<view class="content" v-if="order !== null">
-		<scroll-view class="scroll-container">
 			<view class="ui-order-list-item">
 				<map
 					id="amap"
@@ -29,21 +28,21 @@
 							<view class="uni-timeline-item-divider"></view>
 							<view class="uni-timeline-item-content">
 								<text class="ui-address">{{ order.order_details_json.trip.departure.localtion }}{{ order.order_details_json.trip.departure.address }}</text>
-								<text @tap="openSysMap(order.order_details_json.trip.departure)">一键导航</text>
+								<text @tap="openSysMap(order.order_details_json.trip.departure)" class="ui-daohang">一键导航</text>
 							</view>
 						</view>
 						<view class="uni-timeline-item" v-for="(passbyitem, index) in order.order_details_json.trip.transfer" :key="index">
 							<view class="uni-timeline-item-divider"></view>
 							<view class="uni-timeline-item-content">
 								<text class="ui-address">{{ passbyitem.localtion }}{{ passbyitem.address }}</text>
-								<text @tap="openSysMap(passbyitem)">一键导航</text>
+								<text @tap="openSysMap(passbyitem)" class="ui-daohang">一键导航</text>
 							</view>
 						</view>
 						<view class="uni-timeline-item uni-timeline-last-item">
 							<view class="uni-timeline-item-divider"></view>
 							<view class="uni-timeline-item-content">
 								<text class="ui-address">{{ order.order_details_json.trip.destination.localtion }}{{ order.order_details_json.trip.destination.address }}</text>
-								<text @tap="openSysMap(order.order_details_json.trip.destination)">一键导航</text>
+								<text @tap="openSysMap(order.order_details_json.trip.destination)" class="ui-daohang">一键导航</text>
 							</view>
 						</view>
 					</view>
@@ -97,7 +96,6 @@
 					<text>*请确认完成,结束本单服务</text>
 				</button>
 			</view>
-		</scroll-view>
 	</view>
 </template>
 <script>

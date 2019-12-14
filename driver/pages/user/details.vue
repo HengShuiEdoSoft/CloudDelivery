@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<scroll-view  scroll-y>
+		<scroll-view  scroll-y :style="height">
 			<view class="dui-basic-list">
 				<block v-for="(item,index) in lists" :key="index">
 					<view class="dui-basic-list-item">
@@ -36,11 +36,15 @@
 					loadingText:'',
 					empty:false,
 					page:1,
+					height:"",
 					id:0,
 					reload:true,
 					has_next:true,
 					lists: []
 				}
+			},
+			onLoad() {
+				this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
 			},
 			onShow:function(){
 				this.getList();
@@ -120,7 +124,7 @@
 
 <style>
 	scroll-view {
-		height: 100%;
+		height: 100vh;
 	}
 
 	.dui-maincolor {

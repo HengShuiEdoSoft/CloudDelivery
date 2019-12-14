@@ -262,7 +262,8 @@ export default {
 		};
 	},
 	onLoad() {
-		this.height=uni.getSystemInfoSync().windowHeight+'px';
+		let height=uni.getSystemInfoSync().windowHeight-50;
+		this.height="height:"+height+'px';
 	},
 	onShow() {
 		this.getnewsList();
@@ -354,7 +355,7 @@ export default {
 
 <style>
 .scroll-container {
-	height: 100vh;
+	height: 80vh;
 	
 }
 </style>

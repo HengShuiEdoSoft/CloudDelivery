@@ -49,7 +49,7 @@ export default {
 		};
 	},
 	onLoad() {
-		this.height = uni.getSystemInfoSync().windowHeight + 'px';
+		this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
 	},
 	onNavigationBarButtonTap: function(e) {
 		let index = e.index;

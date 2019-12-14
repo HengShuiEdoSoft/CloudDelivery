@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="ui-divide-line"></view>
-		<scroll-view class="scroll-container" scroll-y>
+		<scroll-view class="scroll-container" scroll-y :style="height">
 			<view v-if="list.length === 0">
 				<view class="dui-notyet-wrapper">
 					<image src="../../static/img/NoCoupon.jpg" mode=""></image>
@@ -48,6 +48,7 @@ export default {
 	data() {
 		return {
 			current: 0,
+			height:"",
 			user_coupon_id: 0,
 			coupon_price: 0,
 			coupon_title:'',
@@ -59,6 +60,7 @@ export default {
 		this.$fire.fire('order_coupon', { user_coupon_id: this.user_coupon_id,coupon_title: this.coupon_title, coupon_price: this.coupon_price });
 	},
 	onLoad() {
+		this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
 		let that = this;
 		that.user_coupon_id = that.order.user_coupon_id;
 		that.coupon_price = that.order.coupon_price;

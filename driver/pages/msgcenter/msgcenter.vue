@@ -45,7 +45,7 @@ export default {
 		};
 	},
 	onLoad() {
-		this.height=uni.getSystemInfoSync().windowHeight+'px';
+		this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
 		let that = this;
 		that.$fire.on('pushNotice', function(data) {
 			let notice = {

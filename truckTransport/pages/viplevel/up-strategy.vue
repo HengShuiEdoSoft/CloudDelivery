@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="ui-divide-line"></view>
-		<scroll-view scroll-y="true">
+		<scroll-view scroll-y="true" :style="height">
 			<block v-for="(item, index) in lists" :key="index">
 				<view class="dui-up-item">
 					<view class="dui-up-column">{{ item.title }}</view>
@@ -28,6 +28,7 @@ export default {
 		}
 	},
 	onLoad() {
+		this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
 		this.getList();
 	},
 	onPullDownRefresh() {
@@ -36,6 +37,7 @@ export default {
 	},
 	data() {
 		return {
+			height:'',
 			lists: []
 		};
 	},
