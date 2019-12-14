@@ -29,18 +29,21 @@
 							<view class="uni-timeline-item-divider"></view>
 							<view class="uni-timeline-item-content">
 								<text class="ui-address">{{ order.order_details_json.trip.departure.localtion }}{{ order.order_details_json.trip.departure.address }}</text>
+								<text @tap="openSysMap(order.order_details_json.trip.departure)">一键导航</text>
 							</view>
 						</view>
 						<view class="uni-timeline-item" v-for="(passbyitem, index) in order.order_details_json.trip.transfer" :key="index">
 							<view class="uni-timeline-item-divider"></view>
 							<view class="uni-timeline-item-content">
 								<text class="ui-address">{{ passbyitem.localtion }}{{ passbyitem.address }}</text>
+								<text @tap="openSysMap(passbyitem)">一键导航</text>
 							</view>
 						</view>
 						<view class="uni-timeline-item uni-timeline-last-item">
 							<view class="uni-timeline-item-divider"></view>
 							<view class="uni-timeline-item-content">
 								<text class="ui-address">{{ order.order_details_json.trip.destination.localtion }}{{ order.order_details_json.trip.destination.address }}</text>
+								<text @tap="openSysMap(order.order_details_json.trip.destination)">一键导航</text>
 							</view>
 						</view>
 					</view>
@@ -126,6 +129,19 @@ export default {
 		});
 	},
 	methods: {
+		openSysMap(localtion) {
+			amap.getRegeo()
+				.then(res => {
+					let info = res[0];
+					let dst = new plus.maps.Point(localtion.lon, localtion.lat);
+					let des = localtion.localtion + localtion.address;
+					let src = new plus.maps.Point(info.longitude, info.latitude);
+					plus.maps.openSysMap(dst, des, src);
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		},
 		drawMap(trip) {
 			let that = this;
 			let markers = [];
