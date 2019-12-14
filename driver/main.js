@@ -154,9 +154,14 @@ let heartCheck = {
 		this.timeoutObj = setTimeout(function() {
 			//这里发送一个心跳，后端收到后，返回一个心跳消息，
 			//onmessage拿到返回的心跳就说明连接正常
-			uni.sendSocketMessage({
-				data: 'ping'
-			});
+			try{
+				uni.sendSocketMessage({
+					data: 'ping'
+				});
+			}catch(e){
+				console.log(e);
+				uni.closeSocket();
+			}
 			self.serverTimeoutObj = setTimeout(function() {
 				//如果超过一定时间还没重置，说明后端主动断开了
 				//如果onclose会执行reconnect，我们执行ws.close()就行了.如果直接执行reconnect 会触发onclose导致重连两次
@@ -166,9 +171,10 @@ let heartCheck = {
 	}
 }
 let amap = require('@/common/amap.js');
-//心跳检测
+//司机位置上报
 let sendDriveLocation = {
-	timeout: 180000, //180秒钟发一次心跳
+	timeout: 18000, //180秒钟发一次位置
+	// timeout: 180000, //180秒钟发一次位置
 	timeoutObj: null,
 	reset: function() {
 		clearTimeout(this.timeoutObj);
@@ -189,9 +195,14 @@ let sendDriveLocation = {
 							lat: info.latitude,
 						}
 					});
-					uni.sendSocketMessage({
-						data: msg
-					});
+					try{
+						uni.sendSocketMessage({
+							data: msg
+						});
+					}catch(e){
+						console.log(e);
+						uni.closeSocket();
+					}
 					setTimeout(function() {
 						self.start(user_id);
 					}, self.timeout);
@@ -212,7 +223,7 @@ function initEventHandle(url, user_id) {
 		heartCheck.reset().start();
 		// 发送司机位置
 		sendDriveLocation.reset().start(user_id);
-		console.log( 'ws连接成功!' + new Date().toUTCString());
+		console.log('ws连接成功!' + new Date().toUTCString());
 	});
 	// 监听WebSocket错误
 	uni.onSocketError(function(res) {
@@ -236,10 +247,10 @@ function initEventHandle(url, user_id) {
 // 解析服务器返回数据
 function parseData(data) {
 	if (data == 'pong') {
-
+		console.log('pong');
 	} else {
 		if (drmking.isJsonString(data)) {
-			data = JSON.parse(data);			
+			data = JSON.parse(data);
 			switch (data.type) {
 				case 'event':
 					{
@@ -255,9 +266,10 @@ function parseData(data) {
 						console.log(data.msg);
 						break;
 					}
-				default:{
-					
-				}
+				default:
+					{
+
+					}
 			}
 		}
 	}

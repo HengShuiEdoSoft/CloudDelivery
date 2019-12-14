@@ -192,13 +192,15 @@ export default {
 			this.provider = e.detail.value;
 		},
 		call: function(e) {
+			let that=this;
 			uni.makePhoneCall({
-				phoneNumber: this.order.contact
+				phoneNumber: that.order.order_details_json.phone
 			});
 		},
 		makecall:function(e) {
+			let that=this;
 			uni.makePhoneCall({
-				phoneNumber: this.sysconfig.service_tel
+				phoneNumber: that.sysconfig.service_tel
 			});
 		},
 		getDetail: function() {

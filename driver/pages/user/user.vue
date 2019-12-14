@@ -123,7 +123,7 @@ export default {
 				});
 				return false;
 			} else{ 
-				if(this.user.car_number){
+				if(this.user.car_number!==undefined){
 					uni.navigateTo({
 						url: '/pages/mycar/mycar'
 					});
