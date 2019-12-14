@@ -1,38 +1,61 @@
 <template>
 	<view class="content">
 		<view class="dui-basic-tips">
-			1. 如您具有专票资质，可选择开具增值税专用纸质发票或增值税普通电子发票；如您没有专票资质，根据国家相关政策法规规定，我公司将为您开具增值税普通电子发票<br>
-			2. 如您选择开具电子普票，将在您申请发票3个工作日内将电子发票和电子行程单推送至您的邮箱<br>
-			3. 如您选择开具纸质专票，申请开票后，将于5个工作日内为您安排发票打印并寄出，如您急需发票，我们强烈建议您选择开具电子发票<br>
-			4. 行程中消费的各种形式的折扣、券金额及赠送金额不支持开票<br>
-			5. 开具专票满1000及以上为您包邮，未满1000运费将由您自行承担，10元快递费将从账户余额中自动扣除<br>
-			6. 为响应国家税务总局关于推行电子发票的号召，建议您选择开具电子发票，电子发票仅可开具普票<br>
-			7. 因您个人填写快递信息有误等原因产生的发票退票及重寄的往来费用，需由您本人自行承担<br>
-			8.如果您选择开具纸质专票，请在快递显示签收时及时确认快递是否收到。如未收到，请在纸质发票快递签收后24小时内联系我公司客服，如快递公司确认快递丢失，我公司可为您重开。如超过快递签收24小时后联系我公司客服，快递公司确认丢件，我公司可为您提供原始发票记账联复印件加盖发票章作为您的报销依据<br>
-			9. 我公司客服电话4008783636
+			<parser :html="data ? data.content : ''"></parser>
 		</view>
 	</view>
 </template>
 <script>
-	export default {
-		
-		data() {
-			return {
-
-			}
-		},
-		onNavigationBarButtonTap: function(e) {
-			var index=e.index
-			if(index===0){
-				uni.redirectTo({
-					url: "/pages/mymoney/mymoney"
+import parser from '@/components/jyf-Parser/index';
+export default {
+	components: {
+		parser
+	},
+	data() {
+		return {
+			data: null
+		};
+	},
+	onNavigationBarButtonTap: function(e) {
+		let index = e.index;
+		if (index === 0) {
+			uni.redirectTo({
+				url: '/pages/mymoney/mymoney'
+			});
+		}
+	},
+	onLoad() {
+		this.getData();
+	},
+	methods: {
+		getData() {
+			let _self = this;
+			const data = {
+				scode: _self.$drmking.md5('开票规则')
+			};
+			this.$uniFly
+				.get({
+					url: '/api/article/getarticledetail',
+					params: data
+				})
+				.then(function(res) {
+					if (res.code == 0) {
+						_self.data = res.data;
+					} else {
+						uni.showModal({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showModal({
+						content: JSON.stringify(error),
+						showCancel: false
+					});
 				});
-			}
-		},
-		methods: {
 		}
 	}
+};
 </script>
-<style>
-
-</style>
+<style></style>

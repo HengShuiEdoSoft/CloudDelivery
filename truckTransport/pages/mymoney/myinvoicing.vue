@@ -4,84 +4,85 @@
 		<view class="dui-gap"></view>
 		<view class="dui-basic-list">
 			<navigator url="myinvoicing-trip">
-			<view class="dui-basic-list-item">				
-				<view class="dui-basic-list-item__container">
-					<view class="dui-basic-list-item__content">
-						<view class="dui-basic-list-item__content-title">
-							开发票
-						</view>
-					</view>
-					<view class="dui-basic-list-item__extra">
-						<text class="iconfont icon-gengduo-shuxiang"></text>
+				<view class="dui-basic-list-item">
+					<view class="dui-basic-list-item__container">
+						<view class="dui-basic-list-item__content"><view class="dui-basic-list-item__content-title">开发票</view></view>
+						<view class="dui-basic-list-item__extra"><text class="iconfont icon-gengduo-shuxiang"></text></view>
 					</view>
 				</view>
-			</view>
 			</navigator>
 			<navigator url="myinvoicing-history">
-			<view class="dui-basic-list-item">
-				<view class="dui-basic-list-item__container">
-					<view class="dui-basic-list-item__content">
-						<view class="dui-basic-list-item__content-title">
-							开票历史
-						</view>
-					</view>
-					<view class="dui-basic-list-item__extra">
-						<text class="iconfont icon-gengduo-shuxiang"></text>
+				<view class="dui-basic-list-item">
+					<view class="dui-basic-list-item__container">
+						<view class="dui-basic-list-item__content"><view class="dui-basic-list-item__content-title">开票历史</view></view>
+						<view class="dui-basic-list-item__extra"><text class="iconfont icon-gengduo-shuxiang"></text></view>
 					</view>
 				</view>
-			</view>
 			</navigator>
 		</view>
 		<view class="dui-gap"></view>
 		<view class="dui-basic-list">
-				<navigator url="myinvoicing-rule">
-			<view class="dui-basic-list-item">
-				<view class="dui-basic-list-item__container">
-					<view class="dui-basic-list-item__content">
-						<view class="dui-basic-list-item__content-title">
-							开票规则
-						</view>
-					</view>
-					<view class="dui-basic-list-item__extra">
-						<text class="iconfont icon-gengduo-shuxiang"></text>
+			<navigator url="myinvoicing-rule">
+				<view class="dui-basic-list-item">
+					<view class="dui-basic-list-item__container">
+						<view class="dui-basic-list-item__content"><view class="dui-basic-list-item__content-title">开票规则</view></view>
+						<view class="dui-basic-list-item__extra"><text class="iconfont icon-gengduo-shuxiang"></text></view>
 					</view>
 				</view>
-			</view>
 			</navigator>
 		</view>
 		<view class="dui-gap"></view>
 		<view class="dui-basic-tips">
-			<view class="dui-basic-tips-title">
-				温馨提示
-			</view>
-			<view v-for="(item,index) in tips" :key="index">{{item.tip}}</view>
+			<view class="dui-basic-tips-title">温馨提示</view>
+			<view><parser :html="data ? data.content : ''"></parser></view>
 		</view>
 	</view>
 </template>
 <script>
-	export default {
-		data() {
-			return {
-				tips:[{
-					tip:"1.增值税普通电子发票将于3个工作日内为您开具并发送至您预留的邮箱"
-				},{
-					tip:"2.增值税纸质专用发票申请处理后，将于5个工作日内为您寄出"
-				},{
-					tip:"3.行程中消费的各种形式的折扣、券金额及赠送金额不支持开票，普票仅可开具增值税普通电子发票"
-				},{
-					tip:"4.开具专票满1000元及以上，我们将为您包邮；未满1000元的快递费将由您自行承担，相应金额的快递费将从您的账户余额中自动扣除"
-				},{
-					tip:"5.如未收到，请在纸质发票快递签收后24小时内联系货拉拉客服"
-				},{
-					tip:"6.因您个人填写快递信息有误等原因产生的发票退票及重寄的往来费用，需由您自行承担"
-				},{
-					tip:"7.为响应国家税务总局关于推行电子发票的号召，建议您选择开具电子发票"
-				}]
-			}
-		},
-		methods: {}
+import parser from '@/components/jyf-Parser/index';
+export default {
+	components: {
+		parser
+	},
+	data() {
+		return {
+			data: null
+		};
+	},
+	onLoad() {
+		this.getData();
+	},
+	methods: {
+		getData() {
+			let _self = this;
+			const data = {
+				scode: _self.$drmking.md5('温馨提示')
+			};
+			this.$uniFly
+				.get({
+					url: '/api/article/getarticledetail',
+					params: data
+				})
+				.then(function(res) {
+					if (res.code == 0) {
+						_self.data = res.data;
+					} else {
+						uni.showModal({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.showModal({
+						content: JSON.stringify(error),
+						showCancel: false
+					});
+				});
+		}
 	}
+};
 </script>
 <style>
-
+	
 </style>

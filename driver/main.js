@@ -154,11 +154,11 @@ let heartCheck = {
 		this.timeoutObj = setTimeout(function() {
 			//这里发送一个心跳，后端收到后，返回一个心跳消息，
 			//onmessage拿到返回的心跳就说明连接正常
-			try{
+			try {
 				uni.sendSocketMessage({
 					data: 'ping'
 				});
-			}catch(e){
+			} catch (e) {
 				console.log(e);
 				uni.closeSocket();
 			}
@@ -195,11 +195,11 @@ let sendDriveLocation = {
 							lat: info.latitude,
 						}
 					});
-					try{
+					try {
 						uni.sendSocketMessage({
 							data: msg
 						});
-					}catch(e){
+					} catch (e) {
 						console.log(e);
 						uni.closeSocket();
 					}
@@ -219,6 +219,30 @@ let sendDriveLocation = {
 function initEventHandle(url, user_id) {
 	// 监听WebSocket连接打开事件
 	uni.onSocketOpen(function(res) {
+		amap.getRegeo().then(res => {
+				let info = res[0];
+				let msg = JSON.stringify({
+					task_type: 'redis',
+					task_data: {
+						event_type: 'addDriverLoction',
+						user_id: user_id,
+						lon: info.longitude,
+						lat: info.latitude,
+					}
+				});
+				try {
+					uni.sendSocketMessage({
+						data: msg
+					});
+				} catch (e) {
+					console.log(e);
+					uni.closeSocket();
+				}
+			})
+			.catch(err => {
+
+			});
+
 		//心跳检测重置
 		heartCheck.reset().start();
 		// 发送司机位置
@@ -234,6 +258,7 @@ function initEventHandle(url, user_id) {
 	// 监听WebSocket关闭
 	uni.onSocketClose(function(res) {
 		console.log(res, 'ws已关闭！');
+		ws_lock_reconnect = false;
 		reconnectWs(url);
 	});
 	// 监听WebSocket接受到服务器的消息事件

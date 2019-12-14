@@ -8,8 +8,17 @@
 			<view class="ui-order-list-item-top">
 				<text class="ui-orderno-color">订单号 {{ order.ocode }}</text>
 			</view>
-			<view class="ui-order-list-item-top">
-				<text class="ui-cartype-color">{{ order.sure_time }}</text>
+			<view v-if="order.status>0&&order.status<6" class="ui-orderdetail-date">
+				<view class="ui-od-date">发布时间：{{ order.create_time }}</view>
+			</view>
+			<view v-if="order.status>1&&order.status<6" class="ui-orderdetail-date">				
+				<view class="ui-od-date">接单时间：{{ order.driver_time }}</view>
+			</view>
+			<view v-if="order.status>2&&order.status<6" class="ui-orderdetail-date">
+				<view class="ui-od-date">到达时间：{{order.arrives_time }}</view>
+			</view>
+			<view v-if="order.status>3&&order.status<6" class="ui-orderdetail-date">
+				<view class="ui-od-date">完成时间：{{ order.sure_time }}</view>
 			</view>
 			<view class="ui-divide-line"></view>
 			<view class="ui-order-timeline-container">

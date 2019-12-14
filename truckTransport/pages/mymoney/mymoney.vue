@@ -102,7 +102,6 @@
 		onShow() {
 			//钱包余额
 			this.list.wallet=this.user.wallet;
-			console.log(this.user.user_type)
 		},
 		computed: mapState(['user']),
 		methods: {
