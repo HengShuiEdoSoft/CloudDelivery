@@ -76,8 +76,8 @@ const store = new Vuex.Store({
 		sysconfig: {
 
 		},
-		is_sound:true,
-		is_work:true,
+		is_sound: true,
+		is_work: true,
 		scramble_orders: [],
 		order: {
 			city_id: 0,
@@ -123,16 +123,24 @@ const store = new Vuex.Store({
 	},
 	mutations: {
 		// 切换语音播报状态
-		soundStatus:function (state, status) {
-			state.is_sound=status;
+		soundStatus: function(state, status) {
+			state.is_sound = status;
 		},
 		// 切换工作状态
-		workStatus:function (state, status) {
-			state.is_work=status;
-		},		
+		workStatus: function(state, status) {
+			state.is_work = status;
+		},
 		// 添加新订单
 		addPushToDriverOrderNotice: function(state, item) {
 			state.scramble_orders.unshift(item)
+			Vue.set(state, 'scramble_orders', state.scramble_orders);
+		},
+		delPushToDriverOrderNotice: function(state, order_id) {
+			for (let i = 0; i < state.scramble_orders.length; i++) {
+				if (state.scramble_orders[i].order_id == order_id) {
+					state.scramble_orders.splice(i, 1);
+				}
+			}
 			Vue.set(state, 'scramble_orders', state.scramble_orders);
 		},
 		set_sysconfig: function(state, sysconfig) {
@@ -238,7 +246,7 @@ const store = new Vuex.Store({
 				this.dispatch('set_order_coupon');
 			}
 		},
-		beconfirm(state,isConfirm) {
+		beconfirm(state, isConfirm) {
 			state.isConfirm = isConfirm
 		},
 		login(state, user) {

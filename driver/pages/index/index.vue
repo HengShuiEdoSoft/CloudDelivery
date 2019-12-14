@@ -225,7 +225,7 @@ export default {
 			const data = {
 				order_id: id
 			};
-			this.$uniFly
+			that.$uniFly
 				.post({
 					url: '/api/order/scrambleorder',
 					params: data
@@ -245,6 +245,7 @@ export default {
 							showCancel: false
 						});
 					}
+					that.$store.commit('delPushToDriverOrderNotice', id);
 				})
 				.catch(function(error) {
 					uni.showModal({

@@ -250,7 +250,8 @@ export default {
 			}
 			if (flag) {
 				if (destination == '') {
-					destination = waypoints.slice(waypoints.length - 1, 1)[0];
+					// destination = waypoints.slice(waypoints.length - 1, 1)[0];
+					destination = waypoints.splice(waypoints.length - 1, 1)[0];
 				}
 				amap.getDrivingRoute(origin, destination, waypoints)
 					.then(data => {
@@ -413,7 +414,8 @@ export default {
 					});
 					return;
 				} else {
-					trip.destination = trip.transfer.slice(trip.transfer.length - 1, 1)[0];
+					// trip.destination = trip.transfer.slice(trip.transfer.length - 1, 1)[0];
+					trip.destination = trip.transfer.splice(trip.transfer.length - 1, 1)[0];
 				}
 			}
 			that.$store.commit('sure_order_trip', trip);
