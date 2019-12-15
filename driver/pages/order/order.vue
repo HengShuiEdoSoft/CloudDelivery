@@ -262,7 +262,7 @@ export default {
 		};
 	},
 	onLoad() {
-		let height=uni.getSystemInfoSync().windowHeight-98;
+		let height=uni.getSystemInfoSync().windowHeight-100;
 		this.height="height:"+height+'px';
 	},
 	onShow() {
