@@ -681,6 +681,10 @@ textarea {
   padding: 0 30upx;
   color: #FF5723; }
 
+.status_bar {
+  height: var(--status-bar-height);
+  width: 100%; }
+
 .nav-bar {
   height: 88upx;
   position: relative;

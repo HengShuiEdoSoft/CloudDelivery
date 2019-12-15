@@ -1,5 +1,11 @@
 <template>
 	<view class="content">
+		<view class="status_bar"></view>
+		<view class="nav-bar">
+			<view class="nav-left" @tap="navBack"><text class="iconfont icon-shangyiyehoutuifanhui"></text></view>
+			<view class="nav-center">我的钱包</view>
+			<view class="nav-right" @tap="navTo('/pages/mymoney/mydetailed')">明细</view>
+		</view>
 		<view class="ui-divide-line"></view>
 		<view class="dui-money-list-group">
 			<view class="dui-money-card-wrapper">
@@ -84,14 +90,14 @@
 		mapState
 	} from 'vuex'
 	export default {
-		onNavigationBarButtonTap: function(e) {
+		/*onNavigationBarButtonTap: function(e) {
 			var index = e.index;
 			if (index === 0) {
 				uni.navigateTo({
 					url: "/pages/mymoney/mydetailed"
 				});
 			}
-		},
+		},*/
 		data() {
 			return {
 				list:{
@@ -105,6 +111,16 @@
 		},
 		computed: mapState(['user']),
 		methods: {
+			navTo:function(url){
+				uni.navigateTo({
+					url: url
+				});
+			},
+			navBack:function(){
+				uni.navigateBack({
+					delta:1
+				})
+			},
 			invoice:function(){
 				if(this.user.user_type == 0){
 					uni.showModal({

@@ -59,17 +59,7 @@
 			"path": "pages/mymoney/mymoney",
 			"style": {
 				"navigationBarTitleText": "我的钱包",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "明细",
-							"fontSize": "12",
-							"float": "right",
-							"color": "#424456"
-						}]
-					}
-				}
+				"navigationStyle": "custom"
 			}
 		}, {
 			"path": "pages/mymoney/myrecharge",
@@ -200,17 +190,7 @@
 			"path": "pages/pricedetail/pricedetail",
 			"style": {
 				"navigationBarTitleText": "价格明细",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "收费标准",
-							"fontSize": "8",
-							"float": "right",
-							"color": "#424456"
-						}]
-					}
-				}
+				"navigationStyle": "custom"
 			}
 		},
 		{

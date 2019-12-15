@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<navigator class="ui-top-city-select" :url="'/pages/cityselect/cityselect?city=' + city_title + '&status=1&channel=changeCityPrice'">
+		<navigator class="ui-top-city-select" style="height:88upx;overflow: hidden;" :url="'/pages/cityselect/cityselect?city=' + city_title + '&status=1&channel=changeCityPrice'">
 			当前城市：{{ city_title }}
 			<text>切换</text>
 		</navigator>
@@ -161,5 +161,5 @@ swiper {
 .ui-ts-list-item > view {
 	width: 50%;
 }
-.ui-top-city-select{text-align: center;}
+.ui-top-city-select{flex: none;text-align: center;}
 </style>
