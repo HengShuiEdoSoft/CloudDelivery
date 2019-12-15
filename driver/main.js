@@ -158,7 +158,7 @@ let heartCheck = {
 			uni.sendSocketMessage({
 				data: 'ping',
 				complete: function(res) {
-					console.log(res);
+					// console.log(res);
 				}
 			});
 			setTimeout(function() {
