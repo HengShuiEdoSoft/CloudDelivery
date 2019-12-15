@@ -183,11 +183,11 @@ let drmking = {
 		} else {
 			if (this.isEmpty(user.phone)) {
 				uni.navigateTo({
-					url: '/pages/userinfo/bindphone'
+					url: '/pages/setup/bindphone'
 				});
 			} else if (this.isEmpty(user.token)) {
 				uni.navigateTo({
-					url: '/pages/userinfo/bindphone'
+					url: '/pages/setup/bindphone'
 				});
 			} else {
 				// uni.reLaunch({

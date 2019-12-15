@@ -110,7 +110,7 @@ export default {
 				})
 				.then(function(res) {
 					if (res.code == 0) {
-						if(res.data.user_type==2){
+						if (res.data.user_type == 2) {
 							uni.showModal({
 								content: '司机端账号不能登录用户端',
 								showCancel: false
@@ -168,7 +168,7 @@ export default {
 								.then(function(res) {
 									uni.hideNavigationBarLoading();
 									if (res.code == 0) {
-										if(res.data.user_type==2){
+										if (res.data.user_type == 2) {
 											uni.showModal({
 												content: '司机端账号不能登录用户端',
 												showCancel: false
@@ -204,9 +204,12 @@ export default {
 		},
 		toMain(userInfo) {
 			this.login(userInfo);
-			uni.reLaunch({
-				url: '/pages/index/index'
-			});
+			if (!this.$drmking.isEmpty(userInfo.phone)) {
+				uni.reLaunch({
+					url: '/pages/index/index'
+				});
+			}
+
 			// if (this.forcedLogin) {
 			// 	uni.reLaunch({
 			// 		url: '../index/index'

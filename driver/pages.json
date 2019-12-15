@@ -184,13 +184,13 @@
 		{
 			"path": "pages/setup/resetpwd",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "重置密码"
 			}
 		},
 		{
 			"path": "pages/setup/vercode",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "获取验证码"
 			}
 		},
 		{
@@ -223,7 +223,13 @@
 				"navigationBarTitleText": "消息详情"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/setup/bindphone",
+			"style": {
+				"navigationBarTitleText": "绑定手机号"
+			}
+        }
+    ],
 	"tabBar": {
 		"color": "#7a7e83",
 		"selectedColor": "#FF5723",
