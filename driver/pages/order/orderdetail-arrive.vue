@@ -134,17 +134,6 @@ export default {
 	methods: {
 		openSysMap(localtion) {
 			Map.openMap(localtion.lat, localtion.lon, localtion.localtion + localtion.address);
-			// amap.getRegeo()
-			// 	.then(res => {
-			// 		let info = res[0];
-			// 		let dst = new plus.maps.Point(localtion.lon, localtion.lat);
-			// 		let des = localtion.localtion + localtion.address;
-			// 		let src = new plus.maps.Point(info.longitude, info.latitude);
-			// 		plus.maps.openSysMap(dst, des, src);
-			// 	})
-			// 	.catch(err => {
-			// 		console.log(err);
-			// 	});
 		},
 		drawMap(trip) {
 			let that = this;

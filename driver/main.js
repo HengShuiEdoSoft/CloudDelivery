@@ -200,7 +200,7 @@ let sendDriveLocation = {
 					uni.sendSocketMessage({
 						data: msg,
 						complete: function(res) {
-							console.log(res);
+							// console.log(res);
 						}
 					});
 					setTimeout(function() {
@@ -235,7 +235,7 @@ function initEventHandle(url, user_id) {
 				uni.sendSocketMessage({
 					data: msg,
 					complete: function(res) {
-						console.log(res);
+						// console.log(res);
 					}
 				});
 			})
