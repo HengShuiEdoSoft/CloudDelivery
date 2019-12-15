@@ -1,5 +1,11 @@
 <template>
 	<view class="content">
+		<view class="status_bar"></view>
+		<view class="nav-bar">
+			<view class="nav-left"></view>
+			<view class="nav-center">我的</view>
+			<view class="nav-right" @tap="navTo('/pages/setup/setup')"><text class="iconfont icon-shezhi"></text></view>
+		</view>
 		<scroll-view scroll-y="true">
 			<view class="dui-user-bj"></view>
 			<view class="dui-wrapper">
@@ -74,14 +80,14 @@
 import { mapState } from 'vuex';
 export default {
 	computed: mapState(['forcedLogin', 'hasLogin','isConfirm', 'user']),
-	onNavigationBarButtonTap: function(e) {
+/*	onNavigationBarButtonTap: function(e) {
 		let index = e.index;
 		if (index === 0) {
 			uni.navigateTo({
 				url: '/pages/setup/setup'
 			});
 		}
-	},
+	},*/
 	data() {
 		return {
 			drivecenter: {

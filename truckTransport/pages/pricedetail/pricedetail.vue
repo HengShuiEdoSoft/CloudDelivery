@@ -1,14 +1,20 @@
 <template>
 	<view class="content">
-		<view class="ui-pli-container">
+		<view class="status_bar"></view>
+		<view class="nav-bar">
+			<view class="nav-left" @tap="navBack"><text class="iconfont icon-shangyiyehoutuifanhui"></text></view>
+			<view class="nav-center">价格明细</view>
+			<view class="nav-right" @tap="navTo('/pages/setup/transportstandard')">收费标准</view>
+		</view>
+		<view class="ui-pli-container" style="padding: 40upx 80upx;">
 			<text>￥</text>
 			<text class="ui-total-price">{{ order.pay_order_price }}</text>
 			<text>（总共{{ order.distance }}公里）</text>
 		</view>
 		
-		<view class="ui-tip">若产生高速费、停车费、搬运费，需用户按实际支付。若涉及逾时等候费请按标准费用结算。</view>
+		<view class="ui-tip" style="padding: 40upx 80upx;">若产生高速费、停车费、搬运费，需用户按实际支付。若涉及逾时等候费请按标准费用结算。</view>
 		<view class="ui-divide-line"></view>
-		<view>
+		<view style="padding: 40upx 80upx;">
 			<view class="ui-price-list-item" v-if="order.distance_price > 0">
 				<view class="ui-pli-name">起步价（{{order.car_title}}）</view>
 				<view>￥{{order.car_base_price_json[0]['price']}}</view>
@@ -41,23 +47,32 @@ export default {
 	},
 	onLoad() {
 	},
-	onNavigationBarButtonTap: function(e) {
+	methods:{
+		navTo:function(url){
+			uni.navigateTo({
+				url: url
+			});
+		},
+		navBack:function(){
+			uni.navigateBack({
+				delta:1
+			})
+		},
+	}
+	/*onNavigationBarButtonTap: function(e) {
 		var index = e.index;
 		if (index === 0) {
 			uni.navigateTo({
 				url: '/pages/setup/transportstandard'
 			});
 		}
-	}
+	}*/
 };
 </script>
 
 <style>
 .content {
 	background: #fff;
-}
-.content > view {
-	padding: 40upx 80upx;
 }
 .content .ui-divide-line {
 	padding: 0;

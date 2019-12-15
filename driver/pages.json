@@ -58,20 +58,7 @@
 			"path": "pages/user/user",
 			"style": {
 				"navigationBarTitleText": "我的",
-				"navigationBarBackgroundColor": "#434456",
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "\ue8ba ",
-							"fontSrc": "/static/font/iconfont.ttf",
-							"fontSize": "20",
-							"float": "right",
-							"color": "#fff"
-						}]
-					}
-				}
+				"navigationStyle": "custom"
 			}
 		},
 		{

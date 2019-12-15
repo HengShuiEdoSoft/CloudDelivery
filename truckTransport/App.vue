@@ -72,6 +72,10 @@ m-input {
 	background-color: #f3f4f5;
 	padding: 0;
 }
+.status_bar {
+	height: var(--status-bar-height);
+	width: 100%;
+}
 
 .input-group {
 	background-color: #ffffff;

@@ -681,6 +681,37 @@ textarea {
   padding: 0 30upx;
   color: #FF5723; }
 
+.status_bar {
+  height: var(--status-bar-height);
+  width: 100%; }
+
+.nav-bar {
+  height: 88upx;
+  position: relative;
+  color: #fff;
+  background: #434456; }
+
+.nav-bar .nav-center {
+  text-align: center;
+  font-size: 34upx;
+  font-weight: 700;
+  line-height: 88upx; }
+
+.nav-bar .nav-left {
+  position: absolute;
+  top: 0;
+  left: 20upx;
+  padding: 14upx; }
+
+.nav-bar .nav-right {
+  position: absolute;
+  top: 0;
+  right: 20upx;
+  padding: 14upx; }
+
+.nav-bar .nav-right .iconfont {
+  font-size: 40upx; }
+
 .dui-notyet-wrapper {
   margin-top: 300upx;
   margin-left: auto;
