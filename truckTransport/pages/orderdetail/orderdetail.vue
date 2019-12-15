@@ -363,7 +363,7 @@ export default {
 									title: '订单支付完成！'
 								});
 								setTimeout(function() {
-									uni.navigateTo({
+									uni.reLaunch({
 										url: '/pages/index/index'
 									});
 								}, 1500);

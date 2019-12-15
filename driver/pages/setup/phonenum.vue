@@ -27,7 +27,7 @@
 		},
 		methods:{
 			tochangenum(){	
-				var url='/pages/setup/phoneverify?num='+this.phone;
+				let url='/pages/setup/phoneverify?num='+this.phone;
 				uni.navigateTo({
 				    url:url
 				})

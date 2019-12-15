@@ -702,7 +702,7 @@ let drmking = {
 					showCancel: false,
 					success: function(res) {
 						if (res.confirm) {
-							uni.navigateTo({
+							uni.reLaunch({
 								url: url
 							});
 						}

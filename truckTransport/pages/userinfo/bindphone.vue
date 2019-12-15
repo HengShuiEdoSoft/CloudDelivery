@@ -13,7 +13,7 @@
 				</button>
 			</view>
 			<view class="input-row border">
-				<text class="title iconfont icon-Raidobox-xuanzhong"></text>
+				<text class="title iconfont icon-suoding"></text>
 				<m-input type="password" clearable v-model="pwd" placeholder="请设置登录密码"></m-input>
 			</view>
 		</view>

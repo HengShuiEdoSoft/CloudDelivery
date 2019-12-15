@@ -3,7 +3,7 @@
 		<view class="input-group dui-input-group-mg">
 			<view class="input-row border">
 				<text class="title iconfont icon-dianhua"></text>
-				<m-input type="text" focus clearable v-model="phone" placeholder="请输入手机号码"></m-input>
+				<m-input type="text" :disabled="true" clearable v-model="phone" placeholder="请输入手机号码"></m-input>
 			</view>
 			<view class="input-row border">
 				<text class="title iconfont icon-Raidobox-xuanzhong"></text>

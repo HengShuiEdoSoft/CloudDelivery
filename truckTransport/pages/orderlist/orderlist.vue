@@ -17,10 +17,10 @@
 					<navigator class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
 					>
-						<view class="ui-daizhifu" v-if="item.status === 0">待支付</view>
-						<view class="ui-hujiao" v-if="item.status === 1">呼叫中...</view>
-						<view class="ui-hujiao" v-if="item.status === 2">等待运送</view>
-						<view class="ui-hujiao" v-if="item.status === 3">运送中</view>
+						<view class="ui-daizhifu" v-if="parseInt(item.status) === 0">待支付</view>
+						<view class="ui-hujiao" v-if="parseInt(item.status) === 1">呼叫中...</view>
+						<view class="ui-hujiao" v-if="parseInt(item.status) === 2">等待运送</view>
+						<view class="ui-hujiao" v-if="parseInt(item.status) === 3">运送中</view>
 						<view class="ui-order-list-item-top">
 							<text class="ui-order-list-cartype">{{ item.car }}</text>
 							<text>{{ item.create_time }}</text>
