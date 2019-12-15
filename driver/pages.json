@@ -9,7 +9,8 @@
 		{
 			"path": "pages/order/order",
 			"style": {
-				"navigationBarTitleText": "订单"
+				"navigationBarTitleText": "订单",
+				"enablePullDownRefresh": true
 			}
 		},
 		{

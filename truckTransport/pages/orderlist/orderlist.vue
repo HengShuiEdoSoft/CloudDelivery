@@ -206,7 +206,8 @@ export default {
 		};
 	},
 	onLoad() {
-		this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
+		let height=uni.getSystemInfoSync().windowHeight-50;
+		this.height="height:"+height+'px';
 	},
 	onShow() {
 		this.getnewsList();
