@@ -29,6 +29,10 @@
 				<text class="title">驾驶证照片</text>
 				<view class="dui-bosiness-photos"><image :src="photos[3]" @click="clk(3)"></image></view>
 			</view>
+			<view class="input-row border">
+				<text class="title">保险单照片</text>
+				<view class="dui-bosiness-photos"><image :src="photos[4]" @click="clk(4)"></image></view>
+			</view>
 		</view>
 		<view class="btn-row"><button class="primary" type="primary" @tap="submitRealInfo()">保存</button></view>
 		<photos @upload="doUpload" @avtinit="doBefore" quality="0.8" ref="photos"></photos>
@@ -54,8 +58,9 @@ export default {
 			car_photos: '',
 			driver_photos: '',
 			driving_photos: '',
-			imgurl: ['', '', '', ''],
-			photos: ['/static/img/addimg.png', '/static/img/addimg.png', '/static/img/addimg.png', '/static/img/addimg.png']
+			safe_photos: '',
+			imgurl: ['', '', '', '', ''],
+			photos: ['/static/img/addimg.png', '/static/img/addimg.png', '/static/img/addimg.png', '/static/img/addimg.png', '/static/img/addimg.png']
 		};
 	},
 	onLoad() {
@@ -82,7 +87,8 @@ export default {
 				car_number: this.car_number,
 				car_photos: this.car_photos,
 				driver_photos: this.driver_photos,
-				driving_photos: this.driving_photos
+				driving_photos: this.driving_photos,
+				safe_photos: this.safe_photos
 			};
 			
 			if (that.$drmking.isEmpty(data.car_id)) {
@@ -131,6 +137,13 @@ export default {
 				uni.showToast({
 					icon: 'none',
 					title: '行驶证图片不能为空!'
+				});
+				return;
+			}
+			if (that.$drmking.isEmpty(data.driving_photos)) {
+				uni.showToast({
+					icon: 'none',
+					title: '保险单图片不能为空!'
 				});
 				return;
 			}

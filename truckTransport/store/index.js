@@ -76,7 +76,7 @@ const store = new Vuex.Store({
 		sysconfig: {
 
 		},
-		is_work:true,
+		is_work: true,
 		scramble_orders: [],
 		order: {
 			city_id: 0,
@@ -122,8 +122,8 @@ const store = new Vuex.Store({
 	},
 	mutations: {
 		// 切换工作状态
-		workStatus:function (state, status) {
-			state.is_work=status;
+		workStatus: function(state, status) {
+			state.is_work = status;
 		},
 		// 添加新订单
 		addPushToDriverOrderNotice: function(state, item) {
@@ -138,6 +138,7 @@ const store = new Vuex.Store({
 			Vue.set(state.order, 'car_id', car.car_id);
 			Vue.set(state.order, 'car_title', car.car_title);
 			Vue.set(state.order, 'car_base_price_json', car.base_price_json);
+			console.log(state.order);
 			this.commit('set_order_trip');
 		},
 		// 选择附加服务更新价格
@@ -187,9 +188,12 @@ const store = new Vuex.Store({
 					distance: state.order.distance
 				};
 			}
+			console.log(trip_distance);
 			trip_distance.distance = Math.ceil(parseInt(trip_distance.distance) / 1000);
+			
 			Vue.set(state.order, 'distance', trip_distance.distance);
 			let distance_price = drmking.distancePrice(state.order.car_base_price_json, trip_distance.distance);
+			console.log(distance_price);
 			Vue.set(state.order, 'distance_price', distance_price);
 			this.commit('set_order_attach', state.order.attach);
 		},
@@ -233,7 +237,7 @@ const store = new Vuex.Store({
 				this.dispatch('set_order_coupon');
 			}
 		},
-		becompany(state,isCompany) {
+		becompany(state, isCompany) {
 			state.isCompany = isCompany;
 		},
 		login(state, user) {

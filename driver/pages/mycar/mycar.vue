@@ -59,6 +59,17 @@
 					</view>
 				</view>
 			</view>
+			<view class="dui-msgcenter-item-box">
+				<view class="dui-msgcenter-item">
+					<view class="dui-mycar-title">保险单照片</view>
+					<view class="dui-maycar-extra">
+						<view class="dui-certified">
+							<text class="iconfont icon-renzheng1"></text>
+							<text>{{user.status==1?'已认证':'未认证'}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>

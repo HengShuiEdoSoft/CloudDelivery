@@ -205,60 +205,71 @@ let drmking = {
 		let run = 0;
 		let price = 0;
 		let count = price_json.length - 1;
-		for (let i = 0; i < price_json.length; i++) {
-			let row = price_json[i];
+		if (count === 0) {
+			let row = price_json[0];
 			row.num = parseInt(row.num);
 			row.price = parseFloat(row.price);
-			if (distance <= row.num) {
-				switch (row.type) {
-					case 's':
-						{
-							price = row.price;
-							run = distance;
-							break;
-						}
-					case 'e':
-						{
-							let _distance = distance - run;
-							run = distance;
-							price += parseFloat(_distance * row.price);
-							break;
-						}
-					default:
-						{
-							let _distance = distance - run;
-							run = distance;
-							price += parseFloat(_distance * row.price);
-							break;
-						}
-				}
-				if (i <= count) {
-					break;
-				}
-			} else {
-				switch (row.type) {
-					case 's':
-						{
-							price = row.price;
-							run = row.num;
-							break;
-						}
-					case 'e':
-						{
-							let _distance = distance - run;
-							price += parseFloat(_distance * row.price);
-							break;
-						}
-					default:
-						{
-							let _distance = row.num - run;
-							run = row.num;
-							price += parseFloat(_distance * row.price);
-							break;
-						}
-				}
-				if (i == count) {
-					break;
+			price = row.price;
+			if (distance > row.num) {
+				let _distance = distance - row.num;
+				price += parseFloat(_distance * row.price);
+			}
+		} else {
+			for (let i = 0; i < price_json.length; i++) {
+				let row = price_json[i];
+				row.num = parseInt(row.num);
+				row.price = parseFloat(row.price);
+				if (distance <= row.num) {
+					switch (row.type) {
+						case 's':
+							{
+								price = row.price;
+								run = distance;
+								break;
+							}
+						case 'e':
+							{
+								let _distance = distance - run;
+								run = distance;
+								price += parseFloat(_distance * row.price);
+								break;
+							}
+						default:
+							{
+								let _distance = distance - run;
+								run = distance;
+								price += parseFloat(_distance * row.price);
+								break;
+							}
+					}
+					if (i <= count) {
+						break;
+					}
+				} else {
+					switch (row.type) {
+						case 's':
+							{
+								price = row.price;
+								run = row.num;
+								break;
+							}
+						case 'e':
+							{
+								let _distance = distance - run;
+								price += parseFloat(_distance * row.price);
+								break;
+							}
+						default:
+							{
+								let _distance = row.num - run;
+								run = row.num;
+								price += parseFloat(_distance * row.price);
+								break;
+							}
+					}
+					if (i == count) {
+						break;
+					}
 				}
 			}
 		}
@@ -693,9 +704,9 @@ let drmking = {
 			}
 		}).then(res => {
 			if (res.code == 0) {
-				if(vue.$refs['pay']){
+				if (vue.$refs['pay']) {
 					vue.$refs['pay'].close();
-				}				
+				}
 				uni.showModal({
 					title: '订单支付完成!',
 					content: '支付成功,将跳转到首页!',
