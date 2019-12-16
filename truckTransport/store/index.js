@@ -76,6 +76,7 @@ const store = new Vuex.Store({
 		sysconfig: {
 
 		},
+		is_sound: true,
 		is_work: true,
 		scramble_orders: [],
 		order: {
@@ -121,6 +122,10 @@ const store = new Vuex.Store({
 		}
 	},
 	mutations: {
+		// 切换语音播报状态
+		soundStatus: function(state, status) {
+			state.is_sound = status;
+		},
 		// 切换工作状态
 		workStatus: function(state, status) {
 			state.is_work = status;
@@ -128,6 +133,14 @@ const store = new Vuex.Store({
 		// 添加新订单
 		addPushToDriverOrderNotice: function(state, item) {
 			state.scramble_orders.unshift(item)
+			Vue.set(state, 'scramble_orders', state.scramble_orders);
+		},
+		delPushToDriverOrderNotice: function(state, order_id) {
+			for (let i = 0; i < state.scramble_orders.length; i++) {
+				if (state.scramble_orders[i].order_id == order_id) {
+					state.scramble_orders.splice(i, 1);
+				}
+			}
 			Vue.set(state, 'scramble_orders', state.scramble_orders);
 		},
 		set_sysconfig: function(state, sysconfig) {
@@ -138,7 +151,6 @@ const store = new Vuex.Store({
 			Vue.set(state.order, 'car_id', car.car_id);
 			Vue.set(state.order, 'car_title', car.car_title);
 			Vue.set(state.order, 'car_base_price_json', car.base_price_json);
-			console.log(state.order);
 			this.commit('set_order_trip');
 		},
 		// 选择附加服务更新价格
@@ -182,18 +194,15 @@ const store = new Vuex.Store({
 		set_order_trip: function(state, trip_distance) {
 			if (trip_distance) {
 				Vue.set(state.order, 'trip', trip_distance.trip);
+				trip_distance.distance = Math.ceil(parseInt(trip_distance.distance) / 1000);
 			} else {
 				trip_distance = {
 					trip: state.order.trip,
 					distance: state.order.distance
 				};
 			}
-			console.log(trip_distance);
-			trip_distance.distance = Math.ceil(parseInt(trip_distance.distance) / 1000);
-			
 			Vue.set(state.order, 'distance', trip_distance.distance);
 			let distance_price = drmking.distancePrice(state.order.car_base_price_json, trip_distance.distance);
-			console.log(distance_price);
 			Vue.set(state.order, 'distance_price', distance_price);
 			this.commit('set_order_attach', state.order.attach);
 		},

@@ -1,45 +1,45 @@
 <template>
 	<view class="content">
-			<view class="dui-vip-bj"></view>
-			<view class="dui-service-wrapper">
-				<view class="dui-vip-card">
-					<view class="dui-vip-type">
-						<text>{{ user.user_level_id > 0 && !$drmking.isEmpty(levellist)? levellist[user.user_level_id].level_title : '新用户' }}</text>
-						<navigator url="corporate-vip" v-if="user.user_type == 0">升级为企业会员</navigator>
-						<view v-if="user.user_type == 1 && parseInt(user.status) === 1">企业会员</view>
-						<view v-if="user.user_type == 1 && parseInt(user.status) === 0">企业会员审核中</view>
-					</view>
-					<view class="dui-vip-phone">{{ user.phone ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</view>
-					<view class="dui-vip-steps">当前等级成长值 : {{ user.user_level_id > 0 && !$drmking.isEmpty(levellist) ? levellist[user.user_level_id].level_rule : 0 }}</view>
+		<view class="dui-vip-bj"></view>
+		<view class="dui-service-wrapper">
+			<view class="dui-vip-card">
+				<view class="dui-vip-type">
+					<text>{{ user.user_level_id > 0 && !$drmking.isEmpty(levellist) ? levellist[user.user_level_id].level_title : '新用户' }}</text>
+					<navigator url="corporate-vip" v-if="user.user_type == 0">升级为企业会员</navigator>
+					<view v-if="user.user_type == 1 && parseInt(user.status) === 1">企业会员</view>
+					<view v-if="user.user_type == 1 && parseInt(user.status) === 0">企业会员审核中</view>
 				</view>
-				<view class="dui-vip-strategy">
-					<view class="dui-vip-growth">距离下一等级还差{{ score }}成长值 ></view>
-					<navigator url="up-strategy" class="dui-vip-strategy-btn">升级攻略</navigator>
-				</view>
-				<view class="dui-vip-equity" v-for="(item_level, item_level_key) in levellist" :key="item_level.user_level_id">
-					<view class="dui-vip-equity-title">{{ item_level.level_title }}会员权益</view>
-					<block v-for="(gift_pack_item, gift_pack_index) in item_level.gift_pack_list" :key="gift_pack_item.gift_pack_id">
-						<view class="dui-vip-giftpackage-list">
-							<view class="dui-vip-giftpackage-item">
-								<view class="dui-vip-giftpackage" v-if="gift_pack_item.status == 0"><text class="iconfont icon-suoding"></text></view>
-								<view class="dui-vip-giftpackage unlock" v-if="gift_pack_item.status == 1"><text class="iconfont icon-youhuijuan"></text></view>
-								<text>{{ gift_pack_item.gift_pack_title }}</text>
-							</view>
+				<view class="dui-vip-phone">{{ user.phone ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</view>
+				<view class="dui-vip-steps">当前等级成长值 : {{ user.user_level_id > 0 && !$drmking.isEmpty(levellist) ? levellist[user.user_level_id].level_rule : 0 }}</view>
+			</view>
+			<view class="dui-vip-strategy">
+				<view class="dui-vip-growth">距离下一等级还差{{ score }}成长值 ></view>
+				<navigator url="up-strategy" class="dui-vip-strategy-btn">升级攻略</navigator>
+			</view>
+			<view class="dui-vip-equity" v-for="(item_level, item_level_key) in levellist" :key="item_level.user_level_id">
+				<view class="dui-vip-equity-title">{{ item_level.level_title }}会员权益</view>
+				<block v-for="(gift_pack_item, gift_pack_index) in item_level.gift_pack_list" :key="gift_pack_item.gift_pack_id">
+					<view class="dui-vip-giftpackage-list">
+						<view class="dui-vip-giftpackage-item">
+							<view class="dui-vip-giftpackage" v-if="gift_pack_item.status == 0"><text class="iconfont icon-suoding"></text></view>
+							<view class="dui-vip-giftpackage unlock" v-if="gift_pack_item.status == 1"><text class="iconfont icon-youhuijuan"></text></view>
+							<text>{{ gift_pack_item.gift_pack_title }}</text>
 						</view>
-						<view class="dui-vip-equity">
-							<view class="dui-vip-equity-title">优惠礼包</view>
-							<view class="dui-vip-Receive-item" v-for="(gift_item, gift_index) in gift_pack_item.gift_list" :key="gift_item.gift_id">
-								<view class="dui-vip-Receive-body">
-									<view>【{{ gift_pack_item.gift_pack_title }}】:</view>
-									<view v-for="(coupon_item, coupon_index) in gift_item.coupon_list" :key="coupon_index">
-										{{ coupon_item.coupon_title }} {{ coupon_item.coupon_price }}元
-									</view>
+					</view>
+					<view class="dui-vip-equity">
+						<view class="dui-vip-equity-title">优惠礼包</view>
+						<view class="dui-vip-Receive-item" v-for="(gift_item, gift_index) in gift_pack_item.gift_list" :key="gift_item.gift_id">
+							<view class="dui-vip-Receive-body">
+								<view>【{{ gift_pack_item.gift_pack_title }}】:</view>
+								<view v-for="(coupon_item, coupon_index) in gift_item.coupon_list" :key="coupon_index">
+									{{ coupon_item.coupon_title }} {{ coupon_item.coupon_price }}元
 								</view>
 							</view>
 						</view>
-					</block>
-				</view>
+					</view>
+				</block>
 			</view>
+		</view>
 	</view>
 </template>
 <script>
@@ -49,7 +49,7 @@ export default {
 		return {
 			levellist: {},
 			score: 0,
-			height:''
+			height: ''
 		};
 	},
 	async onLoad() {
@@ -60,9 +60,7 @@ export default {
 		}
 		this.getData();
 	},
-	onShow() {
-		
-	},
+	onShow() {},
 	computed: mapState(['user']),
 	methods: {
 		getData: function() {
@@ -97,19 +95,21 @@ scroll-view {
 	height: 100%;
 	padding-bottom: 40upx;
 }
-.content{
-	width:100%;
-	overflow: hidden;
+.content {
+	position: relative;
+	width: 100vw;
+	max-width: 100vw;
+	overflow-x: hidden;
 }
 .dui-vip-bj {
 	position: absolute;
-	top: -1480upx;
-	left: 50%;
-	width: 1780upx;
-	height: 1780upx;
+	top: 0;
+	left: 0;
+	width: 210vw;
+	height: 210vw;
 	border-radius: 50%;
 	background-color: #424456;
-	transform: translateX(-50%);
+	transform: translate(-55vw, -165vw);
 }
 
 .dui-vip-card {

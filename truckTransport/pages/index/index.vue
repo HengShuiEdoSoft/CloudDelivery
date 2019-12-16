@@ -271,7 +271,7 @@ export default {
 						});
 					});
 			} else {
-				console.log('cheackTrip false');
+				// console.log('cheackTrip false');
 			}
 		},
 		setTrip(item) {
