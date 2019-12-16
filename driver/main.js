@@ -116,7 +116,6 @@ function createWs() {
 				initEventHandle(url, userinfo.user_id);
 			},
 			fail: function(err) {
-				ws_lock_reconnect = false;
 				console.log('webscoket 创建失败!' + err);
 				reconnectWs(url);
 			}
@@ -138,11 +137,11 @@ function reconnectWs(url) {
 		//没连接上会一直重连，设置延迟避免请求过多
 		createWs(url);
 		ws_lock_reconnect = false;
-	}, 10000);
+	}, 5000);
 }
 //心跳检测
 let heartCheck = {
-	timeout: 30000, //30秒钟发一次心跳
+	timeout: 60000, //30秒钟发一次心跳
 	timeoutObj: null,
 	// serverTimeoutObj: null,
 	reset: function() {
