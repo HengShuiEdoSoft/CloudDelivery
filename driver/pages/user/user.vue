@@ -104,6 +104,10 @@ export default {
 	},
 	onLoad() {
 		this.getUsername();
+		
+	},
+	onShow() {
+		this.getData();
 	},
 	methods: {
 		getUsername() {
@@ -165,12 +169,12 @@ export default {
 			let that = this;
 			this.$uniFly
 				.post({
-					url: '/api/user/getusernextlevel',
+					url: '/api/user/getdrivecenter',
 					params: {}
 				})
 				.then(function(res) {
 					if (res.code === 0) {
-						that.list = res.data;
+						that.drivecenter = res.data;
 					} else {
 						uni.showModal({
 							content: res.msg,
