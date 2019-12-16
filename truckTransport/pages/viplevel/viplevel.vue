@@ -97,7 +97,10 @@ scroll-view {
 	height: 100%;
 	padding-bottom: 40upx;
 }
-
+.content{
+	width:100%;
+	overflow: hidden;
+}
 .dui-vip-bj {
 	position: absolute;
 	top: -1480upx;
