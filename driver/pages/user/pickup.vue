@@ -14,6 +14,8 @@
 			</view>
 			<view class="dui-pickup-all" @tap="pickall">全部提现</view>
 		</view>
+		<view class="ui-divide-line"></view>
+		<view class="ui-tips">注意：提现将扣除{{ sysconfig.withdraw_system_rate }}%手续费</view>
 		<view class="btn-row"><button class="primary" type="primary" @tap="submitPick">确认提现</button></view>
 		<!--<view class="dui-flex-row">
 			<text>提现到</text>
@@ -32,7 +34,7 @@ export default {
 			price: 0
 		};
 	},
-	computed: mapState(['user']),
+	computed: mapState(['user', 'sysconfig']),
 	methods: {
 		setPrice(e) {
 			this.price = parseInt(e.detail.value);
@@ -101,7 +103,19 @@ export default {
 .content {
 	background-color: #fff;
 }
-
+.ui-tips {
+	padding: 20upx 30upx;
+	font-size: 12px;
+	color: #999;
+}
+.ui-divide-line {
+	display: block;
+	height: 1px;
+	background-color: #e2e2e2;
+	border: none;
+	transform: scaleY(0.5);
+	-webkit-transform: scaleY(0.5);
+}
 .dui-maincolor {
 	color: #ff5723;
 	font-size: 32upx;
