@@ -39,13 +39,13 @@
 		</view>
 		<view class="ui-tip">
 			若产生高速费、停车费、搬运费，需用户按实际支付。若涉及逾时等候费请按
-			<navigator>标准费用</navigator>
+			<navigator :url="'/pages/setup/aview?title=标准费用&scode=' + $drmking.md5('标准费用')">标准费用</navigator>
 			结算。
 		</view>
 		<view class="ui-tip">
 			<text></text>
 			我已阅读并同意
-			<navigator>《货物托运居间协议》</navigator>
+			<navigator :url="'/pages/setup/aview?title=货物托运居间协议&scode=' + $drmking.md5('货物托运居间协议')">《货物托运居间协议》</navigator>
 		</view>
 		<view class="ui-home-bottom">
 			<view class="ui-home-price-container">
@@ -423,7 +423,7 @@ export default {
 									package: res.data.data.package,
 									signType: res.data.data.signType,
 									paySign: res.data.data.paySign,
-									success: function(res) {										
+									success: function(res) {
 										that.$drmking.paySure(that, pay_log_id, '/pages/index/index');
 									},
 									fail: function(err) {

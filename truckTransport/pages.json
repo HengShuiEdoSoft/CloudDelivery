@@ -482,7 +482,11 @@
 				"navigationBarTitleText": "绑定手机号设置密码"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/setup/aview",
+            "style" : {}
+        }
+    ],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
