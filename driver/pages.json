@@ -3,6 +3,12 @@
 		{
 			"path": "pages/index/index",
 			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/index/qiang",
+			"style": {
 				"navigationBarTitleText": "抢单大厅"
 			}
 		},
@@ -228,6 +234,11 @@
 		"backgroundColor": "#ffffff",
 		"list": [{
 			"pagePath": "pages/index/index",
+			"text": "抢单",
+			"iconPath": "static/img/shouye.png",
+			"selectedIconPath": "static/img/shouyeS.png"
+		},{
+			"pagePath": "pages/index/qiang",
 			"text": "抢单",
 			"iconPath": "static/img/qiang.png",
 			"selectedIconPath": "static/img/qiangS.png"
