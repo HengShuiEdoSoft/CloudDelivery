@@ -53,6 +53,20 @@
 					</view>
 				</view>
 			</view>
+			<view>
+				<view class="ui-ts-title">超时等候</view>
+				<view class="ui-ts-list">
+					<view class="ui-ts-list-item">
+						<view>
+							超时等候费
+						</view>
+						<view>
+							{{ sysconfig.wait_time_price }}元/{{ sysconfig.nofree_wait_time }}分钟
+						</view>						
+					</view>
+					<view style="color: #C8C7CC;font-size: 12px;">{{ sysconfig.site_name }}用户均拥有{{ sysconfig.free_wait_time }}分钟的免费的等候时长用于装卸货物。超过免费等候时长则需要额外收取超时等候费。</view>
+				</view>
+			</view>
 		</view>
 		<view class="ui-tip"></view>
 	</view>
