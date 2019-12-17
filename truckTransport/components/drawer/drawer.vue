@@ -1,5 +1,5 @@
 <template>
-	<view v-if="visibleSync" :class="{ 'uni-drawer--visible': showDrawer, 'uni-drawer--right': rightMode }" class="uni-drawer" @touchmove.stop.prevent="moveHandle">
+	<view v-if="visibleSync" :class="{ 'uni-drawer--visible': showDrawer, 'uni-drawer--right': rightMode }" class="uni-drawer">
 		<view class="uni-drawer__mask" @tap="close" />
 		<view class="uni-drawer__content">
 			<slot />
@@ -75,7 +75,7 @@
 					this.$emit('close')
 				}, 200)
 			},
-			moveHandle() {}
+			moveHandle() {},
 		}
 	}
 </script>

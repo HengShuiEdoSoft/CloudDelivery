@@ -28,7 +28,14 @@ page {
 	display: flex;
 	-webkit-font-smoothing: antialiased;
 }
-
+.uni-page-head__title {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+.uni-page-head__title_image {
+	height: 36px !important;
+}
 /* #ifdef MP-BAIDU */
 page {
 	width: 100%;
