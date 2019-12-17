@@ -217,6 +217,10 @@
 				"navigationBarTitleText": "绑定手机号"
 			}
         }
+        ,{
+            "path" : "pages/setup/aview",
+            "style" : {}
+        }
     ],
 	"tabBar": {
 		"color": "#7a7e83",

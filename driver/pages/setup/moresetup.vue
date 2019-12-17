@@ -55,12 +55,68 @@
 						</view>
 					</view>
 				</navigator>
+				<navigator :url="'/pages/setup/aview?title=司机使用协议&scode=' + $drmking.md5('司机使用协议')">
+					<view class="dui-basic-list-item">
+						<view class="dui-basic-list-item__container">
+							<view class="dui-basic-list-item__content">
+								<view class="dui-basic-list-item__content-title">
+									司机使用协议
+								</view>
+							</view>
+							<view class="dui-basic-list-item__extra">
+								<text class="iconfont icon-gengduo-shuxiang"></text>
+							</view>
+						</view>
+					</view>
+				</navigator>
+				<navigator :url="'/pages/setup/aview?title=软件使用协议&scode=' + $drmking.md5('软件使用协议')">
+					<view class="dui-basic-list-item">
+						<view class="dui-basic-list-item__container">
+							<view class="dui-basic-list-item__content">
+								<view class="dui-basic-list-item__content-title">
+									软件使用协议
+								</view>
+							</view>
+							<view class="dui-basic-list-item__extra">
+								<text class="iconfont icon-gengduo-shuxiang"></text>
+							</view>
+						</view>
+					</view>
+				</navigator>
+				<navigator :url="'/pages/setup/aview?title=货物托运居间协议&scode=' + $drmking.md5('货物托运居间协议')">
+					<view class="dui-basic-list-item">
+						<view class="dui-basic-list-item__container">
+							<view class="dui-basic-list-item__content">
+								<view class="dui-basic-list-item__content-title">
+									货物托运居间协议
+								</view>
+							</view>
+							<view class="dui-basic-list-item__extra">
+								<text class="iconfont icon-gengduo-shuxiang"></text>
+							</view>
+						</view>
+					</view>
+				</navigator>
+				<navigator :url="'/pages/setup/aview?title=个人隐私条款&scode=' + $drmking.md5('个人隐私条款')">
+					<view class="dui-basic-list-item">
+						<view class="dui-basic-list-item__container">
+							<view class="dui-basic-list-item__content">
+								<view class="dui-basic-list-item__content-title">
+									个人隐私条款
+								</view>
+							</view>
+							<view class="dui-basic-list-item__extra">
+								<text class="iconfont icon-gengduo-shuxiang"></text>
+							</view>
+						</view>
+					</view>
+				</navigator>
 				<navigator url="transportstandard">
 					<view class="dui-basic-list-item">
 						<view class="dui-basic-list-item__container">
 							<view class="dui-basic-list-item__content">
 								<view class="dui-basic-list-item__content-title">
-									收费标准
+									货运业务收费标准
 								</view>
 							</view>
 							<view class="dui-basic-list-item__extra">
