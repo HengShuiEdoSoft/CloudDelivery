@@ -54,6 +54,7 @@ export default {
 		return {
 			channel: 'setTrip',
 			status: 1,
+			icon: '',
 			is_destination: false,
 			transfer_index: 0,
 			init_flag: false,
@@ -102,6 +103,10 @@ export default {
 		}
 		if (options.transfer_index) {
 			that.transfer_index = parseInt(options.transfer_index);
+		}
+		if (options.icon) {
+			that.$set(that.markers[0], 'iconPath', '/static/amap/' + options.icon + '.png');
+			that.icon = options.icon;
 		}
 		if (options.address_info) {
 			that.address_info = options.address_info;
@@ -160,8 +165,9 @@ export default {
 		},
 		// 跳转搜索地址页
 		goSearchAddressList() {
+			let that=this;
 			uni.navigateTo({
-				url: '/pages/amap/search_address_list/search_address_list?city=' + this.address_info.city
+				url: '/pages/amap/search_address_list/search_address_list?icon='+that.icon+'&city=' + that.address_info.city
 			});
 		},
 		// 切换城市

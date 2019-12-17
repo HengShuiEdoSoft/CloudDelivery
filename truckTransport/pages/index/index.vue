@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<view>
+		<view @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
 			<uni-drawer :visible="visible" mode="left" @close="visible = false">
 				<view class="ui-drawer-top">
 					<image :src="user.avatar ? user.avatar : '/static/img/HeadImg.jpg'" class="ui-portrait" @tap="navTo('/pages/userinfo/userinfo')"></image>
@@ -125,7 +125,7 @@
 		</view>
 
 		<view class="ui-home-bottom">
-			<view class="ui-home-price-container">
+			<view v-if="order.order_price > 0" class="ui-home-price-container">
 				<view class="ui-cost-price">
 					<text>￥</text>
 					<text class="ui-price-now">{{ order.pay_order_price }}</text>
@@ -154,6 +154,12 @@ import uniDrawer from '@/components/drawer/drawer.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import hTimePicker from '@/components/h-timePicker/h-timePicker.vue';
 let amap = require('@/common/amap.js');
+	let touchStartX = 0; //触摸时的原点
+	let touchStartY = 0; //触摸时的原点
+	let time = 0; // 时间记录，用于滑动时且时间小于1s则执行左右滑动
+	let interval = ''; // 记录/清理时间记录
+	let touchMoveX = 0; // x轴方向移动的距离
+	let touchMoveY = 0; // y轴方向移动的距离
 export default {
 	components: {
 		uniDrawer,
@@ -214,6 +220,56 @@ export default {
 		});
 	},
 	methods: {
+		
+		// 触摸开始事件
+		touchStart: function(e) {
+			touchStartX = e.touches[0].pageX; // 获取触摸时的原点
+			touchStartY = e.touches[0].pageY; // 获取触摸时的原点
+			// 使用js计时器记录时间
+			interval = setInterval(function() {
+				time++;
+			}, 100);
+		},
+		// 触摸移动事件
+		touchMove: function(e) {
+			touchMoveX = e.touches[0].pageX;
+			touchMoveY = e.touches[0].pageY;
+		},
+		// 触摸结束事件
+		touchEnd: function(e) {
+			let moveX = touchMoveX - touchStartX;
+			let moveY = touchMoveY - touchStartY;
+			if (Math.sign(moveX) == -1) {
+				moveX = moveX * -1;
+			}
+			if (Math.sign(moveY) == -1) {
+				moveY = moveY * -1;
+			}
+			if (moveX <= moveY) {
+				// 上下
+				// 向上滑动
+				if (touchMoveY - touchStartY <= -30 && time < 10) {
+					console.log('向上滑动');
+				}
+				// 向下滑动
+				if (touchMoveY - touchStartY >= 30 && time < 10) {
+					console.log('向下滑动 ');
+				}
+			} else {
+				// 左右
+				// 向左滑动
+				if (touchMoveX - touchStartX <= -30 && time < 10) {
+					console.log('左滑页面');
+					this.visible = false;
+				}
+				// 向右滑动
+				if (touchMoveX - touchStartX >= 30 && time < 10) {
+					console.log('向右滑动');
+				}
+			}
+			clearInterval(interval); // 清除setInterval
+			time = 0;
+		},
 		tabChange: function(index) {
 			this.current = index;
 			let car = this.location_city.cars_list[this.current];
@@ -341,11 +397,11 @@ export default {
 			} else {
 				let url = '/pages/amap/amap_choice/amap_choice?';
 				if (type == 'departure') {
-					url += 'status=1';
+					url += 'icon=fa&status=1';
 				} else if (type == 'transfer') {
-					url += 'status=0&transfer_index=' + transfer_index;
+					url += 'icon=shou&status=0&transfer_index=' + transfer_index;
 				} else {
-					url += 'status=0&is_destination=true';
+					url += 'icon=shou&status=0&is_destination=true';
 				}
 				uni.navigateTo({
 					url: url
