@@ -3,7 +3,7 @@
 		<view class="status_bar"></view>
 		<view class="search_input">
 			<view class="navigateback" @tap="navigateback"><uni-icons type="arrowleft" size="26"></uni-icons></view>
-			<view class="search_input_input_box"><input class="uni-input" @input="search" :focus="true" @focus="search" placeholder="从哪儿发货" /></view>
+			<view class="search_input_input_box"><input class="uni-input" @input="search" :focus="true" @focus="search" :placeholder="placeholder" /></view>
 		</view>
 		<view class="search_tips" v-show="search_tips">
 			<view class="search_tips_item" v-for="(item, index) in tips" :key="index" @tap="choice_tip(item)">{{ item.name }}</view>
@@ -19,6 +19,8 @@ export default {
 	data() {
 		return {
 			city: '',
+			placeholder: '请输入地址',
+			icon: '',
 			search_tips: false,
 			tips: [],
 			map: null
@@ -27,6 +29,18 @@ export default {
 	onLoad(options) {
 		let that = this;
 		that.city = options.city;
+		if (options.icon) {
+			that.icon = options.icon;
+			if (that.icon == 'fa') {
+				that.placeholder = '请输入发货地址';
+			}
+			if (that.icon == 'shou') {
+				that.placeholder = '请输入收货地址';
+			}
+		}
+		if (options.placeholder) {
+			that.placeholder = options.placeholder;
+		}
 		that.map = uni.createMapContext('amap', that);
 	},
 	methods: {

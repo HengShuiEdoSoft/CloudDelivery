@@ -341,11 +341,11 @@ export default {
 			} else {
 				let url = '/pages/amap/amap_choice/amap_choice?';
 				if (type == 'departure') {
-					url += 'status=1';
+					url += 'icon=fa&status=1';
 				} else if (type == 'transfer') {
-					url += 'status=0&transfer_index=' + transfer_index;
+					url += 'icon=shou&status=0&transfer_index=' + transfer_index;
 				} else {
-					url += 'status=0&is_destination=true';
+					url += 'icon=shou&status=0&is_destination=true';
 				}
 				uni.navigateTo({
 					url: url
