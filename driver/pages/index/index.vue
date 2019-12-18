@@ -27,7 +27,12 @@
 				</view>
 			</view>
 		</view>
-
+		
+		<view style="margin-top:30upx;">
+			<view class="ui-title">司机动态</view>
+			<view style="padding:0 30upx;"><textscroll :list="orderList" /></view>
+		</view>
+		
 		<view style="margin-top:30upx;">
 			<view class="ui-title">用车租车</view>
 			<swiper @change="swiperChange" :current="current">
@@ -44,10 +49,7 @@
 				</swiper-item>
 			</swiper>
 		</view>
-		<view style="margin-top:30upx;">
-			<view class="ui-title">司机动态</view>
-			<view style="padding:0 30upx;"><textscroll :list="orderList" /></view>
-		</view>
+		
 		<view style="margin-top:30upx;width: 100vw;overflow: hidden;">
 			<view class="ui-title">常见问题</view>
 			<view>
