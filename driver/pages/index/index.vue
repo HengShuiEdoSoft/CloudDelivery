@@ -33,7 +33,7 @@
 			<swiper @change="swiperChange" :current="current">
 				<swiper-item v-for="(item, index) in yczcList" :key="index">
 					<view class="ui-grid" @tap="goaview(item.text, item.scode)">
-						<view class="ui-grid-item ui-grid-item2">
+						<view class="ui-grid-item ui-grid-item2" style="width: 100%;">
 							<text class="iconfont icon-single"></text>
 							<view>
 								<view>{{ item.text }}</view>
@@ -45,10 +45,10 @@
 			</swiper>
 		</view>
 		<view style="margin-top:30upx;">
-			<view class="ui-title">简讯</view>
-			<view style="padding:0 30upx;"><textscroll :list="list" /></view>
+			<view class="ui-title">司机动态</view>
+			<view style="padding:0 30upx;"><textscroll :list="orderList" /></view>
 		</view>
-		<view style="margin-top:30upx;">
+		<view style="margin-top:30upx;width: 100vw;overflow: hidden;">
 			<view class="ui-title">常见问题</view>
 			<view>
 				<view @tap="goaview(item.text, item.scode)" class="ui-article-list" v-for="(item, index) in cjwtList" :key="index">
@@ -66,13 +66,10 @@ export default {
 	data() {
 		return {
 			current: 0,
-			list: [
-				'1分钟前，无夏购买了会员无夏购买了会员无夏购买了会员无夏购买了会员无夏购买了会员无夏购买了会员',
-				'2分钟前，无夏购买了会员无夏购买了会员无夏购买了会员',
-				'3分钟前，无夏购买了会员'
-			],
+			list: [],
 			fuwuList: [],
 			yczcList: [],
+			orderList: [],
 			cjwtList: []
 		};
 	},
@@ -95,6 +92,7 @@ export default {
 			});
 		that.getFuwuList();
 		that.getYczcList();
+		that.getOrderList();
 		that.getCjwtList();
 	},
 	methods: {
@@ -144,6 +142,7 @@ export default {
 							let dd = res.data.list[i].content.replace(/<[^>]+>/g, '');
 							//截取空格等特殊标签
 							let dds = dd.replace(/ /gi, '');
+							dds = dds.replace(/&nbsp;/gi, '');
 							list.push({
 								scode: res.data.list[i].scode,
 								text: res.data.list[i].title,
@@ -151,6 +150,19 @@ export default {
 							});
 						}
 						that.yczcList = list;
+					}
+				})
+				.catch(err => {});
+		},
+		getOrderList() {
+			let that = this;
+			that.$uniFly
+				.get({
+					url: '/api/order/gettop10',
+				})
+				.then(res => {
+					if (res.code == 0) {
+						that.orderList = res.data;
 					}
 				})
 				.catch(err => {});
@@ -172,6 +184,7 @@ export default {
 							let dd = res.data.list[i].content.replace(/<[^>]+>/g, '');
 							//截取空格等特殊标签
 							let dds = dd.replace(/ /gi, '');
+							dds = dds.replace(/&nbsp;/gi, '');
 							list.push({
 								scode: res.data.list[i].scode,
 								text: res.data.list[i].title,
@@ -251,11 +264,17 @@ export default {
 swiper {
 	height: 104upx;
 }
-/* .center-text {
+.center-text {
 	text-align: center;
 }
 .center-img {
 	width: 100%;
 	height: 64px;
-} */
+}
+.ui-grid {
+	flex-wrap: wrap;
+}
+._notice{
+	height: 40px !important;
+}
 </style>
