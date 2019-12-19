@@ -325,11 +325,10 @@
 }
 .ui-top-city-select{
 	padding:0;
-	flex:1;
 	color:$white;
 	font-size:14px;
 	line-height: 88upx;
-	background: $dark;
+	background: $maincolor;
 }
 .ui-top-city-select>text{
 	padding-left:20upx;
@@ -355,3 +354,5 @@
 .nav-bar .nav-left{position:absolute;top:0;left:20upx;z-index:999;padding:14upx;line-height: 60upx;font-size:28upx;}
 .nav-bar .nav-right{position:absolute;top:0;right:20upx;z-index:999;padding:14upx;font-size:28upx;line-height: 60upx;color:$grey;}
 .nav-bar .nav-right .iconfont,.nav-bar .nav-left .iconfont{font-size:44upx;}
+.nav-bar .nav-center image{width:128upx;height:54upx;padding:17upx 0;}
+.nav-bar .nav-right image{width:60upx;height:60upx;display:block;}

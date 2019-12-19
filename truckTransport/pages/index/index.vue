@@ -1,5 +1,11 @@
 <template>
 	<view class="content">
+		<view class="status_bar"></view>
+		<view class="nav-bar">
+			<view class="nav-left" @tap="drawer"><text class="iconfont icon-yonghu"></text></view>
+			<view class="nav-center"><image src="../../static/img/logoText.gif"></image></view>
+			<view class="nav-right" @tap="navTo('/pages/mymoney/mycoupon')"><image src="../../static/img/gift.png"></image></view>
+		</view>
 		<view @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
 			<uni-drawer :visible="visible" mode="left" @close="visible = false">
 				<view class="ui-drawer-top">
@@ -47,9 +53,10 @@
 		</view>
 		<view class="ui-top-nav">
 			<navigator class="ui-top-city-select" :url="'/pages/cityselect/cityselect?city=' + location_city.city.city_title + '&status=1&channel=changeCity'">
-				当前城市：{{ location_city.city.city_title }}
+				{{ location_city.city.city_title }}
 				<text>切换</text>
 			</navigator>
+			<view style="text-align: center;font-weight:700;">拉货·搬家</view>
 			<view class="iconfont icon-liaotianduihua" @tap="navTo('/pages/msgcenter/msgcenter')"></view>
 		</view>
 		<view class="ui-car-select">
@@ -280,6 +287,12 @@ export default {
 			let car = this.location_city.cars_list[this.current];
 			this.$store.commit('set_order_car', car);
 		},
+		drawer:function(e){
+			var index = e.index;
+			if (index === 0) {
+				this.visible = !this.visible;
+			}
+		},
 		cheackTrip() {
 			let that = this;
 			let trip = that.order.trip;
@@ -496,12 +509,12 @@ export default {
 			});
 		}
 	},
-	onNavigationBarButtonTap(e) {
+	/*onNavigationBarButtonTap(e) {
 		var index = e.index;
 		if (index === 0) {
 			this.visible = !this.visible;
 		}
-	}
+	}*/
 };
 </script>
 
@@ -666,13 +679,24 @@ export default {
 	justify-content: flex-end;
 }
 .ui-top-nav {
-	display: flex;
+	position:relative;
 	padding: 0 30upx;
 	line-height: 88upx;
 	color: #fff;
-	background: #424456;
+	background: #FF5723;
+}
+.ui-top-city-select{
+	position:absolute;
+	left:30upx;
+	top:0;
+	z-index: 2;
+	display:inline-block;
 }
 .ui-top-nav .iconfont {
+	position:absolute;
+	right:30upx;
+	top:0;
+	z-index: 2;
 	display: inline-block;
 	width: 88upx;
 	font-size: 24px;

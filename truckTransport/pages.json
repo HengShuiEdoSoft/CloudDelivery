@@ -5,19 +5,7 @@
 			"style": {
 				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTitleText": "拉活儿网",
-				"titleImage": "static/img/logoText.gif",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "\ue8c8",
-							"fontSrc": "/static/font/iconfont.ttf",
-							"fontSize": "18",
-							"float": "left",
-							"color": "#424456"
-						}]
-					}
-				}
+				"navigationStyle": "custom"
 			}
 		}, {
 			"path": "pages/login/login",

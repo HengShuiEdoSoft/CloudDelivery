@@ -388,11 +388,10 @@ textarea {
 
 .ui-top-city-select {
   padding: 0;
-  flex: 1;
   color: #fff;
   font-size: 14px;
   line-height: 88upx;
-  background: #424456; }
+  background: #FF5723; }
 
 .ui-top-city-select > text {
   padding-left: 20upx;
@@ -445,6 +444,16 @@ textarea {
 
 .nav-bar .nav-right .iconfont, .nav-bar .nav-left .iconfont {
   font-size: 44upx; }
+
+.nav-bar .nav-center image {
+  width: 128upx;
+  height: 54upx;
+  padding: 17upx 0; }
+
+.nav-bar .nav-right image {
+  width: 60upx;
+  height: 60upx;
+  display: block; }
 
 .dui-gap {
   height: 16upx; }
