@@ -199,13 +199,11 @@ let time = 0; // 时间记录，用于滑动时且时间小于1s则执行左右�
 let interval = ''; // 记录/清理时间记录
 let touchMoveX = 0; // x轴方向移动的距离
 let touchMoveY = 0; // y轴方向移动的距离
-import cmdCurtain from '@/components/cmd-curtain/cmd-curtain.vue';
 export default {
 	components: {
 		uniDrawer,
 		uniPopup,
-		hTimePicker,
-		cmdCurtain
+		hTimePicker
 	},
 	data() {
 		return {
