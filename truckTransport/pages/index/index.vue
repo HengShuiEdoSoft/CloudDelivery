@@ -96,7 +96,7 @@
 			<navigator>详情</navigator>
 			<text class="iconfont icon-cuowuguanbiquxiao" style="flex:1" @tap="closetag"></text>
 		</view>
-		<view class="uni-timeline-box">
+		<view class="uni-timeline-box" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
 			<view class="uni-timeline">
 				<view class="uni-timeline-item uni-timeline-first-item">
 					<view class="uni-timeline-item-divider">发</view>
@@ -277,11 +277,16 @@ export default {
 				// 向左滑动
 				if (touchMoveX - touchStartX <= -30 && time < 10) {
 					console.log('左滑页面');
-					this.visible = false;
+					if(this.visible){
+						this.visible = false;
+					}					
 				}
 				// 向右滑动
 				if (touchMoveX - touchStartX >= 30 && time < 10) {
 					console.log('向右滑动');
+					if(!this.visible){
+						this.visible = true;
+					}
 				}
 			}
 			clearInterval(interval); // 清除setInterval
@@ -298,10 +303,12 @@ export default {
 			this.$store.commit('set_order_car', car);
 		},
 		drawer:function(e){
-			var index = e.index;
-			if (index === 0) {
-				this.visible = !this.visible;
-			}
+			console.log(e);
+			this.visible = !this.visible;
+			// let index = e.index;
+			// if (index === 0) {
+			// 	this.visible = !this.visible;
+			// }
 		},
 		cheackTrip() {
 			let that = this;
