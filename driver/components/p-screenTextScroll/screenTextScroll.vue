@@ -56,14 +56,13 @@ usage:
 
 <style lang="scss">
 	._notice {
-		padding:20upx 0;
 		font-size: 20upx;
-		height: 136upx;
+		height: 48upx;
 		line-height: 48upx;
-		color: #111;
-		background: rgba(#FF9801,.1);
-		border:1px solid #FF9801;
+		color: #fff;
+		background-image: linear-gradient(to right,#FF5723, #FF9801);
 		overflow: hidden;
+		border-radius: 12upx;
 		box-sizing: border-box;
 
 	}

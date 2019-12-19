@@ -27,13 +27,28 @@
 				</view>
 			</view>
 		</view>
-		
-		<view style="margin-top:30upx;">
-			<view class="ui-title">司机动态</view>
-			<view style="padding:0 30upx;"><textscroll :list="orderList" /></view>
+		<view class="ui-divide-bar"></view>
+		<view>
+			<!--<view class="ui-title">司机动态</view>-->
+			<view style="padding:30upx;display:flex;align-items: center;">
+				<view style="flex: 1;" class="ui-gonggao-body">
+					<view class="ui-gonggao-title">
+						<text>月入轻松</text>
+						<text style="color:#FF9801">过万</text>
+					</view>
+					<view class="ui-gonggao-subtext">
+						<text style="color:#FF9801">成为认证司机</text>
+						<text>自由出工&nbsp;就近接单</text>
+					</view>
+					<view style="width:420upx;"><textscroll :list="orderList" /></view>
+				</view>
+				<view class="ui-gonggao-btn">
+					立即加盟
+				</view>
+			</view>
 		</view>
-		
-		<view style="margin-top:30upx;">
+		<view class="ui-divide-bar"></view>
+		<view style="padding-bottom: 30upx;">
 			<view class="ui-title">用车租车</view>
 			<swiper @change="swiperChange" :current="current">
 				<swiper-item v-for="(item, index) in yczcList" :key="index">
@@ -48,8 +63,9 @@
 					</view>
 				</swiper-item>
 			</swiper>
-		</view>		
-		<view style="margin-top:30upx;width: 100vw;overflow: hidden;">
+		</view>	
+		<view class="ui-divide-bar"></view>
+		<view style="width: 100vw;overflow: hidden;">
 			<view class="ui-title">常见问题</view>
 			<view>
 				<view @tap="goaview(item.text, item.scode)" class="ui-article-list" v-for="(item, index) in cjwtList" :key="index">
@@ -274,8 +290,5 @@ swiper {
 }
 .ui-grid {
 	flex-wrap: wrap;
-}
-._notice{
-	height: 40px !important;
 }
 </style>
