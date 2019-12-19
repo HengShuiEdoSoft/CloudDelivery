@@ -60,8 +60,7 @@
 			<view class="iconfont icon-liaotianduihua" @tap="navTo('/pages/msgcenter/msgcenter')"></view>
 		</view>
 		<view class="ui-car-select">
-			<!-- <view class="ui-car-name-list" style="box-sizing:border-box;width: 100vw;display: block;"> -->
-			<scroll-view style="display: block; width: 100vw;" :scroll-x="true" :scroll-left="tabs_leff">
+			<scroll-view style="display: block; width: 100vw;" :scroll-x="true" :scroll-left="tabs_left">
 				<view style="white-space: nowrap;">
 					<view
 						class="ui-car-name-item"
@@ -75,13 +74,9 @@
 					</view>
 				</view>
 			</scroll-view>
-			<!-- 				<view id="tabs-car" style="display: flex;left: -10px;">
-				
-				</view> -->
-			<!-- </view> -->
 			<view class="ui-divide-line"></view>
 			<view>
-				<swiper class="ui-carinfos" @animationfinish="swiperChange" :current="current">
+				<swiper class="ui-carinfos" @change="swiperChange" :current="current">
 					<swiper-item class="ui-carinfo-item" v-for="(item, index) in location_city.cars_list" :key="index">
 						<view class="ui-carinfo-body">
 							<navigator :url="'/pages/cardetail/cardetail?id=' + item.car_id" hover-class="none">
@@ -104,65 +99,79 @@
 				</swiper>
 			</view>
 		</view>
-		<view class="ui-baozheng" v-if="tag">
-			<image src="../../static/img/bao.png"></image>
-			<text style="font-weight:700;">免费赠5万物损保额·让您放心用车</text>
-			<navigator>详情</navigator>
-			<text class="iconfont icon-cuowuguanbiquxiao" style="flex:1" @tap="closetag"></text>
-		</view>
-		<view class="uni-timeline-box" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
-			<view class="uni-timeline">
-				<view class="uni-timeline-item uni-timeline-first-item">
-					<view class="uni-timeline-item-divider">发</view>
-					<view class="uni-timeline-item-content" @tap="amap_choice('departure')">
-						<block v-if="order.trip.departure.localtion == ''"><view class="ui-address">请输入发货地址</view></block>
-						<block v-else>
-							<view class="ui-address">{{ order.trip.departure.localtion }}</view>
-							<view class="ui-subtext">{{ order.trip.departure.address }}</view>
-							<view class="ui-subtext">{{ order.trip.departure.contact }} {{ order.trip.departure.phone }}</view>
-						</block>
+		<view style="overflow-y: scroll;height: 34vh; margin: 12px 0 0 0;" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
+			<view class="ui-baozheng" v-if="tag" style="margin: 0 6px;">
+				<image src="/static/img/bao.png"></image>
+				<text style="font-weight:700;">免费赠5万物损保额·让您放心用车</text>
+				<navigator :url="'/pages/setup/aview?title=赠送物损险&scode=' + $drmking.md5('赠送物损险')">详情</navigator>
+				<text class="iconfont icon-cuowuguanbiquxiao" style="flex:1" @tap="closetag"></text>
+			</view>
+			<view class="uni-timeline-box">
+				<view class="uni-timeline">
+					<view class="uni-timeline-item uni-timeline-first-item">
+						<view class="uni-timeline-item-divider">发</view>
+						<view class="uni-timeline-item-content" @tap="amap_choice('departure')">
+							<block v-if="order.trip.departure.localtion == ''"><view class="ui-address">请输入发货地址</view></block>
+							<block v-else>
+								<view class="ui-address">{{ order.trip.departure.localtion }}</view>
+								<view class="ui-subtext">{{ order.trip.departure.address }}</view>
+								<view class="ui-subtext">{{ order.trip.departure.contact }} {{ order.trip.departure.phone }}</view>
+							</block>
+						</view>
 					</view>
-				</view>
-				<view v-for="(item, index) in order.trip.transfer" :key="index" class="uni-timeline-item">
-					<view class="uni-timeline-item-divider"></view>
-					<view class="uni-timeline-item-content" @tap="amap_choice('transfer', index)">
-						<block v-if="item.localtion == ''"><view class="ui-address">请输入收货地址</view></block>
-						<block v-else>
-							<view class="ui-address">{{ item.localtion }}</view>
-							<view class="ui-subtext">{{ item.address }}</view>
-							<view class="ui-subtext">{{ item.contact }} {{ item.phone }}</view>
-						</block>
+					<view v-for="(item, index) in order.trip.transfer" :key="index" class="uni-timeline-item">
+						<view class="uni-timeline-item-divider"></view>
+						<view class="uni-timeline-item-content" @tap="amap_choice('transfer', index)">
+							<block v-if="item.localtion == ''"><view class="ui-address">请输入收货地址</view></block>
+							<block v-else>
+								<view class="ui-address">{{ item.localtion }}</view>
+								<view class="ui-subtext">{{ item.address }}</view>
+								<view class="ui-subtext">{{ item.contact }} {{ item.phone }}</view>
+							</block>
+						</view>
+						<view class="delete_address" @tap="deleteAddress('transfer', index)">删除</view>
 					</view>
-					<view class="delete_address" @tap="deleteAddress('transfer', index)">删除</view>
-				</view>
-				<view class="uni-timeline-item uni-timeline-last-item">
-					<view class="uni-timeline-item-divider">收</view>
-					<view class="uni-timeline-item-content" @tap="amap_choice('destination')">
-						<block v-if="order.trip.destination.localtion == ''"><view class="ui-address">请输入收货地址</view></block>
-						<block v-else>
-							<view class="ui-address">{{ order.trip.destination.localtion }}</view>
-							<view class="ui-subtext">{{ order.trip.destination.address }}</view>
-							<view class="ui-subtext">{{ order.trip.destination.contact }} {{ order.trip.destination.phone }}</view>
-						</block>
+					<view class="uni-timeline-item uni-timeline-last-item">
+						<view class="uni-timeline-item-divider">收</view>
+						<view class="uni-timeline-item-content" @tap="amap_choice('destination')">
+							<block v-if="order.trip.destination.localtion == ''"><view class="ui-address">请输入收货地址</view></block>
+							<block v-else>
+								<view class="ui-address">{{ order.trip.destination.localtion }}</view>
+								<view class="ui-subtext">{{ order.trip.destination.address }}</view>
+								<view class="ui-subtext">{{ order.trip.destination.contact }} {{ order.trip.destination.phone }}</view>
+							</block>
+						</view>
+						<view class="delete_address" @tap="deleteAddress('destination')">删除</view>
 					</view>
-					<view class="delete_address" @tap="deleteAddress('destination')">删除</view>
+					<view class="uni-timeline-item add_address_box"><view class="add_address" @tap="addAddress">添加收货地址</view></view>
 				</view>
-				<view class="uni-timeline-item add_address_box"><view class="add_address" @tap="addAddress">添加收货地址</view></view>
 			</view>
 		</view>
-
-		<view class="ui-home-bottom">
-			<view v-if="order.order_price > 0" class="ui-home-price-container">
-				<view class="ui-cost-price">
-					<text>￥</text>
-					<text class="ui-price-now">{{ order.pay_order_price }}</text>
-					<text class="ui-origin-price">￥{{ order.order_price }}</text>
-					<view class="ui-home-discount">
-						优惠券已折扣
-						<text>{{ order.coupon_price }}元</text>
+		<view class="ui-home-bottom" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
+			<view class="ui-home-price-container">
+				<block v-if="order.order_price > 0">
+					<view class="ui-cost-price">
+						<text>￥</text>
+						<text class="ui-price-now">{{ order.pay_order_price }}</text>
+						<text class="ui-origin-price">￥{{ order.order_price }}</text>
+						<view class="ui-home-discount">
+							优惠券已折扣
+							<text>{{ order.coupon_price }}元</text>
+						</view>
 					</view>
-				</view>
-				<navigator class="ui-price-detail" url="/pages/pricedetail/pricedetail">价格明细</navigator>
+					<navigator class="ui-price-detail" url="/pages/pricedetail/pricedetail">价格明细</navigator>
+				</block>
+				<block v-if="order.order_price == 0">
+					<view class="ui-cost-price">
+						<text>￥</text>
+						<text class="ui-price-now">{{ location_city.cars_list[current] ? location_city.cars_list[current].base_price_json[0].price : 0 }}元起</text>
+						<view class="ui-home-discount">
+							优惠券已折扣
+							<text>{{ order.coupon_price }}元</text>
+						</view>
+					</view>
+					<navigator class="ui-price-detail" url="/pages/setup/transportstandard">资费标准</navigator>
+				</block>
 			</view>
 			<view class="ui-home-btns">
 				<view class="ui-use-now" @tap="orderSure">现在用车</view>
@@ -195,7 +204,7 @@ export default {
 	},
 	data() {
 		return {
-			tabs_leff: 0,
+			tabs_left: 0,
 			visible: false,
 			current: 0,
 			tag: true,
@@ -280,24 +289,24 @@ export default {
 				// 上下
 				// 向上滑动
 				if (touchMoveY - touchStartY <= -30 && time < 10) {
-					console.log('向上滑动');
+					// console.log('向上滑动');
 				}
 				// 向下滑动
 				if (touchMoveY - touchStartY >= 30 && time < 10) {
-					console.log('向下滑动 ');
+					// console.log('向下滑动 ');
 				}
 			} else {
 				// 左右
 				// 向左滑动
 				if (touchMoveX - touchStartX <= -30 && time < 10) {
-					console.log('左滑页面');
+					// console.log('左滑页面');
 					if (this.visible) {
 						this.visible = false;
 					}
 				}
 				// 向右滑动
 				if (touchMoveX - touchStartX >= 30 && time < 10) {
-					console.log('向右滑动');
+					// console.log('向右滑动');
 					if (!this.visible) {
 						this.visible = true;
 					}
@@ -311,9 +320,8 @@ export default {
 			let that = this;
 			this.current = index;
 			let car = that.location_city.cars_list[that.current];
-			// that.tabs_center();
 		},
-		tabs_center(){
+		tabs_center() {
 			let that = this;
 			uni.createSelectorQuery()
 				.selectAll('.ui-car-name-item')
@@ -332,9 +340,9 @@ export default {
 					}
 					let left = scrollLeft - swidth_2;
 					if (left > 0) {
-						that.tabs_leff = left;
+						that.tabs_left = left;
 					} else if (left <= 0) {
-						that.tabs_leff = 0;
+						that.tabs_left = 0;
 					}
 				})
 				.exec();
