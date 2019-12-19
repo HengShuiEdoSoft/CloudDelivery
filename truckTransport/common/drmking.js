@@ -395,6 +395,9 @@ let drmking = {
 				cars[car_id] = car;
 				cars_list.push(car);
 			}
+			cars_list.sort(function(a, b) {
+				return b.sorting - a.sorting;
+			});
 			city_data = {
 				city: city,
 				cars: cars,

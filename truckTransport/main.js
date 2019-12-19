@@ -38,9 +38,7 @@ uniFly.responseInterceptors.success = function(response) {
 	// uni.hideLoading()
 	let result = drmking.isJsonString(response.data);
 	if (result === true) {
-		console.log(response.data);
 		response.data = JSON.parse(response.data);
-		console.log(response.data);
 	} else if (typeof result === 'object') {
 		response.data = result;
 	}
