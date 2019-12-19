@@ -689,7 +689,11 @@ textarea {
   height: 88upx;
   position: relative;
   color: #fff;
-  background: #434456; }
+  background: #FF5723; }
+
+.nav-bar.nav-bar-b {
+  background: #fff;
+  color: #212121; }
 
 .nav-bar .nav-center {
   text-align: center;
@@ -701,7 +705,9 @@ textarea {
   position: absolute;
   top: 0;
   left: 20upx;
-  padding: 14upx; }
+  padding: 14upx;
+  font-size: 34upx;
+  font-weight: 700; }
 
 .nav-bar .nav-right {
   position: absolute;
@@ -711,6 +717,11 @@ textarea {
 
 .nav-bar .nav-right .iconfont {
   font-size: 40upx; }
+
+.nav-bar .nav-center image {
+  width: 128upx;
+  height: 54upx;
+  padding: 17upx 0; }
 
 .ui-grid {
   display: flex;
@@ -846,7 +857,7 @@ textarea {
   width: 5200upx;
   height: 5200upx;
   border-radius: 50%;
-  background-color: #434456;
+  background-color: #FF5723;
   transform: translateX(-50%); }
 
 .dui-user-information {

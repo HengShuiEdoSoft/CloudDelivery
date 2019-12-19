@@ -1,5 +1,11 @@
 <template>
 	<view class="content">
+		<view class="status_bar"></view>
+		<view class="nav-bar nav-bar-b">
+			<view class="nav-left">抢单</view>
+			<view class="nav-center"><image src="../../static/img/logoText1.gif"></image></view>
+			<view class="nav-right"></view>
+		</view>
 		<!--<uni-drawer :visible="visible" mode="right" @close="visible=false">
 			<view class="ui-drawer-container">
 				<view class="ui-options-title">筛选</view>
@@ -52,7 +58,7 @@
 		</uni-drawer>-->
 		<view class="ui-top-nav">
 			<view class="ui-top-isworing">
-				<switch checked color="#FF5723" @change="switchChange" :checked="is_work"/>
+				<switch checked color="#424456" @change="switchChange" :checked="is_work"/>
 				工作状态
 			</view>
 			<view>
@@ -283,7 +289,7 @@ export default {
 	padding: 0 30upx;
 	line-height: 88upx;
 	color: #fff;
-	background: #424456;
+	background: #FF5723;
 }
 .ui-top-nav .iconfont {
 	display: inline-block;
