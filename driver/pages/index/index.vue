@@ -40,9 +40,9 @@
 						<text style="color:#FF9801">成为认证司机</text>
 						<text>自由出工&nbsp;就近接单</text>
 					</view>
-					<view style="width:420upx;"><textscroll :list="orderList" /></view>
+					<view style="width:440upx;"><textscroll :list="orderList" /></view>
 				</view>
-				<view class="ui-gonggao-btn">
+				<view class="ui-gonggao-btn" @tap="jiameng">
 					立即加盟
 				</view>
 			</view>
@@ -113,6 +113,25 @@ export default {
 		that.getCjwtList();
 	},
 	methods: {
+		jiameng(){
+			let that=this;
+			if(that.$drmking.isEmpty(that.user)){
+				uni.navigateTo({
+					url:'/pages/login/login'
+				});
+			}else{
+				if(that.user.car_number!==undefined){
+					uni.showToast({
+						icon:'none',
+						title:'恭喜您，已经加入我们啦！'
+					});
+				}else{
+					uni.navigateTo({
+						url: '/pages/mycar/carinfo'
+					});
+				}	
+			}
+		},
 		goaview(text, scode) {
 			uni.navigateTo({
 				url: '/pages/setup/aview?title=' + text + '&scode=' + scode

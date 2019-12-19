@@ -58,7 +58,7 @@
 		</uni-drawer>-->
 		<view class="ui-top-nav">
 			<view class="ui-top-isworing">
-				<switch checked color="#424456" @change="switchChange" :checked="is_work"/>
+				<switch checked color="#424456" @change="switchChange" :checked="is_work" />
 				工作状态
 			</view>
 			<view>
@@ -70,7 +70,7 @@
 			<scroll-view class="scroll-container">
 				<view class="ui-order-list-item" v-for="(item, index) in scramble_orders" :key="index">
 					<view class="ui-order-list-item-top">
-						<text class="ui-order-list-cartype">整车</text>
+						<text class="ui-order-list-cartype">{{ item.order_details.car_title.indexOf('拼车') == -1 ? '整车' : '拼车' }}</text>
 						<text>{{ item.order_details.car_time }}</text>
 						<text class="ui-order-first">急</text>
 					</view>
@@ -103,7 +103,7 @@ import { mapState } from 'vuex';
 import uniDrawer from '@/components/drawer/drawer.vue';
 export default {
 	components: { uniDrawer },
-	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'scramble_orders','is_work','is_sound']),
+	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'scramble_orders', 'is_work', 'is_sound']),
 	data() {
 		return {
 			visible: false,
@@ -180,7 +180,7 @@ export default {
 						order_details: data.order.order_details
 					};
 					that.$store.commit('addPushToDriverOrderNotice', order);
-					if(that.$store.state.is_sound){
+					if (that.$store.state.is_sound) {
 						that.$drmking.tts('有新订单发布，快去瞧瞧吧！');
 					}
 				}
@@ -289,7 +289,7 @@ export default {
 	padding: 0 30upx;
 	line-height: 88upx;
 	color: #fff;
-	background: #FF5723;
+	background: #ff5723;
 }
 .ui-top-nav .iconfont {
 	display: inline-block;

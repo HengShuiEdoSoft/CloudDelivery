@@ -304,11 +304,9 @@ export default {
 		},
 		drawer:function(e){
 			console.log(e);
-			this.visible = !this.visible;
-			// let index = e.index;
-			// if (index === 0) {
-			// 	this.visible = !this.visible;
-			// }
+			if(!this.visible){
+				this.visible = true;
+			}
 		},
 		cheackTrip() {
 			let that = this;
