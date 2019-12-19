@@ -64,7 +64,7 @@
 			<view class="ui-title">简讯</view>
 			<view style="padding:0 30upx;"><textscroll :list="list"/></view>
 		</view>
-		<view style="margin-top:30upx;">
+		<view style="margin-top:30upx;width:100vw;overflow: hidden;">
 			<view class="ui-title">推荐阅读</view>		
 			<view>
 				<view class="ui-article-list">
@@ -85,7 +85,7 @@
 				</view>
 				<view class="ui-article-list">
 					<view>电子表格你先忙</view>
-					<view class="ui-subtext">上拉活儿网尽享好礼上拉活儿网尽享好礼</view>
+					<view class="ui-subtext">上拉活儿网尽享好礼上拉活儿网尽享好礼上拉活儿网尽享好礼上拉活儿网尽享好礼</view>
 				</view>
 			</view>
 		</view>

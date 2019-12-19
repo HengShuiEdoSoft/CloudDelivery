@@ -714,6 +714,7 @@ textarea {
 
 .ui-grid {
   display: flex;
+  flex-wrap: wrap;
   font-size: 28upx; }
 
 .ui-grid-item .iconfont {
@@ -748,7 +749,7 @@ textarea {
   color: #999;
   padding-top: 10upx; }
 
-.ui-grid-item2 view, .ui-article-list view {
+.ui-grid-item2 view, .ui-article-list view, .ui-article-list .ui-subtext {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap; }
