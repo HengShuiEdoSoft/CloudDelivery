@@ -398,7 +398,7 @@ let drmking = {
 			city_data = {
 				city: city,
 				cars: cars,
-				cars_list: cars_list,
+				cars_list: cars_list
 			}
 		}
 		this.cacheData(location_city_key, city_data, 0);

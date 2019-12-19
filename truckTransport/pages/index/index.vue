@@ -60,14 +60,28 @@
 			<view class="iconfont icon-liaotianduihua" @tap="navTo('/pages/msgcenter/msgcenter')"></view>
 		</view>
 		<view class="ui-car-select">
-			<view class="ui-car-name-list">
-				<view class="ui-car-name-item" v-for="(item, index) in location_city.cars_list" :key="item.car_id" :class="{ active: current === index }" @click="tabChange(index)">
-					{{ item.car_title }}
+			<!-- <view class="ui-car-name-list" style="box-sizing:border-box;width: 100vw;display: block;"> -->
+			<scroll-view style="display: block; width: 100vw;" :scroll-x="true" :scroll-left="tabs_leff">
+				<view style="white-space: nowrap;">
+					<view
+						class="ui-car-name-item"
+						style="white-space: nowrap;margin: 0 10px;display: inline-block;"
+						v-for="(item, index) in location_city.cars_list"
+						:key="item.car_id"
+						:class="{ active: current === index }"
+						@click="tabChange(index)"
+					>
+						{{ item.car_title }}
+					</view>
 				</view>
-			</view>
+			</scroll-view>
+			<!-- 				<view id="tabs-car" style="display: flex;left: -10px;">
+				
+				</view> -->
+			<!-- </view> -->
 			<view class="ui-divide-line"></view>
 			<view>
-				<swiper class="ui-carinfos" @change="swiperChange" :current="current">
+				<swiper class="ui-carinfos" @animationfinish="swiperChange" :current="current">
 					<swiper-item class="ui-carinfo-item" v-for="(item, index) in location_city.cars_list" :key="index">
 						<view class="ui-carinfo-body">
 							<navigator :url="'/pages/cardetail/cardetail?id=' + item.car_id" hover-class="none">
@@ -167,12 +181,12 @@ import uniDrawer from '@/components/drawer/drawer.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import hTimePicker from '@/components/h-timePicker/h-timePicker.vue';
 let amap = require('@/common/amap.js');
-	let touchStartX = 0; //触摸时的原点
-	let touchStartY = 0; //触摸时的原点
-	let time = 0; // 时间记录，用于滑动时且时间小于1s则执行左右滑动
-	let interval = ''; // 记录/清理时间记录
-	let touchMoveX = 0; // x轴方向移动的距离
-	let touchMoveY = 0; // y轴方向移动的距离
+let touchStartX = 0; //触摸时的原点
+let touchStartY = 0; //触摸时的原点
+let time = 0; // 时间记录，用于滑动时且时间小于1s则执行左右滑动
+let interval = ''; // 记录/清理时间记录
+let touchMoveX = 0; // x轴方向移动的距离
+let touchMoveY = 0; // y轴方向移动的距离
 export default {
 	components: {
 		uniDrawer,
@@ -181,9 +195,10 @@ export default {
 	},
 	data() {
 		return {
+			tabs_leff: 0,
 			visible: false,
 			current: 0,
-			tag:true,
+			tag: true,
 			is_now: false,
 			location_city: {
 				city: {
@@ -234,10 +249,9 @@ export default {
 		});
 	},
 	methods: {
-		closetag:function(){
-			this.tag=false;
+		closetag: function() {
+			this.tag = false;
 		},
-		
 		// 触摸开始事件
 		touchStart: function(e) {
 			touchStartX = e.touches[0].pageX; // 获取触摸时的原点
@@ -277,14 +291,14 @@ export default {
 				// 向左滑动
 				if (touchMoveX - touchStartX <= -30 && time < 10) {
 					console.log('左滑页面');
-					if(this.visible){
+					if (this.visible) {
 						this.visible = false;
-					}					
+					}
 				}
 				// 向右滑动
 				if (touchMoveX - touchStartX >= 30 && time < 10) {
 					console.log('向右滑动');
-					if(!this.visible){
+					if (!this.visible) {
 						this.visible = true;
 					}
 				}
@@ -292,19 +306,49 @@ export default {
 			clearInterval(interval); // 清除setInterval
 			time = 0;
 		},
+
 		tabChange: function(index) {
+			let that = this;
 			this.current = index;
-			let car = this.location_city.cars_list[this.current];
+			let car = that.location_city.cars_list[that.current];
+			// that.tabs_center();
+		},
+		tabs_center(){
+			let that = this;
+			uni.createSelectorQuery()
+				.selectAll('.ui-car-name-item')
+				.boundingClientRect(function(rect) {
+					let scrollLeft = 0;
+					let width = 0;
+					let swidth = uni.getSystemInfoSync().screenWidth;
+					let swidth_2 = swidth / 2;
+					for (let i = 0; i < that.location_city.cars_list.length; i++) {
+						if (i < that.current) {
+							scrollLeft += parseInt(rect[i].width) + 20;
+						} else if (i == that.current) {
+							scrollLeft += parseInt(rect[i].width) / 2 + 10;
+						}
+						width += parseInt(rect[i].width) + 20;
+					}
+					let left = scrollLeft - swidth_2;
+					if (left > 0) {
+						that.tabs_leff = left;
+					} else if (left <= 0) {
+						that.tabs_leff = 0;
+					}
+				})
+				.exec();
 		},
 		swiperChange: function(e) {
+			let that = this;
 			let index = e.target.current || e.detail.current;
 			this.current = index;
 			let car = this.location_city.cars_list[this.current];
 			this.$store.commit('set_order_car', car);
+			that.tabs_center();
 		},
-		drawer:function(e){
-			console.log(e);
-			if(!this.visible){
+		drawer: function(e) {
+			if (!this.visible) {
 				this.visible = true;
 			}
 		},
@@ -523,7 +567,7 @@ export default {
 				url: '/pages/order/order?time=' + date_time + '&is_now=' + this.is_now
 			});
 		}
-	},
+	}
 	/*onNavigationBarButtonTap(e) {
 		var index = e.index;
 		if (index === 0) {
@@ -694,23 +738,23 @@ export default {
 	justify-content: flex-end;
 }
 .ui-top-nav {
-	position:relative;
+	position: relative;
 	padding: 0 30upx;
 	line-height: 88upx;
 	color: #fff;
-	background: #FF5723;
+	background: #ff5723;
 }
-.ui-top-city-select{
-	position:absolute;
-	left:30upx;
-	top:0;
+.ui-top-city-select {
+	position: absolute;
+	left: 30upx;
+	top: 0;
 	z-index: 2;
-	display:inline-block;
+	display: inline-block;
 }
 .ui-top-nav .iconfont {
-	position:absolute;
-	right:30upx;
-	top:0;
+	position: absolute;
+	right: 30upx;
+	top: 0;
 	z-index: 2;
 	display: inline-block;
 	width: 88upx;
