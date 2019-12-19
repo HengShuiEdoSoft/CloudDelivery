@@ -181,6 +181,9 @@
 				</view>
 			</view>
 		</view>
+		<view v-show="shengji">
+			<image mode="aspectFit" src="/static/amap/fa.png"></image>
+		</view>
 	</view>
 </template>
 
@@ -196,14 +199,17 @@ let time = 0; // 时间记录，用于滑动时且时间小于1s则执行左右�
 let interval = ''; // 记录/清理时间记录
 let touchMoveX = 0; // x轴方向移动的距离
 let touchMoveY = 0; // y轴方向移动的距离
+import cmdCurtain from '@/components/cmd-curtain/cmd-curtain.vue';
 export default {
 	components: {
 		uniDrawer,
 		uniPopup,
-		hTimePicker
+		hTimePicker,
+		cmdCurtain
 	},
 	data() {
 		return {
+			shengji: false,
 			tabs_left: 0,
 			visible: false,
 			current: 0,
@@ -233,6 +239,7 @@ export default {
 	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'sysconfig', 'order']),
 	onShow() {
 		this.$drmking.getUserInfo(this);
+		this.checkUserType();
 	},
 	onLoad() {
 		let that = this;
@@ -258,11 +265,17 @@ export default {
 		});
 	},
 	methods: {
+		checkUserType() {
+			let that = this;
+			that.shengji = true;
+		},
 		closetag: function() {
 			this.tag = false;
 		},
 		// 触摸开始事件
 		touchStart: function(e) {
+			touchMoveX = 0;
+			touchMoveY = 0;
 			touchStartX = e.touches[0].pageX; // 获取触摸时的原点
 			touchStartY = e.touches[0].pageY; // 获取触摸时的原点
 			// 使用js计时器记录时间
