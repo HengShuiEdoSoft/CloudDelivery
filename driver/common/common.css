@@ -784,7 +784,8 @@ textarea {
   font-weight: 700; }
 
 .ui-gonggao-subtext {
-  padding: 6upx 0 24upx; }
+  padding: 6upx 0 24upx;
+  color: #606060; }
 
 .ui-gonggao-subtext text + text {
   padding-left: 14upx; }
