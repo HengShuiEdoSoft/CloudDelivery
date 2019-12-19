@@ -779,6 +779,29 @@ textarea {
 .ui-article-list + .ui-article-list {
   border-top: 1upx solid #eee; }
 
+.ui-gonggao-body .ui-gonggao-title {
+  font-size: 48upx;
+  font-weight: 700; }
+
+.ui-gonggao-subtext {
+  padding: 6upx 0 24upx; }
+
+.ui-gonggao-subtext text + text {
+  padding-left: 14upx; }
+
+.ui-gonggao-body {
+  font-size: 28upx; }
+
+.ui-gonggao-btn {
+  padding: 10upx 30upx;
+  line-height: 56upx;
+  color: rgba(255, 255, 255, 0.8);
+  background: #FF5723;
+  border-radius: 56upx;
+  height: 56upx;
+  font-weight: 700;
+  box-shadow: 0 6upx 0 0 #dc4e12; }
+
 .dui-notyet-wrapper {
   margin-top: 300upx;
   margin-left: auto;
