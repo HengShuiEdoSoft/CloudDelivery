@@ -10,14 +10,16 @@
 		{
 			"path": "pages/index/qiang",
 			"style": {
-				"navigationBarTitleText": "抢单大厅"
+				"navigationBarTitleText": "抢单大厅",
+				"navigationStyle": "custom"
 			}
 		},
 		{
 			"path": "pages/order/order",
 			"style": {
 				"navigationBarTitleText": "订单",
-				"enablePullDownRefresh": true
+				"enablePullDownRefresh": true,
+				"navigationStyle": "custom"
 			}
 		},
 		{
