@@ -456,29 +456,37 @@ textarea {
   display: block; }
 
 .ui-baozheng {
+  display: flex;
   margin: 30upx 16upx 0;
   padding: 16upx;
   height: 72upx;
+  font-size: 28upx;
   background: #fff;
   line-height: 72upx; }
 
 .ui-baozheng image {
-  display: inline-block;
+  display: block;
   width: 72upx;
   height: 72upx; }
 
 .ui-baozheng text {
-  display: inline-block;
-  vertical-align: top;
+  display: block;
   margin-left: 10upx; }
 
-.ui-baozheng text + text {
+.ui-baozheng navigator {
   margin: 10upx;
   padding: 0 20upx;
   line-height: 50upx;
   border: 1upx solid #eee;
   color: #999;
   border-radius: 8upx; }
+
+.ui-baozheng .iconfont {
+  color: #999;
+  margin: 0;
+  padding: 0 10upx;
+  line-height: 72upx;
+  border: none; }
 
 .dui-gap {
   height: 16upx; }

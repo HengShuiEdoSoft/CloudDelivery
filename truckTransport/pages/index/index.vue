@@ -90,11 +90,12 @@
 				</swiper>
 			</view>
 		</view>
-		<navigator class="ui-baozheng">
+		<view class="ui-baozheng" v-if="tag">
 			<image src="../../static/img/bao.png"></image>
 			<text style="font-weight:700;">免费赠5万物损保额·让您放心用车</text>
-			<text>详情</text>
-			</navigator>
+			<navigator>详情</navigator>
+			<text class="iconfont icon-cuowuguanbiquxiao" style="flex:1" @tap="closetag"></text>
+		</view>
 		<view class="uni-timeline-box">
 			<view class="uni-timeline">
 				<view class="uni-timeline-item uni-timeline-first-item">
@@ -182,6 +183,7 @@ export default {
 		return {
 			visible: false,
 			current: 0,
+			tag:true,
 			is_now: false,
 			location_city: {
 				city: {
@@ -232,6 +234,9 @@ export default {
 		});
 	},
 	methods: {
+		closetag:function(){
+			this.tag=false;
+		},
 		
 		// 触摸开始事件
 		touchStart: function(e) {
