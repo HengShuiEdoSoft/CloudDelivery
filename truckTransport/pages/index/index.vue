@@ -93,7 +93,7 @@
 		<navigator class="ui-baozheng">
 			<image src="../../static/img/bao.png"></image>
 			<text style="font-weight:700;">免费赠5万物损保额·让您放心用车</text>
-			<text>详情 ></text>
+			<text>详情</text>
 			</navigator>
 		<view class="uni-timeline-box">
 			<view class="uni-timeline">
