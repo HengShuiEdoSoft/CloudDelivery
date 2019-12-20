@@ -494,7 +494,7 @@ export default {
 .ui-order-pay-btn{
 	display:inline-block;
 	padding:0 20upx;
-	margin:20upx 20upx 20upx 0;
+	margin:20upx 10upx 20upx 0;
 	line-height: 80upx;
 	border:1upx solid #FF5723;
 	color:#FF5723;
@@ -503,7 +503,7 @@ export default {
 .ui-order-pay-btn-b{
 	display:inline-block;
 	padding:0 20upx;
-	margin:20upx 20upx 20upx 0;
+	margin:20upx 10upx 20upx 0;
 	line-height: 80upx;
 	border:1upx solid #FF5723;
 	color:#fff;
