@@ -116,7 +116,7 @@ export default {
 <style>
 #amap {
 	width: 100vw;
-	height: calc(100vh - 357upx);
+	height: calc(100vh - 244upx);
 }
 
 cover-view {
