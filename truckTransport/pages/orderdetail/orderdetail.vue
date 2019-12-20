@@ -493,18 +493,18 @@ export default {
 }
 .ui-order-pay-btn{
 	display:inline-block;
-	padding:0 40upx;
-	margin-right:20upx;
-	line-height: 88upx;
+	padding:0 20upx;
+	margin:20upx 20upx 20upx 0;
+	line-height: 80upx;
 	border:1upx solid #FF5723;
 	color:#FF5723;
 	border-radius: 4px;
 }
 .ui-order-pay-btn-b{
 	display:inline-block;
-	padding:0 40upx;
-	margin-right:20upx;
-	line-height: 88upx;
+	padding:0 20upx;
+	margin:20upx 20upx 20upx 0;
+	line-height: 80upx;
 	border:1upx solid #FF5723;
 	color:#fff;
 	background: #FF5723;
