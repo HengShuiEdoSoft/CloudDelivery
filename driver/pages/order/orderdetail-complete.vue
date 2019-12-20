@@ -29,6 +29,7 @@
 						<view class="uni-timeline-item-content">
 							<text class="ui-address">{{ order.order_details_json.trip.departure.localtion }}{{ order.order_details_json.trip.departure.address }}</text>
 							<text @tap="openSysMap(order.order_details_json.trip.departure)" class="ui-daohang">一键导航</text>
+							<text v-if="$drmking.isPhone(order.order_details_json.trip.departure.phone)" @tap="tcall(order.order_details_json.trip.departure.phone)" class="ui-daohang">一键呼叫</text>
 						</view>
 					</view>
 					<view class="uni-timeline-item" v-for="(passbyitem, index) in order.order_details_json.trip.transfer" :key="index">
@@ -36,6 +37,7 @@
 						<view class="uni-timeline-item-content">
 							<text class="ui-address">{{ passbyitem.localtion }}{{ passbyitem.address }}</text>
 							<text @tap="openSysMap(passbyitem)" class="ui-daohang">一键导航</text>
+							<text v-if="$drmking.isPhone(passbyitem.phone)" @tap="tcall(passbyitem.phone)" class="ui-daohang">一键呼叫</text>
 						</view>
 					</view>
 					<view class="uni-timeline-item uni-timeline-last-item">
@@ -43,6 +45,7 @@
 						<view class="uni-timeline-item-content">
 							<text class="ui-address">{{ order.order_details_json.trip.destination.localtion }}{{ order.order_details_json.trip.destination.address }}</text>
 							<text @tap="openSysMap(order.order_details_json.trip.destination)" class="ui-daohang">一键导航</text>
+							<text v-if="$drmking.isPhone(order.order_details_json.trip.destination.phone)" @tap="tcall(order.order_details_json.trip.destination.phone)" class="ui-daohang">一键呼叫</text>
 						</view>
 					</view>
 				</view>
@@ -128,6 +131,11 @@ export default {
 		});
 	},
 	methods: {
+		tcall: function(phone) {
+			uni.makePhoneCall({
+				phoneNumber: phone
+			});
+		},
 		openSysMap(localtion) {
 			Map.openMap(localtion.lat, localtion.lon, localtion.localtion + localtion.address);
 		},
