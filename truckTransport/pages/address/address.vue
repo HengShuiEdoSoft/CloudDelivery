@@ -8,7 +8,7 @@
 					<text>您还没有常用地址</text>
 				</view>
 			</view>
-			<view  v-if="!empty" v-for="(item,index) in lists" :key="item.address_id" @longpress="deleteAddress(item.address_id,index)">
+			<view  v-if="lists.length!=0" v-for="(item,index) in lists" :key="item.address_id" @longpress="deleteAddress(item.address_id,index)">
 				<view class="dui-basic-list">
 					<navigator :url="'editaddress?data=' + JSON.stringify(item)">
 						<view class="dui-basic-list-item">
@@ -55,7 +55,8 @@
 			}
 		},
 		onLoad() {
-			this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
+			let height=uni.getSystemInfoSync().windowHeight-44;
+			this.height="height:"+height+'px';
 		},
 		onShow:function(){
 			this.getList();

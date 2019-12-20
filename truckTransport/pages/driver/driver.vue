@@ -6,7 +6,7 @@
 			<text>收藏好司机直接发单给他们</text>
 			<view class="dui-notyet-btn" @tap="togglePopup('center', 'collection')">去收藏司机</view>
 		</view>
-		<view class="ui-list" v-if="!empty">
+		<view class="ui-list" v-if="lists.length!=0">
 			<view class="ui-list-item" v-for="(item, index) in lists" :key="item.user_driver_favorites_id" @longpress="deleteDriver(item.user_driver_favorites_id,index)">
 				<view class="ui-list-title">{{ item.dname }}</view>
 				<view class="ui-list-subtext">{{ item.phone }}</view>
