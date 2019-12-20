@@ -181,9 +181,7 @@
 				</view>
 			</view>
 		</view>
-		<view v-show="shengji">
-			<image mode="aspectFit" src="/static/amap/fa.png"></image>
-		</view>
+		<view v-show="shengji"><image mode="aspectFit" src="/static/amap/fa.png"></image></view>
 	</view>
 </template>
 
@@ -265,7 +263,15 @@ export default {
 	methods: {
 		checkUserType() {
 			let that = this;
-			that.shengji = true;
+			if (!that.$drmking.isEmpty(that.user)) {
+				if (that.$drmking.isEmpty(that.user.business_number)) {
+					let flag = that.$drmking.cacheData('qiyeyonghuad');
+					if (that.$drmking.isEmpty(flag)) {
+						that.shengji = true;
+						that.$drmking.cacheData('qiyeyonghuad', true, 259200);
+					}
+				}
+			}
 		},
 		closetag: function() {
 			this.tag = false;
