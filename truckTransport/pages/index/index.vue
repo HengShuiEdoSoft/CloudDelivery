@@ -182,7 +182,18 @@
 				</view>
 			</view>
 		</view>
-		<view v-show="shengji"><image mode="aspectFit" src="/static/amap/fa.png"></image></view>
+		<view v-show="shengji" class="ui-tanchukuang">
+			<view class="ui-tanchukuang-body">
+				<image mode="aspectFit" src="/static/img/shengji.jpg"></image>
+				<view>企业用户专享</view>
+				<view class="ui-qiyeyoushi">
+					<view>1.开发票</view>
+					<view>2.开发票</view>
+				</view>
+				<view class="ui-tanchukuang-btn">升级企业用户</view>
+			</view>
+			<view class="ui-tanchukuang-close"><text class="iconfont icon-cuowuguanbiquxiao"></text></view>
+		</view>
 	</view>
 </template>
 
@@ -794,4 +805,26 @@ export default {
 	color: #ff5723;
 	border: 1px solid #ff5723;
 }
+.ui-tanchukuang{
+	position:fixed;
+	top:0;
+	left:0;
+	z-index: 10000;
+	width:100vw;
+	height:100vh;
+	background: rgba(0,0,0,.3);
+}
+.ui-tanchukuang-body{
+	width:520upx;
+	margin:260upx auto 0;
+	padding:40upx;
+	background: #fff;
+	text-align: center;
+	box-sizing: border-box;
+}
+.ui-tanchukuang-close{width:108upx;text-align: center;margin:40upx auto;}
+.ui-tanchukuang-close .iconfont{font-size:36upx;color:#fff;padding:12upx;border: 1px solid #fff;border-radius: 80upx;}
+.ui-tanchukuang-body image{width:280upx;height:280upx;}
+.ui-qiyeyoushi{padding:20upx 40upx 40upx;text-align: left;color:#666;}
+.ui-tanchukuang-btn{font-size:28upx;line-height:80upx;border-radius: 60upx;color:#fff;text-align:center;background: #FF5723;}
 </style>
