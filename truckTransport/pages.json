@@ -39,6 +39,11 @@
 				"enablePullDownRefresh": true
 			}
 		}, {
+			"path": "pages/placeorder/sending",
+			"style": {
+				"navigationBarTitleText": "订单追踪"
+			}
+		}, {
 			"path": "pages/orderdetail/orderdetail",
 			"style": {
 				"navigationBarTitleText": "订单详情"

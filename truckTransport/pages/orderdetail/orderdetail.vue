@@ -15,8 +15,13 @@
 		<view v-if="order.status==1" class="ui-orderdetail-cont">
 			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
 		</view>
-		<view v-if="order.status==2||order.status==3" class="ui-orderdetail-cont">
+		<view v-if="order.status==2" class="ui-orderdetail-cont">
 			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
+			<view @tap="call" class="ui-order-pay-btn-b">呼叫司机</view>
+			<view @tap="makecall" class="ui-order-pay-btn-b">投诉</view>
+		</view>
+		<view v-if="order.status==3" class="ui-orderdetail-cont">
+			<view :url="'/pages/placeorder/sending'+order.order_id" class="ui-order-pay-btn">货物追踪</view>
 			<view @tap="call" class="ui-order-pay-btn-b">呼叫司机</view>
 			<view @tap="makecall" class="ui-order-pay-btn-b">投诉</view>
 		</view>
