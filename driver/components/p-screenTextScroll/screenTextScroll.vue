@@ -16,7 +16,7 @@ usage:
 
 <template>
 	<view class="_notice">
-		<swiper class="_swiper tc" @change="slideChange" indicator-dots="false" autoplay="true" :interval="interval" circular="true"
+		<swiper  class="_swiper tc" @change="slideChange" :indicator-dots="false" autoplay="true" :interval="interval" circular="true"
 		 display-multiple-items="1" :duration="duration" :current="current">
 			<swiper-item v-for="(item,index) in list" :key="index">
 				<view class="swiper-item uni-bg-red">{{item}}</view>
@@ -57,13 +57,14 @@ usage:
 <style lang="scss">
 	._notice {
 		font-size: 20upx;
-		height: 48upx;
+		height: 48upx !important;
 		line-height: 48upx;
 		color: #fff;
 		background-image: linear-gradient(to right,#FF5723, #FF9801);
 		overflow: hidden;
 		border-radius: 12upx;
 		box-sizing: border-box;
+		border: none;
 
 	}
 	.swiper-item{padding:0 20upx;}

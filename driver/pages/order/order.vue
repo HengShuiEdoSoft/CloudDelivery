@@ -21,13 +21,13 @@
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y="true" :style="height">
-					<view v-if="empty[0]">
+					<view v-if="newsList[0].length==0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg"></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<view v-for="(item, index) in newsList[0]" :key="index">
+					<view v-if="newsList[0].length>0" v-for="(item, index) in newsList[0]" :key="index">
 					<navigator :url="'/pages/order/orderdetail-arrive?ocode=' + item.ocode" v-if="item.status === 2">
 						<view class="ui-order-list-item">
 							<view class="ui-hujiao">等待运送</view>
@@ -128,13 +128,13 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y="true" :style="height">
-					<view v-if="empty[1]">
+					<view v-if="newsList[1].length==0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg"></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator v-for="(item, index) in newsList[1]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
+					<navigator v-if="newsList[1].length>0" v-for="(item, index) in newsList[1]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
 						<view class="ui-order-list-item">
 							<view class="ui-wancheng" v-if="item.status == 4">已完成</view>
 							<view class="dui-gap"></view>
@@ -186,13 +186,13 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view class="scroll-container" scroll-y="true" :style="height">
-					<view v-if="empty[2]">
+					<view v-if="newsList[2].length==0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg"></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator v-for="(item, index) in newsList[2]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
+					<navigator v-if="newsList[2].length>0" v-for="(item, index) in newsList[2]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
 						<view class="ui-order-list-item">
 							<view class="ui-quxiao" v-if="item.status == 11">用户取消</view>
 							<view class="ui-quxiao" v-if="item.status == 13">呼叫超时</view>
@@ -268,8 +268,8 @@ export default {
 		};
 	},
 	onLoad() {
-		let height=uni.getSystemInfoSync().windowHeight-100;
-		this.height="height:"+height+'px';
+		let height=uni.getSystemInfoSync().windowHeight-170;
+		this.height="height:"+height+'px !important;';
 	},
 	onShow() {
 		this.getnewsList();
