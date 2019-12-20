@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+		<view class="status_bar"></view>
 		<view class="nav-bar nav-bar-b">
 			<view class="nav-left">订单</view>
 			<view class="nav-center"><image src="../../static/img/logoText1.gif"></image></view>
@@ -359,8 +360,7 @@ export default {
 </script>
 
 <style>
-.scroll-container {
+/* .scroll-container {
 	height: 80vh;
-	
-}
+} */
 </style>

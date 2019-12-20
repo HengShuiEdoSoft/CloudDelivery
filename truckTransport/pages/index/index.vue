@@ -8,6 +8,7 @@
 		</view>
 		<view @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
 			<uni-drawer :visible="visible" mode="left" @close="visible = false">
+				<view class="status_bar"></view>
 				<view class="ui-drawer-top">
 					<image :src="user.avatar ? user.avatar : '/static/img/HeadImg.jpg'" class="ui-portrait" @tap="navTo('/pages/userinfo/userinfo')"></image>
 					<view class="ui-drawer-top-body">
