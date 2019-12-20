@@ -188,11 +188,13 @@
 				<view>企业用户专享</view>
 				<view class="ui-qiyeyoushi">
 					<view>1.开发票</view>
-					<view>2.开发票</view>
+					<view>2.享好礼</view>
 				</view>
-				<view class="ui-tanchukuang-btn">升级企业用户</view>
+				<view class="ui-tanchukuang-btn">
+					<navigator url="/pages/viplevel/corporate-vip">升级企业用户</navigator>
+				</view>
 			</view>
-			<view class="ui-tanchukuang-close"><text class="iconfont icon-cuowuguanbiquxiao"></text></view>
+			<view class="ui-tanchukuang-close" @tap="closeAd"><text class="iconfont icon-cuowuguanbiquxiao"></text></view>
 		</view>
 	</view>
 </template>
@@ -273,6 +275,9 @@ export default {
 		});
 	},
 	methods: {
+		closeAd(){
+			this.shengji=false;
+		},
 		checkUserType() {
 			let that = this;
 			if (!that.$drmking.isEmpty(that.user)) {
