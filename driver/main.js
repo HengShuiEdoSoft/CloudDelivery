@@ -211,7 +211,6 @@ let sendDriveLocation = {
 					}, self.timeout);
 				})
 				.catch(err => {
-					console.log(err);
 					setTimeout(function() {
 						self.start(user_id);
 					}, self.timeout);

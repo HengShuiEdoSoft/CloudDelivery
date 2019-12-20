@@ -16,12 +16,13 @@
 			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
 		</view>
 		<view v-if="order.status==2" class="ui-orderdetail-cont">
+			<navigator :url="'/pages/placeorder/sending?dname='+order.dname+'&phone='+order.dphone+'&ocode='+order.ocode" class="ui-order-pay-btn">货物追踪</navigator>
 			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
 			<view @tap="call" class="ui-order-pay-btn-b">呼叫司机</view>
 			<view @tap="makecall" class="ui-order-pay-btn-b">投诉</view>
 		</view>
 		<view v-if="order.status==3" class="ui-orderdetail-cont">
-			<view :url="'/pages/placeorder/sending'+order.order_id" class="ui-order-pay-btn">货物追踪</view>
+			<navigator :url="'/pages/placeorder/sending?dname='+order.dname+'&phone='+order.dphone+'&ocode='+order.ocode" class="ui-order-pay-btn">货物追踪</navigator>
 			<view @tap="call" class="ui-order-pay-btn-b">呼叫司机</view>
 			<view @tap="makecall" class="ui-order-pay-btn-b">投诉</view>
 		</view>
@@ -199,7 +200,7 @@ export default {
 		call: function(e) {
 			let that=this;
 			uni.makePhoneCall({
-				phoneNumber: that.order.order_details_json.phone
+				phoneNumber: that.order.uphone
 			});
 		},
 		makecall:function(e) {
