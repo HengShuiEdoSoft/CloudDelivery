@@ -106,7 +106,7 @@ let drmking = {
 						data: str.slice(32)
 					};
 				} else {
-					console.log('error：' + str + '!!!' + e);
+					// console.log('error：' + str + '!!!' + e);
 					return false;
 				}
 			}
@@ -649,7 +649,7 @@ let drmking = {
 						resolve(response);
 					}
 				}).catch(err => {
-					console.log(err);
+					// console.log(err);
 					// #ifdef MP-BAIDU
 					if (err.errCode === 202 || err.errCode === 10003) { // 202模拟器 10003真机 user deny
 						this.showConfirm();
@@ -691,7 +691,7 @@ let drmking = {
 				vue.$store.commit('login', res.data);
 			}
 		}).catch(err => {
-			console.log(err);
+			// console.log(err);
 		})
 	},
 	// 确认支付

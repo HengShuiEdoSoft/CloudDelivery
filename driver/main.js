@@ -116,17 +116,17 @@ function createWs() {
 		uni.connectSocket({
 			url: url,
 			success: function() {
-				console.log('webscoket 创建成功!');
+				// console.log('webscoket 创建成功!');
 				initEventHandle(url, userinfo.user_id);
 			},
 			fail: function(err) {
-				console.log('webscoket 创建失败!' + err);
+				// console.log('webscoket 创建失败!' + err);
 				reconnectWs(url);
 			}
 		});
 	} else {
 		setTimeout(function() {
-			console.log('用户未登录!');
+			// console.log('用户未登录!');
 			createWs();
 		}, 2000);
 	}
@@ -161,7 +161,7 @@ let heartCheck = {
 			uni.sendSocketMessage({
 				data: 'ping',
 				complete: function(res) {
-					// console.log(res);
+					// // console.log(res);
 				}
 			});
 			setTimeout(function() {
@@ -203,7 +203,7 @@ let sendDriveLocation = {
 					uni.sendSocketMessage({
 						data: msg,
 						complete: function(res) {
-							// console.log(res);
+							// // console.log(res);
 						}
 					});
 					setTimeout(function() {
@@ -222,7 +222,7 @@ let sendDriveLocation = {
 function initEventHandle(url, user_id) {
 	// 监听WebSocket连接打开事件
 	uni.onSocketOpen(function(res) {
-		console.log('ws连接成功!' + new Date().toUTCString());
+		// console.log('ws连接成功!' + new Date().toUTCString());
 		amap.getRegeo().then(res => {
 				let info = res[0];
 				let msg = JSON.stringify({
@@ -237,7 +237,7 @@ function initEventHandle(url, user_id) {
 				uni.sendSocketMessage({
 					data: msg,
 					complete: function(res) {
-						// console.log(res);
+						// // console.log(res);
 					}
 				});
 			})
@@ -249,12 +249,12 @@ function initEventHandle(url, user_id) {
 	});
 	// 监听WebSocket错误
 	uni.onSocketError(function(res) {
-		console.log(res, 'ws连接错误!' + new Date().toUTCString());
+		// console.log(res, 'ws连接错误!' + new Date().toUTCString());
 		reconnectWs(url);
 	});
 	// 监听WebSocket关闭
 	uni.onSocketClose(function(res) {
-		console.log(res, 'ws已关闭！');
+		// console.log(res, 'ws已关闭！');
 		reconnectWs(url);
 	});
 	// 监听WebSocket接受到服务器的消息事件
@@ -268,7 +268,7 @@ function initEventHandle(url, user_id) {
 // 解析服务器返回数据
 function parseData(data) {
 	if (data == 'pong') {
-		console.log('pong');
+		// console.log('pong');
 	} else {
 		if (drmking.isJsonString(data)) {
 			data = JSON.parse(data);
@@ -284,7 +284,7 @@ function parseData(data) {
 					}
 				case 'msg':
 					{
-						console.log(data.msg);
+						// console.log(data.msg);
 						break;
 					}
 				default:
@@ -306,6 +306,6 @@ plus.push.addEventListener('click', function(msg) {
 	}
 });
 plus.push.addEventListener('receive', function(e) {
-	// console.log(e);
+	// // console.log(e);
 });
 // #endif

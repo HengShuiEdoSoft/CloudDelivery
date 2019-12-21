@@ -117,7 +117,7 @@ export default {
 					that.setMapLocation(info.longitude, info.latitude);
 				})
 				.catch(err => {
-					console.log(err);
+					// console.log(err);
 				});
 		}
 		that.$fire.on('setAmapLocation', function(item) {
@@ -233,12 +233,12 @@ export default {
 								}
 							})
 							.catch(err => {
-								console.log(err);
+								// console.log(err);
 							});
 					}
 				},
 				fail(err) {
-					console.log(err);
+					// console.log(err);
 				}
 			});
 		}

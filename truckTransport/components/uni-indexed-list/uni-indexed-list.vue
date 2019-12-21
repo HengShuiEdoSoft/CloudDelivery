@@ -75,9 +75,9 @@
 				// 	this.lists = this.options;
 				// 	return;
 				// }
-				// console.log(this.options)
+				// // console.log(this.options)
 				this.lists = this.options.map(value => {
-					// console.log(value)
+					// // console.log(value)
 					let items = value.cities.map(item => {
 						let obj = {}
 						// for (let key in item) {
@@ -93,7 +93,7 @@
 						items: items
 					}
 				})
-				// console.log(this.lists)
+				// // console.log(this.lists)
 			},
 			touchStart(e) {
 				this.touchmove = true

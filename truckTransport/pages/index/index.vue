@@ -265,7 +265,7 @@ export default {
 				that.location_city = location_city;
 			})
 			.catch(e => {
-				console.log(e);
+				// console.log(e);
 			});
 		this.$fire.on('changeCity', function(data) {
 			that.$drmking.setLocationCity(that, data);
@@ -323,24 +323,24 @@ export default {
 				// 上下
 				// 向上滑动
 				if (touchMoveY - touchStartY <= -30 && time < 10) {
-					// console.log('向上滑动');
+					// // console.log('向上滑动');
 				}
 				// 向下滑动
 				if (touchMoveY - touchStartY >= 30 && time < 10) {
-					// console.log('向下滑动 ');
+					// // console.log('向下滑动 ');
 				}
 			} else {
 				// 左右
 				// 向左滑动
 				if (touchMoveX - touchStartX <= -30 && time < 10) {
-					// console.log('左滑页面');
+					// // console.log('左滑页面');
 					if (this.visible) {
 						this.visible = false;
 					}
 				}
 				// 向右滑动
 				if (touchMoveX - touchStartX >= 30 && time < 10) {
-					// console.log('向右滑动');
+					// // console.log('向右滑动');
 					if (!this.visible) {
 						this.visible = true;
 					}
@@ -433,15 +433,15 @@ export default {
 							content: '',
 							success: function(res) {
 								if (res.confirm) {
-									console.log('用户点击确定');
+									// console.log('用户点击确定');
 								} else if (res.cancel) {
-									console.log('用户点击取消');
+									// console.log('用户点击取消');
 								}
 							}
 						});
 					});
 			} else {
-				// console.log('cheackTrip false');
+				// // console.log('cheackTrip false');
 			}
 		},
 		setTrip(item) {

@@ -66,17 +66,17 @@ export default {
 	openMap(latitude, longitude, name) {
 		// #ifdef APP-PLUS
 		switch(uni.getSystemInfoSync().platform){
-			case 'android':
-				console.log('运行Android上')
+			case 'android':
+				// console.log('运行Android上')
 				openMapByAndroid(latitude, longitude, name)
 				break;
-			case 'ios':
-				console.log('运行iOS上')
+			case 'ios':
+				// console.log('运行iOS上')
 				openMapByIos(latitude, longitude, name)
 				break;
 			default:
 				openMapByDefault(latitude, longitude, name)
-				console.log('运行在开发者工具上')	
+				// console.log('运行在开发者工具上')	
 				break;
 		}	
 		// #endif

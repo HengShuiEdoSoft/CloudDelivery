@@ -210,7 +210,7 @@
 		},
 		methods: {
 			switchChange: function(e) {
-				console.log('switch 发生 change 事件，携带值为', e.target.value)
+				// console.log('switch 发生 change 事件，携带值为', e.target.value)
 			},
 			togglePopup(type, open) {
 				this.type = type;

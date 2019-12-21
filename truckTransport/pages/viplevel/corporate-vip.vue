@@ -88,7 +88,7 @@ export default {
 					}
 				})
 				.catch(function(error) {
-					console.log(error);
+					// console.log(error);
 					uni.showModal({
 						content: JSON.stringify(error),
 						showCancel: false

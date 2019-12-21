@@ -159,7 +159,7 @@ export default {
 				that.location_city = location_city;
 			})
 			.catch(e => {
-				console.log(e);
+				// console.log(e);
 			});
 		this.$fire.on('changeCity', function(data) {
 			that.$drmking.setLocationCity(that, data);
@@ -185,7 +185,7 @@ export default {
 					}
 				}
 			} catch (e) {
-				console.log(e);
+				// console.log(e);
 			}
 		});
 	},

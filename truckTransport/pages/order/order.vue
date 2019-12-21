@@ -306,7 +306,7 @@ export default {
 						}
 					})
 					.catch(err => {
-						console.log(err);
+						// console.log(err);
 						uni.showToast({
 							icon: 'none',
 							title: err
@@ -427,7 +427,7 @@ export default {
 										that.$drmking.paySure(that, pay_log_id, '/pages/index/index');
 									},
 									fail: function(err) {
-										console.log('fail:' + JSON.stringify(err));
+										// console.log('fail:' + JSON.stringify(err));
 										uni.showModal({
 											title: '订单支付失败，重新尝试？',
 											content: JSON.stringify(err),
@@ -452,7 +452,7 @@ export default {
 										that.$drmking.paySure(that, pay_log_id, '/pages/index/index');
 									},
 									fail: function(err) {
-										console.log('fail:' + JSON.stringify(err));
+										// console.log('fail:' + JSON.stringify(err));
 										uni.showModal({
 											title: '订单支付失败，重新尝试？',
 											content: JSON.stringify(err),

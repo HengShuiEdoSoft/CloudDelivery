@@ -105,7 +105,7 @@ export default {
 				that.location_city = location_city;
 			})
 			.catch(e => {
-				console.log(e);
+				// console.log(e);
 			});
 		that.getFuwuList();
 		that.getYczcList();

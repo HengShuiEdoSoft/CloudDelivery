@@ -231,7 +231,7 @@
 					//console.dir(e);
 			},
 			wxaSortPickerScroll: function(e) {
-					//console.log(e.detail.scrollTop);
+					//// console.log(e.detail.scrollTop);
 			},
 			setViewWH: function(that) {
 				var that = this
