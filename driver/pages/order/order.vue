@@ -363,4 +363,7 @@ export default {
 .scroll-container {
 	height: 100%;
 } 
+.ui-order-cont{
+	flex:1;
+}
 </style>
