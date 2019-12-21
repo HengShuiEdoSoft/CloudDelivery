@@ -79,7 +79,9 @@
 
 <script>
 import { mapState } from 'vuex';
+import textscroll from '@/components/p-screenTextScroll/screenTextScroll.vue'
 export default {
+	components: { textscroll },
 	data() {
 		return {
 			current: 0,
@@ -105,7 +107,7 @@ export default {
 				that.location_city = location_city;
 			})
 			.catch(e => {
-				console.log(e);
+				// console.log(e);
 			});
 		that.getFuwuList();
 		that.getYczcList();

@@ -147,7 +147,7 @@ export default {
 					pay_type: that.pay_type,
 					pay_money: that.pay_money
 				};
-				console.log(paylog_data);
+				// console.log(paylog_data);
 				that.$uniFly
 					.post({
 						url: '/api/pay_log/addpaylog',
@@ -199,12 +199,6 @@ export default {
 				uni.showLoading({
 					title: '支付中...'
 				});
-				console.log({
-					pay_log_id: that.pay_log_id,
-					pay_platform: that.pay_platform,
-					provider: that.provider,
-					openid: that.user.minwxapp_id
-				});
 				that.$uniFly
 					.post({
 						url: '/api/pay_log/pay',
@@ -234,7 +228,7 @@ export default {
 									that.$drmking.paySure(that,pay_log_id,'/pages/index/index');
 								},
 								fail: function(err) {
-									console.log('fail:' + JSON.stringify(err));
+									// console.log('fail:' + JSON.stringify(err));
 									uni.showModal({
 										title: '支付失败，重新尝试？',
 										content: JSON.stringify(err),
@@ -251,7 +245,7 @@ export default {
 							// #endif
 							// app支付
 							// #ifdef APP-PLUS
-							console.log(res.data);
+							// console.log(res.data);
 							uni.requestPayment({
 								provider: that.provider,
 								orderInfo: res.data.data, //微信、支付宝订单数据
@@ -259,7 +253,7 @@ export default {
 									that.$drmking.paySure(that,pay_log_id,'/pages/index/index');
 								},
 								fail: function(err) {
-									console.log('fail:' + JSON.stringify(err));
+									// console.log('fail:' + JSON.stringify(err));
 									uni.showModal({
 										title: '支付失败，重新尝试？',
 										content: JSON.stringify(err),

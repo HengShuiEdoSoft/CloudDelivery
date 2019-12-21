@@ -12,7 +12,7 @@
 				<view @tap="navTo('/pages/setup/setup')">
 					<view class="dui-user-information">
 						<image :src="user.avatar ? user.avatar : '/static/img/HeadImg.jpg'"></image>
-						<text class="dui-user-name">{{ user.phone ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</text>
+						<text class="dui-user-name">{{ $drmking.isPhone(user.phone) ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</text>
 					</view>
 				</view>
 				<view class="dui-user-assets">
@@ -111,7 +111,7 @@ export default {
 	},
 	methods: {
 		getUsername() {
-			if (this.user.phone) {
+			if (this.$drmking.isPhone(this.user.phone)) {
 				this.username = this.user.phone.replace(this.user.phone.substring(3, 7), '****');
 			} else {
 				this.username = '未登录';

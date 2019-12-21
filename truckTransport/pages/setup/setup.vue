@@ -365,7 +365,7 @@ export default {
 		]);
 		nvImageMenu.addEventListener('click', function(e) {
 			//处理底部图标菜单的点击事件，根据点击位置触发不同的逻辑
-			// console.log("click menu"+JSON.stringify(e));
+			// // console.log("click menu"+JSON.stringify(e));
 			if (e.screenY > plus.screen.resolutionHeight - 50) {
 				//点击了底部取消按钮
 				nvMask.hide();
@@ -389,7 +389,7 @@ export default {
 				if (iRow == 0) {
 					iClickIndex = iCol;
 				}
-				console.log('点击按钮的序号: ' + iClickIndex);
+				// console.log('点击按钮的序号: ' + iClickIndex);
 				if (iClickIndex >= 0 && iClickIndex <= 4) {
 					//处理具体的点击逻辑，此处也可以自行定义逻辑。如果增减了按钮，此处也需要跟着修改
 					var strProvider = '',
@@ -423,10 +423,10 @@ export default {
 							summary: strShareSummary,
 							imageUrl: strShareImageUrl,
 							success: function(res) {
-								console.log('success:' + JSON.stringify(res));
+								// console.log('success:' + JSON.stringify(res));
 							},
 							fail: function(err) {
-								console.log('fail:' + JSON.stringify(err));
+								// console.log('fail:' + JSON.stringify(err));
 							}
 						});
 					}
@@ -438,7 +438,7 @@ export default {
 	methods: {
 		...mapMutations(['logout']),
 		switchChange: function(e) {
-			console.log('switch 发生 change 事件，携带值为', e.target.value);
+			// console.log('switch 发生 change 事件，携带值为', e.target.value);
 		},
 		togglePopup: function(e) {
 			//TODO 未处理h5，h5应调用qq浏览器等自带的share api，如果浏览器不自带share，那么分享图标不应该显示。或者从简的话，h5整个就不显示分享按钮

@@ -13,7 +13,7 @@
 					<image :src="user.avatar ? user.avatar : '/static/img/HeadImg.jpg'" class="ui-portrait" @tap="navTo('/pages/userinfo/userinfo')"></image>
 					<view class="ui-drawer-top-body">
 						<view class="ui-username">
-							<text>{{ user.phone ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</text>
+							<text>{{ $drmking.isPhone(user.phone) ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</text>
 						</view>
 						<view class="ui-member-level" @tap="navTo('/pages/viplevel/viplevel')">
 							<text>会员等级</text>
@@ -265,7 +265,7 @@ export default {
 				that.location_city = location_city;
 			})
 			.catch(e => {
-				console.log(e);
+				// console.log(e);
 			});
 		this.$fire.on('changeCity', function(data) {
 			that.$drmking.setLocationCity(that, data);
@@ -323,24 +323,24 @@ export default {
 				// 上下
 				// 向上滑动
 				if (touchMoveY - touchStartY <= -30 && time < 10) {
-					// console.log('向上滑动');
+					// // console.log('向上滑动');
 				}
 				// 向下滑动
 				if (touchMoveY - touchStartY >= 30 && time < 10) {
-					// console.log('向下滑动 ');
+					// // console.log('向下滑动 ');
 				}
 			} else {
 				// 左右
 				// 向左滑动
 				if (touchMoveX - touchStartX <= -30 && time < 10) {
-					// console.log('左滑页面');
+					// // console.log('左滑页面');
 					if (this.visible) {
 						this.visible = false;
 					}
 				}
 				// 向右滑动
 				if (touchMoveX - touchStartX >= 30 && time < 10) {
-					// console.log('向右滑动');
+					// // console.log('向右滑动');
 					if (!this.visible) {
 						this.visible = true;
 					}
@@ -433,15 +433,15 @@ export default {
 							content: '',
 							success: function(res) {
 								if (res.confirm) {
-									console.log('用户点击确定');
+									// console.log('用户点击确定');
 								} else if (res.cancel) {
-									console.log('用户点击取消');
+									// console.log('用户点击取消');
 								}
 							}
 						});
 					});
 			} else {
-				// console.log('cheackTrip false');
+				// // console.log('cheackTrip false');
 			}
 		},
 		setTrip(item) {

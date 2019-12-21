@@ -86,7 +86,7 @@ export default {
 					});
 				}, 500);
 			} catch (e) {
-				console.log(e);
+				// console.log(e);
 			}
 		}
 	}

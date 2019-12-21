@@ -100,7 +100,7 @@ export default {
 					} else if (res.tapIndex == 1) {
 						that.sourceType = 'camera';
 					} else {
-						console.log('cancel');
+						// console.log('cancel');
 					}
 					that.chooseImage();
 				}
@@ -116,7 +116,7 @@ export default {
 			// #endif
 			if (that.imageList.length == that.max_num) {
 				let isContinue = await that.isFullImg();
-				console.log('是否继续?', isContinue);
+				// console.log('是否继续?', isContinue);
 				if (!isContinue) {
 					return;
 				}
@@ -129,7 +129,7 @@ export default {
 					that.imageList =that.imageList.concat(res.tempFilePaths);
 				},
 				fail: err => {
-					console.log(err);
+					// console.log(err);
 					// #ifdef APP-PLUS
 					that.checkPermission();
 					// #endif

@@ -9,7 +9,7 @@
 					<view v-if="user.user_type == 1 && parseInt(user.status) === 1">企业会员</view>
 					<view v-if="user.user_type == 1 && parseInt(user.status) === 0">企业会员审核中</view>
 				</view>
-				<view class="dui-vip-phone">{{ user.phone ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</view>
+				<view class="dui-vip-phone">{{ $drmking.isPhone(user.phone) ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</view>
 				<view class="dui-vip-steps">当前等级成长值 : {{ user.user_level_id > 0 && !$drmking.isEmpty(levellist) ? levellist[user.user_level_id].level_rule : 0 }}</view>
 			</view>
 			<view class="dui-vip-strategy">

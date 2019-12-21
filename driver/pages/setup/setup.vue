@@ -111,7 +111,7 @@ export default {
 			this.$refs[type].close();
 		},
 		doBefore() {
-			console.log('doBefore');
+			// console.log('doBefore');
 		},
 		clk(index) {
 			this.$refs.avatar.fChooseImg(index, {
