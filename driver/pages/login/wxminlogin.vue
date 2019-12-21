@@ -28,10 +28,8 @@ export default {
 			uni.getSetting({
 				success(res) {
 					if (res.authSetting['scope.userInfo']) {
-						let iv = e.detail.iv;
-						let encryptedData = e.detail.encryptedData;
 						that.$drmking
-							.getWxOpenId(that, iv, encryptedData)
+							.getWxOpenId(that)
 							.then(infoRes => {
 								const data = {
 									openId: infoRes.openId,
@@ -58,6 +56,11 @@ export default {
 											}
 											service.addUser(res.data);
 											that.$store.commit('login', res.data);
+											if (!that.$drmking.isEmpty(res.data.phone)) {
+												uni.reLaunch({
+													url: '/pages/index/index'
+												});
+											}
 										} else {
 											uni.showModal({
 												content: res.msg,

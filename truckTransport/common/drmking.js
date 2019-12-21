@@ -423,47 +423,55 @@ let drmking = {
 	},
 
 	// 获取微信小程序openid
-	getWxOpenId(vue, iv, encryptedData) {
+	getWxOpenId(vue) {
 		return new Promise((resolve, reject) => {
 			uni.login({
 				success: res => {
 					if (res.code) {
-						vue.$uniFly
-							.post({
-								url: '/api/user/getopenid',
-								params: {
-									code: res.code
-								}
-							})
-							.then(res => {
-								if (res.code == 0) {
-									let openid = res.data;
-									vue.$uniFly
-										.post({
-											url: '/api/user/getunionid',
-											params: {
-												openid: openid,
-												iv: iv,
-												encryptedData: encryptedData
-											}
-										})
-										.then(res => {
-											if (res.code == 0) {
-												resolve(res.data);
-											} else {
-												reject(res.msg);
-											}
-										})
-										.catch(err => {
-											reject('用户授权失败');
-										});
-								} else {
-									reject(res.msg);
-								}
-							})
-							.catch(err => {
-								reject('服务器请求出错');
-							});
+						uni.getUserInfo({
+							provider: 'weixin',
+							success: function(infoRes) {
+								vue.$uniFly
+									.post({
+										url: '/api/user/getopenid',
+										params: {
+											code: res.code
+										}
+									})
+									.then(res => {
+										if (res.code == 0) {
+											let openid = res.data;
+											vue.$uniFly
+												.post({
+													url: '/api/user/getunionid',
+													params: {
+														openid: openid,
+														iv: infoRes.iv,
+														encryptedData: infoRes.encryptedData
+													}
+												})
+												.then(res => {
+													if (res.code == 0) {
+														resolve(res.data);
+													} else {
+														reject(res.msg);
+													}
+												})
+												.catch(err => {
+													reject('用户授权失败');
+												});
+										} else {
+											reject(res.msg);
+										}
+									})
+									.catch(err => {
+										reject('服务器请求出错');
+									});
+							},
+							fail: function(err) {
+								reject('获取用户信息失败');
+							}
+						});
 					} else {
 						reject('授权登录失败');
 					}

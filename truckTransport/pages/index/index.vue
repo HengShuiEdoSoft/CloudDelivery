@@ -13,7 +13,7 @@
 					<image :src="user.avatar ? user.avatar : '/static/img/HeadImg.jpg'" class="ui-portrait" @tap="navTo('/pages/userinfo/userinfo')"></image>
 					<view class="ui-drawer-top-body">
 						<view class="ui-username">
-							<text>{{ $drmking.isPhone(user.phone) ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</text>
+							<text>{{ !$drmking.isEmpty(user.phone) ? user.phone.replace(user.phone.substring(3, 7), '****') : '未登录' }}</text>
 						</view>
 						<view class="ui-member-level" @tap="navTo('/pages/viplevel/viplevel')">
 							<text>会员等级</text>
