@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="ui-divide-line"></view>
-		<scroll-view class="scroll-container" scroll-y :style="height">
+		<!-- <scroll-view class="scroll-container" scroll-y :style="height"> -->
 			<!-- <view class="dui-coupon-input"><input type="text" value="" focus="true" placeholder="按此输入兑换码" /></view> -->
 			<view v-if="list.length === 0">
 				<view class="dui-notyet-wrapper">
@@ -38,7 +38,7 @@
 					</view>
 				</view>
 			</view>
-		</scroll-view>
+		<!-- </scroll-view> -->
 	</view>
 </template>
 

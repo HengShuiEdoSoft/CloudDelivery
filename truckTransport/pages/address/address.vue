@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="ui-divide-line"></view>
-		<scroll-view class="scroll-container" scroll-y :style="height">
+<!-- 		<scroll-view class="scroll-container" scroll-y :style="height"> -->
 			<view v-if="lists.length===0">
 				<view class="dui-notyet-wrapper">
 					<image src="../../static/img/NoOrder.jpg" mode=""></image>
@@ -31,7 +31,7 @@
 				<view class="dui-gap"></view>
 			</view>
 			<view class="loading">{{loadingText}}</view>
-		</scroll-view>
+		<!-- </scroll-view> -->
 		<view class="dui-fixed-bottom-btn">
 			<navigator url="addaddress">
 				<button class="primary" type="primary">添加常用地址</button>
