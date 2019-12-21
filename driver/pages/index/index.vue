@@ -79,7 +79,9 @@
 
 <script>
 import { mapState } from 'vuex';
+import textscroll from '@/components/p-screenTextScroll/screenTextScroll.vue'
 export default {
+	components: { textscroll },
 	data() {
 		return {
 			current: 0,

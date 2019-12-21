@@ -5,9 +5,6 @@ import drmking from '@/common/drmking.js';
 import uniFly from 'unifly';
 import OnFire from 'onfire.js';
 
-import screenTextScroll from './components/p-screenTextScroll/screenTextScroll.vue'
-Vue.component('textscroll',screenTextScroll);
-
 // 设置基础url
 uniFly.baseUrl = 'https://www.lh5256.com';
 // 设置请求超时
