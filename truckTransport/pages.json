@@ -35,8 +35,7 @@
 		}, {
 			"path": "pages/orderlist/orderlist",
 			"style": {
-				"navigationBarTitleText": "订单列表",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "订单列表"
 			}
 		}, {
 			"path": "pages/placeorder/sending",
@@ -72,8 +71,7 @@
 		}, {
 			"path": "pages/mymoney/myinvoicing-history",
 			"style": {
-				"navigationBarTitleText": "开票历史",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "开票历史"
 			}
 		}, {
 			"path": "pages/mymoney/mycoupon",
@@ -84,21 +82,18 @@
 		}, {
 			"path": "pages/mymoney/mycoupon-select",
 			"style": {
-				"navigationBarTitleText": "选择优惠券",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "选择优惠券"
 			}
 		}, {
 			"path": "pages/mymoney/mycoupon-gift",
 			"style": {
-				"navigationBarTitleText": "我的礼物",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "我的礼物"
 			}
 		},
 		{
 			"path": "pages/mymoney/mydetailed",
 			"style": {
-				"navigationBarTitleText": "余额明细",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "余额明细"
 			}
 		},
 		{
@@ -353,7 +348,6 @@
 			"path": "pages/servicecenter/feedback",
 			"style": {
 				"navigationBarTitleText": "我的反馈记录",
-				"enablePullDownRefresh": true,
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {

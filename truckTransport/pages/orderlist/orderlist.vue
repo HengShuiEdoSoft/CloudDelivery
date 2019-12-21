@@ -1,22 +1,27 @@
 <template>
 	<view class="content">
 		<view class="ui-car-name-list">
-			<view class="ui-car-name-item" v-for="(item, item_index) in tab" :class="{ active: current == item_index }" :key="item_index" :data-current="item_index" @tap="tabChange">
+			<view
+				class="ui-car-name-item"
+				v-for="(item, item_index) in tab"
+				:class="{ active: current == item_index }"
+				:key="item_index"
+				:data-current="item_index"
+				@tap="tabChange"
+			>
 				{{ item.name }}
 			</view>
 		</view>
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y :style="height">
-					<view v-if="newsList[0].length===0">
+				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y :style="height">
+					<view v-if="newsList[0].length === 0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index"
-						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
-					>
+					<navigator class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode">
 						<view class="ui-daizhifu" v-if="parseInt(item.status) === 0">待支付</view>
 						<view class="ui-hujiao" v-if="parseInt(item.status) === 1">呼叫中...</view>
 						<view class="ui-hujiao" v-if="parseInt(item.status) === 2">等待运送</view>
@@ -62,8 +67,8 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y :style="height">
-					<view v-if="newsList[1].length===0">
+				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y :style="height">
+					<view v-if="newsList[1].length === 0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
@@ -76,8 +81,8 @@
 						:key="index"
 						@longpress="deleteOrder(item.ocode)"
 					>
-						<view class="ui-wancheng" v-if="item.status===4">已完成</view>
-						<view class="ui-wancheng" v-if="item.status===5">已完成</view>
+						<view class="ui-wancheng" v-if="item.status === 4">已完成</view>
+						<view class="ui-wancheng" v-if="item.status === 5">已完成</view>
 						<view class="ui-order-list-item-top">
 							<text class="ui-order-list-cartype">{{ item.car }}</text>
 							<text>{{ item.sure_time }}</text>
@@ -119,14 +124,14 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y :style="height">
-					<view v-if="newsList[2].length===0">
+				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y :style="height">
+					<view v-if="newsList[2].length === 0">
 						<view class="dui-notyet-wrapper">
 							<image src="/static/img/NoOrder.jpg" mode=""></image>
 							<text>您还没有订单信息</text>
 						</view>
 					</view>
-					<navigator 
+					<navigator
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[2]"
 						:url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode"
@@ -202,35 +207,26 @@ export default {
 				}
 			],
 			status: ['0,1,2,3', '4,5', '11,12,13'],
-			height:''
+			height: ''
 		};
 	},
 	onLoad() {
-		let height=uni.getSystemInfoSync().windowHeight-50;
-		this.height="height:"+height+'px';
+		let height = uni.getSystemInfoSync().windowHeight - 50;
+		this.height = 'height:' + height + 'px';
 	},
 	onShow() {
 		this.getnewsList();
 	},
-	onPullDownRefresh: function() {
-		this.$set(this.has_next, this.current, true);
-		this.$set(this.reload, this.current, true);
-		this.$set(this.page, this.current, 1);
-		this.getnewsList();
-		uni.stopPullDownRefresh();
-	},
-	onReachBottom: function() {
-		this.getnewsList();
-		/*let that=this;
-			let timer=null;
-			if(timer != null){
-			   clearTimeout(timer);
-			}
-			timer = setTimeout(function(){
-			   this.getnewsList();   
-			}, 1000);*/
-	},
 	methods: {
+		upper: function() {
+			this.$set(this.has_next, this.current, true);
+			this.$set(this.reload, this.current, true);
+			this.$set(this.page, this.current, 1);
+			this.getnewsList();
+		},
+		lower: function() {
+			this.getnewsList();
+		},
 		tabChange: function(e) {
 			let index = e.target.dataset.current || e.currentTarget.dataset.current;
 			this.current = index;
@@ -243,8 +239,8 @@ export default {
 			this.$set(this.page, this.current, 1);
 			this.getnewsList();
 		},
-		deleteOrder: function(ocode,index) {
-			let that=this;
+		deleteOrder: function(ocode, index) {
+			let that = this;
 			uni.showModal({
 				title: '温馨提示',
 				content: '您确定要删除该条信息吗',
@@ -268,8 +264,8 @@ export default {
 										mask: true,
 										duration: 3000
 									});
-									that.lists[current].splice(index,1);
-									that.$set(that.lists,that.current,that.lists[current]);
+									that.lists[current].splice(index, 1);
+									that.$set(that.lists, that.current, that.lists[current]);
 								} else {
 									uni.showToast({
 										content: res.msg,
@@ -311,7 +307,7 @@ export default {
 								list = _self.parseOrderList(list);
 								_self.newsList[current] = _self.reload[current] ? list : _self.newsList[current].concat(list);
 								_self.$set(_self.newsList, current, _self.newsList[current]);
-								_self.$set(_self.page, current, _self.page[current]+1);
+								_self.$set(_self.page, current, _self.page[current] + 1);
 								_self.$set(_self.reload, current, false);
 								_self.$set(_self.has_next, current, res.data.has_next);
 								if (res.data.has_next) {

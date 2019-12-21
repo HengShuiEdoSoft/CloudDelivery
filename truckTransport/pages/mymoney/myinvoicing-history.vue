@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<scroll-view class="scroll-container" scroll-y :style="height">
+		<scroll-view  @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y :style="height">
 			<view v-if="empty">
 				<view class="dui-notyet-wrapper">
 					<image src="../../static/img/NoOrder.jpg" mode=""></image>
@@ -55,25 +55,24 @@
 		},
 		onShow:function(){
 			this.getList();
-		},
-		onPullDownRefresh:function(){
-			this.has_next=true;
-			this.reload=true;
-			this.page=1;
-			this.getList();
-			uni.stopPullDownRefresh();
-		},
-		onReachBottom:function(){
-			let _self=this;
-			let timer=null;
-			if(timer != null){
-				clearTimeout(timer);
-			}
-			timer = setTimeout(function(){
-				_self.getList();
-			}, 1000);
-		},
+		},		
 		methods: {
+			upper:function(){
+				this.has_next=true;
+				this.reload=true;
+				this.page=1;
+				this.getList();
+			},
+			lower:function(){
+				let _self=this;
+				let timer=null;
+				if(timer != null){
+					clearTimeout(timer);
+				}
+				timer = setTimeout(function(){
+					_self.getList();
+				}, 1000);
+			},
 			getList : function(){
 				let _self=this;
 				if (_self.has_next) {

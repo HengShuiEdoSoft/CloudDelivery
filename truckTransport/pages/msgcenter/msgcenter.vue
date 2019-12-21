@@ -1,13 +1,13 @@
 <template>
 	<view class="content">
-		<scroll-view scroll-y="true" class="scroll-container" :style="height">
-			<view v-if="empty">
-				<view class="dui-notyet-wrapper">
-					<image src="../../static/img/NoOrder.jpg" mode=""></image>
-					<text>信息空空如也！</text>
-				</view>
+		<view v-if="lists.length == 0">
+			<view class="dui-notyet-wrapper">
+				<image src="../../static/img/NoOrder.jpg" mode=""></image>
+				<text>信息空空如也！</text>
 			</view>
-			<view  v-if="!empty" class="dui-msgcenter-list">
+		</view>
+		<scroll-view v-if="lists.length > 0" scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" :style="height">
+			<view class="dui-msgcenter-list">
 				<block v-for="(item, index) in lists" :key="index">
 					<view class="dui-msgcenter-item-box">
 						<view class="dui-msgcenter-item">
@@ -41,33 +41,32 @@ export default {
 			reload: true,
 			has_next: true,
 			lists: [],
-			height:''
+			height: ''
 		};
 	},
 	onLoad() {
-		this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
+		this.height = 'height:' + uni.getSystemInfoSync().windowHeight + 'px';
 	},
 	onShow: function() {
 		this.getList();
 	},
-	onPullDownRefresh: function() {
-		this.has_next = true;
-		this.reload = true;
-		this.page = 1;
-		this.getList();
-		uni.stopPullDownRefresh();
-	},
-	onReachBottom: function() {
-		let that = this;
-		let timer = null;
-		if (timer != null) {
-			clearTimeout(timer);
-		}
-		timer = setTimeout(function() {
-			that.getList();
-		}, 1000);
-	},
 	methods: {
+		upper: function() {
+			this.has_next = true;
+			this.reload = true;
+			this.page = 1;
+			this.getList();
+		},
+		lower: function() {
+			let that = this;
+			let timer = null;
+			if (timer != null) {
+				clearTimeout(timer);
+			}
+			timer = setTimeout(function() {
+				that.getList();
+			}, 1000);
+		},
 		getList: function() {
 			let that = this;
 			if (that.has_next) {
@@ -89,7 +88,7 @@ export default {
 								that.empty = false;
 								// let list=_self.parseOrderList(res.data);
 								that.lists = that.reload ? list : that.lists.concat(list);
-								that.page=that.page+1;
+								that.page = that.page + 1;
 								that.reload = false;
 								that.has_next = res.data.has_next;
 								if (res.data.has_next) {
@@ -122,10 +121,10 @@ export default {
 </script>
 
 <style>
-	.dui-msgcenter-content{
-		white-space: pre-wrap;
-	}
-	.scroll-container {
-		height: 100%;
-	}
+.dui-msgcenter-content {
+	white-space: pre-wrap;
+}
+.scroll-container {
+	height: 100%;
+}
 </style>
