@@ -161,8 +161,8 @@
 								_self.$set(_self.lists, current, _self.lists[current]);
 								_self.$set(_self.page, current, _self.page[current]++);
 								_self.$set(_self.reload, current, false);
-								_self.$set(_self.has_next, current, res.has_next);
-								if(res.has_next){
+								_self.$set(_self.has_next, current, res.data.has_next);
+								if(res.data.has_next){
 									_self.$set(_self.loadingText, current, '加载更多');
 								}
 								else{

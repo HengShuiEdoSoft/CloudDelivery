@@ -1,13 +1,13 @@
 <template>
 	<view class="content">
-		<scroll-view scroll-y="true" :style="height">
-			<view v-if="empty">
-				<view class="dui-notyet-wrapper">
-					<image src="../../static/img/NoOrder.jpg" mode=""></image>
-					<text>信息空空如也！</text>
-				</view>
+		<view v-if="lists.length == 0">
+			<view class="dui-notyet-wrapper">
+				<image src="../../static/img/NoOrder.jpg" mode=""></image>
+				<text>信息空空如也！</text>
 			</view>
-			<view v-if="!empty" class="dui-msgcenter-list">
+		</view>
+		<scroll-view v-if="lists.length > 0" scroll-y="true" :style="height">
+			<view class="dui-msgcenter-list">
 				<block v-for="(item, index) in lists" :key="index">
 					<view class="dui-msgcenter-item-box">
 						<view class="dui-msgcenter-item">
@@ -41,11 +41,11 @@ export default {
 			reload: true,
 			has_next: true,
 			lists: [],
-			height:''
+			height: ''
 		};
 	},
 	onLoad() {
-		this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
+		this.height = 'height:' + uni.getSystemInfoSync().windowHeight + 'px';
 		let that = this;
 		that.$fire.on('pushNotice', function(data) {
 			let notice = {

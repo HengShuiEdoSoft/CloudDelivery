@@ -267,9 +267,11 @@ export default {
 			height: ''
 		};
 	},
-	onLoad() {},
-	onShow() {
+	onLoad() {
 		this.getnewsList();
+	},
+	onShow() {
+		
 	},
 	onPullDownRefresh: function() {
 		this.$set(this.has_next, this.current, true);
@@ -320,8 +322,8 @@ export default {
 								_self.$set(_self.newsList, current, _self.newsList[current]);
 								_self.$set(_self.page, current, _self.page[current]++);
 								_self.$set(_self.reload, current, false);
-								_self.$set(_self.has_next, current, res.has_next);
-								if (res.has_next) {
+								_self.$set(_self.has_next, current, res.data.has_next);
+								if (res.data.has_next) {
 									_self.$set(_self.loadingText, current, '加载更多');
 								} else {
 									_self.$set(_self.loadingText, current, '已加载全部');

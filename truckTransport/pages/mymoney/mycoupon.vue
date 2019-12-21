@@ -180,7 +180,7 @@ export default {
 								_self.list = _self.list ? list : _self.list.concat(list);
 								_self.page = _self.page++;
 								_self.reload = false;
-								_self.has_next = res.has_next;
+								_self.has_next = res.data.has_next;
 							}
 						} else {
 							uni.showModal({
