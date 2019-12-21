@@ -1,6 +1,5 @@
 <template>
 	<view class="content">
-		<scroll-view class="scroll-container" scroll-y>
 			<view class="dui-gap"></view>
 			<view class="dui-basic-list">
 				<view class="dui-basic-list-item">
@@ -130,7 +129,6 @@
 				<button v-if="!hasLogin" type="primary" class="primary" @tap="bindLogin">登录</button>
 				<button v-if="hasLogin" type="default" @tap="bindLogout">退出登录</button>
 			</view>
-		</scroll-view>
 	</view>
 </template>
 <script>
