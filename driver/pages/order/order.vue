@@ -268,8 +268,8 @@ export default {
 		};
 	},
 	onLoad() {
-		let height=uni.getSystemInfoSync().windowHeight-170;
-		this.height="height:"+height+'px !important;';
+		let height=uni.getSystemInfoSync().windowHeight-110;
+		this.height="height:"+height+'px';
 	},
 	onShow() {
 		this.getnewsList();
@@ -360,7 +360,7 @@ export default {
 </script>
 
 <style>
-/* .scroll-container {
+.scroll-container {
 	height: 100%;
-} */
+} 
 </style>
