@@ -349,13 +349,13 @@
 	height: var(--status-bar-height);
 	width: 100%;
 }
-.nav-bar{height:88upx;position:relative;color:#black;background: #fff;}
-.nav-bar .nav-center{text-align: center;font-size:34upx;font-weight:700;line-height: 88upx;}
-.nav-bar .nav-left{position:absolute;top:0;left:20upx;z-index:999;padding:14upx;line-height: 60upx;font-size:28upx;}
-.nav-bar .nav-right{position:absolute;top:0;right:20upx;z-index:999;padding:14upx;font-size:28upx;line-height: 60upx;color:$grey;}
-.nav-bar .nav-right .iconfont,.nav-bar .nav-left .iconfont{font-size:44upx;}
-.nav-bar .nav-center image{width:128upx;height:54upx;padding:17upx 0;}
-.nav-bar .nav-right image{width:60upx;height:60upx;display:block;}
+.nav-bar{height:44px;position:relative;color:#black;background: #fff;}
+.nav-bar .nav-center{text-align: center;font-size:17px;font-weight:700;line-height: 44px;}
+.nav-bar .nav-left{position:absolute;top:0;left:10px;z-index:999;padding:7px;line-height: 30px;font-size:14px;}
+.nav-bar .nav-right{position:absolute;top:0;right:10px;z-index:999;padding:7px;font-size:14px;line-height: 30px;color:$grey;}
+.nav-bar .nav-right .iconfont,.nav-bar .nav-left .iconfont{font-size:22px;}
+.nav-bar .nav-center image{width:64px;height:26px;padding:8px 0;}
+.nav-bar .nav-right image{width:30px;height:30px;display:block;}
 
 .ui-baozheng{display:flex;margin:30upx 16upx 0;padding:16upx;height:72upx;font-size:28upx;background: #fff;line-height: 72upx;}
 .ui-baozheng image{display:block;width:72upx;height:72upx;}

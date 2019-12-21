@@ -412,47 +412,47 @@ textarea {
   width: 100%; }
 
 .nav-bar {
-  height: 88upx;
+  height: 44px;
   position: relative;
   color: #black;
   background: #fff; }
 
 .nav-bar .nav-center {
   text-align: center;
-  font-size: 34upx;
+  font-size: 17px;
   font-weight: 700;
-  line-height: 88upx; }
+  line-height: 44px; }
 
 .nav-bar .nav-left {
   position: absolute;
   top: 0;
-  left: 20upx;
+  left: 10px;
   z-index: 999;
-  padding: 14upx;
-  line-height: 60upx;
-  font-size: 28upx; }
+  padding: 7px;
+  line-height: 30px;
+  font-size: 14px; }
 
 .nav-bar .nav-right {
   position: absolute;
   top: 0;
-  right: 20upx;
+  right: 10px;
   z-index: 999;
-  padding: 14upx;
-  font-size: 28upx;
-  line-height: 60upx;
+  padding: 7px;
+  font-size: 14px;
+  line-height: 30px;
   color: #9E9E9E; }
 
 .nav-bar .nav-right .iconfont, .nav-bar .nav-left .iconfont {
-  font-size: 44upx; }
+  font-size: 22px; }
 
 .nav-bar .nav-center image {
-  width: 128upx;
-  height: 54upx;
-  padding: 17upx 0; }
+  width: 64px;
+  height: 26px;
+  padding: 8px 0; }
 
 .nav-bar .nav-right image {
-  width: 60upx;
-  height: 60upx;
+  width: 30px;
+  height: 30px;
   display: block; }
 
 .ui-baozheng {

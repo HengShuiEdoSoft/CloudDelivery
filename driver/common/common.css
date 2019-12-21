@@ -686,7 +686,7 @@ textarea {
   width: 100%; }
 
 .nav-bar {
-  height: 88upx;
+  height: 44px;
   position: relative;
   color: #fff;
   background: #FF5723; }
@@ -697,31 +697,31 @@ textarea {
 
 .nav-bar .nav-center {
   text-align: center;
-  font-size: 34upx;
+  font-size: 17px;
   font-weight: 700;
-  line-height: 88upx; }
+  line-height: 44px; }
 
 .nav-bar .nav-left {
   position: absolute;
   top: 0;
-  left: 20upx;
-  padding: 14upx;
-  font-size: 34upx;
+  left: 10px;
+  padding: 7px;
+  font-size: 17px;
   font-weight: 700; }
 
 .nav-bar .nav-right {
   position: absolute;
   top: 0;
-  right: 20upx;
-  padding: 14upx; }
+  right: 10px;
+  padding: 7px; }
 
 .nav-bar .nav-right .iconfont {
-  font-size: 40upx; }
+  font-size: 20px; }
 
 .nav-bar .nav-center image {
-  width: 128upx;
-  height: 54upx;
-  padding: 17upx 0; }
+  width: 64px;
+  height: 26px;
+  padding: 8px 0; }
 
 .ui-grid {
   display: flex;
