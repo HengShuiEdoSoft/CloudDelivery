@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<scroll-view  scroll-y :style="height">
+		<scroll-view  scroll-y  @scrolltoupper="upper" @scrolltolower="lower" :style="height">
 			<view class="dui-basic-list">
 				<block v-for="(item,index) in lists" :key="index">
 					<view class="dui-basic-list-item">
@@ -48,25 +48,24 @@
 			},
 			onShow:function(){
 				this.getList();
-			},
-			onPullDownRefresh:function(){			
-				this.has_next=true;
-				this.reload=true;
-				this.page=1;
-				this.getList();
-				uni.stopPullDownRefresh();
-			},
-			onReachBottom:function(){
-				let _self=this;
-				let timer=null;
-				if(timer != null){
-					clearTimeout(timer);
-				}
-				timer = setTimeout(function(){
-					_self.getList();
-				}, 1000);
-			},
+			},			
 			methods: {
+				upper:function(){
+					this.has_next=true;
+					this.reload=true;
+					this.page=1;
+					this.getList();
+				},
+				lower:function(){
+					let _self=this;
+					let timer=null;
+					if(timer != null){
+						clearTimeout(timer);
+					}
+					timer = setTimeout(function(){
+						_self.getList();
+					}, 1000);
+				},
 				getList : function(){
 					let _self=this;
 					if (_self.has_next) {

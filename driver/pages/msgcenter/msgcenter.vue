@@ -6,7 +6,7 @@
 				<text>信息空空如也！</text>
 			</view>
 		</view>
-		<scroll-view v-if="lists.length > 0" scroll-y="true" :style="height">
+		<scroll-view v-if="lists.length > 0" scroll-y="true"  @scrolltoupper="upper" @scrolltolower="lower" :style="height">
 			<view class="dui-msgcenter-list">
 				<block v-for="(item, index) in lists" :key="index">
 					<view class="dui-msgcenter-item-box">
@@ -61,25 +61,24 @@ export default {
 	},
 	onShow: function() {
 		this.getList();
-	},
-	onPullDownRefresh: function() {
-		this.has_next = true;
-		this.reload = true;
-		this.page = 1;
-		this.getList();
-		uni.stopPullDownRefresh();
-	},
-	onReachBottom: function() {
-		let that = this;
-		let timer = null;
-		if (timer != null) {
-			clearTimeout(timer);
-		}
-		timer = setTimeout(function() {
-			that.getList();
-		}, 1000);
-	},
+	},	
 	methods: {
+		upper: function() {
+			this.has_next = true;
+			this.reload = true;
+			this.page = 1;
+			this.getList();
+		},
+		lower: function() {
+			let that = this;
+			let timer = null;
+			if (timer != null) {
+				clearTimeout(timer);
+			}
+			timer = setTimeout(function() {
+				that.getList();
+			}, 1000);
+		},
 		getList: function() {
 			let that = this;
 			if (that.has_next) {
