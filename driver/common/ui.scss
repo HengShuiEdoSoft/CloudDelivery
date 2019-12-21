@@ -157,7 +157,7 @@
 		background: $dark;
 	}
 	/*订单状态*/
-	.ui-hujiao:after,.ui-daizhifu:after{
+	.ui-hujiao,.ui-daizhifu,.ui-wancheng,.ui-quxiao{
 		position:absolute;
 		top:0;
 		right:20upx;
@@ -166,13 +166,17 @@
 		font-size:12px;
 		color:$white;
 	}
-	.ui-hujiao:after{
-		content:"正在呼叫";
+	.ui-hujiao{
 		background: $green;
 	}
-	.ui-daizhifu:after{
-		content:"待支付";
+	.ui-daizhifu{
 		background: $yellow;
+	}
+	.ui-wancheng{
+		background: $maincolor;
+	}
+	.ui-quxiao{
+		background: $grey;
 	}
 	
 /**订单详情**/	
@@ -520,7 +524,7 @@
 		background: $dark;
 	}
 	/*订单状态*/
-	.ui-hujiao:after,.ui-daizhifu:after{
+	.ui-hujiao,.ui-daizhifu,.ui-wancheng,.ui-quxiao{
 		position:absolute;
 		top:0;
 		right:20upx;
@@ -529,13 +533,17 @@
 		font-size:12px;
 		color:$white;
 	}
-	.ui-hujiao:after{
-		content:"运送中";
+	.ui-hujiao{
 		background: $green;
 	}
-	.ui-daizhifu:after{
-		content:"待支付";
+	.ui-daizhifu{
 		background: $yellow;
+	}
+	.ui-wancheng{
+		background: $maincolor;
+	}
+	.ui-quxiao{
+		background: $grey;
 	}
 	.ui-order-cont {
 		flex: 1;
