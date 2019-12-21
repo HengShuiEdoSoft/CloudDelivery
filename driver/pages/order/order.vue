@@ -3,7 +3,7 @@
 		<view class="status_bar"></view>
 		<view class="nav-bar nav-bar-b">
 			<view class="nav-left">订单</view>
-			<view class="nav-center"><image src="../../static/img/logoText1.gif"></image></view>
+			<view class="nav-center"><image src="../../static/img/logoText.gif"></image></view>
 			<view class="nav-right"></view>
 		</view>
 		<view class="ui-car-name-list">

@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="status_bar"></view>
-		<view class="nav-bar">
+		<view class="nav-bar nav-bar-b">
 			<view class="nav-left">我的</view>
 			<view class="nav-center"><image src="../../static/img/logoText.gif"></image></view>
 			<view class="nav-right" @tap="navTo('/pages/setup/setup')"><text class="iconfont icon-shezhi"></text></view>
