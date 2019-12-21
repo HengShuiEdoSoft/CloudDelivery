@@ -159,7 +159,7 @@
 								// let list=_self.parseOrderList(res.data);
 								_self.lists[current] = _self.reload[current] ? list : _self.lists[current].concat(list);
 								_self.$set(_self.lists, current, _self.lists[current]);
-								_self.$set(_self.page, current, _self.page[current]++);
+								_self.$set(_self.page, current, _self.page[current]+1);
 								_self.$set(_self.reload, current, false);
 								_self.$set(_self.has_next, current, res.data.has_next);
 								if(res.data.has_next){

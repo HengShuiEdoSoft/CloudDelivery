@@ -311,7 +311,7 @@ export default {
 								list = _self.parseOrderList(list);
 								_self.newsList[current] = _self.reload[current] ? list : _self.newsList[current].concat(list);
 								_self.$set(_self.newsList, current, _self.newsList[current]);
-								_self.$set(_self.page, current, _self.page[current]++);
+								_self.$set(_self.page, current, _self.page[current]+1);
 								_self.$set(_self.reload, current, false);
 								_self.$set(_self.has_next, current, res.data.has_next);
 								if (res.data.has_next) {
