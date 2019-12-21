@@ -1,8 +1,8 @@
 <template>
-	<view class="content ">
+	<view class="content">
 		<view class="ui-divide-line"></view>
 		<scroll-view class="scroll-container" scroll-y :style="height">
-			<view v-if="lists.length==0">
+			<view v-if="lists.length===0">
 				<view class="dui-notyet-wrapper">
 					<image src="../../static/img/NoOrder.jpg" mode=""></image>
 					<text>您还没有常用地址</text>
@@ -181,7 +181,6 @@
 <style>
 	.scroll-container {
 		height: 100%;
-		margin-bottom: 140upx;
 	}
 
 	.icon-weizhi {

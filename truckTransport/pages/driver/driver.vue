@@ -213,6 +213,9 @@ export default {
 };
 </script>
 <style>
+.scroll-container {
+	height: 100%;
+}	
 .dui-notyet-wrapper image {
 	width: 170upx;
 	height: 200upx;
