@@ -165,11 +165,6 @@
 	}
 </script>
 <style>
-	.scroll-container {
-		height: 100%;
-		padding-bottom: 20%;
-	}
-
 	.dui-basic-list-item__container {
 		padding: 32upx 30upx;
 	}

@@ -200,7 +200,7 @@ export default {
 		call: function(e) {
 			let that=this;
 			uni.makePhoneCall({
-				phoneNumber: that.order.uphone
+				phoneNumber: that.order.dphone
 			});
 		},
 		makecall:function(e) {
