@@ -361,6 +361,6 @@ export default {
 
 <style>
 /* .scroll-container {
-	height: 80vh;
+	height: 100%;
 } */
 </style>
