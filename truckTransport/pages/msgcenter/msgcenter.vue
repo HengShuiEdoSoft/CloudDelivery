@@ -89,7 +89,7 @@ export default {
 								that.empty = false;
 								// let list=_self.parseOrderList(res.data);
 								that.lists = that.reload ? list : that.lists.concat(list);
-								that.page++;
+								that.page=that.page+1;
 								that.reload = false;
 								that.has_next = res.data.has_next;
 								if (res.data.has_next) {

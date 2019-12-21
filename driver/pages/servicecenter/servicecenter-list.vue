@@ -106,7 +106,7 @@ export default {
 								_self.empty=false;
 								// let list=_self.parseOrderList(res.data);
 								_self.lists = _self.reload ? list : _self.lists.concat(list);
-								_self.page++;
+								_self.page=_self.page+1;
 								_self.reload=false;
 								_self.has_next=res.data.has_next;
 								if(res.data.has_next){

@@ -178,7 +178,7 @@ export default {
 									}
 								}
 								_self.list = _self.list ? list : _self.list.concat(list);
-								_self.page = _self.page++;
+								_self.page = _self.page+1;
 								_self.reload = false;
 								_self.has_next = res.data.has_next;
 							}

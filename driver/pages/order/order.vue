@@ -26,7 +26,7 @@
 						<text>您还没有订单信息</text>
 					</view>
 				</view>
-				<scroll-view class="scroll-container" scroll-y="true" :style="height">
+				<scroll-view class="scroll-container" scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower">
 					<view v-if="newsList[0].length > 0" v-for="(item, index) in newsList[0]" :key="index">
 						<navigator :url="'/pages/order/orderdetail-arrive?ocode=' + item.ocode" v-if="item.status === 2">
 							<view class="ui-order-list-item">
@@ -133,7 +133,7 @@
 						<text>您还没有订单信息</text>
 					</view>
 				</view>
-				<scroll-view class="scroll-container" scroll-y="true" :style="height">
+				<scroll-view class="scroll-container" scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower">
 					<navigator v-if="newsList[1].length > 0" v-for="(item, index) in newsList[1]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
 						<view class="ui-order-list-item">
 							<view class="ui-wancheng" v-if="item.status == 4">已完成</view>
@@ -191,7 +191,7 @@
 						<text>您还没有订单信息</text>
 					</view>
 				</view>
-				<scroll-view class="scroll-container" scroll-y="true" :style="height">
+				<scroll-view class="scroll-container" scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower">
 					<navigator v-if="newsList[2].length > 0" v-for="(item, index) in newsList[2]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
 						<view class="ui-order-list-item">
 							<view class="ui-quxiao" v-if="item.status == 11">用户取消</view>
@@ -270,20 +270,17 @@ export default {
 	onLoad() {
 		this.getnewsList();
 	},
-	onShow() {
-		
-	},
-	onPullDownRefresh: function() {
-		this.$set(this.has_next, this.current, true);
-		this.$set(this.reload, this.current, true);
-		this.$set(this.page, this.current, 1);
-		this.getnewsList();
-		uni.stopPullDownRefresh();
-	},
-	onReachBottom: function() {
-		this.getnewsList();
-	},
+	onShow() {},
 	methods: {
+		upper: function() {
+			this.$set(this.has_next, this.current, true);
+			this.$set(this.reload, this.current, true);
+			this.$set(this.page, this.current, 1);
+			this.getnewsList();
+		},
+		lower: function() {
+			this.getnewsList();
+		},
 		tabChange: function(e) {
 			let index = e.target.dataset.current || e.currentTarget.dataset.current;
 			this.current = index;
@@ -320,7 +317,7 @@ export default {
 								_self.$set(_self.empty, current, false);
 								_self.newsList[current] = _self.reload[current] ? list : _self.newsList[current].concat(list);
 								_self.$set(_self.newsList, current, _self.newsList[current]);
-								_self.$set(_self.page, current, _self.page[current]++);
+								_self.$set(_self.page, current, _self.page[current]+1);
 								_self.$set(_self.reload, current, false);
 								_self.$set(_self.has_next, current, res.data.has_next);
 								if (res.data.has_next) {
