@@ -20,121 +20,121 @@
 		</view>
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y="true" :style="height">
-					<view v-if="newsList[0].length==0">
-						<view class="dui-notyet-wrapper">
-							<image src="/static/img/NoOrder.jpg"></image>
-							<text>您还没有订单信息</text>
-						</view>
+				<view v-if="newsList[0].length == 0">
+					<view class="dui-notyet-wrapper">
+						<image src="/static/img/NoOrder.jpg"></image>
+						<text>您还没有订单信息</text>
 					</view>
-					<view v-if="newsList[0].length>0" v-for="(item, index) in newsList[0]" :key="index">
-					<navigator :url="'/pages/order/orderdetail-arrive?ocode=' + item.ocode" v-if="item.status === 2">
-						<view class="ui-order-list-item">
-							<view class="ui-hujiao">等待运送</view>
-							<view class="dui-gap"></view>
-							<view class="dui-gap"></view>
-							<view class="ui-order-list-item-top">
-								<text class="ui-orderno-color">{{ item.ocode }}</text>
-							</view>
-							<view class="ui-order-list-item-top">
-								<text class="ui-cartype-color">{{ item.driver_time }}</text>
-							</view>
-							<view class="ui-divide-line"></view>
-							<view class="ui-order-timeline-container">
-								<view class="ui-order-timeline uni-timeline">
-									<view class="uni-timeline-item uni-timeline-first-item">
-										<view class="uni-timeline-item-divider"></view>
-										<view class="uni-timeline-item-content">
-											<text class="ui-address">
-												{{ item.order_details_json.trip.departure.localtion }}{{ item.order_details_json.trip.departure.address }}
-											</text>
-										</view>
-									</view>
-									<view class="uni-timeline-item uni-timeline-last-item">
-										<view class="uni-timeline-item-divider"></view>
-										<view class="uni-timeline-item-content">
-											<text class="ui-address">
-												{{ item.order_details_json.trip.destination.localtion }}{{ item.order_details_json.trip.destination.address }}
-											</text>
-										</view>
-									</view>
+				</view>
+				<scroll-view class="scroll-container" scroll-y="true" :style="height">
+					<view v-if="newsList[0].length > 0" v-for="(item, index) in newsList[0]" :key="index">
+						<navigator :url="'/pages/order/orderdetail-arrive?ocode=' + item.ocode" v-if="item.status === 2">
+							<view class="ui-order-list-item">
+								<view class="ui-hujiao">等待运送</view>
+								<view class="dui-gap"></view>
+								<view class="dui-gap"></view>
+								<view class="ui-order-list-item-top">
+									<text class="ui-orderno-color">{{ item.ocode }}</text>
 								</view>
-								<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
-							</view>
-							<view class="ui-divide-line"></view>
-							<view class="dui-gap"></view>
-							<!--<view class="ui-od-price-list">
+								<view class="ui-order-list-item-top">
+									<text class="ui-cartype-color">{{ item.driver_time }}</text>
+								</view>
+								<view class="ui-divide-line"></view>
+								<view class="ui-order-timeline-container">
+									<view class="ui-order-timeline uni-timeline">
+										<view class="uni-timeline-item uni-timeline-first-item">
+											<view class="uni-timeline-item-divider"></view>
+											<view class="uni-timeline-item-content">
+												<text class="ui-address">
+													{{ item.order_details_json.trip.departure.localtion }}{{ item.order_details_json.trip.departure.address }}
+												</text>
+											</view>
+										</view>
+										<view class="uni-timeline-item uni-timeline-last-item">
+											<view class="uni-timeline-item-divider"></view>
+											<view class="uni-timeline-item-content">
+												<text class="ui-address">
+													{{ item.order_details_json.trip.destination.localtion }}{{ item.order_details_json.trip.destination.address }}
+												</text>
+											</view>
+										</view>
+									</view>
+									<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
+								</view>
+								<view class="ui-divide-line"></view>
+								<view class="dui-gap"></view>
+								<!--<view class="ui-od-price-list">
 								<view class="ui-od-price-type">需要加急?</view>
 								<view>否</view>
 							</view>-->
-						</view>
-						<view class="ui-orderdetail-cont">
-							<view class="ui-od-price-list">
-								<view class="ui-od-price-type">客户已支付</view>
-								<view class="ui-od-price-pay">￥{{ item.order_price }}</view>
 							</view>
-						</view>
-					</navigator>
-					<navigator :url="'/pages/order/orderdetail-complete?ocode=' + item.ocode" v-if="item.status === 3">
-						<view class="ui-order-list-item">
-							<view class="ui-hujiao">运送中</view>
-							<view class="dui-gap"></view>
-							<view class="dui-gap"></view>
-							<view class="ui-order-list-item-top">
-								<text class="ui-orderno-color">{{ item.ocode }}</text>
-							</view>
-							<view class="ui-order-list-item-top">
-								<text class="ui-cartype-color">{{ item.driver_time }}</text>
-							</view>
-							<view class="ui-divide-line"></view>
-							<view class="ui-order-timeline-container">
-								<view class="ui-order-timeline uni-timeline">
-									<view class="uni-timeline-item uni-timeline-first-item">
-										<view class="uni-timeline-item-divider"></view>
-										<view class="uni-timeline-item-content">
-											<text class="ui-address">
-												{{ item.order_details_json.trip.departure.localtion }}{{ item.order_details_json.trip.departure.address }}
-											</text>
-										</view>
-									</view>
-									<view class="uni-timeline-item uni-timeline-last-item">
-										<view class="uni-timeline-item-divider"></view>
-										<view class="uni-timeline-item-content">
-											<text class="ui-address">
-												{{ item.order_details_json.trip.destination.localtion }}{{ item.order_details_json.trip.destination.address }}
-											</text>
-										</view>
-									</view>
+							<view class="ui-orderdetail-cont">
+								<view class="ui-od-price-list">
+									<view class="ui-od-price-type">客户已支付</view>
+									<view class="ui-od-price-pay">￥{{ item.order_price }}</view>
 								</view>
-								<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
 							</view>
-							<view class="ui-divide-line"></view>
-							<view class="dui-gap"></view>
-							<!--<view class="ui-od-price-list">
+						</navigator>
+						<navigator :url="'/pages/order/orderdetail-complete?ocode=' + item.ocode" v-if="item.status === 3">
+							<view class="ui-order-list-item">
+								<view class="ui-hujiao">运送中</view>
+								<view class="dui-gap"></view>
+								<view class="dui-gap"></view>
+								<view class="ui-order-list-item-top">
+									<text class="ui-orderno-color">{{ item.ocode }}</text>
+								</view>
+								<view class="ui-order-list-item-top">
+									<text class="ui-cartype-color">{{ item.driver_time }}</text>
+								</view>
+								<view class="ui-divide-line"></view>
+								<view class="ui-order-timeline-container">
+									<view class="ui-order-timeline uni-timeline">
+										<view class="uni-timeline-item uni-timeline-first-item">
+											<view class="uni-timeline-item-divider"></view>
+											<view class="uni-timeline-item-content">
+												<text class="ui-address">
+													{{ item.order_details_json.trip.departure.localtion }}{{ item.order_details_json.trip.departure.address }}
+												</text>
+											</view>
+										</view>
+										<view class="uni-timeline-item uni-timeline-last-item">
+											<view class="uni-timeline-item-divider"></view>
+											<view class="uni-timeline-item-content">
+												<text class="ui-address">
+													{{ item.order_details_json.trip.destination.localtion }}{{ item.order_details_json.trip.destination.address }}
+												</text>
+											</view>
+										</view>
+									</view>
+									<view class="ui-order-item-more"><text class="iconfont icon-xiayiyeqianjinchakangengduo"></text></view>
+								</view>
+								<view class="ui-divide-line"></view>
+								<view class="dui-gap"></view>
+								<!--<view class="ui-od-price-list">
 								<view class="ui-od-price-type">需要加急?</view>
 								<view>否</view>
 							</view>-->
-						</view>
-						<view class="ui-orderdetail-cont">
-							<view class="ui-od-price-list">
-								<view class="ui-od-price-type">客户已支付</view>
-								<view class="ui-od-price-pay">￥{{ item.order_price }}</view>
 							</view>
-						</view>
-					</navigator>
+							<view class="ui-orderdetail-cont">
+								<view class="ui-od-price-list">
+									<view class="ui-od-price-type">客户已支付</view>
+									<view class="ui-od-price-pay">￥{{ item.order_price }}</view>
+								</view>
+							</view>
+						</navigator>
 					</view>
 					<view class="loading">{{ loadingText[0] }}</view>
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y="true" :style="height">
-					<view v-if="newsList[1].length==0">
-						<view class="dui-notyet-wrapper">
-							<image src="/static/img/NoOrder.jpg"></image>
-							<text>您还没有订单信息</text>
-						</view>
+				<view v-if="newsList[1].length == 0">
+					<view class="dui-notyet-wrapper">
+						<image src="/static/img/NoOrder.jpg"></image>
+						<text>您还没有订单信息</text>
 					</view>
-					<navigator v-if="newsList[1].length>0" v-for="(item, index) in newsList[1]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
+				</view>
+				<scroll-view class="scroll-container" scroll-y="true" :style="height">
+					<navigator v-if="newsList[1].length > 0" v-for="(item, index) in newsList[1]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
 						<view class="ui-order-list-item">
 							<view class="ui-wancheng" v-if="item.status == 4">已完成</view>
 							<view class="dui-gap"></view>
@@ -185,14 +185,14 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view class="scroll-container" scroll-y="true" :style="height">
-					<view v-if="newsList[2].length==0">
-						<view class="dui-notyet-wrapper">
-							<image src="/static/img/NoOrder.jpg"></image>
-							<text>您还没有订单信息</text>
-						</view>
+				<view v-if="newsList[2].length == 0">
+					<view class="dui-notyet-wrapper">
+						<image src="/static/img/NoOrder.jpg"></image>
+						<text>您还没有订单信息</text>
 					</view>
-					<navigator v-if="newsList[2].length>0" v-for="(item, index) in newsList[2]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
+				</view>
+				<scroll-view class="scroll-container" scroll-y="true" :style="height">
+					<navigator v-if="newsList[2].length > 0" v-for="(item, index) in newsList[2]" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode" :key="index">
 						<view class="ui-order-list-item">
 							<view class="ui-quxiao" v-if="item.status == 11">用户取消</view>
 							<view class="ui-quxiao" v-if="item.status == 13">呼叫超时</view>
@@ -264,13 +264,10 @@ export default {
 				}
 			],
 			status: ['2,3', '4,5', '11,12,13'],
-			height:''
+			height: ''
 		};
 	},
-	onLoad() {
-		let height=uni.getSystemInfoSync().windowHeight-110;
-		this.height="height:"+height+'px';
-	},
+	onLoad() {},
 	onShow() {
 		this.getnewsList();
 	},
@@ -361,9 +358,14 @@ export default {
 
 <style>
 .scroll-container {
-	height: 100%;
-} 
-.ui-order-cont{
-	flex:1;
+	/* #ifdef H5 */
+	height: calc(100vh - 60px - 88rpx - 100rpx - env(safe-area-inset-bottom) - var(--status-bar-height));
+	/* #endif */
+	/* #ifdef APP-PLUS */
+	height: calc(100vh - 88rpx - 100rpx - env(safe-area-inset-bottom) - var(--status-bar-height));
+	/* #endif */
+}
+.ui-order-cont {
+	flex: 1;
 }
 </style>
