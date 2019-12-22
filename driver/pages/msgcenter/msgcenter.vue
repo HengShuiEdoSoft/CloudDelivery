@@ -6,7 +6,7 @@
 				<text>信息空空如也！</text>
 			</view>
 		</view>
-		<scroll-view v-if="lists.length > 0" scroll-y="true"  @scrolltoupper="upper" @scrolltolower="lower" :style="height">
+		<scroll-view class="scroll-view" v-if="lists.length > 0" scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower" :style="height">
 			<view class="dui-msgcenter-list">
 				<block v-for="(item, index) in lists" :key="index">
 					<view class="dui-msgcenter-item-box">
@@ -61,7 +61,7 @@ export default {
 	},
 	onShow: function() {
 		this.getList();
-	},	
+	},
 	methods: {
 		upper: function() {
 			this.has_next = true;
@@ -100,7 +100,7 @@ export default {
 								that.empty = false;
 								// let list=_self.parseOrderList(res.data);
 								that.lists = that.reload ? list : that.lists.concat(list);
-								that.page=that.page+1;
+								that.page = that.page + 1;
 								that.reload = false;
 								that.has_next = res.data.has_next;
 								if (res.data.has_next) {
@@ -133,6 +133,14 @@ export default {
 </script>
 
 <style>
+.scroll-view {
+	/* #ifdef H5 */
+	height: calc(100vh - 100rpx - env(safe-area-inset-bottom) - var(--status-bar-height));
+	/* #endif */
+	/* #ifdef APP-PLUS */
+	height: calc(100vh - env(safe-area-inset-bottom));
+	/* #endif */
+}
 .dui-msgcenter-content {
 	white-space: pre-wrap;
 }

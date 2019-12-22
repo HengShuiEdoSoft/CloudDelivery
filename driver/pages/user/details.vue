@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<scroll-view  scroll-y  @scrolltoupper="upper" @scrolltolower="lower" :style="height">
+		<scroll-view class="scroll-view" scroll-y  @scrolltoupper="upper" @scrolltolower="lower">
 			<view class="dui-basic-list">
 				<block v-for="(item,index) in lists" :key="index">
 					<view class="dui-basic-list-item">
@@ -26,6 +26,7 @@
 					</view>
 				</block>
 			</view>
+			<view class="loading">{{ loadingText }}</view>
 		</scroll-view>
 	</view>
 </template>
@@ -122,8 +123,13 @@
 </script>
 
 <style>
-	scroll-view {
-		height: 100vh;
+	.scroll-view {
+		/* #ifdef H5 */
+		height: calc(100vh - 100rpx - env(safe-area-inset-bottom) - var(--status-bar-height));
+		/* #endif */
+		/* #ifdef APP-PLUS */
+		height: calc(100vh - env(safe-area-inset-bottom));
+		/* #endif */
 	}
 
 	.dui-maincolor {
