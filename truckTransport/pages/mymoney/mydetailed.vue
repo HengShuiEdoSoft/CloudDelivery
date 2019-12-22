@@ -8,66 +8,62 @@
 		<view class="ui-divide-line"></view>
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
-				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y :style="height">
-					<view v-if="empty[0]">
-						<view class="dui-notyet-wrapper">
-							<image src="../../static/img/NoOrder.jpg" mode=""></image>
-							<text>您还没有账单信息</text>
-						</view>
+				<view v-if="lists[0].length == 0">
+					<view class="dui-notyet-wrapper">
+						<image src="/static/img/NoOrder.jpg" mode=""></image>
+						<text>您还没有账单信息</text>
 					</view>
-					<view class="dui-basic-list" v-if="!empty[0]">
-						<block v-for="(item, index) in lists[0].list" :key="item.wallet_log_id">
-							<navigator url="">
-								<view class="dui-basic-list-item">
-									<view class="dui-basic-list-item__container">
-										<view class="dui-basic-list-item__content">
-											<view class="dui-basic-list-item__content-title">{{ item.msg }}</view>
-											<view class="dui-basic-list-item__content-note">余额:{{ item.new_money }}元</view>
-										</view>
-										<view class="dui-basic-list-item__content" style="text-align: right;">
-											<view class="dui-basic-list-item__content-note">{{ item.create_time }}</view>
-											<view class="dui-basic-list-item__content-title">
-												<text v-if="item.action_type === 0">-</text>
-												<text v-if="item.action_type === 1">+</text>
-												{{ item.money }}.00
-											</view>
+				</view>
+				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y>
+					<view class="dui-basic-list" v-if="lists[0].length > 0">
+						<block v-for="(item, index) in lists[0]" :key="item.wallet_log_id">
+							<view class="dui-basic-list-item">
+								<view class="dui-basic-list-item__container">
+									<view class="dui-basic-list-item__content">
+										<view class="dui-basic-list-item__content-title">{{ item.msg }}</view>
+										<view class="dui-basic-list-item__content-note">余额:{{ item.new_money }}元</view>
+									</view>
+									<view class="dui-basic-list-item__content" style="text-align: right;">
+										<view class="dui-basic-list-item__content-note">{{ item.create_time }}</view>
+										<view class="dui-basic-list-item__content-title">
+											<text v-if="item.action_type === 0">-</text>
+											<text v-if="item.action_type === 1">+</text>
+											{{ item.money }}.00
 										</view>
 									</view>
 								</view>
-							</navigator>
+							</view>
 						</block>
 					</view>
 					<view class="loading">{{ loadingText[0] }}</view>
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y :style="height">
-					<view v-if="empty[1]">
-						<view class="dui-notyet-wrapper">
-							<image src="../../static/img/NoOrder.jpg" mode=""></image>
-							<text>您还没有账单信息</text>
-						</view>
+				<view v-if="lists[1].length == 0">
+					<view class="dui-notyet-wrapper">
+						<image src="/static/img/NoOrder.jpg" mode=""></image>
+						<text>您还没有账单信息</text>
 					</view>
-					<view class="dui-basic-list" v-if="!empty[1]">
-						<block v-for="(item, index) in lists[1].list" :key="item.wallet_log_id">
-							<navigator url="">
-								<view class="dui-basic-list-item">
-									<view class="dui-basic-list-item__container">
-										<view class="dui-basic-list-item__content">
-											<view class="dui-basic-list-item__content-title">{{ item.msg }}</view>
-											<view class="dui-basic-list-item__content-note">余额:{{ item.new_money }}元</view>
-										</view>
-										<view class="dui-basic-list-item__content" style="text-align: right;">
-											<view class="dui-basic-list-item__content-note">{{ item.create_time }}</view>
-											<view class="dui-basic-list-item__content-title">
-												<text v-if="item.action_type === 0">-</text>
-												<text v-if="item.action_type === 1">+</text>
-												{{ item.money }}.00
-											</view>
+				</view>
+				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y>
+					<view class="dui-basic-list" v-if="lists[0].length > 0">
+						<block v-for="(item, index) in lists[1]" :key="item.wallet_log_id">
+							<view class="dui-basic-list-item">
+								<view class="dui-basic-list-item__container">
+									<view class="dui-basic-list-item__content">
+										<view class="dui-basic-list-item__content-title">{{ item.msg }}</view>
+										<view class="dui-basic-list-item__content-note">余额:{{ item.new_money }}元</view>
+									</view>
+									<view class="dui-basic-list-item__content" style="text-align: right;">
+										<view class="dui-basic-list-item__content-note">{{ item.create_time }}</view>
+										<view class="dui-basic-list-item__content-title">
+											<text v-if="item.action_type === 0">-</text>
+											<text v-if="item.action_type === 1">+</text>
+											{{ item.money }}.00
 										</view>
 									</view>
 								</view>
-							</navigator>
+							</view>
 						</block>
 					</view>
 					<view class="loading">{{ loadingText[1] }}</view>
@@ -82,7 +78,6 @@ export default {
 	data() {
 		return {
 			current: 0,
-			empty: [false, false, false],
 			loadingText: ['', '', ''],
 			page: [1, 1, 1],
 			has_next: [true, true, true],
@@ -95,14 +90,12 @@ export default {
 					name: '充值明细'
 				}
 			],
-			source_type: ['0,1,2', '0'],
+			source_type: ['0,1,2,3', '0'],
 			lists: [[], []],
 			height: ''
 		};
 	},
 	onLoad() {
-		let height = uni.getSystemInfoSync().windowHeight - 50;
-		this.height = 'height:' + height + 'px';
 	},
 	onShow: function() {
 		this.getList();
@@ -123,11 +116,11 @@ export default {
 			this.$set(this.has_next, this.current, true);
 			this.$set(this.reload, this.current, true);
 			this.$set(this.page, this.current, 1);
-			this.getList();
 		},
 		swiperChange: function(e) {
 			var index = e.target.current || e.detail.current;
 			this.current = index;
+			this.getList();
 		},
 		getList: function() {
 			let _self = this;
@@ -149,7 +142,6 @@ export default {
 						if (res.code === 0) {
 							if (res.data.list.length > 0) {
 								let list = res.data.list;
-								_self.$set(_self.empty, current, false);
 								// let list=_self.parseOrderList(res.data);
 								_self.lists[current] = _self.reload[current] ? list : _self.lists[current].concat(list);
 								_self.$set(_self.lists, current, _self.lists[current]);
@@ -162,7 +154,6 @@ export default {
 									_self.$set(_self.loadingText, current, '已加载全部');
 								}
 							} else {
-								_self.$set(_self.empty, current, true);
 								_self.$set(_self.loadingText, current, '');
 							}
 						} else {
@@ -186,7 +177,12 @@ export default {
 
 <style>
 .scroll-container {
-	height: 100%;
+	/* #ifdef H5 */
+	height: calc(100vh - 88rpx - 100rpx - env(safe-area-inset-bottom) - var(--status-bar-height));
+	/* #endif */
+	/* #ifdef APP-PLUS */
+	height: calc(100vh - 88rpx - env(safe-area-inset-bottom));
+	/* #endif */
 }
 
 .ui-order-cont {
