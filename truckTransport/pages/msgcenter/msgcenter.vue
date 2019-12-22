@@ -2,11 +2,11 @@
 	<view class="content">
 		<view v-if="lists.length == 0">
 			<view class="dui-notyet-wrapper">
-				<image src="../../static/img/NoOrder.jpg" mode=""></image>
+				<image src="/static/img/NoOrder.jpg" mode=""></image>
 				<text>信息空空如也！</text>
 			</view>
 		</view>
-		<scroll-view v-if="lists.length > 0" scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" :style="height">
+		<scroll-view class="scroll-view" v-if="lists.length > 0" scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower">
 			<view class="dui-msgcenter-list">
 				<block v-for="(item, index) in lists" :key="index">
 					<view class="dui-msgcenter-item-box">
@@ -45,7 +45,6 @@ export default {
 		};
 	},
 	onLoad() {
-		this.height = 'height:' + uni.getSystemInfoSync().windowHeight + 'px';
 	},
 	onShow: function() {
 		this.getList();
@@ -124,7 +123,12 @@ export default {
 .dui-msgcenter-content {
 	white-space: pre-wrap;
 }
-.scroll-container {
-	height: 100%;
+.scroll-view {
+	/* #ifdef H5 */
+	height: calc(100vh - 100rpx - env(safe-area-inset-bottom) - var(--status-bar-height));
+	/* #endif */
+	/* #ifdef APP-PLUS */
+	height: calc(100vh - env(safe-area-inset-bottom));
+	/* #endif */
 }
 </style>

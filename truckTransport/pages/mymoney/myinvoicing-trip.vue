@@ -1,12 +1,12 @@
 <template>
 	<view class="content">
-		<scroll-view  @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y :style="height">
-			<view v-if="lists.length < 1">
-				<view class="dui-notyet-wrapper">
-					<image src="/static/img/NoOrder.jpg" mode=""></image>
-					<text>您还没有可开发票</text>
-				</view>
+		<view v-if="lists.length < 1">
+			<view class="dui-notyet-wrapper">
+				<image src="/static/img/NoOrder.jpg" mode=""></image>
+				<text>您还没有可开发票</text>
 			</view>
+		</view>
+		<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y>
 			<view class="ui-order-list" v-if="lists.length > 0">
 				<checkbox-group class="ui-order-list-item" @change="checkboxChange">
 					<block v-for="(item, index) in lists" :key="index">
@@ -49,7 +49,7 @@ export default {
 		};
 	},
 	onLoad() {
-		this.height="height:"+uni.getSystemInfoSync().windowHeight+'px';
+
 	},
 	onNavigationBarButtonTap: function(e) {
 		let index = e.index;
@@ -61,7 +61,7 @@ export default {
 	},
 	onShow: function() {
 		this.getList();
-	},	
+	},
 	methods: {
 		upper: function() {
 			this.has_next = true;
@@ -71,13 +71,7 @@ export default {
 		},
 		lower: function() {
 			let _self = this;
-			let timer = null;
-			if (timer != null) {
-				clearTimeout(timer);
-			}
-			timer = setTimeout(function() {
-				_self.getList();
-			}, 1000);
+			_self.getList();
 		},
 		checkboxChange: function(e) {
 			let order_ids = [];
@@ -113,7 +107,7 @@ export default {
 								_self.empty = false;
 								list = _self.parseOrderList(list);
 								_self.lists = _self.reload ? list : _self.lists.concat(list);
-								_self.page = _self.page+1;
+								_self.page = _self.page + 1;
 								_self.reload = false;
 								_self.has_next = res.data.has_next;
 								if (res.data.has_next) {
@@ -160,11 +154,11 @@ export default {
 							mask: true,
 							duration: 3000
 						});
-						setTimeout(function(){
+						setTimeout(function() {
 							uni.navigateBack({
-								delta:1
-							})
-						},1000);						
+								delta: 1
+							});
+						}, 1000);
 					} else {
 						uni.showModal({
 							content: res.msg,
@@ -191,7 +185,15 @@ export default {
 </script>
 <style>
 .scroll-container {
-	height: 100%;
+	/* #ifdef H5 */
+	height: calc(100vh - 100rpx - env(safe-area-inset-bottom) - var(--status-bar-height));
+	/* #endif */
+	/* #ifdef APP-PLUS */
+	height: calc(100vh - env(safe-area-inset-bottom));
+	/* #endif */
+}
+.loading{
+	margin-bottom: 55px;
 }
 .ui-order-price {
 	line-height: 80upx;

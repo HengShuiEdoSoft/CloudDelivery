@@ -14,13 +14,13 @@
 		</view>
 		<swiper @change="swiperChange" :current="current" class="ui-order-cont">
 			<swiper-item>
-				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y :style="height">
-					<view v-if="newsList[0].length === 0">
-						<view class="dui-notyet-wrapper">
-							<image src="/static/img/NoOrder.jpg" mode=""></image>
-							<text>您还没有订单信息</text>
-						</view>
+				<view v-if="newsList[0].length === 0">
+					<view class="dui-notyet-wrapper">
+						<image src="/static/img/NoOrder.jpg" mode=""></image>
+						<text>您还没有订单信息</text>
 					</view>
+				</view>
+				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y>
 					<navigator class="ui-order-list-item" v-for="(item, index) in newsList[0]" :key="index" :url="'/pages/orderdetail/orderdetail?ocode=' + item.ocode">
 						<view class="ui-daizhifu" v-if="parseInt(item.status) === 0">待支付</view>
 						<view class="ui-hujiao" v-if="parseInt(item.status) === 1">呼叫中...</view>
@@ -67,13 +67,13 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y :style="height">
-					<view v-if="newsList[1].length === 0">
-						<view class="dui-notyet-wrapper">
-							<image src="/static/img/NoOrder.jpg" mode=""></image>
-							<text>您还没有订单信息</text>
-						</view>
+				<view v-if="newsList[1].length === 0">
+					<view class="dui-notyet-wrapper">
+						<image src="/static/img/NoOrder.jpg" mode=""></image>
+						<text>您还没有订单信息</text>
 					</view>
+				</view>
+				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y>
 					<navigator
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[1]"
@@ -124,13 +124,13 @@
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
-				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y :style="height">
-					<view v-if="newsList[2].length === 0">
-						<view class="dui-notyet-wrapper">
-							<image src="/static/img/NoOrder.jpg" mode=""></image>
-							<text>您还没有订单信息</text>
-						</view>
+				<view v-if="newsList[2].length === 0">
+					<view class="dui-notyet-wrapper">
+						<image src="/static/img/NoOrder.jpg" mode=""></image>
+						<text>您还没有订单信息</text>
 					</view>
+				</view>
+				<scroll-view @scrolltoupper="upper" @scrolltolower="lower" class="scroll-container" scroll-y>
 					<navigator
 						class="ui-order-list-item"
 						v-for="(item, index) in newsList[2]"
@@ -211,8 +211,8 @@ export default {
 		};
 	},
 	onLoad() {
-		let height = uni.getSystemInfoSync().windowHeight - 50;
-		this.height = 'height:' + height + 'px';
+		// let height = uni.getSystemInfoSync().windowHeight - 50;
+		// this.height = 'height:' + height + 'px';
 	},
 	onShow() {
 		this.getnewsList();
@@ -346,7 +346,12 @@ export default {
 
 <style>
 .scroll-container {
-	height: 100%;
+	/* #ifdef H5 */
+	height: calc(100vh - 88rpx - 100rpx - env(safe-area-inset-bottom) - var(--status-bar-height));
+	/* #endif */
+	/* #ifdef APP-PLUS */
+	height: calc(100vh - 88rpx - env(safe-area-inset-bottom));
+	/* #endif */
 }
 .ui-order-cont {
 	flex: 1;

@@ -1,18 +1,22 @@
 <template>
 	<view class="content">
-		<view class="dui-notyet-wrapper" v-if="lists.length===0">
+		<view class="dui-notyet-wrapper" v-if="lists.length === 0">
 			<image src="../../static/img/NoDriver.jpg" mode=""></image>
 			<text>收藏好司机直接发单给他们</text>
 			<view class="dui-notyet-btn" @tap="togglePopup('center', 'collection')">去收藏司机</view>
 		</view>
-		<view class="ui-list" v-if="lists.length!=0">
-			<view class="ui-list-item" v-for="(item, index) in lists" :key="item.user_driver_favorites_id" @longpress="deleteDriver(item.user_driver_favorites_id,index)">
-				<view class="ui-list-title">{{ item.dname }}</view>
-				<view class="ui-list-subtext">{{ item.phone }}</view>
-			</view>
-			<view class="dui-fixed-bottom-btn"><button class="primary" type="primary" @tap="togglePopup('center', 'collection')">去收藏司机</button></view>
-			<view class="loading">{{ loadingText }}</view>
+		<view
+			v-if="lists.length != 0"
+			class="ui-list-item"
+			v-for="(item, index) in lists"
+			:key="item.user_driver_favorites_id"
+			@longpress="deleteDriver(item.user_driver_favorites_id, index)"
+		>
+			<view class="ui-list-title">{{ item.dname }}</view>
+			<view class="ui-list-subtext">{{ item.phone }}</view>
 		</view>
+		<view class="dui-fixed-bottom-btn"><button class="primary" type="primary" @tap="togglePopup('center', 'collection')">去收藏司机</button></view>
+		<view class="loading">{{ loadingText }}</view>
 		<uni-popup ref="collection" :type="type" :custom="true" :mask-click="true">
 			<view class="dui-collection-wrapper">
 				<view class="input-group">
@@ -51,12 +55,10 @@ export default {
 			has_next: true,
 			lists: [],
 			driver_phone: '',
-			height:''
+			height: ''
 		};
 	},
-	onLoad() {
-		
-	},
+	onLoad() {},
 	onShow: function() {
 		this.getList();
 	},
@@ -82,8 +84,8 @@ export default {
 			this.type = type;
 			this.$refs[open].open();
 		},
-		deleteDriver: function(id,index) {
-			let that=this;
+		deleteDriver: function(id, index) {
+			let that = this;
 			uni.showModal({
 				title: '温馨提示',
 				content: '您确定要删除该条信息吗',
@@ -107,8 +109,8 @@ export default {
 										mask: true,
 										duration: 3000
 									});
-									that.lists.splice(index,1);
-									that.$set(that,"lists",that.lists);
+									that.lists.splice(index, 1);
+									that.$set(that, 'lists', that.lists);
 								} else {
 									uni.showModal({
 										content: res.msg,
@@ -119,7 +121,7 @@ export default {
 							.catch(function(error) {
 								uni.hideNavigationBarLoading();
 								uni.showToast({
-									content:JSON.stringify(error),
+									content: JSON.stringify(error),
 									showCancel: false
 								});
 							});
@@ -148,7 +150,7 @@ export default {
 								_self.empty = false;
 								// let list=_self.parseOrderList(res.data);
 								_self.lists = _self.reload ? list : _self.lists.concat(list);
-								_self.page=_self.page+1;
+								_self.page = _self.page + 1;
 								_self.reload = false;
 								_self.has_next = res.data.has_next;
 								if (res.data.has_next) {
@@ -170,7 +172,7 @@ export default {
 					.catch(function(error) {
 						uni.hideNavigationBarLoading();
 						uni.showModal({
-							content:JSON.stringify(error),
+							content: JSON.stringify(error),
 							showCancel: false
 						});
 					});
@@ -213,7 +215,10 @@ export default {
 <style>
 .scroll-container {
 	height: 100%;
-}	
+}
+.loading{
+	margin-bottom: 55px;
+}
 .dui-notyet-wrapper image {
 	width: 170upx;
 	height: 200upx;

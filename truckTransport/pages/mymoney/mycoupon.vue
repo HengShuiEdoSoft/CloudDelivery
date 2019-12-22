@@ -1,13 +1,14 @@
 <template>
 	<view class="content">
 		<view class="ui-divide-line"></view>
-			<!-- <view class="dui-coupon-input"><input type="text" value="" focus="true" placeholder="按此输入兑换码" /></view> -->
-			<view v-if="list.length === 0">
-				<view class="dui-notyet-wrapper">
-					<image src="../../static/img/NoCoupon.jpg" mode=""></image>
-					<text>您的优惠券为空</text>
-				</view>
+		<!-- <view class="dui-coupon-input"><input type="text" value="" focus="true" placeholder="按此输入兑换码" /></view> -->
+		<view v-if="list.length === 0">
+			<view class="dui-notyet-wrapper">
+				<image src="/static/img/NoCoupon.jpg" mode=""></image>
+				<text>您的优惠券为空</text>
 			</view>
+		</view>
+		<scroll-view class="scroll-view" v-if="list.length > 0" scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower">
 			<view class="ui-coupon-list">
 				<view class="ui-coupon-item" v-for="(item, index) in list" :key="item.user_coupon_id">
 					<view class="ui-coupon-item-body">
@@ -27,8 +28,8 @@
 							</view>
 						</view>
 						<view v-if="item.status === 0" @tap="receiveCoupon"><view class="ui-coupon-use">领取全部</view></view>
-						<view v-if="item.status === 1"><navigator class="ui-coupon-use" :url="'/pages/index/index' + item.user_coupon_id">立即使用</navigator></view>						
-						<view v-if="item.status === -1" ><view class="ui-coupon-use-b">失效</view></view>
+						<view v-if="item.status === 1"><navigator class="ui-coupon-use" :url="'/pages/index/index?user_coupon_id=' + item.user_coupon_id">立即使用</navigator></view>
+						<view v-if="item.status === -1"><view class="ui-coupon-use-b">失效</view></view>
 					</view>
 					<view :class="{ active: index == current }" class="ui-coupon-detail">
 						<view>1.适用车型：{{ item.car_title }}</view>
@@ -37,6 +38,8 @@
 					</view>
 				</view>
 			</view>
+			<view class="loading">{{ loadingText }}</view>
+		</scroll-view>
 	</view>
 </template>
 
@@ -46,107 +49,104 @@ export default {
 		return {
 			current: '',
 			show: false,
+			loadingText: '',
 			reload: true,
 			has_next: true,
 			page: 1,
 			list: [],
-			height:''
+			height: ''
 		};
 	},
 	onLoad() {
-	},
-	onShow() {
 		this.getList();
 	},
-	onPullDownRefresh: function() {
-		this.has_next = true;
-		this.reload = true;
-		this.getList();
-		uni.stopPullDownRefresh();
-	},
-	onReachBottom: function() {
-		this.getList();
-	},
+	onShow() {},
 	methods: {
+		upper: function() {
+			this.has_next = true;
+			this.reload = true;
+			this.page = 1;
+			this.getList();
+		},
+		lower: function() {
+			this.getList();
+		},
 		seeDetail(index) {
 			this.current = index;
 		},
-		receiveCoupon:function(){
-			let that=this;
+		receiveCoupon: function() {
+			let that = this;
 			this.$uniFly
-			.post({
-				url: '/api/user_coupon/addusercoupon',
-				params: {}
-			})
-			.then(function(res) {
-				uni.hideNavigationBarLoading();
-				if (res.code === 0 ) {
-					uni.showToast({
-						title: '领取成功',
-						icon: 'success',
-						mask: true,
-						duration: 3000
-					});
-					this.has_next = true;
-					this.reload = true;
-					this.getList();
-					uni.stopPullDownRefresh();
-				} else {
+				.post({
+					url: '/api/user_coupon/addusercoupon',
+					params: {}
+				})
+				.then(function(res) {
+					uni.hideNavigationBarLoading();
+					if (res.code === 0) {
+						uni.showToast({
+							title: '领取成功',
+							icon: 'success',
+							mask: true,
+							duration: 3000
+						});
+						that.upper();
+					} else {
+						uni.showModal({
+							content: res.msg,
+							showCancel: false
+						});
+					}
+				})
+				.catch(function(error) {
+					uni.hideNavigationBarLoading();
 					uni.showModal({
-						content: res.msg,
+						content: JSON.stringify(error),
 						showCancel: false
 					});
-				}
-			})
-			.catch(function(error) {
-				uni.hideNavigationBarLoading();
-				uni.showModal({
-					content: JSON.stringify(error),
-					showCancel: false
 				});
-			});
 		},
-		deleteCoupon:function(id,index){
-			let that=this;
+		deleteCoupon: function(id, index) {
+			let that = this;
 			uni.showModal({
 				title: '温馨提示',
 				content: '您确定要删除该条信息吗',
 				showCancel: true,
 				success: res => {
 					if (res.confirm) {
-						const data={
-							user_coupon_ids:id
-						}
+						const data = {
+							user_coupon_ids: id
+						};
 						this.$uniFly
-						.post({
-							url: '/api/user_coupon/delusercoupon',
-							params: data
-						})
-						.then(function(res) {
-							uni.hideNavigationBarLoading();
-							if (res.code === 0 ) {
-								uni.showToast({
-									title: '已删除',
-									icon: 'success',
-									mask: true,
-									duration: 3000
-								});
-								that.list.splice(index,1);
-								that.$set(that,"list",that.list);
-							} else {
+							.post({
+								url: '/api/user_coupon/delusercoupon',
+								params: data
+							})
+							.then(function(res) {
+								uni.hideNavigationBarLoading();
+								if (res.code === 0) {
+									uni.showToast({
+										title: '已删除',
+										icon: 'success',
+										mask: true,
+										duration: 3000
+									});
+									that.list.splice(index, 1);
+									that.$set(that, 'list', that.list);
+								} else {
+									uni.showModal({
+										content: res.msg,
+										showCancel: false
+									});
+								}
+							})
+							.catch(function(error) {
+								uni.hideNavigationBarLoading();
 								uni.showModal({
-									content: res.msg,
+									content: JSON.stringify(error),
 									showCancel: false
 								});
-							}
-						})
-						.catch(function(error) {
-							uni.hideNavigationBarLoading();
-							uni.showModal({
-								content: JSON.stringify(error),
-								showCancel: false
 							});
-						});
 					}
 				}
 			});
@@ -155,7 +155,7 @@ export default {
 			let _self = this;
 			if (_self.has_next) {
 				uni.showNavigationBarLoading();
-				// _self.$set(_self.loadingText, current, '加载中...');
+				_self.loadingText = '加载中...';
 				const data = {
 					page: this.page
 				};
@@ -174,10 +174,17 @@ export default {
 										list[i].car_title = '通用';
 									}
 								}
-								_self.list = _self.list ? list : _self.list.concat(list);
-								_self.page = _self.page+1;
+								_self.list = _self.reload ? list : _self.list.concat(list);
+								_self.page = _self.page + 1;
 								_self.reload = false;
 								_self.has_next = res.data.has_next;
+								if (res.data.has_next) {
+									_self.loadingText = '加载更多';
+								} else {
+									_self.loadingText = '已加载全部';
+								}
+							} else {
+								_self.loadingText = '';
 							}
 						} else {
 							uni.showModal({
@@ -200,9 +207,14 @@ export default {
 </script>
 
 <style>
-	.scroll-container {
-		height: 100%;
-	}
+.scroll-view {
+	/* #ifdef H5 */
+	height: calc(100vh - 100rpx - env(safe-area-inset-bottom) - var(--status-bar-height));
+	/* #endif */
+	/* #ifdef APP-PLUS */
+	height: calc(100vh - env(safe-area-inset-bottom));
+	/* #endif */
+}
 .dui-coupon-input {
 	background-color: #fff;
 	padding: 35upx;

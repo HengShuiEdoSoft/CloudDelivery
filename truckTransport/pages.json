@@ -76,8 +76,7 @@
 		}, {
 			"path": "pages/mymoney/mycoupon",
 			"style": {
-				"navigationBarTitleText": "我的优惠券",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "我的优惠券"
 			}
 		}, {
 			"path": "pages/mymoney/mycoupon-select",
