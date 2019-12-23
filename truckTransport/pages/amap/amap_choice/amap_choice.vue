@@ -1,7 +1,9 @@
 <template>
 	<view class="content">
 		<view class="map_box">
+			<!-- #ifdef APP-PLUS || H5 -->
 			<view class="status_bar"></view>
+			<!-- #endif -->
 			<view class="search_input">
 				<view class="navigateback" @tap="navigateback"><uni-icons type="arrowleft" size="26"></uni-icons></view>
 				<view class="search_input_input_box" @tap="goSearchAddressList">
