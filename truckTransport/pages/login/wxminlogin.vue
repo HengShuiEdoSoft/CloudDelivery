@@ -1,7 +1,9 @@
 <template>
+	<view class="content">
 	<view v-if="user == null" class="wx-login tc">
 		<view class="cr-888 fs-12">确认登录授权，为您提供更优质的服务</view>
 		<button type="primary" size="mini" open-type="getUserInfo" withCredentials="true" @getuserinfo="get_user_info_event">授权登录</button>
+	</view>
 	</view>
 </template>
 
@@ -111,6 +113,7 @@ page {
 	height: 100vh;
 }
 .content {
+	background: #fff;
 	padding: 30% 40rpx 0 40rpx;
 }
 .content .mobile {
@@ -160,9 +163,13 @@ page {
 	  授权登录
 	*/
 .wx-login {
-	padding-top: 30%;
+	padding: 100upx 30upx 0;
+	text-align: center;
+	font-size:28upx;
 }
 .wx-login button {
-	margin-top: 30rpx;
+	margin-top: 40upx;
+	font-size:32upx;
+	line-height: 80upx;
 }
 </style>
