@@ -99,6 +99,7 @@ let app = new Vue({
 import socket from 'plus-websocket'
 // #ifdef APP-PLUS
 Object.assign(uni, socket);
+plus.device.setWakelock(true);
 // #endif
 
 //避免ws重复连接
