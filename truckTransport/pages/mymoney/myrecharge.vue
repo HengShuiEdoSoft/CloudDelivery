@@ -21,13 +21,26 @@
 				<view class="dui-recharge-paymode-title">支付方式</view>
 				<view class="dui-paymode-list">
 					<radio-group @change="radioChange">
-						<label class="dui-paymode-list-item" v-for="(item, index) in items" :key="item.value">
+						<block v-for="item in items" :key="item.value">
+						<!-- #ifdef MP-WEIXIN -->
+						<label v-if="item.value !='alipay'" class="dui-paymode-list-item">
 							<view class="dui-paymode-title">
 								<view :class="item.icon"></view>
 								<view class="dui-paymode-name">{{ item.name }}</view>
 							</view>
 							<view><radio :value="item.value" :checked="index === current" color="#FF5723" /></view>
 						</label>
+						<!-- #endif -->
+						<!-- #ifdef APP-PLUS || H5 -->
+						<label class="dui-paymode-list-item">
+							<view class="dui-paymode-title">
+								<view :class="item.icon"></view>
+								<view class="dui-paymode-name">{{ item.name }}</view>
+							</view>
+							<view><radio :value="item.value" :checked="index === current" color="#FF5723" /></view>
+						</label>
+						<!-- #endif -->
+						</block>
 					</radio-group>
 				</view>
 			</view>
@@ -206,7 +219,7 @@ export default {
 							pay_log_id: that.pay_log_id,
 							pay_platform: that.pay_platform,
 							provider: that.provider,
-							// openid: that.user.minwxapp_id
+							openid: that.user.minwxapp_id
 						}
 					})
 					.then(res => {

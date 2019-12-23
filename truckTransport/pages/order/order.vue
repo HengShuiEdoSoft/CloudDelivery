@@ -90,15 +90,30 @@
 								</view>
 								<view><radio value="syspay" color="#FF5723" /></view>
 							</label>
-							<label class="ui-list-item" v-for="item in items" :key="item.value">
-								<view class="ui-li-title">
-									<view :class="item.icon"></view>
-									<view class="ui-paytype-name">
-										<view>{{ item.name }}</view>
+							<block v-for="item in items" :key="item.value">
+								<!-- #ifdef MP-WEIXIN -->
+								<label v-if="item.value !='alipay'" class="ui-list-item">
+									<view class="ui-li-title">
+										<view :class="item.icon"></view>
+										<view class="ui-paytype-name">
+											<view>{{ item.name }}</view>
+										</view>
 									</view>
-								</view>
-								<view><radio :value="item.value" color="#FF5723" /></view>
-							</label>
+									<view><radio :value="item.value" color="#FF5723" /></view>
+								</label>
+								<!-- #endif -->
+								<!-- #ifdef APP-PLUS || H5 -->
+								<label class="ui-list-item">
+									<view class="ui-li-title">
+										<view :class="item.icon"></view>
+										<view class="ui-paytype-name">
+											<view>{{ item.name }}</view>
+										</view>
+									</view>
+									<view><radio :value="item.value" color="#FF5723" /></view>
+								</label>
+								<!-- #endif -->
+							</block>
 						</radio-group>
 					</view>
 				</view>
@@ -391,8 +406,8 @@ export default {
 						params: {
 							pay_log_id: that.pay_log_id,
 							pay_platform: that.pay_platform,
-							provider: that.provider
-							// openid: that.user.minwxapp_id
+							provider: that.provider,
+							openid: that.user.minwxapp_id
 						}
 					})
 					.then(res => {

@@ -1,42 +1,40 @@
 <template>
-	<view class="content" v-if="order!==null">
-		<view class="ui-orderdetail-cont ui-orderdetail-top" v-if="order.status===1">
+	<view class="content" v-if="order !== null">
+		<view class="ui-orderdetail-cont ui-orderdetail-top" v-if="order.status === 1">
 			<image src="/static/img/HeadImg.jpg" class="ui-od-portrait"></image>
 			<view>正在通知附近的司机...</view>
 		</view>
-		<view class="ui-orderdetail-cont ui-orderdetail-top" v-if="order.status===2||order.status===3||order.status===4||order.status===5">
+		<view class="ui-orderdetail-cont ui-orderdetail-top" v-if="order.status === 2 || order.status === 3 || order.status === 4 || order.status === 5">
 			<image src="/static/img/HeadImg.jpg" class="ui-od-portrait"></image>
 			<view>{{ order.dname }}</view>
 		</view>
-		<view v-if="order.status==0" class="ui-orderdetail-cont">
+		<view v-if="order.status == 0" class="ui-orderdetail-cont">
 			<!-- <view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view> -->
 			<view @tap="togglePopup" class="ui-order-pay-btn-b">去支付</view>
 		</view>
-		<view v-if="order.status==1" class="ui-orderdetail-cont">
-			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
-		</view>
-		<view v-if="order.status==2" class="ui-orderdetail-cont">
-			<navigator :url="'/pages/placeorder/sending?dname='+order.dname+'&phone='+order.dphone+'&ocode='+order.ocode" class="ui-order-pay-btn">货物追踪</navigator>
+		<view v-if="order.status == 1" class="ui-orderdetail-cont"><view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view></view>
+		<view v-if="order.status == 2" class="ui-orderdetail-cont">
+			<navigator :url="'/pages/placeorder/sending?dname=' + order.dname + '&phone=' + order.dphone + '&ocode=' + order.ocode" class="ui-order-pay-btn">货物追踪</navigator>
 			<view @tap="quitOrder(order.order_id)" class="ui-order-pay-btn">取消订单</view>
 			<view @tap="call" class="ui-order-pay-btn-b">呼叫司机</view>
 			<view @tap="makecall" class="ui-order-pay-btn-b">投诉</view>
 		</view>
-		<view v-if="order.status==3" class="ui-orderdetail-cont">
-			<navigator :url="'/pages/placeorder/sending?dname='+order.dname+'&phone='+order.dphone+'&ocode='+order.ocode" class="ui-order-pay-btn">货物追踪</navigator>
+		<view v-if="order.status == 3" class="ui-orderdetail-cont">
+			<navigator :url="'/pages/placeorder/sending?dname=' + order.dname + '&phone=' + order.dphone + '&ocode=' + order.ocode" class="ui-order-pay-btn">货物追踪</navigator>
 			<view @tap="call" class="ui-order-pay-btn-b">呼叫司机</view>
 			<view @tap="makecall" class="ui-order-pay-btn-b">投诉</view>
 		</view>
 		<view class="ui-orderdetail-cont">
-			<view v-if="order.status==0||order.status==1" class="ui-orderdetail-date">
+			<view v-if="order.status == 0 || order.status == 1" class="ui-orderdetail-date">
 				<view class="ui-od-date">发布时间：{{ order.create_time }}</view>
 			</view>
-			<view v-if="order.status==2" class="ui-orderdetail-date">				
+			<view v-if="order.status == 2" class="ui-orderdetail-date">
 				<view class="ui-od-date">接单时间：{{ order.driver_time }}</view>
 			</view>
-			<view v-if="order.status==3" class="ui-orderdetail-date">
-				<view class="ui-od-date">到达时间：{{order.arrives_time }}</view>
+			<view v-if="order.status == 3" class="ui-orderdetail-date">
+				<view class="ui-od-date">到达时间：{{ order.arrives_time }}</view>
 			</view>
-			<view v-if="order.status==4||order.status==5" class="ui-orderdetail-date">
+			<view v-if="order.status == 4 || order.status == 5" class="ui-orderdetail-date">
 				<view class="ui-od-date">完成时间：{{ order.sure_time }}</view>
 			</view>
 			<view class="ui-orderdetail-date">
@@ -125,15 +123,30 @@
 								</view>
 								<view><radio value="syspay" color="#FF5723" /></view>
 							</label>
-							<label class="ui-list-item" v-for="item in items" :key="item.value">
-								<view class="ui-li-title">
-									<view :class="item.icon"></view>
-									<view class="ui-paytype-name">
-										<view>{{ item.name }}</view>
+							<block v-for="item in items" :key="item.value">
+								<!-- #ifdef MP-WEIXIN -->
+								<label v-if="item.value != 'alipay'" class="ui-list-item">
+									<view class="ui-li-title">
+										<view :class="item.icon"></view>
+										<view class="ui-paytype-name">
+											<view>{{ item.name }}</view>
+										</view>
 									</view>
-								</view>
-								<view><radio :value="item.value" color="#FF5723" /></view>
-							</label>
+									<view><radio :value="item.value" color="#FF5723" /></view>
+								</label>
+								<!-- #endif -->
+								<!-- #ifdef APP-PLUS || H5 -->
+								<label class="ui-list-item">
+									<view class="ui-li-title">
+										<view :class="item.icon"></view>
+										<view class="ui-paytype-name">
+											<view>{{ item.name }}</view>
+										</view>
+									</view>
+									<view><radio :value="item.value" color="#FF5723" /></view>
+								</label>
+								<!-- #endif -->
+							</block>
 						</radio-group>
 					</view>
 				</view>
@@ -147,7 +160,7 @@
 import { mapState } from 'vuex';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 export default {
-	computed: mapState(['user','sysconfig']),
+	computed: mapState(['user', 'sysconfig']),
 	components: {
 		uniPopup
 	},
@@ -184,11 +197,11 @@ export default {
 		// #ifdef MP-WEIXIN
 		that.pay_platform = 'miniapp';
 		// #endif
-		
+
 		// #ifdef APP-PLUS
 		that.pay_platform = 'app';
 		// #endif
-		
+
 		// #ifdef H5
 		that.pay_platform = 'web';
 		// #endif
@@ -198,13 +211,13 @@ export default {
 			this.provider = e.detail.value;
 		},
 		call: function(e) {
-			let that=this;
+			let that = this;
 			uni.makePhoneCall({
 				phoneNumber: that.order.dphone
 			});
 		},
-		makecall:function(e) {
-			let that=this;
+		makecall: function(e) {
+			let that = this;
 			uni.makePhoneCall({
 				phoneNumber: that.sysconfig.service_tel
 			});
@@ -237,8 +250,8 @@ export default {
 					});
 				});
 		},
-		quitOrder(order_id){
-			let that=this;
+		quitOrder(order_id) {
+			let that = this;
 			const data = {
 				order_id: order_id
 			};
@@ -256,7 +269,7 @@ export default {
 							duration: 3000
 						});
 						uni.navigateBack({
-							delta:1
+							delta: 1
 						});
 					} else {
 						uni.showModal({
@@ -349,7 +362,7 @@ export default {
 							pay_log_id: that.pay_log_id,
 							pay_platform: that.pay_platform,
 							provider: that.provider,
-							// openid: that.user.minwxapp_id
+							openid: that.user.minwxapp_id
 						}
 					})
 					.then(res => {
@@ -381,7 +394,7 @@ export default {
 									signType: res.data.data.signType,
 									paySign: res.data.data.paySign,
 									success: function(res) {
-										that.$drmking.paySure(that,pay_log_id,'/pages/index/index');
+										that.$drmking.paySure(that, pay_log_id, '/pages/index/index');
 									},
 									fail: function(err) {
 										// console.log('fail:' + JSON.stringify(err));
@@ -407,7 +420,7 @@ export default {
 									provider: that.provider,
 									orderInfo: res.data.data, //微信、支付宝订单数据
 									success: function(res) {
-										that.$drmking.paySure(that,pay_log_id,'/pages/index/index');
+										that.$drmking.paySure(that, pay_log_id, '/pages/index/index');
 									},
 									fail: function(err) {
 										// console.log('fail:' + JSON.stringify(err));
@@ -485,23 +498,23 @@ export default {
 	display: flex;
 	line-height: 64upx;
 }
-.ui-order-pay-btn{
-	display:inline-block;
-	padding:0 20upx;
-	margin:20upx 10upx 20upx 0;
+.ui-order-pay-btn {
+	display: inline-block;
+	padding: 0 20upx;
+	margin: 20upx 10upx 20upx 0;
 	line-height: 80upx;
-	border:1upx solid #FF5723;
-	color:#FF5723;
+	border: 1upx solid #ff5723;
+	color: #ff5723;
 	border-radius: 4px;
 }
-.ui-order-pay-btn-b{
-	display:inline-block;
-	padding:0 20upx;
-	margin:20upx 10upx 20upx 0;
+.ui-order-pay-btn-b {
+	display: inline-block;
+	padding: 0 20upx;
+	margin: 20upx 10upx 20upx 0;
 	line-height: 80upx;
-	border:1upx solid #FF5723;
-	color:#fff;
-	background: #FF5723;
+	border: 1upx solid #ff5723;
+	color: #fff;
+	background: #ff5723;
 	border-radius: 4px;
 }
 .ui-home-btns {
@@ -604,44 +617,44 @@ radio {
 .ui-pop-container .ui-tip1 {
 	padding-bottom: 30upx;
 }
- .iconfont {
+.iconfont {
 	padding-right: 28upx;
 }
-	.dui-notice-driver {
-		width: 100%;
-		box-sizing: border-box;
-		padding:20upx 30upx;
-		border-top:1upx solid #e2e2e2;
-		background-color: #fff;
-		color: #999;
-	}
+.dui-notice-driver {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 20upx 30upx;
+	border-top: 1upx solid #e2e2e2;
+	background-color: #fff;
+	color: #999;
+}
 
-	.dui-notice-body {
-		font-size: 30upx;
-		line-height: 50upx;
-	}
+.dui-notice-body {
+	font-size: 30upx;
+	line-height: 50upx;
+}
 
-	.dui-notice-body text {
-		margin-right: 35upx;
-	}
+.dui-notice-body text {
+	margin-right: 35upx;
+}
 
-	.dui-notice-body text text {
-		color: #FF9801;
-		font-weight: 800;
-	}
+.dui-notice-body text text {
+	color: #ff9801;
+	font-weight: 800;
+}
 
-	.dui-btn-bottom {
-		display: flex;
-		align-items: center;
-		width: 100%;
-		height: 12vh;
-		padding: 0 20upx;
-		box-sizing: border-box;
-		background-color: #fff;
-	}
+.dui-btn-bottom {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 12vh;
+	padding: 0 20upx;
+	box-sizing: border-box;
+	background-color: #fff;
+}
 
-	.dui-btn-bottom button {
-		width: 100%;
-		background-color: #FF5723;
-	}
+.dui-btn-bottom button {
+	width: 100%;
+	background-color: #ff5723;
+}
 </style>

@@ -4,7 +4,9 @@
 		<view class="nav-bar">
 			<view class="nav-left" @tap="drawer"><text class="iconfont icon-yonghu"></text></view>
 			<view class="nav-center"><image src="../../static/img/logoText.gif"></image></view>
-			<view class="nav-right" @tap="navTo('/pages/mymoney/mycoupon')"><image src="../../static/img/gift.png"></image></view>
+			<!-- #ifdef APP-PLUS || H5 -->
+			<view class="nav-right" @tap="navTo('/pages/mymoney/mycoupon')"><image src="/static/img/gift.png"></image></view>
+			<!-- #endif -->
 		</view>
 		<view @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
 			<uni-drawer :visible="visible" mode="left" @close="visible = false">
