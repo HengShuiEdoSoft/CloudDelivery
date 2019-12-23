@@ -5,17 +5,67 @@ export default {
 		...mapMutations(['login'])
 	},
 	onLaunch: function() {
+		// #ifdef MP-WEIXIN
+		const updateManager = uni.getUpdateManager();
+		updateManager.onCheckForUpdate(function(res) {
+			console.log(res.hasUpdate);
+		});
+		updateManager.onUpdateReady(function() {
+			uni.showModal({
+				title: '更新提示',
+				content: '新版本已经准备好，是否重启应用？',
+				success: function(res) {
+					if (res.confirm) {
+						// 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+						updateManager.applyUpdate();
+					}
+				}
+			});
+		});
+		updateManager.onUpdateFailed(function() {
+			// 新的版本下载失败
+		});
+		// #endif
+		// #ifdef APP-PLUS
+		this.$uniFly
+			.post({
+				url: 'index/index/checkupdate',
+				params: {
+					appid: 'hd.lahuoerwang.driver',
+					os: plus.os.name,
+					version: plus.runtime.version
+				}
+			})
+			.then(res => {
+				if (res.code == 0) {
+					if (res.data.status > 0) {
+						uni.showModal({
+							title: '更新提示',
+							content: res.data.remark,
+							success: r => {
+								if (r.confirm) {
+									plus.runtime.openURL(res.data.url);
+								}
+							}
+						});
+					}
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			});
+		// #endif
 		let user = this.$drmking.cacheData('USER');
 		if (this.$drmking.isEmpty(user)) {
 			uni.navigateTo({
-				url:'/pages/login/login'
+				url: '/pages/login/login'
 			});
-		}else{
+		} else {
 			this.login(user);
 		}
 	},
 	onShow: function() {
-		// console.log('App Show');		
+		// console.log('App Show');
 	},
 	onHide: function() {
 		// console.log('App Hide');
