@@ -180,12 +180,7 @@
 				"navigationStyle": "custom"
 			}
 		},
-		{
-			"path": "pages/setup/transportstandard",
-			"style": {
-				"navigationBarTitleText": "货运收费标准"
-			}
-		},
+
 		{
 			"path": "pages/driver/driver",
 			"style": {
@@ -197,12 +192,6 @@
 			"path": "pages/driver/driverexplain",
 			"style": {
 				"navigationBarTitleText": "我的司机说明"
-			}
-		},
-		{
-			"path": "pages/setup/setup",
-			"style": {
-				"navigationBarTitleText": "更多设置"
 			}
 		},
 		{
@@ -226,59 +215,6 @@
 			"path": "pages/order/remark",
 			"style": {
 				"navigationBarTitleText": "备注"
-			}
-		},
-		{
-			"path": "pages/setup/userprotocol",
-			"style": {
-				"navigationBarTitleText": "用户协议"
-			}
-		},
-		{
-			"path": "pages/setup/privacypolicy",
-			"style": {
-				"navigationBarTitleText": "隐私政策"
-			}
-		},
-		{
-			"path": "pages/setup/about",
-			"style": {
-				"navigationBarTitleText": "关于"
-			}
-		},
-		{
-			"path": "pages/setup/resetpwd",
-			"style": {
-				"navigationBarTitleText": "重置密码"
-			}
-		},
-		{
-			"path": "pages/setup/vercode",
-			"style": {
-				"navigationBarTitleText": "获取验证码"
-			}
-		},
-		{
-			"path": "pages/setup/commonroutes",
-			"style": {
-				"navigationBarTitleText": "常用路线"
-			}
-		},
-		{
-			"path": "pages/setup/commonroutes1",
-			"style": {
-				"navigationBarTitleText": "常用路线",
-				"app-plus": {
-					"bounce": "none",
-					"titleNView": {
-						"buttons": [{
-							"text": "管理",
-							"fontSize": "12",
-							"float": "right",
-							"color": "#424456"
-						}]
-					}
-				}
 			}
 		},
 		{
@@ -468,12 +404,80 @@
 				"navigationBarTitleText": "绑定手机号设置密码"
 			}
 		}
-	    ,{
-            "path" : "pages/setup/aview",
-            "style" : {}
-        }
-    ],
-
+	],
+	"subPackages": [{
+		"root": "pages/setup",
+		"pages": [{
+				"path": "aview",
+				"style": {}
+			},
+			{
+				"path": "setup",
+				"style": {
+					"navigationBarTitleText": "更多设置"
+				}
+			},
+			{
+				"path": "transportstandard",
+				"style": {
+					"navigationBarTitleText": "货运收费标准"
+				}
+			},
+			{
+				"path": "userprotocol",
+				"style": {
+					"navigationBarTitleText": "用户协议"
+				}
+			},
+			{
+				"path": "privacypolicy",
+				"style": {
+					"navigationBarTitleText": "隐私政策"
+				}
+			},
+			{
+				"path": "about",
+				"style": {
+					"navigationBarTitleText": "关于"
+				}
+			},
+			{
+				"path": "resetpwd",
+				"style": {
+					"navigationBarTitleText": "重置密码"
+				}
+			},
+			{
+				"path": "vercode",
+				"style": {
+					"navigationBarTitleText": "获取验证码"
+				}
+			},
+			{
+				"path": "commonroutes",
+				"style": {
+					"navigationBarTitleText": "常用路线"
+				}
+			},
+			{
+				"path": "commonroutes1",
+				"style": {
+					"navigationBarTitleText": "常用路线",
+					"app-plus": {
+						"bounce": "none",
+						"titleNView": {
+							"buttons": [{
+								"text": "管理",
+								"fontSize": "12",
+								"float": "right",
+								"color": "#424456"
+							}]
+						}
+					}
+				}
+			}
+		]
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarBackgroundColor": "#fff",
