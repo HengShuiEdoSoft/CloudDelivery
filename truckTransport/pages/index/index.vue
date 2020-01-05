@@ -248,6 +248,9 @@ export default {
 			}
 		};
 	},
+	onShareAppMessage() {
+		
+	},
 	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'sysconfig', 'order']),
 	onShow() {
 		this.$drmking.getUserInfo(this);
