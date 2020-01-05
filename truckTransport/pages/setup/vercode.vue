@@ -12,7 +12,7 @@
 	</view>
 </template>
 <script>
-	import wakaryInput from '../../components/wakary-input.vue'
+	import wakaryInput from './components/wakary-input.vue'
 	export default {
 		components: {
 			wakaryInput

@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-	<view v-if="user == null" class="wx-login tc">
+	<view class="wx-login tc">
 		<view class="cr-888 fs-12">确认登录授权，为您提供更优质的服务</view>
 		<button type="primary" size="mini" open-type="getUserInfo" withCredentials="true" @getuserinfo="get_user_info_event">授权登录</button>
 	</view>

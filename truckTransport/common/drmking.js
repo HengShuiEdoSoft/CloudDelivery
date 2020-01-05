@@ -189,7 +189,16 @@ let drmking = {
 				uni.navigateTo({
 					url: '/pages/userinfo/bindphone'
 				});
-			} else {
+			}
+			// #ifdef MP-WEIXIN
+			else if (this.isEmpty(user.minwxapp_id)) {
+				uni.navigateTo({
+					url: '/pages/login/wxminlogin'
+				});
+				return false;
+			}
+			// #endif 
+			else {
 				// uni.reLaunch({
 				// 	url: '/pages/index/index'
 				// });

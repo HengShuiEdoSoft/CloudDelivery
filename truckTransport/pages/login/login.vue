@@ -207,8 +207,8 @@ export default {
 				uni.reLaunch({
 					url: '/pages/index/index'
 				});
+				return false;
 			}
-
 			// if (this.forcedLogin) {
 			// 	uni.reLaunch({
 			// 		url: '../index/index'
