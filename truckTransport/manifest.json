@@ -135,7 +135,10 @@
             "scope.userLocation" : {
                 "desc" : "获取当前定位，寻找附近的司机"
             }
-        }
+        },
+		"navigateToMiniProgramAppIdList":[
+			"wx69053e95c678d948"
+		]
     },
     "mp-alipay" : {
         "usingComponents" : true

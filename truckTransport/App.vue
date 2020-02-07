@@ -24,7 +24,7 @@ export default {
 		});
 		updateManager.onUpdateFailed(function() {
 			// 新的版本下载失败
-		});
+		});	
 		// #endif
 		// #ifdef APP-PLUS
 		this.$uniFly

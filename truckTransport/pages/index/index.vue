@@ -59,7 +59,7 @@
 				{{ location_city.city.city_title }}
 				<text>切换</text>
 			</navigator>
-			<view style="text-align: center;font-weight:700;">拉货·搬家</view>
+			<view style="text-align: center;font-weight:700;">拉货·搬家·本土购物</view>
 			<view class="iconfont icon-liaotianduihua" @tap="navTo('/pages/msgcenter/msgcenter')"></view>
 		</view>
 		<view class="ui-car-select">
@@ -150,6 +150,16 @@
 				</view>
 			</view>
 		</view>
+		<!-- #ifdef MP-WEIXIN -->
+		<view v-if="wxmin.appid!=''" class="wxmin" @tap="navigateToMiniProgram(wxmin.appid)">
+			<image :src="wxmin.icon"></image>
+			<text>{{ wxmin.name }}</text>
+		</view>
+		<!-- #endif -->		
+		<view v-if="wxmin.appid!=''" class="wxmin" @tap="navigateToMiniProgram(wxmin.appid)">
+			<image :src="wxmin.icon"></image>
+			<text>{{ wxmin.name }}</text>
+		</view>
 		<view class="ui-home-bottom" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
 			<view class="ui-home-price-container">
 				<block v-if="order.order_price > 0">
@@ -192,9 +202,7 @@
 					<view>1.开发票</view>
 					<view>2.享好礼</view>
 				</view>
-				<view class="ui-tanchukuang-btn">
-					<navigator url="/pages/viplevel/corporate-vip">升级企业用户</navigator>
-				</view>
+				<view class="ui-tanchukuang-btn"><navigator url="/pages/viplevel/corporate-vip">升级企业用户</navigator></view>
 			</view>
 			<view class="ui-tanchukuang-close" @tap="closeAd"><text class="iconfont icon-cuowuguanbiquxiao"></text></view>
 		</view>
@@ -245,12 +253,13 @@ export default {
 				address: '',
 				contact: '',
 				phone: ''
+			},
+			wxmin: {
+				appid:''
 			}
 		};
 	},
-	onShareAppMessage() {
-		
-	},
+	onShareAppMessage() {},
 	computed: mapState(['forcedLogin', 'hasLogin', 'user', 'sysconfig', 'order']),
 	onShow() {
 		this.$drmking.getUserInfo(this);
@@ -278,10 +287,32 @@ export default {
 		this.$fire.on('setTrip', function(data) {
 			that.setTrip(data);
 		});
+
+		let wxmin = that.$drmking.cacheData('wxmin');
+		if (that.$drmking.isEmpty(wxmin)) {
+			that.$uniFly
+				.get({
+					url: 'api/common/wxmin'
+				})
+				.then(res => {
+					if (res.code == 0) {
+						that.wxmin = res.data;
+						that.$drmking.cacheData('wxmin',res.data,3600);
+					}
+				})
+				.catch(err => {
+
+				});
+		}else{
+			that.wxmin =wxmin;
+		}
 	},
 	methods: {
-		closeAd(){
-			this.shengji=false;
+		navigateToMiniProgram(appid) {
+			uni.navigateToMiniProgram({ appId: appid });
+		},
+		closeAd() {
+			this.shengji = false;
 		},
 		checkUserType() {
 			let that = this;
@@ -625,6 +656,24 @@ export default {
 </script>
 
 <style>
+.wxmin {
+	position: fixed;
+	right: 10upx;
+	top: 25%;
+	width: 80px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	overflow: hidden;
+}
+.wxmin image {
+	width: 80px;
+	height: 80px;
+}
+.wxmin text {
+	color: #212121;
+	text-align: center;
+}
 .content {
 	font-size: 14px;
 }
@@ -815,26 +864,50 @@ export default {
 	color: #ff5723;
 	border: 1px solid #ff5723;
 }
-.ui-tanchukuang{
-	position:fixed;
-	top:0;
-	left:0;
+.ui-tanchukuang {
+	position: fixed;
+	top: 0;
+	left: 0;
 	z-index: 10000;
-	width:100vw;
-	height:100vh;
-	background: rgba(0,0,0,.3);
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.3);
 }
-.ui-tanchukuang-body{
-	width:520upx;
-	margin:260upx auto 0;
-	padding:40upx;
+.ui-tanchukuang-body {
+	width: 520upx;
+	margin: 260upx auto 0;
+	padding: 40upx;
 	background: #fff;
 	text-align: center;
 	box-sizing: border-box;
 }
-.ui-tanchukuang-close{width:108upx;text-align: center;margin:40upx auto;}
-.ui-tanchukuang-close .iconfont{font-size:36upx;color:#fff;padding:12upx;border: 1px solid #fff;border-radius: 80upx;}
-.ui-tanchukuang-body image{width:280upx;height:280upx;}
-.ui-qiyeyoushi{padding:20upx 40upx 40upx;text-align: left;color:#666;}
-.ui-tanchukuang-btn{font-size:28upx;line-height:80upx;border-radius: 60upx;color:#fff;text-align:center;background: #FF5723;}
+.ui-tanchukuang-close {
+	width: 108upx;
+	text-align: center;
+	margin: 40upx auto;
+}
+.ui-tanchukuang-close .iconfont {
+	font-size: 36upx;
+	color: #fff;
+	padding: 12upx;
+	border: 1px solid #fff;
+	border-radius: 80upx;
+}
+.ui-tanchukuang-body image {
+	width: 280upx;
+	height: 280upx;
+}
+.ui-qiyeyoushi {
+	padding: 20upx 40upx 40upx;
+	text-align: left;
+	color: #666;
+}
+.ui-tanchukuang-btn {
+	font-size: 28upx;
+	line-height: 80upx;
+	border-radius: 60upx;
+	color: #fff;
+	text-align: center;
+	background: #ff5723;
+}
 </style>
