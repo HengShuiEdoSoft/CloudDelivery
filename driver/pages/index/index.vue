@@ -281,13 +281,13 @@ export default {
 				});
 				return false;
 			} else {
-				uni.switchTab({
+				uni.navigateTo({
 					url: url,
 					fail(e) {
-						uni.navigateTo({
+						uni.switchTab({
 							url: url
 						});
-					}
+					},
 				});
 			}
 		}
